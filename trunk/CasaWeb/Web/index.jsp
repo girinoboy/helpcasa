@@ -5,13 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Struts 2 - Exemplo</title>
+<title>Help Casa</title>
 </head>
 <body>
-	<s:form action="login!checkLogin">
-	<s:textfield name="username" label="User"></s:textfield>
-	<s:password name="password" label="Password"></s:password>
-	<s:submit value="Sign In"></s:submit>
-	</s:form>
+	<a href="/casa/login!abertura.action">Logar</a><br/>
+	<b>--------------------------</b><br/>
+	<b>--------------------------</b>
 </body>
 </html>
