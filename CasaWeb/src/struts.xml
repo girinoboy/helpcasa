@@ -5,21 +5,29 @@
 <struts>
 	<include file="struts-default.xml"/>
 
-	<package name="default" extends="tiles-default">
+	<package name="default" extends="tiles-default" >
 	
 	<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
 	</result-types>
 		
-		<action name="login!*" method="{1}" class="br.com.jm.actions.LoginAction">
-			<result type="tiles" name="invalid.fwd">load.def</result>
-			<result name="valid">/home.jsp</result>
+		<action name="login!*" method="{1}" class="br.com.web.actions.LoginAction">
+			<result type="tiles" name="invalid.fwd">abertura.def</result>
+			<result type="tiles" name="valid.fwd">ClienteInclusao.def</result>
+			<result type="tiles" name="abertura.fwd">abertura.def</result>
 		</action>
-		<action name="user*!" method="{1}" class="br.com.jm.actions.UserAction">
-			<result name="listAll">listUsers.jsp </result>
-			<result></result>
 		
+		<action name="user!*" method="{1}" class="br.com.web.actions.UserAction">
+			<result type="tiles" name="listAll.fwd">listaUser.def </result>					
 		</action>
+		
+		<action name="cliente!*" method="{1}" class="br.com.web.actions.cliente.ClienteAction">
+			<result type="tiles" name="clienteInclusao.fwd">ClienteInclusao.def </result>
+			<result type="tiles" name="clienteConsultar.fwd">ClienteConsultar.def </result>
+			<result type="tiles" name="clienteListar.fwd">ClienteListar.def </result>
+			<result type="tiles" name="abertura.fwd">abertura.def</result>					
+		</action>	
+		
 	</package>
 
 </struts>

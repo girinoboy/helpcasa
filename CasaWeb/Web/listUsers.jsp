@@ -1,6 +1,6 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <table borde="1" bordecolor="whitc" cellpadding="2" cellspacing="2">
-	<tr>
+	<tr align="center">
 		<td><b>USUARIOS REGISTRADOS</b></td>
 	</tr>
 	<tr>
@@ -9,7 +9,7 @@
 		<td style="width: 150px; text-align: center;">Birthday</td>
 	</tr>
 	
-	<s:iterator>
+	<s:iterator value="users">
 		<tr>
 			<td><s:property value="name"/></td>
 			<td><s:property value="email"/></td>
