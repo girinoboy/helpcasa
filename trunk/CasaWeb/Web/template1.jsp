@@ -19,7 +19,7 @@
 	<head>
 		
 		<title><tiles:getAsString name="title" /></title>
-		
+				
 		<!-- CARREGA AS BIBLIOTECAS DO PLUGIN jQuery SOMENTE SE FOR INFORMADO NO DEFINITION -->
 		<s:if test="${not empty jQuery and jQuery == 'true'}">
 		
