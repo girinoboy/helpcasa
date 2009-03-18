@@ -22,7 +22,7 @@ public class ClienteBO extends GenericBO{
 	}
 
 	public ClienteDTO consulta(Long idCliente) throws Exception {
-		Connection con = null;//getConnection();
+		Connection con = getConnection();
 		ClienteDTO clienteDTOConsultada =  null;
 		try{
 			clienteDTOConsultada = this.getClienteDAO().consulta(idCliente, con);
@@ -31,7 +31,7 @@ public class ClienteBO extends GenericBO{
 		} catch (Exception e) {
 			throw e;
 		} finally {
-		//	con.close();
+			con.close();
 		}
 		return clienteDTOConsultada;
 	}

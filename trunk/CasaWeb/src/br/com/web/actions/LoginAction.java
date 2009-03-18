@@ -30,7 +30,7 @@ public class LoginAction extends GenericAction{
 				getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
 			}
 		}catch(Exception e){
-			getMensagemGlobal().addMensagem("O Login ou a Senha n„o existe no sistema. Tente novamente.",Mensagem.ERRO);
+			getMensagemGlobal().addMensagem("O Login ou a Senha n√£o existe no sistema. Tente novamente.",Mensagem.ERRO);
 			e.printStackTrace();
 		}
 		return "valid.fwd";
