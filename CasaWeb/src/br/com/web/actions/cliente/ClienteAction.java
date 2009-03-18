@@ -41,23 +41,24 @@ public class ClienteAction extends GenericAction{
 
 		} catch (Exception e){
 			e.printStackTrace();
-			//Manda para o request a mensagem de exceção vinda do BO
+			//Manda para o request a mensagem de exceï¿½ï¿½o vinda do BO
 			getMensagemGlobal().addMensagem("Erro ao incluir Cliente.", Mensagem.ERRO);
 			return this.direcionaMenu();
 		}
 		
-		return consultaParaCliente();
+		//return consultaParaCliente();
+		return "clienteInclusao.fwd";
 	}
 	
 	public String consultaParaCliente()throws Exception {
 		try{
-			//clienteDTO.setId(Long.parseLong("14"));
-		//	if(this.clienteDTO != null && this.clienteDTO.getId() != null){
-				this.clienteDTO = this.getClienteBO().consulta(Long.parseLong("14"));
-		//	}
+			
+			if(this.clienteDTO != null && this.clienteDTO.getId() != null){
+				this.clienteDTO = this.getClienteBO().consulta(this.clienteDTO.getId());
+			}
 		} catch (Exception e){
 			e.printStackTrace();
-			//Manda para o request a mensagem de exceção vinda do BO
+			//Manda para o request a mensagem de exceï¿½ï¿½o vinda do BO
 			getMensagemGlobal().addMensagem("Erro ao buscar Cliente.", Mensagem.ERRO);
 			return this.direcionaMenu();
 		}

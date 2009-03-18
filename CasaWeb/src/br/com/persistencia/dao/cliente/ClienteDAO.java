@@ -62,7 +62,7 @@ public class ClienteDAO extends GenericDAO{
 	private void populaClienteDTO(ClienteDTO dto, ResultSet rs) {
 		try{
 			//dto.setNome(rs.getString("nome"));
-			dto.setNome("Marcleônio");
+			dto.setNome("MarcleÃ´nio");
 		}catch(Exception e){
 			e.printStackTrace();
 		}		

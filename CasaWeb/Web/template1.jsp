@@ -46,8 +46,8 @@
 		<!-- CARREGA AS BIBLIOTECAS DO PLUGIN jtabber -->
 		<s:if test="${not empty jtabber and jtabber == 'true'}">
 			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jquery-1.2.6.min.js"/>'></script>
-			<script language="javascript" src="/ProntuarioWeb/js/jquery/jtabber.js" type="text/javascript"></script>
-			<script language="javascript" src="/ProntuarioWeb/js/jquery/jtabberConfig.js" type="text/javascript"></script>
+			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jtabber.js"/>'></script>
+			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jtabberConfig.js"/>'></script>
 			<link href='<s:url value="/estilos/jquery/jtabber.css"/>' rel="stylesheet" type="text/css"></link>
 		</s:if>
 		

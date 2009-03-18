@@ -9,9 +9,15 @@
 		<put-attribute name="title" 		value="" />		
     </definition>
     
-     <definition name="abertura.def"			extends="template1.def">
+     <definition name="Abertura.def"			extends="template1.def">
      	<put-attribute name="title" 			value="Help Casa" />		
     	<put-attribute name="body" 				value="/abertura.jsp" />		
+    	<put-attribute name="dojo" 				value="true" />
+    </definition>
+     <definition name="Home.def"			extends="template1.def">
+    	<put-attribute name="title" 			value="" />			
+    	<put-attribute name="body" 				value="/casa/home.jsp" />	    	
+    	<put-attribute name="js" 				value="/casa/home.js.jsp" />
     	<put-attribute name="dojo" 				value="true" />
     </definition>
     

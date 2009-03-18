@@ -12,9 +12,9 @@
 	</result-types>
 		
 		<action name="login!*" method="{1}" class="br.com.web.actions.LoginAction">
-			<result type="tiles" name="invalid.fwd">abertura.def</result>
-			<result type="tiles" name="valid.fwd">ClienteInclusao.def</result>
-			<result type="tiles" name="abertura.fwd">abertura.def</result>
+			<result type="tiles" name="invalid.fwd">Abertura.def</result>
+			<result type="tiles" name="valid.fwd">Home.def</result>
+			<result type="tiles" name="abertura.fwd">Abertura.def</result>
 		</action>
 		
 		<action name="user!*" method="{1}" class="br.com.web.actions.UserAction">
@@ -25,7 +25,7 @@
 			<result type="tiles" name="clienteInclusao.fwd">ClienteInclusao.def </result>
 			<result type="tiles" name="clienteConsultar.fwd">ClienteConsultar.def </result>
 			<result type="tiles" name="clienteListar.fwd">ClienteListar.def </result>
-			<result type="tiles" name="abertura.fwd">abertura.def</result>					
+			<result type="tiles" name="abertura.fwd">Abertura.def</result>					
 		</action>	
 		
 	</package>

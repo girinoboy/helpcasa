@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>    
@@ -8,7 +9,10 @@
 <title>Help Casa</title>
 </head>
 <body>
-	<a href="/casa/login!abertura.action">Logar</a><br/>
+	<!-- <a href="./login!abertura.action">Logar</a><br/> -->
+	<input type="button" value="Login" onclick='<c:url value="/login!abertura.action"/>'/><br/> 
+	
+	<a href="./cliente!load.action">Cadastro</a><br/>
 	<b>--------------------------</b><br/>
 	<b>--------------------------</b>
 </body>
