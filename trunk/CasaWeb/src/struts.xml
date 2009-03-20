@@ -25,7 +25,19 @@
 			<result type="tiles" name="clienteInclusao.fwd">ClienteInclusao.def </result>
 			<result type="tiles" name="clienteConsultar.fwd">ClienteConsultar.def </result>
 			<result type="tiles" name="clienteListar.fwd">ClienteListar.def </result>
-			<result type="tiles" name="abertura.fwd">Abertura.def</result>					
+			<result type="tiles" name="abertura.fwd">Abertura.def</result>
+			<result type="tiles" name="clienteBoleto.fwd">ClienteBoleto.def</result>
+			<result type="tiles" name="clienteClassificar.fwd">ClienteClassificar.def</result>						
+		</action>	
+		
+		<action name="administrador!*" method="{1}" class="br.com.web.actions.administrador.AdministradorAction">
+			<result type="tiles" name="administradorInclusao.fwd">AdministradorInclusao.def </result>
+			<result type="tiles" name="administradorManterServico.fwd">AdministradorManterServico.def </result>
+			<result type="tiles" name="administradorManterFuncionario.fwd">AdministradorManterFuncionario.def </result>
+		</action>
+		
+		<action name="profissional!*" method="{1}" class="br.com.web.actions.administrador.AdministradorAction">
+		
 		</action>	
 		
 	</package>

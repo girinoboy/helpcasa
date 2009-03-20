@@ -9,8 +9,8 @@
 <title>Help Casa</title>
 </head>
 <body>
-	<!-- <a href="./login!abertura.action">Logar</a><br/> -->
-	<input type="button" value="Login" onclick='<c:url value="/login!abertura.action"/>'/><br/> 
+	<a href="./login!abertura.action">Logar</a><br/>
+	<!-- <input type="button" value="Login" onclick='<c:url value="/login!abertura.action"/>'/><br/>  -->
 	
 	<a href="./cliente!load.action">Cadastro</a><br/>
 	<b>--------------------------</b><br/>
