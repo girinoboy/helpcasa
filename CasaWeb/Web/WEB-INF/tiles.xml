@@ -40,7 +40,35 @@
     	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
     	<put-attribute name="dojo" 				value="true" />
     </definition>
+    <definition name="ClienteBoleto.def"	    extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/cliente/clienteEfetuarPagamento.jsp" />	
+    	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
+    	<put-attribute name="dojo" 				value="true" />
+    </definition>
+    <definition name="ClienteClassificar.def"	extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/aplicarClassificacao.jsp" />	
+    	<put-attribute name="js" 				value="" />
+    	<put-attribute name="dojo" 				value="true" />
+    </definition>
+    
     <!-- FIM DE CLIENTE -->
+    
+     <!-- INICIO DE ADMINISTRADOR -->
+     <definition name="AdministradorManterServico.def"	extends="template1.def">
+    	<put-attribute name="title" 					value="help home" />		
+    	<put-attribute name="body" 						value="/casa/administrador/administradorManterServico.jsp" />	
+    	<put-attribute name="js" 						value="/casa/administrador/administrador.js.jsp" />
+    	<put-attribute name="dojo" 						value="true" />
+    </definition>
+    <definition name="AdministradorManterFuncionario.def"	extends="template1.def">
+    	<put-attribute name="title" 					value="help home" />		
+    	<put-attribute name="body" 						value="/casa/administrador/administradorManterFuncionario.jsp" />	
+    	<put-attribute name="js" 						value="/casa/administrador/administrador.js.jsp" />
+    	<put-attribute name="dojo" 						value="true" />
+    </definition>
+     <!-- FIM DE ADMINISTRADOR -->
     
     <definition name="listaUser.def"			extends="template1.def">
     	<put-attribute name="title" 			value="" />			

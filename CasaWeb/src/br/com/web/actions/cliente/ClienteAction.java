@@ -64,6 +64,16 @@ public class ClienteAction extends GenericAction{
 		}
 		return "clienteConsultar.fwd";
 	}
+	
+	public String boleto(){
+		
+		return "clienteBoleto.fwd";
+	}
+	
+	public String classificar(){
+		
+		return "clienteClassificar.fwd";
+	}
 
 	public ClienteDTO getClienteDTO() {
 		if (clienteDTO == null) {
