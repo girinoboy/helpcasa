@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="googleMaps"
+  id="myeclipse.1238423631593"
+  context-root="/googleMaps"
+  j2ee-spec="1.4"
+  archive="googleMaps.war">
+  <attributes>
+    <attribute name="webrootdir" value="Web" />
+  </attributes>
+</project-module>
+
