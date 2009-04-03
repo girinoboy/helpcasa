@@ -42,7 +42,7 @@
       gdir.load("from: " + fromAddress + " to: " + toAddress,
                 { "locale": locale });
                 
-                alert('distância total da solicitação de direções (por todas as rotas): '+gdir.getDistance());
+       alert('distância total da solicitação de direções (por todas as rotas): '+gdir.getDistance());
 	   alert('tempo total da solicitação de direções (por todas as rotas): '+gdir.getDuration());
 	   alert('número de entradas geocodificadas disponíveis no resultado: '+gdir.getNumGeocodes());
 	   alert('Numeto de rotas: '+gdir.getNumRoutes());
