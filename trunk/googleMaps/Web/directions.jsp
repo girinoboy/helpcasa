@@ -94,7 +94,7 @@
    <tr><th>Language:&nbsp;</th>
    <td colspan="3">
    <select id="locale" name="locale">
-   <option value="pt" selected="selected">Portugues</option>	
+   	<option value="pt" selected="selected">Portugues</option>	
     <option value="en">English</option>
     <option value="fr">French</option>
     <option value="de">German</option>
