@@ -70,19 +70,6 @@ public class GenericAction extends ActionSupport{
 	}
 	
 	/**
-	 * Método responsável por retornar o id do paciente
-	 * 
-	 * @return Integer
-	 */
-	public Integer getSessaoPaciente() {
-		Integer idPaciente = 0;
-		if(getSession() != null && getSession().getAttribute("pacienteID") != null){
-			idPaciente = (Integer) getSession().getAttribute("pacienteID");
-		}
-		return idPaciente;
-	}
-	
-	/**
 	 * Método responsável por retornar o FactoryBO com uma instância do usuário da sessão
 	 * 
 	 * @return FactoryBO
