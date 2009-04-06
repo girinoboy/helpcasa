@@ -7,7 +7,7 @@
   j2ee-spec="1.4"
   archive="googleMaps.war">
   <attributes>
-    <attribute name="webrootdir" value="Web" />
+    <attribute name="webrootdir" value="/Web" />
   </attributes>
 </project-module>
 
