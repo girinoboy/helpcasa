@@ -24,6 +24,7 @@
 				<a href="#" title="divname7">Gerar Boletos</a>
 				<a href="#" title="divname8">Solicitar Serviços</a>
 				<a href="#" title="divname9">Consultar Histórico de Serviços</a>
+				<a href="#" title="divname">Como chegar</a>
 				
 				
 				<div class="clear"></div>
@@ -68,6 +69,10 @@
 			
 			<div id="divname9" class="hiddencontent">				
 				<IFRAME name="palco" src='cliente!classificar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+			</div>
+			
+			<div id="divname" class="hiddencontent">				
+				<IFRAME name="palco" src='http://maps.google.com.br/' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
 								
 </div><!-- fim div wrap -->
