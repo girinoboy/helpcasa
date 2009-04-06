@@ -1,8 +1,9 @@
 package br.com.web.actions;
 
-import org.core.Mensagem;
-import org.core.MensagemLista;
 
+
+import br.com.Mensagem;
+import br.com.MensagemLista;
 import br.com.persistencia.dto.UsuarioDTO;
 
 

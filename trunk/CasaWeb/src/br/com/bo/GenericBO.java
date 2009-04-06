@@ -3,9 +3,9 @@ package br.com.bo;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.core.Conexao;
 
 import br.com.persistencia.dto.UsuarioDTO;
+import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 
 public abstract class GenericBO {

@@ -1,5 +1,6 @@
 package br.com.web.actions;
 
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,10 +8,10 @@ import javax.servlet.http.HttpSession;
 
 
 import org.apache.struts2.ServletActionContext;
-import org.core.MensagemLista;
 
 
 
+import br.com.MensagemLista;
 import br.com.bo.FactoryBO;
 import br.com.persistencia.dto.UsuarioDTO;
 

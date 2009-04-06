@@ -1,6 +1,6 @@
 package br.com.persistencia;
 
-import br.com.persistencia.dao.cliente.ClienteDAO;
+import br.com.persistencia.dao.ClienteDAO;
 import br.com.persistencia.dto.UsuarioDTO;
 
 public class FactoryDAO {
