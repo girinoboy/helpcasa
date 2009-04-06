@@ -12,45 +12,45 @@
      <definition name="Abertura.def"			extends="template1.def">
      	<put-attribute name="title" 			value="Help Casa" />		
     	<put-attribute name="body" 				value="/abertura.jsp" />		
-    	<put-attribute name="dojo" 				value="true" />
+    	
     </definition>
      <definition name="Home.def"			extends="template1.def">
     	<put-attribute name="title" 			value="" />			
     	<put-attribute name="body" 				value="/casa/home.jsp" />	    	
     	<put-attribute name="js" 				value="/casa/home.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
+    	<put-attribute name="jtabber" 			value="true" />
     </definition>
     
     <!-- INICIO DE CLIENTE -->
     <definition name="ClienteInclusao.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
-    	<put-attribute name="body" 				value="/casa/cliente/clienteInclusao.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
+    	<put-attribute name="body" 				value="/casa/clienteInclusao.jsp" />	
+    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
+    	
     </definition>
     <definition name="ClienteConsultar.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
-    	<put-attribute name="body" 				value="/casa/cliente/clienteConsultar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
+    	<put-attribute name="body" 				value="/casa/clienteConsultar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     	<put-attribute name="onload" 			value="disableAll();" />
     </definition>
     <definition name="ClienteListar.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/cliente/clienteListar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
+    	
     </definition>
     <definition name="ClienteBoleto.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/cliente/clienteEfetuarPagamento.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
+    	
     </definition>
     <definition name="ClienteClassificar.def"	extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/aplicarClassificacao.jsp" />	
     	<put-attribute name="js" 				value="" />
-    	<put-attribute name="dojo" 				value="true" />
+    	
     </definition>
     
     <!-- FIM DE CLIENTE -->
@@ -58,17 +58,36 @@
      <!-- INICIO DE ADMINISTRADOR -->
      <definition name="AdministradorManterServico.def"	extends="template1.def">
     	<put-attribute name="title" 					value="help home" />		
-    	<put-attribute name="body" 						value="/casa/administrador/administradorManterServico.jsp" />	
-    	<put-attribute name="js" 						value="/casa/administrador/administrador.js.jsp" />
-    	<put-attribute name="dojo" 						value="true" />
+    	<put-attribute name="body" 						value="/casa/administradorManterServico.jsp" />	
+    	<put-attribute name="js" 						value="/casa/administrador.js.jsp" />
+    	
     </definition>
     <definition name="AdministradorManterFuncionario.def"	extends="template1.def">
     	<put-attribute name="title" 					value="help home" />		
-    	<put-attribute name="body" 						value="/casa/administrador/administradorManterFuncionario.jsp" />	
-    	<put-attribute name="js" 						value="/casa/administrador/administrador.js.jsp" />
-    	<put-attribute name="dojo" 						value="true" />
+    	<put-attribute name="body" 						value="/casa/administradorManterFuncionario.jsp" />	
+    	<put-attribute name="js" 						value="/casa/administrador.js.jsp" />
+    	
     </definition>
      <!-- FIM DE ADMINISTRADOR -->
+     
+      <!-- INICIO DE PROFISSIONAL -->
+    <definition name="ProfissionalLoad.def"	extends="template1.def">
+    	<put-attribute name="title" 					value="help home" />		
+    	<put-attribute name="body" 						value="/casa/profissionalManterAgenda.jsp" />	
+    	<put-attribute name="js" 						value="/casa/profissional.js.jsp" />
+    	<put-attribute name="dojo" 						value="true" />
+    </definition>
+   
+     <!-- FIM DE PROFISSIONAL -->
+     
+     <!-- INICIO DE RELATORIOS -->
+    <definition name="RelatoriosLoad.def"	extends="template1.def">
+    	<put-attribute name="title" 					value="help home" />		
+    	<put-attribute name="body" 						value="/casa/relatorios.jsp" />	
+    	<put-attribute name="js" 						value="" />
+    </definition>
+   
+     <!-- FIM DE RELATORIOS -->
     
     <definition name="listaUser.def"			extends="template1.def">
     	<put-attribute name="title" 			value="" />			
