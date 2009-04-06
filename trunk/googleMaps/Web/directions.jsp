@@ -46,6 +46,7 @@
 	   alert('tempo total da solicitação de direções (por todas as rotas): '+gdir.getDuration());
 	   alert('número de entradas geocodificadas disponíveis no resultado: '+gdir.getNumGeocodes());
 	   alert('Numeto de rotas: '+gdir.getNumRoutes());
+	   
     }
 
     function handleErrors(){
