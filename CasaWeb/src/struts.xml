@@ -21,7 +21,7 @@
 			<result type="tiles" name="listAll.fwd">listaUser.def </result>					
 		</action>
 		
-		<action name="cliente!*" method="{1}" class="br.com.web.actions.cliente.ClienteAction">
+		<action name="cliente!*" method="{1}" class="br.com.web.actions.ClienteAction">
 			<result type="tiles" name="clienteInclusao.fwd">ClienteInclusao.def </result>
 			<result type="tiles" name="clienteConsultar.fwd">ClienteConsultar.def </result>
 			<result type="tiles" name="clienteListar.fwd">ClienteListar.def </result>
@@ -30,14 +30,18 @@
 			<result type="tiles" name="clienteClassificar.fwd">ClienteClassificar.def</result>						
 		</action>	
 		
-		<action name="administrador!*" method="{1}" class="br.com.web.actions.administrador.AdministradorAction">
+		<action name="administrador!*" method="{1}" class="br.com.web.actions.AdministradorAction">
 			<result type="tiles" name="administradorInclusao.fwd">AdministradorInclusao.def </result>
 			<result type="tiles" name="administradorManterServico.fwd">AdministradorManterServico.def </result>
 			<result type="tiles" name="administradorManterFuncionario.fwd">AdministradorManterFuncionario.def </result>
 		</action>
 		
-		<action name="profissional!*" method="{1}" class="br.com.web.actions.administrador.AdministradorAction">
+		<action name="profissional!*" method="{1}" class="br.com.web.actions.ProfissionalAction">
+			<result type="tiles" name="load.fwd">ProfissionalLoad.def</result>
+		</action>
 		
+		<action name="relatorio!*" method="{1}" class="br.com.web.actions.RelatoriosAction">
+			<result type="tiles" name="load.fwd">RelatoriosLoad.def</result>
 		</action>	
 		
 	</package>

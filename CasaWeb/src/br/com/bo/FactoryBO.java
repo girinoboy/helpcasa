@@ -1,6 +1,5 @@
 package br.com.bo;
 
-import br.com.bo.cliente.ClienteBO;
 import br.com.persistencia.dto.UsuarioDTO;
 
 public class FactoryBO {
