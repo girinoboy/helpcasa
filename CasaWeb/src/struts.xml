@@ -1,33 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<include file="struts-default.xml"/>
+	<include file="struts-default.xml" />
 
-	<package name="default" extends="tiles-default" >
+	<package name="default" extends="tiles-default,jasperreports-default" >
 	
 	<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
 	</result-types>
 		
 		<action name="login!*" method="{1}" class="br.com.web.actions.LoginAction">
-			<result type="tiles" name="invalid.fwd">Abertura.def</result>
-			<result type="tiles" name="valid.fwd">Home.def</result>
 			<result type="tiles" name="abertura.fwd">Abertura.def</result>
-		</action>
-		
-		<action name="user!*" method="{1}" class="br.com.web.actions.UserAction">
-			<result type="tiles" name="listAll.fwd">listaUser.def </result>					
+			<result type="tiles" name="load.fwd">LoginLoad.def</result>
 		</action>
 		
 		<action name="cliente!*" method="{1}" class="br.com.web.actions.ClienteAction">
-			<result type="tiles" name="clienteInclusao.fwd">ClienteInclusao.def </result>
+			<result type="tiles" name="clienteCadastrar.fwd">ClienteCadastrar.def </result>
 			<result type="tiles" name="clienteConsultar.fwd">ClienteConsultar.def </result>
 			<result type="tiles" name="clienteListar.fwd">ClienteListar.def </result>
 			<result type="tiles" name="abertura.fwd">Abertura.def</result>
 			<result type="tiles" name="clienteBoleto.fwd">ClienteBoleto.def</result>
-			<result type="tiles" name="clienteClassificar.fwd">ClienteClassificar.def</result>						
+			<result type="tiles" name="clienteClassificar.fwd">ClienteClassificar.def</result>
+			<result type="tiles" name="clientePesquisar.fwd">ClientePesquisar.def</result>								
 		</action>	
 		
 		<action name="administrador!*" method="{1}" class="br.com.web.actions.AdministradorAction">
@@ -42,6 +38,17 @@
 		
 		<action name="relatorio!*" method="{1}" class="br.com.web.actions.RelatoriosAction">
 			<result type="tiles" name="load.fwd">RelatoriosLoad.def</result>
+			<result name="gerarPDF.fwd" type="jasper">
+				<param name="location">
+					/casa/relatorios/relResumoFaturamentoMensal.jasper
+				</param>
+				<param name="dataSource">listaPDFSolicitacao</param>
+				<param name="path">path</param>
+				<param name="pathAssinatura">pathAssinatura</param>
+				<param name="pathLogo">pathLogo</param>
+				<param name="pathRelatorio">pathRelatorio</param>
+				<param name="format">PDF</param>
+			</result>	
 		</action>	
 		
 	</package>

@@ -20,21 +20,25 @@ public class LoginAction extends GenericAction{
 		}
 		return this.mensagemGlobal;
 	}
+	
+	public String load(){
+		return "load.fwd";
+	}
 
 	public String checkLogin(){
 		try{
 			if (isInvalid(username) || isInvalid(password)){
-				getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA); 
-				return "invalid.fwd";
+				getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
+				return load();
 			}else{
 				getRequest().getSession(true).setAttribute("usuarioSessao", usuarioSessao);
 				getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
 			}
 		}catch(Exception e){
-			getMensagemGlobal().addMensagem("O Login ou a Senha n√£o existe no sistema. Tente novamente.",Mensagem.ERRO);
+			getMensagemGlobal().addMensagem("O Login ou a Senha n„o existe no sistema. Tente novamente.",Mensagem.ERRO);
 			e.printStackTrace();
 		}
-		return "valid.fwd";
+		return abertura();
 	}
 
 	public String abertura(){

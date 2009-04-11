@@ -46,7 +46,7 @@ public class ClienteAction extends GenericAction{
 		}
 		
 		//return consultaParaCliente();
-		return "clienteInclusao.fwd";
+		return "clienteCadastrar.fwd";
 	}
 	
 	public String consultaParaCliente()throws Exception {
@@ -64,6 +64,19 @@ public class ClienteAction extends GenericAction{
 		return "clienteConsultar.fwd";
 	}
 	
+	public String pesquisar()throws Exception {
+		try{
+			if(clienteDTO!=null && clienteDTO.getCpf()>0){
+				return consultaParaCliente();
+			}else
+				return "clientePesquisar.fwd";
+		}catch(Exception e){
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return "clientePesquisar.fwd";
+	}
+
 	public String boleto(){
 		
 		return "clienteBoleto.fwd";
@@ -72,6 +85,10 @@ public class ClienteAction extends GenericAction{
 	public String classificar(){
 		
 		return "clienteClassificar.fwd";
+	}
+	
+	public String listar(){
+		return "clienteListar.fwd";
 	}
 
 	public ClienteDTO getClienteDTO() {

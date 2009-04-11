@@ -10,7 +10,7 @@
 			</h1>
 			<div class="barra_botoes" align="left">				
 				<input align="left" name="incluir" type="button" value="Voltar ao login"
-				onClick="location.href='/CasaWeb/abertura.jsp'">
+				onClick="location.href='casa/login!load.action?'" class="voltar">
 			</div>
 			<br>						
 			<div id="nav">
@@ -39,7 +39,7 @@
 			</div>
 			
 			<div id="divname2" class="hiddencontent">			
-				<IFRAME name="palco" src='administrador!manterFuncionario.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>				
+				<IFRAME name="palco" src='cliente!pesquisar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>				
 			</div>
 			
 			<div id="divname3" class="hiddencontent">		

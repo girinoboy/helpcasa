@@ -1,8 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <div style="width: 710px;" class="container">
 	<s:form name="form1" id="form1">
+		<h1>
+			Aviso Alguns dados não pode ser alterados! Seus respectivos capos
+			encontran-se desabilitados
+		</h1>
+
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 				<td class="label_entrada_dados">
@@ -81,9 +85,9 @@
 					Data de Nascimento:
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.nascimento" />
-					<s:date name="clienteDTO.nascimento" format="dd/MM/yyyy"
-						id="nascimento" />
+					<s:datetimepicker name="user.birthday" label="Data de Nascimento"
+						displayFormat="dd/MM/yyyy" toggleType="explode"
+						toggleDuration="200" />
 				</td>
 			</tr>
 			<tr>
@@ -122,11 +126,12 @@
 				</td>
 			</tr>
 		</table>
+
 		<div class="footer">
-			<input type="button" value="Editar" onClick="selectAction('editar');"
-				class="principal" />
+			<input type="button" value="Cadastrar"
+				onClick="selectAction('incluir');" class="principal" />
 			<input type="button" value="Cancelar"
-				onClick="selectAction('voltar');" class="voltar" />
+				onClick="selectAction('direcionaLogin');" class="voltar" />
 		</div>
 	</s:form>
 </div>
