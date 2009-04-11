@@ -9,6 +9,17 @@ function selectAction(action){
 	if(action == 'incluir'){
 		url = '<c:url value="/casa/cliente!inclui.action?"/>';
 		submeter = validaCamposAoIncluir();
+	}else if(action == 'direcionaLogin'){
+		url = '<c:url value="/casa/login!load.action?"/>';
+		submeter = true;
+	}else if(action == 'pesquisar'){
+		var cpf = document.getElementById('cpf');
+		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
+		params='clienteDTO.cpf='+cpf.value;
+		submeter = true;
+	}else{
+		alert('Ação não encontrada.');
+		submeter = false;
 	}
 	
 	//Caso necessite de validação dos campos

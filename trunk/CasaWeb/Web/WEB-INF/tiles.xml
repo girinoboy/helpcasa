@@ -1,4 +1,7 @@
-      
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+             
 <tiles-definitions>
  
     <definition name="template1.def" 		template="/template1.jsp">    	
@@ -9,24 +12,23 @@
 		<put-attribute name="title" 		value="" />		
     </definition>
     
-     <definition name="Abertura.def"			extends="template1.def">
-     	<put-attribute name="title" 			value="Help Casa" />		
-    	<put-attribute name="body" 				value="/abertura.jsp" />		
-    	
+    <definition name="LoginLoad.def"	extends="template1.def">
+    	<put-attribute name="title" 	value="Login Help Casa" />			
+    	<put-attribute name="body" 		value="/login.jsp" />	    	
     </definition>
-     <definition name="Home.def"			extends="template1.def">
-    	<put-attribute name="title" 			value="" />			
-    	<put-attribute name="body" 				value="/casa/home.jsp" />	    	
-    	<put-attribute name="js" 				value="/casa/home.js.jsp" />
+    <definition name="Abertura.def"				extends="template1.def">
+    	<put-attribute name="title" 			value="Menu de ações do sistema" />			
+    	<put-attribute name="body" 				value="/casa/abertura.jsp" />	    	
+    	<put-attribute name="js" 				value="/casa/abertura.js.jsp" />
     	<put-attribute name="jtabber" 			value="true" />
     </definition>
     
-    <!-- INICIO DE CLIENTE -->
-    <definition name="ClienteInclusao.def"	    extends="template1.def">
+     <!-- INICIO DE CLIENTE -->
+    <definition name="ClienteCadastrar.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
-    	<put-attribute name="body" 				value="/casa/clienteInclusao.jsp" />	
+    	<put-attribute name="body" 				value="/casa/clienteCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    	
+    	<put-attribute name="dojo" 				value="true" />
     </definition>
     <definition name="ClienteConsultar.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
@@ -36,65 +38,53 @@
     </definition>
     <definition name="ClienteListar.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
-    	<put-attribute name="body" 				value="/casa/cliente/clienteListar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
-    	
+    	<put-attribute name="body" 				value="/casa/clienteListar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     </definition>
     <definition name="ClienteBoleto.def"	    extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
-    	<put-attribute name="body" 				value="/casa/cliente/clienteEfetuarPagamento.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente/cliente.js.jsp" />
-    	
+    	<put-attribute name="body" 				value="/casa/clienteEfetuarPagamento.jsp" />	
+    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     </definition>
     <definition name="ClienteClassificar.def"	extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/aplicarClassificacao.jsp" />	
-    	<put-attribute name="js" 				value="" />
-    	
-    </definition>
-    
-    <!-- FIM DE CLIENTE -->
+    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
+    </definition> 
+    <definition name="ClientePesquisar.def"		extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/clientePesquisar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
+    </definition> 
+     <!-- FIM DE CLIENTE -->
     
      <!-- INICIO DE ADMINISTRADOR -->
-     <definition name="AdministradorManterServico.def"	extends="template1.def">
+    <definition name="AdministradorManterServico.def"	extends="template1.def">
     	<put-attribute name="title" 					value="help home" />		
     	<put-attribute name="body" 						value="/casa/administradorManterServico.jsp" />	
     	<put-attribute name="js" 						value="/casa/administrador.js.jsp" />
-    	
     </definition>
     <definition name="AdministradorManterFuncionario.def"	extends="template1.def">
-    	<put-attribute name="title" 					value="help home" />		
-    	<put-attribute name="body" 						value="/casa/administradorManterFuncionario.jsp" />	
-    	<put-attribute name="js" 						value="/casa/administrador.js.jsp" />
-    	
+    	<put-attribute name="title" 						value="help home" />		
+    	<put-attribute name="body" 							value="/casa/administradorManterFuncionario.jsp" />	
+    	<put-attribute name="js" 							value="/casa/administrador.js.jsp" />
     </definition>
      <!-- FIM DE ADMINISTRADOR -->
      
-      <!-- INICIO DE PROFISSIONAL -->
+     <!-- INICIO DE PROFISSIONAL -->
     <definition name="ProfissionalLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 					value="help home" />		
-    	<put-attribute name="body" 						value="/casa/profissionalManterAgenda.jsp" />	
-    	<put-attribute name="js" 						value="/casa/profissional.js.jsp" />
-    	<put-attribute name="dojo" 						value="true" />
+    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="body" 			value="/casa/profissionalManterAgenda.jsp" />	
+    	<put-attribute name="js" 			value="/casa/profissional.js.jsp" />
+    	<put-attribute name="dojo" 				value="true" />
     </definition>
-   
      <!-- FIM DE PROFISSIONAL -->
      
      <!-- INICIO DE RELATORIOS -->
     <definition name="RelatoriosLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 					value="help home" />		
-    	<put-attribute name="body" 						value="/casa/relatorios.jsp" />	
-    	<put-attribute name="js" 						value="" />
-    </definition>
-   
+    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="body" 			value="/casa/relatorios.jsp" />	
+    </definition>  
      <!-- FIM DE RELATORIOS -->
-    
-    <definition name="listaUser.def"			extends="template1.def">
-    	<put-attribute name="title" 			value="" />			
-    	<put-attribute name="body" 				value="/listUsers.jsp" />	    	
-    	<put-attribute name="js" 				value="/home.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
-    </definition>
-    
    
 </tiles-definitions>

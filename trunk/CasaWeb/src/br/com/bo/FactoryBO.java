@@ -9,7 +9,7 @@ public class FactoryBO {
 
 	//----------------------- BO's -----------------------------------
 	private ClienteBO clienteBO;
-	
+	private RelatoriosBO relatoriosBO;
 	
 	private FactoryBO() {
 	}
@@ -49,6 +49,13 @@ public class FactoryBO {
 			clienteBO = new ClienteBO();
 		}
 		return clienteBO;
+	}
+
+	public RelatoriosBO getRelatoriosBO() {
+		if (relatoriosBO == null) {
+			relatoriosBO = new RelatoriosBO();
+		}
+		return relatoriosBO;
 	}
 
 }

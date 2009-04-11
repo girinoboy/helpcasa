@@ -19,6 +19,9 @@
 	<head>
 		
 		<title><tiles:getAsString name="title" /></title>
+		
+		<!-- css -->
+		<link href='<s:url value="/estilos/casa_web.css"/>' rel="stylesheet" type="text/css"></link>
 				
 		<!-- CARREGA AS BIBLIOTECAS DO PLUGIN jQuery SOMENTE SE FOR INFORMADO NO DEFINITION -->
 		<s:if test="${not empty jQuery and jQuery == 'true'}">
