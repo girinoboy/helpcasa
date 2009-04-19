@@ -46,7 +46,7 @@ public class ClienteBO extends GenericBO{
 		} finally {
 			con.close();
 		}
-		return null;
+		return clienteDTOConsultada;
 	}
 
 }

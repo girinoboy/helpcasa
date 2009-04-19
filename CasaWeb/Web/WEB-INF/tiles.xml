@@ -82,6 +82,21 @@
     </definition>
      <!-- FIM DE PROFISSIONAL -->
      
+     <!-- INICIO DE PROFISSOES -->
+    <definition name="ProfissaoLoad.def"	extends="template1.def">
+    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="body" 			value="/casa/profissao.jsp" />	
+    	<put-attribute name="js" 			value="/casa/profissao.js.jsp" />
+    	<put-attribute name="dojo" 			value="true" />
+    </definition>
+    <definition name="ProfissaoCadastrar.def"	extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/profissaoCadastrar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
+    	<put-attribute name="dojo" 				value="true" />
+    </definition>
+     <!-- FIM DE PROFISSOES -->
+     
      <!-- INICIO DE RELATORIOS -->
     <definition name="RelatoriosLoad.def"	extends="template1.def">
     	<put-attribute name="title" 		value="help home" />		

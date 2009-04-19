@@ -11,6 +11,7 @@ public class FactoryBO {
 	private ClienteBO clienteBO;
 	private RelatoriosBO relatoriosBO;
 	private LoginBO loginBO;
+	private ProfissaoBO profissaoBO;
 	
 	private FactoryBO() {
 	}
@@ -64,6 +65,13 @@ public class FactoryBO {
 			loginBO = new LoginBO();
 		}
 		return loginBO;
+	}
+
+	public ProfissaoBO getProfissaoBO() {
+		if (profissaoBO == null) {
+			profissaoBO = new ProfissaoBO();
+		}
+		return profissaoBO;
 	}
 
 }

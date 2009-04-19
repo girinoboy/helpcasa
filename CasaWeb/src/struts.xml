@@ -36,6 +36,11 @@
 			<result type="tiles" name="load.fwd">ProfissionalLoad.def</result>
 		</action>
 		
+		<action name="profissao!*" method="{1}" class="br.com.web.actions.ProfissaoAction">
+			<result type="tiles" name="load.fwd">ProfissaoLoad.def</result>
+			<result type="tiles" name="cadastrar.fwd">ProfissaoCadastrar.def</result>
+		</action>
+		
 		<action name="relatorio!*" method="{1}" class="br.com.web.actions.RelatoriosAction">
 			<result type="tiles" name="load.fwd">RelatoriosLoad.def</result>
 			<result name="gerarPDF.fwd" type="jasper">
