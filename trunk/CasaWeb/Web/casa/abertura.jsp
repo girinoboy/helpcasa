@@ -30,7 +30,7 @@
 			
 			<div class="barra_botoes" align="left">				
 				<input align="left" name="incluir" type="button" value="Voltar ao login"
-				onClick="location.href='casa/login!load.action?'" class="voltar">
+				onClick="location.href='casa/login!logout.action?'" class="voltar">
 			</div>
 			
 			<br>
@@ -121,7 +121,7 @@
 			
 			 
 			<div id="divname4" class="hiddencontent">		
-				<IFRAME name="palco" src='administrador!manterServicos.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				<IFRAME name="palco" src='profissao!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
 			
 			<div id="divname5" class="hiddencontent">				

@@ -56,7 +56,7 @@ public class LoginAction extends GenericAction{
 					getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
 				}else{
-					getRequest().getSession().setAttribute("mensagel", "Login invalido.");
+					getRequest().getSession().setAttribute("mensagem", "Login invalido.");
 				}
 				
 			}
@@ -81,9 +81,19 @@ public class LoginAction extends GenericAction{
 		UfDTO uf = new UfDTO();
 		uf.setId(new Long(7));
 		clienteDTO.setUf(uf);
-		pessoaDTO = clienteBO.inclui(clienteDTO);
 		
+		pessoaDTO = clienteBO.inclui(clienteDTO);
+	
 		return checkLogin();
+	}
+	
+	public String logout(){
+		getRequest().getSession().removeAttribute("usuarioLogadoSistema");
+		getRequest().getSession().removeAttribute("pessoaDTO");
+		getRequest().getSession().removeAttribute("pessoaSessao");
+		getRequest().getSession().removeAttribute("mensagem");
+		
+		return load();
 	}
 
 	private boolean isInvalid(String value){
