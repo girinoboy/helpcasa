@@ -16,7 +16,7 @@ public static final Connection getConnection(int idUsuario) throws SQLException 
 		
 		try{
 			conexao = Conexao.getConnection();
-			String log = "INSERT INTO INFORMACAO_SESSAO VALUES (?)" ;
+			String log = "INSERT INTO INFORMACAO_SESSAO VALUES (now(),?)" ;
 			
 		    conexao.prepareStatement(log).execute();
 		    ////System.out.println("Passei pelo select do LOG");
@@ -41,7 +41,7 @@ public static final Connection getConnection() throws SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 		// Conectar no banco dbclientes
 		connection = DriverManager.getConnection(
-				"jdbc:mysql://localhost/casa?autoReconnect=true", "root",
+				"jdbc:mysql://localhost/casaweb?autoReconnect=true", "root",
 				"root");
 		
 	} catch (Exception e) {

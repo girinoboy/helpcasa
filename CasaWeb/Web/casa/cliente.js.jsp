@@ -7,7 +7,7 @@ function selectAction(action){
 	var submeter;
 	
 	if(action == 'incluir'){
-		url = '<c:url value="/casa/cliente!inclui.action?"/>';
+		url = '<c:url value="/casa/login!incluiCliente.action?"/>';
 		submeter = validaCamposAoIncluir();
 	}else if(action == 'direcionaLogin'){
 		url = '<c:url value="/casa/login!load.action?"/>';
@@ -84,4 +84,10 @@ function disableAll(){
   		arrayTextarea[i].disabled=true;
   	}
   	
+}
+
+function loadMascara(){
+  	//jQuery('#cpf').numeric();
+	jQuery('#cpf').mask('999.999.999-99');
+	document.getElementById('cpf').value = '';
 }

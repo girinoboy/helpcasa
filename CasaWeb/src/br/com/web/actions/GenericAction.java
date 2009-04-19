@@ -13,7 +13,7 @@ import org.apache.struts2.ServletActionContext;
 
 import br.com.MensagemLista;
 import br.com.bo.FactoryBO;
-import br.com.persistencia.dto.UsuarioDTO;
+import br.com.persistencia.dto.PessoaDTO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -62,21 +62,21 @@ public class GenericAction extends ActionSupport{
 	}
 	
 	/**
-	 * Método responsável por retornar a Sessão do Usuário (UsuarioDTO)
+	 * Método responsável por retornar a Sessão da Pessoal (PessoaDTO)
 	 * 
-	 * @return UsuarioDTO
+	 * @return PessoaDTO
 	 */
-	public UsuarioDTO getSessaoUsuario() {
-		return (UsuarioDTO) getSession().getAttribute("usuarioSessao");
+	public PessoaDTO getSessaoPessoa() {
+		return (PessoaDTO) getSession().getAttribute("pessoaSessao");
 	}
 	
 	/**
-	 * Método responsável por retornar o FactoryBO com uma instância do usuário da sessão
+	 * Método responsável por retornar o FactoryBO com uma instância da Pessoa da sessão
 	 * 
 	 * @return FactoryBO
 	 */
 	public FactoryBO getFactoryBOInstance() {
-		return FactoryBO.getInstance(getSessaoUsuario());
+		return FactoryBO.getInstance(getSessaoPessoa());
 	}
 	
 	public MensagemLista getMensagemGlobal() {
