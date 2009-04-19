@@ -1,37 +1,31 @@
 package br.com.persistencia.dto;
 
 
-public class ClienteDTO  extends GenericDTO{
+public class ClienteDTO  extends PessoaDTO{
 	
-	
-	private String nome;
-	private int cpf;
-	private int cep;
 	private String endereco;
-	private int telefone;
-	private int rg;
-	private String email;
+	private String situacao;
+	private int cep;
+	private String cidade;
+	private UfDTO uf;
+	
 	
 	public ClienteDTO(){}
 	public ClienteDTO(Long id){
-		this.id = id;
+		super.setId(id);
 	}
 	
-	public Long getId(){
-		return id;
+	public String getEndereco() {
+		return endereco;
 	}
-	
-	public String getNome() {
-		return nome;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getSituacao() {
+		return situacao;
 	}
-	public int getCpf() {
-		return cpf;
-	}
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 	public int getCep() {
 		return cep;
@@ -39,29 +33,19 @@ public class ClienteDTO  extends GenericDTO{
 	public void setCep(int cep) {
 		this.cep = cep;
 	}
-	public String getEndereco() {
-		return endereco;
+	public String getCidade() {
+		return cidade;
 	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
-	public int getTelefone() {
-		return telefone;
+	public UfDTO getUf() {
+		return uf;
 	}
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
+	public void setUf(UfDTO uf) {
+		this.uf = uf;
 	}
-	public int getRg() {
-		return rg;
-	}
-	public void setRg(int rg) {
-		this.rg = rg;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
+	
 
 }

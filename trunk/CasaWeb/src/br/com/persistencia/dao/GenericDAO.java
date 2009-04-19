@@ -1,17 +1,85 @@
 package br.com.persistencia.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.Date;
 
+import br.com.persistencia.dto.PessoaDTO;
+
 public abstract class GenericDAO {
-
-
+	
+	private PreparedStatement ps;
+	private ResultSet rs;
+	private PessoaDTO sessaoPessoa; 
 
 	public GenericDAO() {
 		super();		
+	}
+	
+	/**
+	 * @return PessoaDTO sessaoPessoa
+	 */
+	public PessoaDTO getSessaoPessoa() {
+		return sessaoPessoa;
+	}
+
+	/**
+	 * @param Seta o PessoaDTO sessaoPessoa
+	 */
+	public void setSessaoPessoa(PessoaDTO sessaoPessoa) {
+		this.sessaoPessoa = sessaoPessoa;
+	}
+	
+	
+	/**
+	 * Function para pegar o id da table conforme o nome passado para ela
+	 * @param nomeTabela
+	 * @param nomeColuna
+	 * @return
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+	protected Long getLastIdTable(String nomeTabela, String nomeColuna,Connection con) throws SQLException,Exception{
+		Long id = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		StringBuffer qBuffer = new StringBuffer("SELECT MAX(" + nomeColuna.trim() + ") as id FROM "+nomeTabela.trim());
+		
+		
+		try{
+			
+			ps = con.prepareStatement(qBuffer.toString());
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				id = Long.valueOf(rs.getInt("id"));	
+			}
+		}catch (SQLException sqlE){
+			sqlE.printStackTrace();
+			throw sqlE;
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
+			}
+		}
+		
+		return id;
 	}
 
 	protected void psSetInt(PreparedStatement ps, int indice, int valor)throws SQLException, Exception {

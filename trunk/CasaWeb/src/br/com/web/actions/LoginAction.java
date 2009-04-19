@@ -2,17 +2,31 @@ package br.com.web.actions;
 
 
 
+import br.com.ConstantesENUM;
 import br.com.Mensagem;
 import br.com.MensagemLista;
-import br.com.persistencia.dto.UsuarioDTO;
+import br.com.bo.ClienteBO;
+import br.com.bo.FactoryBO;
+import br.com.bo.LoginBO;
+import br.com.persistencia.dto.ClienteDTO;
+import br.com.persistencia.dto.PerfilDTO;
+import br.com.persistencia.dto.PessoaDTO;
+import br.com.persistencia.dto.UfDTO;
 
 
 public class LoginAction extends GenericAction{
 	
-	private String username;
-	private String password;
 	private MensagemLista mensagemGlobal = null;
-	private UsuarioDTO usuarioSessao = null;
+	private LoginBO loginBO;
+	private ClienteBO clienteBO;
+	ClienteDTO clienteDTO;
+	private PessoaDTO pessoaDTO;
+	private PessoaDTO pessoaSessao = null;
+	
+	public LoginAction(){
+		loginBO = FactoryBO.getInstance().getLoginBO();
+		clienteBO = FactoryBO.getInstance().getClienteBO();
+	}
 	
 	public MensagemLista getMensagemGlobal() {
 		if(this.mensagemGlobal == null){
@@ -27,16 +41,29 @@ public class LoginAction extends GenericAction{
 
 	public String checkLogin(){
 		try{
-			if (isInvalid(username) || isInvalid(password)){
+			boolean logado = getRequest().getSession().getAttribute("usuarioLogadoSistema") !=null && ((Boolean)getRequest().getSession().getAttribute("usuarioLogadoSistema")).booleanValue() ? true:false;
+			
+			if (isInvalid(pessoaDTO.getUsuario()) || isInvalid(pessoaDTO.getSenha())){
 				getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
 				return load();
-			}else{
-				getRequest().getSession(true).setAttribute("usuarioSessao", usuarioSessao);
-				getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
+				
+			}else if(!logado){
+				PessoaDTO usuarioLogadoSistema = loginBO.login(pessoaDTO);
+				if(usuarioLogadoSistema != null){
+					pessoaDTO = usuarioLogadoSistema;
+					pessoaSessao = usuarioLogadoSistema;
+					getRequest().getSession(true).setAttribute("pessoaDTO", pessoaDTO);
+					getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
+					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
+				}else{
+					getRequest().getSession().setAttribute("mensagel", "Login invalido.");
+				}
+				
 			}
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("O Login ou a Senha não existe no sistema. Tente novamente.",Mensagem.ERRO);
 			e.printStackTrace();
+			return load();
 		}
 		return abertura();
 	}
@@ -44,22 +71,49 @@ public class LoginAction extends GenericAction{
 	public String abertura(){
 		return "abertura.fwd";
 	}
+	
+	public String incluiCliente() throws Exception{
+		clienteDTO.setStatus(false);
+		
+		PerfilDTO perfil =  new PerfilDTO();
+		perfil.setId(ConstantesENUM.CLIENTE_ID.id());
+		clienteDTO.setPerfil(perfil );
+		UfDTO uf = new UfDTO();
+		uf.setId(new Long(7));
+		clienteDTO.setUf(uf);
+		pessoaDTO = clienteBO.inclui(clienteDTO);
+		
+		return checkLogin();
+	}
 
 	private boolean isInvalid(String value){
 		return (value == null || value.length()==0);
 	}
+
+	public PessoaDTO getPessoaDTO() {
+		return pessoaDTO;
+	}
+
+	public void setPessoaDTO(PessoaDTO pessoaDTO) {
+		this.pessoaDTO = pessoaDTO;
+	}
+
+	public PessoaDTO getPessoaSessao() {
+		return pessoaSessao;
+	}
+
+	public void setPessoaSessao(PessoaDTO pessoaSessao) {
+		this.pessoaSessao = pessoaSessao;
+	}
+
+	public ClienteDTO getClienteDTO() {
+		return clienteDTO;
+	}
+
+	public void setClienteDTO(ClienteDTO clienteDTO) {
+		this.clienteDTO = clienteDTO;
+	}
 	
-	public final String getUsername() {
-		return username;
-	}
-	public final void setUsername(String username) {
-		this.username = username;
-	}
-	public final String getPassword() {
-		return password;
-	}
-	public final void setPassword(String password) {
-		this.password = password;
-	}
+	
 
 }

@@ -1,15 +1,16 @@
 package br.com.bo;
 
-import br.com.persistencia.dto.UsuarioDTO;
+import br.com.persistencia.dto.PessoaDTO;
 
 public class FactoryBO {
 	
 	private static FactoryBO instance;
-	private UsuarioDTO sessaoUsuario;
+	private PessoaDTO sessaoUsuario;
 
 	//----------------------- BO's -----------------------------------
 	private ClienteBO clienteBO;
 	private RelatoriosBO relatoriosBO;
+	private LoginBO loginBO;
 	
 	private FactoryBO() {
 	}
@@ -21,7 +22,7 @@ public class FactoryBO {
 		return instance;
 	}
 	
-	public static FactoryBO getInstance(UsuarioDTO sessaoUsuario) {
+	public static FactoryBO getInstance(PessoaDTO sessaoUsuario) {
 		if (instance == null) {
 			instance = new FactoryBO();
 		}
@@ -32,14 +33,14 @@ public class FactoryBO {
 	/**
 	 * @return UsuarioDTO sessaoUsuario
 	 */
-	public UsuarioDTO getSessaoUsuario() {
+	public PessoaDTO getSessaoUsuario() {
 		return sessaoUsuario;
 	}
 
 	/**
 	 * @param Seta o UsuarioDTO sessaoUsuario
 	 */
-	public void setSessaoUsuario(UsuarioDTO sessaoUsuario) {
+	public void setSessaoUsuario(PessoaDTO sessaoUsuario) {
 		this.sessaoUsuario = sessaoUsuario;
 	}
 	
@@ -56,6 +57,13 @@ public class FactoryBO {
 			relatoriosBO = new RelatoriosBO();
 		}
 		return relatoriosBO;
+	}
+
+	public LoginBO getLoginBO() {
+		if (loginBO == null) {
+			loginBO = new LoginBO();
+		}
+		return loginBO;
 	}
 
 }

@@ -55,6 +55,8 @@
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/clientePesquisar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
+    	<put-attribute name="jQuery" 			value="true" />
+    	<put-attribute name="onload" 			value="loadMascara();" />
     </definition> 
      <!-- FIM DE CLIENTE -->
     

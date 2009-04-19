@@ -4,61 +4,61 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-import br.com.persistencia.dto.UsuarioDTO;
+import br.com.persistencia.dto.PessoaDTO;
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 
 public abstract class GenericBO {
 
-	private UsuarioDTO sessaoUsuario;	
+	private PessoaDTO sessaoPessoa;	
 	
 	/**
-	 * Método responsável por retornar o FactoryDAO com uma instância do usuário da sessão
+	 * Método responsável por retornar o FactoryDAO com uma instância da pessoa(usuário) da sessão
 	 * 
 	 * @return FactoryDAO
 	 */
 	public FactoryDAO getFactoryDAOInstance() {
-		return FactoryDAO.getInstance(getSessaoUsuario());
+		return FactoryDAO.getInstance(getSessaoPessoa());
 	}
 	
 	public FactoryBO getFactoryBOInstance(){
-		return FactoryBO.getInstance(getSessaoUsuario());
+		return FactoryBO.getInstance(getSessaoPessoa());
 		
 	}
 	/**
-	 * Método responsável por retornar a conexão com os dados do usuário logado
+	 * Método responsável por retornar a conexão com os dados da pessoa logada
 	 * para log do sistema
 	 * 
 	 * @return
 	 * @throws SQLException
 	 */
 	public Connection getConnection() throws SQLException {
-		return Conexao.getConnection(getSessaoUsuario().getUsuarioId());
+		return Conexao.getConnection(getSessaoPessoa().getPessoaId());
 	}
 	
 	/**
-	 * Método responsável por retornar a conexão com os dados do usuário logado
+	 * Método responsável por retornar a conexão com os dados da pessoa logado
 	 * para log do sistema
 	 * 
 	 * @return
 	 * @throws SQLException
 	 */
-	public Connection getConnection(int usuarioId) throws SQLException {
-		return Conexao.getConnection(usuarioId);
+	public Connection getConnection(int pessoaId) throws SQLException {
+		return Conexao.getConnection(pessoaId);
 	}
 
 	/**
-	 * @return UsuarioDTO sessaoUsuario
+	 * @return PessoaDTO sessaoPessoa
 	 */
-	public UsuarioDTO getSessaoUsuario() {
-		return sessaoUsuario;
+	public PessoaDTO getSessaoPessoa() {
+		return sessaoPessoa;
 	}
 
 	/**
-	 * @param Seta o UsuarioDTO sessaoUsuario
+	 * @param Seta o PessoaDTO sessaoPessoa
 	 */
-	public void setSessaoUsuario(UsuarioDTO sessaoUsuario) {
-		this.sessaoUsuario = sessaoUsuario;
+	public void setSessaoPessoa(PessoaDTO sessaoPessoa) {
+		this.sessaoPessoa = sessaoPessoa;
 	}
 }
 

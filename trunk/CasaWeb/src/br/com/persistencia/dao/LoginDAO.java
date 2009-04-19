@@ -1,0 +1,86 @@
+package br.com.persistencia.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+
+import br.com.persistencia.dto.PerfilDTO;
+import br.com.persistencia.dto.PessoaDTO;
+import br.com.persistencia.util.DTOFactory;
+
+public class LoginDAO extends GenericDAO{
+
+	public PessoaDTO login(Connection conn, PessoaDTO pessoaDTO) throws Exception {
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		PessoaDTO pessoa = null;
+		
+		String sql="SELECT idPessoa as \"id\", " +
+				"usuario," +
+				"senha," +
+				"nome," +
+				"rg," +
+				"cpf," +
+				"email,"+
+				"nasc," +
+				"status," +
+				"dataCadastro," +
+				"telefone," +
+				"celular," +
+				"Perfil.idPerfil as \"perfil.id\", " +
+				"Perfil.descricao as \"perfil.descricao\" " +
+				"FROM casaweb.Pessoa " +
+				"INNER JOIN casaweb.Perfil ON pessoa.idPerfil = Perfil.idPerfil " +
+				"WHERE Pessoa.usuario=? " +
+				"	AND Pessoa.senha=?";
+		
+		try{
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, pessoaDTO.getUsuario());
+			ps.setString(2, pessoaDTO.getSenha());
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				PessoaDTO dto = new PessoaDTO();
+				pessoa = this.populaPessoa(dto,rs);
+			}
+			
+			//pessoa = (PessoaDTO) DTOFactory.getDTO(PessoaDTO.class, rs);
+			
+		}catch(Exception e){
+			throw e;
+		}finally{
+			if(rs !=null)
+				rs.close();
+			if(ps != null)
+				ps.close();
+		}
+		return pessoa;
+	}
+
+	private PessoaDTO populaPessoa(PessoaDTO dto, ResultSet rs) throws Exception {
+		
+		dto.setPessoaId(new Integer((int) rs.getLong("id")));
+		dto.setUsuario(rs.getString("usuario"));
+		dto.setSenha(rs.getString("senha"));
+		dto.setNome(rs.getString("nome"));
+		dto.setRg(rs.getInt("rg"));
+		dto.setCpf(rs.getString("cpf"));
+		dto.setEmail(rs.getString("email"));
+		dto.setNasc(new Date(rs.getTimestamp("nasc").getTime()));
+		dto.setStatus(rs.getBoolean("status"));
+		dto.setDataCadastro(rs.getTimestamp("dataCadastro"));
+		dto.setTelefone(rs.getInt("telefone"));
+		dto.setCelular(rs.getInt("celular"));
+		
+		PerfilDTO perfil = new PerfilDTO();
+		perfil.setId(rs.getLong("perfil.id"));
+		perfil.setDescricao(rs.getString("perfil.descricao"));
+		dto.setPerfil(perfil);
+		
+		return dto;
+	}
+
+}

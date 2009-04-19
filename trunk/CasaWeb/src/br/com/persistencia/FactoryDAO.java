@@ -1,15 +1,17 @@
 package br.com.persistencia;
 
 import br.com.persistencia.dao.ClienteDAO;
-import br.com.persistencia.dto.UsuarioDTO;
+import br.com.persistencia.dao.LoginDAO;
+import br.com.persistencia.dto.PessoaDTO;
 
 public class FactoryDAO {
 
-	private UsuarioDTO sessaoUsuario;
+	private PessoaDTO sessaoPessoa;
 	private static FactoryDAO instance;
 	
 	//----------------------- DAO's -----------------------------------
 	ClienteDAO clienteDAO;
+	LoginDAO loginDAO;
 	
 	private FactoryDAO() {
 	}
@@ -21,40 +23,47 @@ public class FactoryDAO {
 		return instance;
 	}
 
-	public static FactoryDAO getInstance(UsuarioDTO sessaoUsuario) {
+	public static FactoryDAO getInstance(PessoaDTO sessaoPessoa) {
 		if(instance == null) {
 			instance = new FactoryDAO();
 		}
-		instance.setSessaoUsuario(sessaoUsuario);
+		instance.setSessaoPessoa(sessaoPessoa);
 		return instance;
 	}
 	
 	
 
 	/**
-	 * @return UsuarioDTO sessaoUsuario
+	 * @return PessoaDTO sessaoPessoa
 	 */
-	public UsuarioDTO getSessaoUsuario() {
-		return sessaoUsuario;
+	public PessoaDTO getSessaoPessoa() {
+		return sessaoPessoa;
 	}
 
 
 	/**
-	 * @param Seta o UsuarioDTO sessaoUsuario
+	 * @param Seta o PessoaDTO sessaoPessoa
 	 */
-	public void setSessaoUsuario(UsuarioDTO sessaoUsuario) {
-		this.sessaoUsuario = sessaoUsuario;
+	public void setSessaoPessoa(PessoaDTO sessaoPessoa) {
+		this.sessaoPessoa = sessaoPessoa;
 	}
 	
 	
 	/**
 	 * 
-	 * @return SinaisVitaisDAO sinaisVitaisDAO
+	 * @return ClienteDAO clienteDAO
 	 */
 	public ClienteDAO getClienteDAO() {
 		if(clienteDAO == null){
 			clienteDAO = new ClienteDAO();
 		}
 		return clienteDAO;
+	}
+
+	public LoginDAO getLoginDAO() {
+		if(loginDAO == null){
+			loginDAO = new LoginDAO();
+		}
+		return loginDAO;
 	}
 }
