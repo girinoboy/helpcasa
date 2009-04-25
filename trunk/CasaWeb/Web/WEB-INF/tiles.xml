@@ -97,6 +97,21 @@
     </definition>
      <!-- FIM DE PROFISSOES -->
      
+     <!-- INICIO DE SERVICOS -->
+    <definition name="ServicoListar.def"	extends="template1.def">
+    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="body" 			value="/casa/servicos.jsp" />	
+    	<put-attribute name="js" 			value="/casa/servico.js.jsp" />
+    	<put-attribute name="dojo" 			value="true" />
+    </definition>
+    <definition name="ServicoCadastrar.def"		extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/servicoCadastrar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
+    	<put-attribute name="dojo" 				value="true" />
+    </definition>
+     <!-- FIM DE SERVICOS -->
+     
      <!-- INICIO DE RELATORIOS -->
     <definition name="RelatoriosLoad.def"	extends="template1.def">
     	<put-attribute name="title" 		value="help home" />		

@@ -46,12 +46,11 @@ public class ClienteAction extends GenericAction {
 
 	public String consultaParaCliente() throws Exception {
 		try {
-			if(getSessaoPessoa() != null && getSessaoPessoa().getCpf() !=null){
+			if(getSessaoPessoa() != null && getSessaoPessoa().getCpf() !=null && this.clienteDTO == null){
 				this.clienteDTO = this.clienteBO.consulta(getSessaoPessoa().getCpf());
 			}
 			if (this.clienteDTO != null && this.clienteDTO.getCpf() != null) {
-				this.clienteDTO = this.clienteBO.consulta(this.clienteDTO
-						.getCpf());
+				this.clienteDTO = this.clienteBO.consulta(this.clienteDTO.getCpf());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -17,6 +17,11 @@ function selectAction(action){
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='clienteDTO.cpf='+cpf.value;
 		submeter = true;
+	}else if(action == 'voltar'){
+		
+		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
+		
+		submeter = true;
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;

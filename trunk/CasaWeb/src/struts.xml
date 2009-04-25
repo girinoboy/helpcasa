@@ -40,6 +40,11 @@
 			<result type="tiles" name="load.fwd">ProfissaoLoad.def</result>
 			<result type="tiles" name="cadastrar.fwd">ProfissaoCadastrar.def</result>
 		</action>
+		<action name="servico!*" method="{1}" class="br.com.web.actions.ServicoAction">
+			<result type="tiles" name="load.fwd">ServicoLoad.def</result>
+			<result type="tiles" name="listar.fwd">ServicoListar.def</result>
+			<result type="tiles" name="cadastrar.fwd">ServicoCadastrar.def</result>
+		</action>
 		
 		<action name="relatorio!*" method="{1}" class="br.com.web.actions.RelatoriosAction">
 			<result type="tiles" name="load.fwd">RelatoriosLoad.def</result>

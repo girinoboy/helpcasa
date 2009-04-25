@@ -12,6 +12,7 @@ public class FactoryBO {
 	private RelatoriosBO relatoriosBO;
 	private LoginBO loginBO;
 	private ProfissaoBO profissaoBO;
+	private ServicoBO servicoBO;
 	
 	private FactoryBO() {
 	}
@@ -72,6 +73,13 @@ public class FactoryBO {
 			profissaoBO = new ProfissaoBO();
 		}
 		return profissaoBO;
+	}
+
+	public ServicoBO getServicoBO() {
+		if (servicoBO == null) {
+			servicoBO = new ServicoBO();
+		}
+		return servicoBO;
 	}
 
 }
