@@ -57,6 +57,8 @@ public class LoginAction extends GenericAction{
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
 				}else{
 					getRequest().getSession().setAttribute("mensagem", "Login invalido.");
+					getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
+					return load();
 				}
 				
 			}

@@ -137,7 +137,7 @@
 			</div>
 			
 			<div id="divname8" class="hiddencontent">				
-				<IFRAME name="palco" src='cliente!classificar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				<IFRAME name="palco" src='servico!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
 			
 			<div id="divname9" class="hiddencontent">				
