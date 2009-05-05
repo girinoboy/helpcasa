@@ -1,12 +1,12 @@
 
 /*
 Projeto: CASA-WEB
-Por: Marcleônio do Nascimento Medeiros
+Por: Marcleï¿½nio do Nascimento Medeiros
 Data: 10/04/2009
-Descrição: Este documento é uma tentativa de reorganização
-		   e centralização de todas as Folhas de estilo - CSS
+Descriï¿½ï¿½o: Este documento ï¿½ uma tentativa de reorganizaï¿½ï¿½o
+		   e centralizaï¿½ï¿½o de todas as Folhas de estilo - CSS
 		   
-################  CONFIGURAÇÃO GERAL  ###################    */
+################  CONFIGURAï¿½ï¿½O GERAL  ###################    */
 
 form {
 	margin: 0px;
@@ -122,7 +122,7 @@ hr {
 }
 
 .principal {
-	/*Botões salvar, registrar informções, função principal da página que necessite de destaque*/
+	/*Botï¿½es salvar, registrar informï¿½ï¿½es, funï¿½ï¿½o principal da pï¿½gina que necessite de destaque*/
 	border-left: #7DA2B7 7px solid;
 	border-right: #7DA2B7 2px solid;
 	font-weight: bold;
@@ -136,7 +136,7 @@ hr {
 }
 
 .adicionar {
-	/*Botões para chamada de outras telas que irão inserir dados na tela pai*/
+	/*Botï¿½es para chamada de outras telas que irï¿½o inserir dados na tela pai*/
 	border-left: #7DA2B7 7px solid;
 	border-right: #7DA2B7 2px solid;
 	background-color: #F0F4FB;
@@ -151,7 +151,7 @@ hr {
 }
 
 .secundario {
-	/*Botões que tenha atenção secundária para a funcionalidade da página, mas não de menor importância que não necessite de destaque.*/
+	/*Botï¿½es que tenha atenï¿½ï¿½o secundï¿½ria para a funcionalidade da pï¿½gina, mas nï¿½o de menor importï¿½ncia que nï¿½o necessite de destaque.*/
 	border-left: #CC0000 7px solid;
 	border-right: #CC0000 2px solid;
 	font-family: sans-serif;
@@ -162,7 +162,7 @@ hr {
 	padding-right: 5px;
 }
 
-.limpar { /*Botões que limpam os campos, reset de formulários*/
+.limpar { /*Botï¿½es que limpam os campos, reset de formulï¿½rios*/
 	border-left: gray 7px solid;
 	border-right: gray 2px solid;
 	border-top: gray 1px solid;
@@ -176,7 +176,7 @@ hr {
 	padding-right: 5px;
 }
 
-.voltar { /*Padrão para o botão voltar*/
+.voltar { /*Padrï¿½o para o botï¿½o voltar*/
 	border-left: #C0BF8D 7px solid;
 	border-right: #C0BF8D 2px solid;
 	font-family: sans-serif;
@@ -188,7 +188,7 @@ hr {
 }
 
 .geral {
-	/*Para botões que não se enquadrarem nas descrições anteriores*/
+	/*Para botï¿½es que nï¿½o se enquadrarem nas descriï¿½ï¿½es anteriores*/
 	border-left: #B3CDD7 7px solid;
 	border-right: #B3CDD7 2px solid;
 	font-family: sans-serif;
@@ -200,23 +200,23 @@ hr {
 }
 
 h1 {
-	font-size: 11px;
+	font-size: 34px;
 	color: #006699;
 }
 
 h2 {
-	font-size: 12px;
+	font-size: 25px;
 	font-weight: bold;
 	color: #006699;
 }
 
 h3 {
 	color: #CAEEFF;
-	font-size: 13px;
+	font-size: 16px;
 }
 
 h6 {
-	font-size: 11px;
+	font-size: 13px;
 	text-align: left;
 	margin: 15px 0px 10px 0px;
 	padding: 0px;
