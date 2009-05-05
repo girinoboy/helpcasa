@@ -17,7 +17,7 @@ public class HistoricoDAO extends GenericDAO{
 
 	private static final String strUpdateClassificacao = "";
 	
-	String strConsult = "SELECT sv.nome,h.data,sl.periodo,p.nome,h.status,n.descricao FROM casaweb.historico h " +
+	String strConsult = "SELECT sv.nome,h.data,sl.periodo,p.nome,h.status,h.perfil,n.descricao FROM casaweb.historico h " +
 			"inner join casaweb.solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
 			"inner join casaweb.servico sc on sc.idServico = sl.idServico " +
 			"inner join casaweb.funcionario f on sl.idFuncionario = f.idFuncionario " +
@@ -92,15 +92,15 @@ public class HistoricoDAO extends GenericDAO{
 
 	private HistoricoDTO populaHistoricoDTO(HistoricoDTO dto, ResultSet rs) throws Exception {
 		dto.setId(rs.getLong("idServico"));
-		dto.setData(new Date(rs.getDate("").getTime()));
-		dto.setStatus(rs.getInt(""));
-		dto.setPerfil(rs.getString(""));
-		dto.setAuteradoPor(rs.getString(""));
-		dto.setObservacao(rs.getString(""));
+		dto.setData(new Date(rs.getDate("data").getTime()));
+		dto.setStatus(rs.getInt("status"));
+		dto.setPerfil(rs.getString("perfil"));
+		dto.setAuteradoPor(rs.getString("auteradoPor"));
+		dto.setObservacao(rs.getString("observacao"));
 		
 		NotaDTO nota = new NotaDTO();
-		nota.setId((rs.getLong("nomeServico")));
-		nota.setDescricao(rs.getString("descricaoServico"));
+		nota.setId((rs.getLong("idNota")));
+		nota.setDescricao(rs.getString("descricao"));
 		
 	
 		dto.setNota(nota);

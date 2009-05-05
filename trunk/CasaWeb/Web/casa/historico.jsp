@@ -9,24 +9,24 @@
 		align="center">
 		<tr>
 			<td></td>			
-			<td title="Matricula">
-				<strong><c:out value="Matricula" /> </strong>
+			<td title="Serviço">
+				<strong><c:out value="Serviço" /> </strong>
 			</td>
-			<td title="Nome">
-				<strong><c:out value="Nome" /> </strong>
+			<td title="Data">
+				<strong><c:out value="Data" /> </strong>
 			</td>	
-			<td title="Data desistencia">
-				<strong><c:out value="Data desistencia" /> </strong>
+			<td title="Periodo">
+				<strong><c:out value="Periodo" /> </strong>
 			</td>
-			<td title="Finalidade">
-				<strong><c:out value="Finalidade" /> </strong>
+			<td title="Profissional">
+				<strong><c:out value="Profissional" /> </strong>
 			</td>
-			<td title="Desistencia Concedida">
-				<strong><c:out value="Desistencia Concedida" /> </strong>
+			<td title="Classificação">
+				<strong><c:out value="Classificação" /> </strong>
 			</td>			
 		</tr>
-		<s:if test="${not empty listaDesistencias}">
-			<s:iterator value="listaDesistencias" status="stat">
+		<s:if test="${not empty listHistorico}">
+			<s:iterator value="listHistorico" status="stat">
 				<s:set name="corLinha" />
 				<s:if test="${stat.index%2 eq 0}">
 					<s:set name="corLinha" value="'#e6f7ff'" />
@@ -43,25 +43,25 @@
 						<c:out value="${stat.index+1}" />
 					</td>					
 					<td>
-						<c:out value="${gerenciamentoDesistencias.pi.registro}" />
+						<c:out value="${historico.pi.registro}" />
 					</td>
 					<td>
-						<c:out value="${gerenciamentoDesistencias.usuario.nome}" />
+						<c:out value="${historico.usuario.nome}" />
 					</td>	
 					<td>
-						<s:date format="dd/MM/yyyy HH:mm:ss"  name="gerenciamentoDesistencias.desistencias.dataDesistencia" />
+						<s:date format="dd/MM/yyyy HH:mm:ss"  name="data" />
 					</td>
 					<td>
-						<c:out value="${gerenciamentoDesistencias.desistencias.pedidoInspecaoPericial.finalidade}" />
+						<c:out value="${historico.desistencias.pedidoInspecaoPericial.finalidade}" />
 					</td>
-					<s:if test="${gerenciamentoDesistencias.desistencias.desistenciaConcedida eq 'S'}">
+					<s:if test="${data eq 'S'}">
 						<td>
-							<c:out value="${gerenciamentoDesistencias.desistencias.desistenciaConcedida}" />
+							<c:out value="${nota.descricao}" />
 						</td>
 					</s:if>
 					<s:else>						
 						<td>
-							<s:select name="gerenciamentoDTO.gerenciamentoDesistencias.desistencias.pedidoInspecaoPericial.id"  id="gerenciamentoDTO.gerenciamentoDesistencias.desistencias.pedidoInspecaoPericial.id" list="#{'false':'Não','${gerenciamentoDesistencias.desistencias.pedidoInspecaoPericial.id}':'Sim'}" onchange="selectAction('concedeDesistencia',this.value);"/>							
+							<s:select name="nota.id"  id="d" list="#{'false':'Bom','${nota.id}':'Otimo'}" onchange="selectAction('concedeDesistencia',this.value);"/>							
 						</td>
 					</s:else>
 				</tr>
