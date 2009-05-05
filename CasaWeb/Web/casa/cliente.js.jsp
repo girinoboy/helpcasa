@@ -8,19 +8,26 @@ function selectAction(action){
 	
 	if(action == 'incluir'){
 		url = '<c:url value="/casa/login!incluiCliente.action?"/>';
-		submeter = validaCamposAoIncluir();
+		submeter = true;
 	}else if(action == 'direcionaLogin'){
 		url = '<c:url value="/casa/login!load.action?"/>';
 		submeter = true;
 	}else if(action == 'pesquisar'){
 		var cpf = document.getElementById('cpf');
-		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
-		params='clienteDTO.cpf='+cpf.value;
+		var funcao = document.getElementById('funcao');
+		if(funcao == 'cliente'){
+			url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
+			params='clienteDTO.cpf='+cpf.value;
+		}
+		else{
+			url = '<c:url value="/casa/solicitacao!load.action?"/>';
+			params='solicitacaoDTO.cliente.cpf='+cpf.value;
+		}
 		submeter = true;
 	}else if(action == 'voltar'){
 		
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
-		
+		params='funcao=cliente';
 		submeter = true;
 	}else{
 		alert('Ação não encontrada.');
@@ -43,6 +50,15 @@ function validaCamposAoIncluir(){
 	var endereco = document.getElementById('endereco');
 	var telefone = document.getElementById('telefone');
 	var rg = document.getElementById('rg');
+	
+	var cidade = document.getElementById('cidade');
+	var uf = document.getElementById('id');
+	var celular = document.getElementById('celular');
+	var nasc = document.getElementById('nasc');
+	var email = document.getElementById('email');
+	var usuario = document.getElementById('usuario');
+	var senha = document.getElementById('senha');
+	var senhaRepita = document.getElementById('senhaRepita');
 	
 	if(nome.value == ''){
 		alert('O Nome é obrigatório.');
@@ -74,6 +90,46 @@ function validaCamposAoIncluir(){
 		rg.focus();
 		return false;
 	}
+	if(cidade.value == ''){
+		alert('A Cidade é obrigatória.');
+		cidade.focus();
+		return false;
+	}
+	if(uf.value == ''){
+		alert('A UF é obrigatória.');
+		uf.focus();
+		return false;
+	}
+	if(celular.value == ''){
+		alert('O Celular é obrigatório.');
+		celular.focus();
+		return false;
+	}
+	if(nasc.value == ''){
+		alert('O Nascimento é obrigatório.');
+		nasc.focus();
+		return false;
+	}/*
+	if(email.value == ''){
+		alert('O Email é obrigatório.');
+		email.focus();
+		return false;
+	}*/
+	if(usuario.value == ''){
+		alert('O Usuario é obrigatório.');
+		usuario.focus();
+		return false;
+	}
+	if(senha.value == ''){
+		alert('A Senha é obrigatório.');
+		senha.focus();
+		return false;
+	}
+	if(senhaRepita.value != senha.value){
+		alert('Senha não confere.');
+		senhaRepita.focus();
+		return false;
+	}
 	return true;
 }
 
@@ -95,4 +151,5 @@ function loadMascara(){
   	//jQuery('#cpf').numeric();
 	jQuery('#cpf').mask('999.999.999-99');
 	document.getElementById('cpf').value = '';
+	jQuery('#cep').mask('99999-999');
 }

@@ -83,20 +83,11 @@ select {
 	background-color: #F9FCFF;
 }
 
-#label {
-	text-align: right;
-}
-
 table {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
+	font-size: 9px;
 	font-style: normal;
-	line-height: 15px;
 	background-position: center;
 	text-align: left;
-	border: 1px solid #B3CDD7;
-	/*background-color: #CAEEFF;*/
-
 }
 
 table.realce tr:hover {
@@ -282,6 +273,11 @@ h6 {
 	background-color: #F0F4FB;
 	padding: 2px 2px 2px 5px;
 	/*margin: 1px;*/
+}
+
+.clr {
+	clear: both;
+	float: none;
 }
 
 #recuo1 {

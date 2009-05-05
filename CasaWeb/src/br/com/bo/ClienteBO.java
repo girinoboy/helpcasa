@@ -2,11 +2,14 @@ package br.com.bo;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.ClienteDAO;
 import br.com.persistencia.dto.ClienteDTO;
+import br.com.persistencia.dto.ServicoDTO;
+import br.com.persistencia.dto.UfDTO;
 
 public class ClienteBO extends GenericBO{
 	
@@ -47,6 +50,21 @@ public class ClienteBO extends GenericBO{
 			con.close();
 		}
 		return clienteDTOConsultada;
+	}
+
+
+	public List<UfDTO> listUf() throws Exception {
+		Connection conn = Conexao.getConnection();
+		List<UfDTO> list = null;
+		try{
+			list = clienteDAO.listUf(conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+		return list;
 	}
 
 }

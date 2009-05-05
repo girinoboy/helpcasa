@@ -5,9 +5,7 @@ public class UfDTO extends GenericDTO{
 	private String uf;
 	private String descricao;
 	
-	public UfDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public UfDTO() {}
 	public UfDTO(Long id){
 		this.id = id;
 	} 

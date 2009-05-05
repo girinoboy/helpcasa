@@ -14,7 +14,7 @@
     
     <definition name="LoginLoad.def"	extends="template1.def">
     	<put-attribute name="title" 	value="Login Help Casa" />			
-    	<put-attribute name="body" 		value="/login.jsp" />	    	
+    	<put-attribute name="body" 		value="/casa/login.jsp" />	    	
     </definition>
     <definition name="Abertura.def"				extends="template1.def">
     	<put-attribute name="title" 			value="Menu de ações do sistema" />			
@@ -28,6 +28,8 @@
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/clienteCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
+    	<put-attribute name="jQuery" 			value="true" />
+    	<put-attribute name="onload" 			value="loadMascara();" />
     	<put-attribute name="dojo" 				value="true" />
     </definition>
     <definition name="ClienteConsultar.def"	    extends="template1.def">
@@ -102,15 +104,43 @@
     	<put-attribute name="title" 		value="help home" />		
     	<put-attribute name="body" 			value="/casa/servicos.jsp" />	
     	<put-attribute name="js" 			value="/casa/servico.js.jsp" />
-    	<put-attribute name="dojo" 			value="true" />
     </definition>
     <definition name="ServicoCadastrar.def"		extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/servicoCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
     </definition>
      <!-- FIM DE SERVICOS -->
+     
+      <!-- INICIO DE FUNCIONARIOS -->
+    <definition name="FuncionariosListar.def"	extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/funcionarioListar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/funcionario.js.jsp" />
+    </definition>
+    <definition name="FuncionariosCadastrar.def" extends="template1.def">
+    	<put-attribute name="title" 			 value="Cadastrar Funcionario" />		
+    	<put-attribute name="body" 				 value="/casa/funcionarioCadastrar.jsp" />	
+    	<put-attribute name="js" 				 value="/casa/funcionario.js.jsp" />
+    	<put-attribute name="dojo" 				 value="true" />
+    </definition>
+     <!-- FIM DE FUNCIONARIOS -->
+     
+     
+    <definition name="SolicitacoesLoad.def" extends="template1.def">
+    	<put-attribute name="title" 			 value="help casa" />		
+    	<put-attribute name="body" 				 value="/casa/solicitacaoCadastrar.jsp" />	
+    	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />
+    	<put-attribute name="dojo" 				 value="true" />
+    </definition>
+    
+     <!-- INICIO DE HISTORICO -->
+    <definition name="HistoricoLoad.def" extends="template1.def">
+    	<put-attribute name="title" 			 value="help casa" />		
+    	<put-attribute name="body" 				 value="/casa/historico.jsp" />	
+    	<put-attribute name="js" 				 value="/casa/historico.js.jsp" />
+    </definition>
+     <!-- FIM DE HISTORICO -->
      
      <!-- INICIO DE RELATORIOS -->
     <definition name="RelatoriosLoad.def"	extends="template1.def">

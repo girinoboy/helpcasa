@@ -1,9 +1,11 @@
 package br.com.persistencia;
 
 import br.com.persistencia.dao.ClienteDAO;
+import br.com.persistencia.dao.FuncionarioDAO;
 import br.com.persistencia.dao.LoginDAO;
 import br.com.persistencia.dao.ProfissaoDAO;
 import br.com.persistencia.dao.ServicoDAO;
+import br.com.persistencia.dao.SolicitacaoDAO;
 import br.com.persistencia.dto.PessoaDTO;
 
 public class FactoryDAO {
@@ -16,6 +18,8 @@ public class FactoryDAO {
 	LoginDAO loginDAO;
 	private ProfissaoDAO profissaoDAO;
 	private ServicoDAO servicoDAO;
+	private FuncionarioDAO funcionarioDAO;
+	private SolicitacaoDAO solicitacaoDAO;
 	
 	private FactoryDAO() {
 	}
@@ -83,5 +87,19 @@ public class FactoryDAO {
 			servicoDAO = new ServicoDAO();
 		}
 		return servicoDAO;
+	}
+
+	public FuncionarioDAO getFuncionarioDAO() {
+		if(funcionarioDAO == null){
+			funcionarioDAO = new FuncionarioDAO();
+		}
+		return funcionarioDAO;
+	}
+
+	public SolicitacaoDAO getSolicitacaoDAO() {
+		if(solicitacaoDAO == null){
+			solicitacaoDAO = new SolicitacaoDAO();
+		}
+		return solicitacaoDAO;
 	}
 }

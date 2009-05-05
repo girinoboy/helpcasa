@@ -13,7 +13,7 @@
 					Profissão:
 				</td>
 				<td>
-					<s:textfield id="profissao.nome" name="profissao.nome" />
+					<s:textfield id="profissaoDTO.nome" name="profissaoDTO.nome" />
 				</td>
 			</tr>
 			<tr>
@@ -21,8 +21,8 @@
 					PrecoVisita:
 				</td>
 				<td>
-					<s:textfield id="profissao.precoVisita"
-						name="profissao.precoVisita" />
+					<s:textfield id="profissaoDTO.precoVisita"
+						name="profissaoDTO.precoVisita" />
 				</td>
 			</tr>
 			<tr>
@@ -30,7 +30,7 @@
 					Descricao:
 				</td>
 				<td>
-					<s:textfield id="profissao.descricao" name="profissao.descricao" />
+					<s:textfield id="profissaoDTO.descricao" name="profissaoDTO.descricao" />
 				</td>
 			</tr>
 		</table>

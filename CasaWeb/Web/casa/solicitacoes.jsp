@@ -4,7 +4,16 @@
 <s:form name="form1" method="post" id="form1" action="">
 	<h1>
 		<c:out value="Listagem de Serviços" />
-	</h1>	
+	</h1>
+	
+	<s:hidden id="funcao" name="funcao" value="${funcao}" />
+
+<c:out value="${funcao}"/>
+<s:datetimepicker name="clienteDTO.nasc" label="Data de Nascimento"
+						displayFormat="dd/MM/yyyy" toggleType="explode"
+						toggleDuration="200" />
+						<input type="button" value="ok" onclick="selectAction('pesquisar')">
+		
 	<table width="100%" cellspacing="1" cellpadding="3" border="1"
 		align="center">
 		<tr>
@@ -13,17 +22,12 @@
 			<input type="checkbox" name="checkAll" id="checkAll"
 						onclick="checkUnCheckAll(this, 'idsServico');" />
 			</td>
-			<td title="Serviço">
-				<strong><c:out value="Serviço" /> </strong>
+			<td title="Data">
+				<strong><c:out value="Data" /> </strong>
 			</td>
-			<td title="Profissão">
-				<strong><c:out value="Profissão" /> </strong>
-			</td>	
-			<td title="Visita">
-				<strong><c:out value="Visita" /> </strong>
-			</td>
-			
-						
+			<td title="Horario">
+				<strong><c:out value="Horario" /> </strong>
+			</td>		
 		</tr>
 		<s:if test="${not empty listServicos}">
 			<s:iterator value="listServicos" status="stat">
@@ -51,10 +55,7 @@
 					</td>
 					<td>
 						<c:out value="${profissao.nome}" />
-					</td>
-					<td>
-						<c:out value="${profissao.precovisita}" />
-					</td>						
+					</td>					
 				</tr>
 			</s:iterator>
 		</s:if>

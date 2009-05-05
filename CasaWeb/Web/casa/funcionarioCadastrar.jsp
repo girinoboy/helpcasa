@@ -3,7 +3,7 @@
 <div style="width: 710px;" class="container">
 	<s:form name="form1" id="form1">
 		<h1>
-			Cadastrar Cliente
+			Cadastrar Funcionario
 		</h1>
 
 		<table cellpadding="1" cellspacing="0" width="100%">
@@ -26,7 +26,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					RG:*
+					RG:
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.rg" label="RG" size="10" id="rg" />
@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Endereço:*
+					Endereço:
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="100"
@@ -43,20 +43,23 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Cidade:*
+					Cidade
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.cidade" label="CIDADE" size="30" id="cidade" />
-					<label class="table">
-						UF:*
+					<label class="td_rotulo_linha_inf">
+					UF
 					</label>
-					<s:select name="clienteDTO.uf.id" id="id" label="UF" list="ufs" headerKey="-1" />
+					<select id="uf" name="clienteDTO.uf.uf">
+						<option value="df" selected="selected">
+							DF
+						</option>
+					</select>
 				</td>
-				
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					CEP:*
+					CEP
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" />
@@ -67,26 +70,26 @@
 					Telefone:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.telefone" label="TELEFONE" size="15"
+					<s:textfield name="clienteDTO.telefone" label="TELEFONE" size="10"
 						id="telefone" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Celular:*
+					Celular:
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.celular" label="CELULAR" size="15" id="celular" />
+					<s:textfield name="clienteDTO.celular" label="CELULAR" size="10" id="telefone" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Data de Nascimento:*
+					Data de Nascimento:
 				</td>
 				<td>
 					<s:datetimepicker name="clienteDTO.nasc" label="Data de Nascimento"
 						displayFormat="dd/MM/yyyy" toggleType="explode"
-						toggleDuration="200" id="nasc" />
+						toggleDuration="200" />
 				</td>
 			</tr>
 			<tr>
@@ -99,16 +102,16 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Nome de usuario:*
+					Nome de usuario:
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.usuario" label="NOME DE USUARIO"
-						size="60" id="usuario" />
+						size="60" id="user" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Senha:*
+					Senha:
 				</td>
 				<td>
 					<s:password name="clienteDTO.senha" label="SENHA" size="60"
@@ -117,7 +120,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Repita sua senha:*
+					Repita sua senha:
 				</td>
 				<td>
 					<s:password name="clienteDTO.senhaRepita" label="REPITA SUA SENHA"

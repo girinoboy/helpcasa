@@ -25,10 +25,10 @@ public class ProfissaoDAO extends GenericDAO{
 			rs = ps.executeQuery();
 			list = new ArrayList<ProfissaoDTO>();
 			while(rs.next()){
-				profissaoDTO = new ProfissaoDTO();
+				ProfissaoDTO dto = new ProfissaoDTO();
 				
-				profissaoDTO = (ProfissaoDTO) DTOFactory.getDTO(ProfissaoDTO.class, rs);
-				
+				//profissaoDTO = (ProfissaoDTO) DTOFactory.getDTO(ProfissaoDTO.class, rs);
+				profissaoDTO = this.populaProfissao(dto,rs);
 				list.add(profissaoDTO);
 				
 			}
@@ -43,11 +43,23 @@ public class ProfissaoDAO extends GenericDAO{
 		return list;
 	}
 
+	private ProfissaoDTO populaProfissao(ProfissaoDTO dto, ResultSet rs) {
+		try{
+			dto.setId(rs.getLong("id"));
+			dto.setNome(rs.getString("nome"));
+			dto.setPrecoVisita(rs.getDouble("precoVisita"));
+			dto.setDescricao(rs.getString("descricao"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
 	public void inclui(ProfissaoDTO profissao, Connection conn) throws Exception {
 		
 		PreparedStatement ps = null;
 		
-		String sql = "INSET INTO casaweb.Profissao(nome,precovisita,dataCadastro,descricao) VALUES(?,?,now(),?)";
+		String sql = "INSERT INTO casaweb.Profissao(nome,precovisita,dataCadastro,descricao) VALUES(?,?,now(),?)";
 		try{
 			
 			ps = conn.prepareStatement(sql);

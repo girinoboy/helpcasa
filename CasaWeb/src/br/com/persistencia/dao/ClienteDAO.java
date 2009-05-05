@@ -11,7 +11,9 @@ import java.util.List;
 
 import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.PerfilDTO;
+import br.com.persistencia.dto.ServicoDTO;
 import br.com.persistencia.dto.UfDTO;
+import br.com.persistencia.util.DTOFactory;
 
 public class ClienteDAO extends GenericDAO{
 
@@ -70,18 +72,18 @@ public class ClienteDAO extends GenericDAO{
 			dto.setUsuario(rs.getString("usuario"));
 			dto.setSenha(rs.getString("senha"));
 			dto.setNome(rs.getString("nome"));
-			dto.setRg(rs.getInt("rg"));
+			dto.setRg(rs.getString("rg"));
 			dto.setCpf(rs.getString("cpf"));
 			dto.setEmail(rs.getString("email"));
 			dto.setNasc(new Date(rs.getTimestamp("nasc").getTime()));
 			dto.setStatus(rs.getBoolean("status"));
 			dto.setDataCadastro(rs.getTimestamp("dataCadastro"));
-			dto.setTelefone(rs.getInt("telefone"));
-			dto.setCelular(rs.getInt("celular"));
+			dto.setTelefone(rs.getString("telefone"));
+			dto.setCelular(rs.getString("celular"));
 			//dados do cliente
 			dto.setEndereco(rs.getString("endereco"));
 			dto.setSituacao(rs.getString("situacao"));
-			dto.setCep(rs.getInt("cep"));
+			dto.setCep(rs.getString("cep"));
 			dto.setCidade(rs.getString("cidade"));
 			
 			UfDTO uf = new UfDTO();
@@ -165,14 +167,13 @@ public class ClienteDAO extends GenericDAO{
 				ps.setString(2, cliente.getSenha());
 				ps.setString(3, cliente.getNome());
 				ps.setString(4, cliente.getCpf());
-				ps.setLong(5, cliente.getRg());
+				ps.setString(5, cliente.getRg());
 				ps.setString(6, cliente.getEmail());
 				ps.setTimestamp(7, new Timestamp(cliente.getNasc().getTime()));
 				ps.setBoolean(8, cliente.getStatus());
-				ps.setLong(9, cliente.getTelefone());
-				ps.setLong(10, cliente.getCelular());
-				ps.setLong(11, cliente.getTelefoneComercial());
-				ps.setLong(12, cliente.getPerfil().getId());
+				ps.setString(9, cliente.getTelefone());
+				ps.setString(10, cliente.getCelular());
+				ps.setLong(11, cliente.getPerfil().getId());
 
 				ps.executeUpdate();
 				executado=true;
@@ -213,7 +214,7 @@ public class ClienteDAO extends GenericDAO{
 				ps.setLong(1, this.getLastIdTable("Pessoa", "idPessoa", con));
 				ps.setString(2, cliente.getEndereco());
 				ps.setBoolean(3, cliente.getStatus());
-				ps.setLong(4, cliente.getCep());
+				ps.setString(4, cliente.getCep());
 				ps.setString(5, cliente.getCidade());
 				ps.setLong(6, cliente.getUf().getId());
 
@@ -239,6 +240,52 @@ public class ClienteDAO extends GenericDAO{
 			return executado;
 			
 			
+		}
+		
+		public List<UfDTO> listUf(Connection conn) throws Exception {
+			List<UfDTO> list =null;
+			UfDTO ufDTO = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			
+			
+			String sql = "SELECT uf.idUf as id , uf.uf,uf.descricao FROM casaweb.uf";
+					
+			try{
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				list = new ArrayList<UfDTO>();
+				while(rs.next()){
+					UfDTO dto = new UfDTO();
+					
+					ufDTO = this.populaUF(dto,rs);
+					//ufDTO = (UfDTO) DTOFactory.getDTO(UfDTO.class, rs);
+					
+					list.add(ufDTO);
+					
+				}
+			}catch(Exception e){
+				throw e;
+			}finally{
+				if(ps!=null)
+					ps.close();
+				if(rs!=null)
+					rs.close();
+			}
+			return list;
+		}
+
+	private UfDTO populaUF(UfDTO dto, ResultSet rs) {
+		try{
+			
+			dto.setId(new Long (rs.getLong("id")));
+			dto.setUf(rs.getString("uf"));
+			dto.setDescricao(rs.getString("descricao"));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}	
+			return dto;
 		}
 
 	protected static final String strConsult ="SELECT idPessoa as \"id\", " +
@@ -269,6 +316,7 @@ public class ClienteDAO extends GenericDAO{
 				"WHERE Pessoa.cpf = ?";
 
 	
-	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,status,dataCadastro,telefone,celular,telefoneComercial,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
+	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,status,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";
 	protected static final String strInsertCliente ="INSERT INTO casaweb.Cliente(idCliente,endereco,situacao,cep,cidade,idUF)VALUES(?,?,?,?,?,?);";
+	
 }

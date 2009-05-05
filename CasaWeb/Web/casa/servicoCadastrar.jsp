@@ -13,7 +13,7 @@
 					Serviço:
 				</td>
 				<td>
-					<s:textfield id="servico.nome" name="servico.nome" />
+					<s:textfield id="servicoDTO.nome" name="servicoDTO.nome" />
 				</td>
 			</tr>
 			<tr>
@@ -21,8 +21,7 @@
 					Profissão:
 				</td>
 				<td>
-					<s:textfield id="profissao.idprofissao"
-						name="profissao.idprofissao" />
+					<s:select name="servicoDTO.profissaoDTO.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" />					
 				</td>
 			</tr>
 			<tr>
@@ -30,8 +29,8 @@
 					Descricao:
 				</td>
 				<td>
-					<s:textfield id="servico.descricao"
-						name="servico.descricao" />
+					<s:textfield id="servicoDTO.descricao"
+						name="servicoDTO.descricao" />
 				</td>
 			</tr>
 			
