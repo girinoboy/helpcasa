@@ -84,7 +84,7 @@
 					Data de Nascimento:*
 				</td>
 				<td>
-					<s:datetimepicker name="clienteDTO.nasc" label="Data de Nascimento"
+					<s:datetimepicker name="clienteDTO.nasc" label="DATA DE NASCIMENTO"
 						displayFormat="dd/MM/yyyy" toggleType="explode"
 						toggleDuration="200" id="nasc" />
 				</td>
