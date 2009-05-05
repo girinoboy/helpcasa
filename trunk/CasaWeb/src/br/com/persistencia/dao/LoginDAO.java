@@ -66,14 +66,14 @@ public class LoginDAO extends GenericDAO{
 		dto.setUsuario(rs.getString("usuario"));
 		dto.setSenha(rs.getString("senha"));
 		dto.setNome(rs.getString("nome"));
-		dto.setRg(rs.getInt("rg"));
+		dto.setRg(rs.getString("rg"));
 		dto.setCpf(rs.getString("cpf"));
 		dto.setEmail(rs.getString("email"));
 		dto.setNasc(new Date(rs.getTimestamp("nasc").getTime()));
 		dto.setStatus(rs.getBoolean("status"));
 		dto.setDataCadastro(rs.getTimestamp("dataCadastro"));
-		dto.setTelefone(rs.getInt("telefone"));
-		dto.setCelular(rs.getInt("celular"));
+		dto.setTelefone(rs.getString("telefone"));
+		dto.setCelular(rs.getString("celular"));
 		
 		PerfilDTO perfil = new PerfilDTO();
 		perfil.setId(rs.getLong("perfil.id"));

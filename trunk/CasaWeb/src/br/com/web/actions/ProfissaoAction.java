@@ -7,7 +7,7 @@ import br.com.bo.ProfissaoBO;
 import br.com.persistencia.dto.ProfissaoDTO;
 
 public class ProfissaoAction extends GenericAction {
-
+    
 	private ProfissaoBO profissaoBO;
 	private List<ProfissaoDTO> listProfissoes;
 	private Long[] idsProfissao;
@@ -69,5 +69,15 @@ public class ProfissaoAction extends GenericAction {
 	public void setIdsProfissao(Long[] idsProfissao) {
 		this.idsProfissao = idsProfissao;
 	}
+
+	public ProfissaoDTO getProfissaoDTO() {
+		return profissaoDTO;
+	}
+
+	public void setProfissaoDTO(ProfissaoDTO profissaoDTO) {
+		this.profissaoDTO = profissaoDTO;
+	}
+	
+	
 
 }

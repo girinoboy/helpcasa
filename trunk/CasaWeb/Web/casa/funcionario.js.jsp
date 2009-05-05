@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
-
 function selectAction(action){
 	
 	var url = '';
@@ -7,19 +6,25 @@ function selectAction(action){
 	var submeter;
 	
 	if(action == 'incluir'){
-		//var idprofissao = document.getElementById('idprofissao');
-		url = '<c:url value="/casa/servico!inclui.action?"/>';
-		//params='servicoDTO.profissaoDTO.id='+idprofissao.value;
+		url = '<c:url value="/casa/login!incluiCliente.action?"/>';
 		submeter = validaCamposAoIncluir();
-	}else if(action == 'cadastrar'){
-		url = '<c:url value="/casa/servico!cadastrar.action?"/>';
+	}else if(action == 'direcionaLogin'){
+		url = '<c:url value="/casa/login!load.action?"/>';
+		submeter = true;
+	}else if(action == 'pesquisar'){
+		var cpf = document.getElementById('cpf');
+		var funcao = document.getElementById('funcao');
+		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
+		params='clienteDTO.cpf='+cpf.value;
 		submeter = true;
 	}else if(action == 'voltar'){
-		url = '<c:url value="/casa/servico!load.action?"/>';
+		
+		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
+		params='funcao=cliente';
 		submeter = true;
-	}else if(action == 'excluir'){
-		url = '<c:url value="/casa/servico!exclui.action?"/>';
-		submeter = confirm('Deseja realmente excluir o(s) selecionado(s)');
+	}else if(action == 'cadastrar'){
+		url = '<c:url value="/casa/funcionario!cadastrar.action?"/>';
+		submeter = true;
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;
@@ -47,9 +52,4 @@ function checkUnCheckAll(check, nameCheckBox){
 			}
 		}
 	}
-}
-
-function validaCamposAoIncluir(){
-
-	return true;
 }

@@ -1,9 +1,14 @@
 package br.com.web.actions;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import br.com.Mensagem;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.persistencia.dto.ClienteDTO;
+import br.com.persistencia.dto.UfDTO;
 
 public class ClienteAction extends GenericAction {
 
@@ -12,6 +17,11 @@ public class ClienteAction extends GenericAction {
 
 	// DTOs
 	private ClienteDTO clienteDTO;
+	
+	private List<UfDTO> listUf;
+	private Map<Number, String> ufs;
+	
+	private String funcao;
 
 	public ClienteAction() {
 		clienteBO = FactoryBO.getInstance().getClienteBO();
@@ -19,7 +29,24 @@ public class ClienteAction extends GenericAction {
 
 	public String load() throws Exception {
 
+		return clienteCadastrar();
+	}
+	
+	public String clienteCadastrar(){
+		try {
+			 	ufs = new HashMap<Number, String>();
+			 	ufs.put(0, "Selecione...");
+			this.listUf = this.clienteBO.listUf();
+			
+			for(UfDTO uf: listUf ){
+				ufs.put(uf.getId(), uf.getUf());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "clienteCadastrar.fwd";
+		
 	}
 
 	private String direcionaMenu() {
@@ -64,9 +91,11 @@ public class ClienteAction extends GenericAction {
 
 	public String pesquisar() throws Exception {
 		try {
-			if (clienteDTO != null && clienteDTO.getCpf() != null) {
+			if (clienteDTO != null && clienteDTO.getCpf() != null && funcao != null && funcao.equals("cliente")) {
 				return consultaParaCliente();
-			} else
+			}if(clienteDTO != null && clienteDTO.getCpf() != null && funcao != null && funcao.equals("servico")){
+				return "servicosListar.fwd";
+			}else
 				return "clientePesquisar.fwd";
 		} catch (Exception e) {
 			System.out.println(e);
@@ -98,6 +127,30 @@ public class ClienteAction extends GenericAction {
 
 	public void setClienteDTO(ClienteDTO clienteDTO) {
 		this.clienteDTO = clienteDTO;
+	}
+
+	public String getFuncao() {
+		return funcao;
+	}
+
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
+	}
+
+	public List<UfDTO> getListUf() {
+		return listUf;
+	}
+
+	public void setListUf(List<UfDTO> listUf) {
+		this.listUf = listUf;
+	}
+	
+	public Map<Number, String> getUfs() {
+		return ufs;
+	}
+
+	public void setUfs(Map<Number, String> ufs) {
+		this.ufs = ufs;
 	}
 
 }

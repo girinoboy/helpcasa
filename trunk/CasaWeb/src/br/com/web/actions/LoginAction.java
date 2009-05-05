@@ -1,7 +1,5 @@
 package br.com.web.actions;
 
-
-
 import br.com.ConstantesENUM;
 import br.com.Mensagem;
 import br.com.MensagemLista;
@@ -12,7 +10,6 @@ import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.PerfilDTO;
 import br.com.persistencia.dto.PessoaDTO;
 import br.com.persistencia.dto.UfDTO;
-
 
 public class LoginAction extends GenericAction{
 	
@@ -55,6 +52,7 @@ public class LoginAction extends GenericAction{
 					getRequest().getSession(true).setAttribute("pessoaDTO", pessoaDTO);
 					getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
+					return abertura();
 				}else{
 					getRequest().getSession().setAttribute("mensagem", "Login invalido.");
 					getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
@@ -75,17 +73,19 @@ public class LoginAction extends GenericAction{
 	}
 	
 	public String incluiCliente() throws Exception{
-		clienteDTO.setStatus(false);
 		
-		PerfilDTO perfil =  new PerfilDTO();
-		perfil.setId(ConstantesENUM.CLIENTE_ID.id());
-		clienteDTO.setPerfil(perfil );
-		UfDTO uf = new UfDTO();
-		uf.setId(new Long(7));
-		clienteDTO.setUf(uf);
+			clienteDTO.setStatus(false);
+
+			PerfilDTO perfil = new PerfilDTO();
+			perfil.setId(ConstantesENUM.CLIENTE_ID.id());
+			clienteDTO.setPerfil(perfil);
+		/*	UfDTO uf = new UfDTO();
+			uf.setId(new Long(7));
+			clienteDTO.setUf(uf);*/
+
+			pessoaDTO = clienteBO.inclui(clienteDTO);
+			
 		
-		pessoaDTO = clienteBO.inclui(clienteDTO);
-	
 		return checkLogin();
 	}
 	

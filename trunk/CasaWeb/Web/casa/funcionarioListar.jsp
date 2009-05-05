@@ -11,22 +11,22 @@
 			<td></td>			
 			<td title="id">
 			<input type="checkbox" name="checkAll" id="checkAll"
-						onclick="checkUnCheckAll(this, 'idsServico');" />
+						onclick="checkUnCheckAll(this, 'idsFuncionario');" />
 			</td>
-			<td title="Serviço">
-				<strong><c:out value="Serviço" /> </strong>
+			<td title="Nome">
+				<strong><c:out value="Nome" /> </strong>
 			</td>
-			<td title="Profissão">
-				<strong><c:out value="Profissão" /> </strong>
+			<td title="CPF">
+				<strong><c:out value="CPF" /> </strong>
 			</td>	
-			<td title="Visita">
-				<strong><c:out value="Visita" /> </strong>
+			<td title="Perfil">
+				<strong><c:out value="Perfil" /> </strong>
 			</td>
 			
 						
 		</tr>
-		<s:if test="${not empty listServicos}">
-			<s:iterator value="listServicos" status="stat">
+		<s:if test="${not empty listFuncionarios}">
+			<s:iterator value="listFuncionarios" status="stat">
 				<s:set name="corLinha" />
 				<s:if test="${stat.index%2 eq 0}">
 					<s:set name="corLinha" value="'#e6f7ff'" />
@@ -43,17 +43,17 @@
 						<c:out value="${stat.index+1}" />
 					</td>					
 					<td>
-						<input type="checkbox" name="idsServico"
-							id="idsServico" value="<s:property value='id'/>" />
+						<input type="checkbox" name="idsFuncionario"
+							id="idsFuncionario" value="<s:property value='id'/>" />
 					</td>
 					<td>
-						<c:out value="${nome}" />
+						<s:a href="#" value="${nome}"><c:out value="${nome}" /></s:a> 
 					</td>
 					<td>
-						<c:out value="${profissao.nome}" />
+						<c:out value="${cpf}" />
 					</td>
 					<td>
-						<c:out value="${profissao.precovisita}" />
+						<c:out value="${perfil.descricao}" />
 					</td>						
 				</tr>
 			</s:iterator>

@@ -10,14 +10,14 @@ public class PessoaDTO extends GenericDTO{
 	private String senha;
 	private String nome;
 	private String cpf;
-	private int rg;
+	private String rg;
 	private String email;
 	private Date nasc;
 	private Boolean status;
 	private Date dataCadastro;
-	private int telefone;
-	private int celular;
-	private int telefoneComercial;
+	private String telefone;
+	private String celular;
+	private String telefoneComercial;
 	
 	private PerfilDTO perfil;
 
@@ -61,10 +61,10 @@ public class PessoaDTO extends GenericDTO{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public int getRg() {
+	public String getRg() {
 		return rg;
 	}
-	public void setRg(int rg) {
+	public void setRg(String rg) {
 		this.rg = rg;
 	}
 	public String getEmail() {
@@ -91,22 +91,22 @@ public class PessoaDTO extends GenericDTO{
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-	public int getTelefoneComercial() {
+	public String getTelefoneComercial() {
 		return telefoneComercial;
 	}
-	public void setTelefoneComercial(int telefoneComercial) {
+	public void setTelefoneComercial(String telefoneComercial) {
 		this.telefoneComercial = telefoneComercial;
 	}
 	public PerfilDTO getPerfil() {

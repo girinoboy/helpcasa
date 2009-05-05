@@ -5,10 +5,10 @@ public class ClienteDTO  extends PessoaDTO{
 	
 	private String endereco;
 	private String situacao;
-	private int cep;
+	private String cep;
 	private String cidade;
 	private UfDTO uf;
-	
+	private String senhaRepita;
 	
 	public ClienteDTO(){}
 	public ClienteDTO(Long id){
@@ -27,10 +27,10 @@ public class ClienteDTO  extends PessoaDTO{
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	public String getCidade() {
@@ -44,6 +44,12 @@ public class ClienteDTO  extends PessoaDTO{
 	}
 	public void setUf(UfDTO uf) {
 		this.uf = uf;
+	}
+	public String getSenhaRepita() {
+		return senhaRepita;
+	}
+	public void setSenhaRepita(String senhaRepita) {
+		this.senhaRepita = senhaRepita;
 	}
 	
 	

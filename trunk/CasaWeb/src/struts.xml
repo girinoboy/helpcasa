@@ -14,6 +14,7 @@
 		<action name="login!*" method="{1}" class="br.com.web.actions.LoginAction">
 			<result type="tiles" name="abertura.fwd">Abertura.def</result>
 			<result type="tiles" name="load.fwd">LoginLoad.def</result>
+			
 		</action>
 		
 		<action name="cliente!*" method="{1}" class="br.com.web.actions.ClienteAction">
@@ -44,6 +45,22 @@
 			<result type="tiles" name="load.fwd">ServicoLoad.def</result>
 			<result type="tiles" name="listar.fwd">ServicoListar.def</result>
 			<result type="tiles" name="cadastrar.fwd">ServicoCadastrar.def</result>
+		</action>
+		
+		<action name="funcionario!*" method="{1}" class="br.com.web.actions.FuncionarioAction">
+			<result type="tiles" name="funcionariosListar.fwd">FuncionariosListar.def</result>
+			<result type="tiles" name="cadastrar.fwd">FuncionariosCadastrar.def</result>
+		</action>
+		
+		
+		<action name="solicitacao!*" method="{1}" class="br.com.web.actions.SolicitacaoAction">
+			<result type="tiles" name="solicitacoesListar.fwd">SolicitacoesListar.def</result>
+			<result type="tiles" name="load.fwd">SolicitacoesLoad.def</result>
+		</action>
+		
+		<action name="historico!*" method="{1}" class="br.com.web.actions.HistoricoAction">
+			<result type="tiles" name="historicodependencias.fwd">historicodependencias.def</result>
+			<result type="tiles" name="load.fwd">HistoricoLoad.def</result>
 		</action>
 		
 		<action name="relatorio!*" method="{1}" class="br.com.web.actions.RelatoriosAction">

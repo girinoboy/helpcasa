@@ -13,6 +13,9 @@ public class FactoryBO {
 	private LoginBO loginBO;
 	private ProfissaoBO profissaoBO;
 	private ServicoBO servicoBO;
+	private FuncionarioBO funcionarioBO;
+	private SolicitacaoBO solicitacaoBO;
+	private HistoricoBO historicoBO;
 	
 	private FactoryBO() {
 	}
@@ -80,6 +83,27 @@ public class FactoryBO {
 			servicoBO = new ServicoBO();
 		}
 		return servicoBO;
+	}
+
+	public FuncionarioBO getFuncionarioBO() {
+		if (funcionarioBO == null) {
+			funcionarioBO = new FuncionarioBO();
+		}
+		return funcionarioBO;
+	}
+
+	public SolicitacaoBO getSolicitacaoBO() {
+		if (solicitacaoBO == null) {
+			solicitacaoBO = new SolicitacaoBO();
+		}
+		return solicitacaoBO;
+	}
+
+	public HistoricoBO getHistoricoBO() {
+		if (historicoBO == null) {
+			historicoBO = new HistoricoBO();
+		}
+		return historicoBO;
 	}
 
 }

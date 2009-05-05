@@ -25,7 +25,7 @@ public class ServicoDAO extends GenericDAO{
 				"s.descricao as descricaoServico," +
 				"s.dataCadastro as dataCadastroServico," +
 				"p.idProfissao,p.nome as nomeProfissao," +
-				"p.precovisita,p.dataCadastro as dataCasdastroProfissao," +
+				"p.precovisita,p.dataCadastro as dataCadastroProfissao," +
 				"p.descricao as descricaoProfissao  " +
 				"FROM casaweb.servico s " +
 				"INNER JOIN casaweb.profissao p ON s.idProfissao=p.idProfissao";
@@ -95,7 +95,7 @@ public class ServicoDAO extends GenericDAO{
 	public void inclui(ServicoDTO servico, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 		
-		String sql = "INSET INTO casaweb.Servico(nome,idProfissao,dataCadastro,descricao) VALUES(?,?,now(),?)";
+		String sql = "INSERT INTO casaweb.Servico(nome,idProfissao,dataCadastro,descricao) VALUES(?,?,now(),?)";
 		try{
 			
 			ps = conn.prepareStatement(sql);
