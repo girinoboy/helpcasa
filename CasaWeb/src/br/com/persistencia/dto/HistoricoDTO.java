@@ -9,7 +9,6 @@ public class HistoricoDTO extends GenericDTO {
 	private String auteradoPor;
 	private String observacao;
 	private SolicitacaoDTO solicitacao;
-	private NotaDTO nota;
 
 	public HistoricoDTO() {
 	}
@@ -70,12 +69,6 @@ public class HistoricoDTO extends GenericDTO {
 		this.solicitacao = solicitacao;
 	}
 
-	public NotaDTO getNota() {
-		return nota;
-	}
-
-	public void setNota(NotaDTO nota) {
-		this.nota = nota;
-	}
+	
 	
 }

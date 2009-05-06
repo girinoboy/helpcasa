@@ -33,10 +33,11 @@ public class FuncionarioBO extends GenericBO{
 
 	public void inclui(FuncionarioDTO funcionarioDTO) throws Exception {
 		Connection conn = Conexao.getConnection();
-		
+		conn.setAutoCommit(false);
 		try{
-			funcionarioDAO.inclui(funcionarioDTO,conn);
+			funcionarioDAO.inclui(funcionarioDTO,conn);			
 		}catch(Exception e){
+			conn.rollback();
 			throw e;
 		}finally{
 			conn.close();

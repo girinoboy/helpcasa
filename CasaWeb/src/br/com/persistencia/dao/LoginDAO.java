@@ -25,7 +25,7 @@ public class LoginDAO extends GenericDAO{
 				"cpf," +
 				"email,"+
 				"nasc," +
-				"status," +
+				"ativo," +
 				"dataCadastro," +
 				"telefone," +
 				"celular," +
@@ -70,7 +70,7 @@ public class LoginDAO extends GenericDAO{
 		dto.setCpf(rs.getString("cpf"));
 		dto.setEmail(rs.getString("email"));
 		dto.setNasc(new Date(rs.getTimestamp("nasc").getTime()));
-		dto.setStatus(rs.getBoolean("status"));
+		dto.setAtivo(rs.getBoolean("ativo"));
 		dto.setDataCadastro(rs.getTimestamp("dataCadastro"));
 		dto.setTelefone(rs.getString("telefone"));
 		dto.setCelular(rs.getString("celular"));

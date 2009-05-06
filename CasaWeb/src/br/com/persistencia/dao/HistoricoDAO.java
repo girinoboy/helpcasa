@@ -12,17 +12,18 @@ import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.NotaDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
 import br.com.persistencia.dto.ServicoDTO;
+import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class HistoricoDAO extends GenericDAO{
 
 	private static final String strUpdateClassificacao = "";
 	
-	String strConsult = "SELECT sv.nome,h.data,sl.periodo,p.nome,h.status,h.perfil,n.descricao FROM casaweb.historico h " +
+	private static final String strConsult = "SELECT sv.nome,h.data,sl.periodo,p.nome,h.status,h.perfil,n.descricao FROM casaweb.historico h " +
 			"inner join casaweb.solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
-			"inner join casaweb.servico sc on sc.idServico = sl.idServico " +
+			"inner join casaweb.servico sv on sv.idServico = sl.idServico " +
 			"inner join casaweb.funcionario f on sl.idFuncionario = f.idFuncionario " +
 			"inner join casaweb.pessoa p on p.idPessoa = f.idFuncionario " +
-			"inner join casaweb.nota n on n.idnota= h.idnota";
+			"inner join casaweb.nota n on n.idnota= sl.idnota";
 
 	public void concedeDesistencia(Long id, Long idRespondavelClassificar,
 			Connection con) throws Exception {
@@ -60,14 +61,13 @@ public class HistoricoDAO extends GenericDAO{
 		HistoricoDTO historicoDTO = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
-		
-		StringBuffer sql = new StringBuffer();		
+			
+		StringBuffer qBuffer = new StringBuffer();		
 
-		sql.append(strConsult);
+		qBuffer.append(strConsult);		
 		
 		try{
-			ps = conn.prepareStatement(sql.toString());
+			ps = conn.prepareStatement(qBuffer.toString());
 			rs = ps.executeQuery();
 			list = new ArrayList<HistoricoDTO>();
 			while(rs.next()){
@@ -102,8 +102,10 @@ public class HistoricoDAO extends GenericDAO{
 		nota.setId((rs.getLong("idNota")));
 		nota.setDescricao(rs.getString("descricao"));
 		
+		SolicitacaoDTO solicitacao = new SolicitacaoDTO();
+		solicitacao.setNota(nota);
 	
-		dto.setNota(nota);
+		dto.setSolicitacao(solicitacao);
 		return dto;
 	}
 

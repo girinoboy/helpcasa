@@ -13,7 +13,7 @@ public class PessoaDTO extends GenericDTO{
 	private String rg;
 	private String email;
 	private Date nasc;
-	private Boolean status;
+	private Boolean ativo;
 	private Date dataCadastro;
 	private String telefone;
 	private String celular;
@@ -79,11 +79,11 @@ public class PessoaDTO extends GenericDTO{
 	public void setNasc(Date nasc) {
 		this.nasc = nasc;
 	}
-	public Boolean getStatus() {
-		return status;
+	public Boolean getAtivo() {
+		return ativo;
 	}
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 	public Date getDataCadastro() {
 		return dataCadastro;

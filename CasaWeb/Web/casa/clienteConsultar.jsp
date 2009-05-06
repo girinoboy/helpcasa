@@ -23,7 +23,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					RG:
+					RG:*
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.rg" label="RG" size="10" id="rg" />
@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Endereço:
+					Endereço:*
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="100"
@@ -40,20 +40,20 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Cidade
+					Cidade:*
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.cidade" label="CIDADE" size="30" id="cidade" />
-					<select id="uf" name="uf">
-						<option value="df" selected="selected">
-							DF
-						</option>
-					</select>
+					<label class="table">
+						UF:*
+					</label>
+					<s:property value="clienteDTO.uf.descricao"/>					
 				</td>
+				
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					CEP
+					CEP:*
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" />
@@ -64,21 +64,21 @@
 					Telefone:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.telefone" label="TELEFONE" size="10"
+					<s:textfield name="clienteDTO.telefone" label="TELEFONE" size="15"
 						id="telefone" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Celular:
+					Celular:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.celular" label="CELULAR" size="10" id="celular" />
+					<s:textfield name="clienteDTO.celular" label="CELULAR" size="15" id="celular" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Data de Nascimento:
+					Data de Nascimento:*
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.nasc" id="nasc"/>
@@ -96,16 +96,16 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Nome de usuario:
+					Nome de usuario:*
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.usuario" label="NOME DE USUARIO"
-						size="60" id="user" />
+						size="60" id="usuario" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Senha:
+					Senha:*
 				</td>
 				<td>
 					<s:password name="clienteDTO.senha" label="SENHA" size="60"
@@ -114,11 +114,11 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Repita sua senha:
+					Repita sua senha:*
 				</td>
 				<td>
-					<s:password name="clienteDTO.senha" label="REPITA SUA SENHA"
-						size="60" id="senha" />
+					<s:password name="clienteDTO.senhaRepita" label="REPITA SUA SENHA"
+						size="60" id="senhaRepita" />
 				</td>
 			</tr>
 		</table>

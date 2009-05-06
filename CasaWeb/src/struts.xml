@@ -40,6 +40,7 @@
 		<action name="profissao!*" method="{1}" class="br.com.web.actions.ProfissaoAction">
 			<result type="tiles" name="load.fwd">ProfissaoLoad.def</result>
 			<result type="tiles" name="cadastrar.fwd">ProfissaoCadastrar.def</result>
+			<result type="tiles" name="alterar.fwd">ProfissaoAlterar.def</result>
 		</action>
 		<action name="servico!*" method="{1}" class="br.com.web.actions.ServicoAction">
 			<result type="tiles" name="load.fwd">ServicoLoad.def</result>

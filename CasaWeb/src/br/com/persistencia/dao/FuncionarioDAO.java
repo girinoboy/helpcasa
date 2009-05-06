@@ -19,7 +19,7 @@ import br.com.persistencia.util.DTOFactory;
 public class FuncionarioDAO extends GenericDAO{
 
 	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,status,dataCadastro,telefone,celular,telefoneComercial,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
-	protected static final String strInsertFuncionario ="";
+	protected static final String strInsertFuncionario ="INSERT INTO casaweb.funcionario(idFuncionario,matricula,idProfissao)VALUES((SELECT MAX(idPessoa) FROM casaweb.Pessoa),?,?)";
 	protected static final String strConsult ="";
 
 	public List<FuncionarioDTO> profissaoListar(Connection conn) throws Exception {
@@ -105,17 +105,18 @@ public class FuncionarioDAO extends GenericDAO{
 		Boolean executado=false;
 		StringBuffer qBuffer = new StringBuffer();		
 
-		qBuffer.append(strInsertFuncionario );
+		qBuffer.append(strInsertFuncionario);
 		
 		try{
 			ps = con.prepareStatement(qBuffer.toString());
 			
-			ps.setLong(1, this.getLastIdTable("Pessoa", "idPessoa", con));
-			ps.setString(2, funcionario.getMatricula());
-			ps.setLong(3, funcionario.getProfissao().getId());
+			//ps.setLong(1, this.getLastIdTable("Pessoa", "idPessoa", con));
+			ps.setString(1, funcionario.getMatricula());
+			ps.setLong(2, funcionario.getProfissao().getId());
 
 			ps.executeUpdate();
 			executado=true;
+			con.commit();
 		} catch (SQLException sqlE) {
 			throw sqlE;
 		} catch (Exception e) {
@@ -155,7 +156,7 @@ public class FuncionarioDAO extends GenericDAO{
 			ps.setString(5, funcionario.getRg());
 			ps.setString(6, funcionario.getEmail());
 			ps.setTimestamp(7, new Timestamp(funcionario.getNasc().getTime()));
-			ps.setBoolean(8, funcionario.getStatus());
+			ps.setBoolean(8, funcionario.getAtivo());
 			ps.setString(9, funcionario.getTelefone());
 			ps.setString(10, funcionario.getCelular());
 			ps.setString(11, funcionario.getTelefoneComercial());

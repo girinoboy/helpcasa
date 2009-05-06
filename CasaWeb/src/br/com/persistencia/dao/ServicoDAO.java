@@ -22,10 +22,10 @@ public class ServicoDAO extends GenericDAO{
 		
 		String sql = "SELECT s.idServico," +
 				"s.nome as nomeServico," +
-				"s.descricao as descricaoServico," +
-				"s.dataCadastro as dataCadastroServico," +
-				"p.idProfissao,p.nome as nomeProfissao," +
-				"p.precovisita,p.dataCadastro as dataCadastroProfissao," +
+				"s.descricao as descricaoServico," +				
+				"p.idProfissao," +
+				"p.nome as nomeProfissao," +
+				"p.precovisita," +				
 				"p.descricao as descricaoProfissao  " +
 				"FROM casaweb.servico s " +
 				"INNER JOIN casaweb.profissao p ON s.idProfissao=p.idProfissao";
@@ -59,13 +59,11 @@ public class ServicoDAO extends GenericDAO{
 		dto.setId(rs.getLong("idServico"));
 		dto.setNome(rs.getString("nomeServico"));
 		dto.setDescricao(rs.getString("descricaoServico"));
-		dto.setDataCadastro(rs.getDate("dataCadastroServico"));
 		
 		ProfissaoDTO profissao = new ProfissaoDTO();
 		profissao.setId(rs.getLong("idProfissao"));
 		profissao.setNome(rs.getString("nomeProfissao"));
-		profissao.setPrecoVisita(rs.getDouble("precovisita"));
-		profissao.setDataCadastro(rs.getDate("dataCadastroProfissao"));
+		profissao.setPrecoVisita(rs.getDouble("precovisita"));		
 		profissao.setDescricao(rs.getString("descricaoProfissao"));
 		dto.setProfissaoDTO(profissao);
 		
@@ -75,7 +73,7 @@ public class ServicoDAO extends GenericDAO{
 	public void exclui(Long[] idsServico, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="DELETE FROM casaweb.Servico WHERE Servico.idServico=?";
+		String sql="UPDATE casaweb.Servico SET ativo = false WHERE Servico.idServico=?";
 		try{
 			for (Long id : idsServico) {
 				ps = conn.prepareStatement(sql);
@@ -95,7 +93,7 @@ public class ServicoDAO extends GenericDAO{
 	public void inclui(ServicoDTO servico, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 		
-		String sql = "INSERT INTO casaweb.Servico(nome,idProfissao,dataCadastro,descricao) VALUES(?,?,now(),?)";
+		String sql = "INSERT INTO casaweb.Servico(nome,idProfissao,descricao) VALUES(?,?,?)";
 		try{
 			
 			ps = conn.prepareStatement(sql);

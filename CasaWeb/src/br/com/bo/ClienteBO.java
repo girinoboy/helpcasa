@@ -39,12 +39,15 @@ public class ClienteBO extends GenericBO{
 	public ClienteDTO inclui(ClienteDTO clienteDTO) throws Exception {
 		Connection con = Conexao.getConnection();
 		ClienteDTO clienteDTOConsultada =  null;
+		con.setAutoCommit(false);
 		
 		try{
 			clienteDTOConsultada = this.clienteDAO.inclui(clienteDTO, con);
 		} catch(SQLException sqlE) {
+			con.rollback();
 			throw sqlE;
 		} catch (Exception e) {
+			con.rollback();
 			throw e;
 		} finally {
 			con.close();

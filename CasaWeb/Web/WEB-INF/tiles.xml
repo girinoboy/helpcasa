@@ -89,13 +89,19 @@
     	<put-attribute name="title" 		value="help home" />		
     	<put-attribute name="body" 			value="/casa/profissao.jsp" />	
     	<put-attribute name="js" 			value="/casa/profissao.js.jsp" />
-    	<put-attribute name="dojo" 			value="true" />
+    	
     </definition>
     <definition name="ProfissaoCadastrar.def"	extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/profissaoCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
+    	
+    </definition>
+     <definition name="ProfissaoAlterar.def"	extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/profissaoAlterar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
+    	
     </definition>
      <!-- FIM DE PROFISSOES -->
      
@@ -122,6 +128,8 @@
     	<put-attribute name="title" 			 value="Cadastrar Funcionario" />		
     	<put-attribute name="body" 				 value="/casa/funcionarioCadastrar.jsp" />	
     	<put-attribute name="js" 				 value="/casa/funcionario.js.jsp" />
+    	<put-attribute name="jQuery" 			value="true" />
+    	<put-attribute name="onload" 			value="loadMascara();" />
     	<put-attribute name="dojo" 				 value="true" />
     </definition>
      <!-- FIM DE FUNCIONARIOS -->

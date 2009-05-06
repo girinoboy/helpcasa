@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.ProfissaoDAO;
+import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
 
 public class ProfissaoBO extends GenericBO{
@@ -52,6 +53,33 @@ public class ProfissaoBO extends GenericBO{
 		}finally{
 			conn.close();
 		}
+	}
+
+	public void altera(ProfissaoDTO profissaoDTO) throws Exception {
+		Connection conn = Conexao.getConnection();
+		try{
+			profissaoDAO.altera(profissaoDTO,conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+	}
+
+	public ProfissaoDTO consultarPor(Long id) throws Exception {
+		Connection con = Conexao.getConnection();
+		ProfissaoDTO profissaoDTOConsultada =  null;
+		try{
+			profissaoDTOConsultada = this.profissaoDAO.consultarPor(id, con);
+		} catch(SQLException sqlE) {
+			throw sqlE;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			con.close();
+		}
+		return profissaoDTOConsultada;
 	}
 
 }

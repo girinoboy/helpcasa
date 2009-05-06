@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>   
-<h1 align="center">Help Casa</h1>
-<h3 align="center">Entrar no Sistema</h3>
+<h2 align="center">Help Casa</h2>
+<h1 align="center">Entrar no Sistema</h1>
 <div class="container" style="width: 200px">
 	<s:form action="login!checkLogin">
 		<div class="body">
