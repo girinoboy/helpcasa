@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					PrecoVisita:
+					Preço da Visita:
 				</td>
 				<td>
 					<s:textfield id="profissaoDTO.precoVisita"
@@ -27,7 +27,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Descricao:
+					Descrição:
 				</td>
 				<td>
 					<s:textfield id="profissaoDTO.descricao" name="profissaoDTO.descricao" />
