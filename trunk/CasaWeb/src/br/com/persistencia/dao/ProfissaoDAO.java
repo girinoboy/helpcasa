@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
 import br.com.persistencia.util.DTOFactory;
 
 public class ProfissaoDAO extends GenericDAO{
+
+	protected static final String strConsult ="SELECT idProfissao as id,nome,precoVisita,descricao FROM casaweb.Profissao ";
 
 	public List<ProfissaoDTO> profissaoListar(Connection conn) throws Exception {
 		List<ProfissaoDTO> list =null;
@@ -19,16 +22,18 @@ public class ProfissaoDAO extends GenericDAO{
 		ResultSet rs = null;
 		
 		
-		String sql = "SELECT idProfissao as id,nome,precoVisita,descricao FROM casaweb.Profissao";
+		StringBuffer qBuffer = new StringBuffer();		
+
+		qBuffer.append(strConsult);
 		try{
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(qBuffer.toString());
 			rs = ps.executeQuery();
 			list = new ArrayList<ProfissaoDTO>();
 			while(rs.next()){
 				ProfissaoDTO dto = new ProfissaoDTO();
 				
 				//profissaoDTO = (ProfissaoDTO) DTOFactory.getDTO(ProfissaoDTO.class, rs);
-				profissaoDTO = this.populaProfissao(dto,rs);
+				profissaoDTO = this.populaProfissaoDTO(dto,rs);
 				list.add(profissaoDTO);
 				
 			}
@@ -43,7 +48,7 @@ public class ProfissaoDAO extends GenericDAO{
 		return list;
 	}
 
-	private ProfissaoDTO populaProfissao(ProfissaoDTO dto, ResultSet rs) {
+	private ProfissaoDTO populaProfissaoDTO(ProfissaoDTO dto, ResultSet rs) {
 		try{
 			dto.setId(rs.getLong("id"));
 			dto.setNome(rs.getString("nome"));
@@ -59,7 +64,7 @@ public class ProfissaoDAO extends GenericDAO{
 		
 		PreparedStatement ps = null;
 		
-		String sql = "INSERT INTO casaweb.Profissao(nome,precovisita,dataCadastro,descricao) VALUES(?,?,now(),?)";
+		String sql = "INSERT INTO casaweb.Profissao(nome,precovisita,descricao) VALUES(?,?,?)";
 		try{
 			
 			ps = conn.prepareStatement(sql);
@@ -81,7 +86,7 @@ public class ProfissaoDAO extends GenericDAO{
 	public void exclui(Long[] idsProfissao, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="DELETE FROM casaweb.Profissao WHERE Profissao.idProfissao=?";
+		String sql="UPDATE casaweb.Profissao SET ativo = false WHERE Profissao.idProfissao=?";
 		try{
 			for (Long id : idsProfissao) {
 				ps = conn.prepareStatement(sql);
@@ -96,6 +101,74 @@ public class ProfissaoDAO extends GenericDAO{
 				ps.close();
 		}
 
+	}
+
+	public void altera(ProfissaoDTO profissaoDTO, Connection conn) throws Exception {
+		PreparedStatement ps = null;
+
+		String sql="UPDATE casaweb.Profissao SET nome = ?, precovisita = ?, descricao = ? WHERE Profissao.idProfissao=?";
+		try{
+			
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, profissaoDTO.getNome());
+				ps.setDouble(2, profissaoDTO.getPrecoVisita());
+				ps.setString(3, profissaoDTO.getDescricao());
+				ps.setLong(4, profissaoDTO.getId());
+				ps.executeUpdate();
+
+		}catch(Exception e){
+			throw e;
+		}finally{
+			if(ps!=null)
+				ps.close();
+		}
+		
+	}
+
+	public ProfissaoDTO consultarPor(Long id, Connection con) throws Exception {		
+		ProfissaoDTO profissaoDTO = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		StringBuffer qBuffer = new StringBuffer();		
+
+		qBuffer.append(strConsult);
+		qBuffer.append(" WHERE Profissao.idProfissao = ?");
+
+		try {
+			ps = con.prepareStatement(qBuffer.toString());
+
+			ps.setLong(1, id);
+
+			rs = ps.executeQuery();
+			
+			// Seta no DTO o objetoo encontrado
+			
+			while (rs.next()) {
+				profissaoDTO = new ProfissaoDTO();
+
+				this.populaProfissaoDTO(profissaoDTO,rs);
+				
+			}
+		//	this.populaClienteDTO(clienteDTO,null);
+		} catch (SQLException sqlE) {
+			throw sqlE;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+
+		return profissaoDTO;
 	}
 
 }

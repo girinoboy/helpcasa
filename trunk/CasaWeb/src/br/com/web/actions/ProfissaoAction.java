@@ -2,6 +2,7 @@ package br.com.web.actions;
 
 import java.util.List;
 
+import br.com.Mensagem;
 import br.com.bo.FactoryBO;
 import br.com.bo.ProfissaoBO;
 import br.com.persistencia.dto.ProfissaoDTO;
@@ -51,8 +52,32 @@ public class ProfissaoAction extends GenericAction {
 		return load();
 	}
 	
+	public String altera(){
+		
+		try{
+			profissaoBO.altera(profissaoDTO);
+			getMensagemGlobal().addMensagem("Profissão alterada com sucesso.", Mensagem.ALERTA);
+		}catch(Exception e){
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Prifissão.", Mensagem.ALERTA);
+			e.printStackTrace();			
+		}
+		
+		return load();
+		
+	}
+	
 	public String cadastrar(){
 		return "cadastrar.fwd";
+	}
+	
+	public String alterar(){
+		try {
+			Long id = profissaoDTO.getId();
+			profissaoDTO = profissaoBO.consultarPor(id);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		return "alterar.fwd";
 	}
 	public List<ProfissaoDTO> getListProfissoes() {
 		return listProfissoes;

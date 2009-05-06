@@ -13,15 +13,12 @@ function selectAction(action){
 		url = '<c:url value="/casa/login!load.action?"/>';
 		submeter = true;
 	}else if(action == 'pesquisar'){
-		var cpf = document.getElementById('cpf');
 		var funcao = document.getElementById('funcao');
-		if(funcao == 'cliente'){
-			url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
-			params='clienteDTO.cpf='+cpf.value;
+		if(funcao.value == 'cliente'){
+			url = '<c:url value="/casa/cliente!pesquisar.action?"/>';			
 		}
 		else{
-			url = '<c:url value="/casa/solicitacao!load.action?"/>';
-			params='solicitacaoDTO.cliente.cpf='+cpf.value;
+			url = '<c:url value="/casa/solicitacao!load.action?"/>';			
 		}
 		submeter = true;
 	}else if(action == 'voltar'){
@@ -138,7 +135,7 @@ function disableAll(){
 	var arrayInput = document.getElementsByTagName('input');
 	var arrayTextarea = document.getElementsByTagName('textarea');	
 	for (i = 0; i < arrayInput.length; i++) {
-		if(arrayInput[i].type=='radio' || arrayInput[i].type=='text')
+		if(arrayInput[i].type=='radio' || arrayInput[i].type=='text' || arrayInput[i].type=='password')
     		arrayInput[i].disabled = true;    	    	
   	}
   	for(i = 0; i < arrayTextarea.length; i++){
@@ -150,6 +147,8 @@ function disableAll(){
 function loadMascara(){
   	//jQuery('#cpf').numeric();
 	jQuery('#cpf').mask('999.999.999-99');
-	document.getElementById('cpf').value = '';
+	//document.getElementById('cpf').value = '';
 	jQuery('#cep').mask('99999-999');
+	jQuery('#telefone').mask('(99) 9999-9999');
+	jQuery('#celular').mask('(99) 9999-9999');
 }

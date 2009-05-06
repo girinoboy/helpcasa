@@ -9,6 +9,7 @@ public class SolicitacaoDTO extends GenericDTO{
 	private ClienteDTO cliente;
 	private FuncionarioDTO funcionario;
 	private ServicoDTO servico;
+	private NotaDTO nota;
 	
 	public SolicitacaoDTO(){
 		
@@ -60,6 +61,14 @@ public class SolicitacaoDTO extends GenericDTO{
 
 	public void setServico(ServicoDTO servico) {
 		this.servico = servico;
+	}
+
+	public NotaDTO getNota() {
+		return nota;
+	}
+
+	public void setNota(NotaDTO nota) {
+		this.nota = nota;
 	}
 	
 	

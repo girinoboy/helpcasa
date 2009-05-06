@@ -74,7 +74,7 @@ public class LoginAction extends GenericAction{
 	
 	public String incluiCliente() throws Exception{
 		
-			clienteDTO.setStatus(false);
+			clienteDTO.setAtivo(true);
 
 			PerfilDTO perfil = new PerfilDTO();
 			perfil.setId(ConstantesENUM.CLIENTE_ID.id());

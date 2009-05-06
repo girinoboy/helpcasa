@@ -40,7 +40,7 @@
 							id="idsProfissao" value="<s:property value='id'/>" />
 					</td>
 					<td>
-						<c:out value="${nome}" />
+						<s:a href="/CasaWeb/casa/profissao!alterar.action?profissaoDTO.id=${id}" value="${nome}"><c:out value="${nome}" /></s:a> 
 					</td>						
 				</tr>
 			</s:iterator>

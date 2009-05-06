@@ -26,6 +26,7 @@ public class ClienteDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsult);
+		qBuffer.append("WHERE Pessoa.cpf = ?");
 
 		try {
 			ps = con.prepareStatement(qBuffer.toString());
@@ -76,7 +77,7 @@ public class ClienteDAO extends GenericDAO{
 			dto.setCpf(rs.getString("cpf"));
 			dto.setEmail(rs.getString("email"));
 			dto.setNasc(new Date(rs.getTimestamp("nasc").getTime()));
-			dto.setStatus(rs.getBoolean("status"));
+			dto.setAtivo(rs.getBoolean("ativo"));
 			dto.setDataCadastro(rs.getTimestamp("dataCadastro"));
 			dto.setTelefone(rs.getString("telefone"));
 			dto.setCelular(rs.getString("celular"));
@@ -111,9 +112,10 @@ public class ClienteDAO extends GenericDAO{
 
 			StringBuffer qBuffer = new StringBuffer();		
 			qBuffer.append(strConsult);
+			qBuffer.append("WHERE Pessoa.idPessoa = ?");
 			insertPessoa(clienteDTO, con);
 			insertCliente(clienteDTO, con);
-
+			con.commit();
 			try {
 				ps = con.prepareStatement(qBuffer.toString());
 
@@ -122,8 +124,7 @@ public class ClienteDAO extends GenericDAO{
 				ps.setLong(1, this.getLastIdTable(nomeTabela, nomeColuna, con));
 
 				rs = ps.executeQuery();
-
-
+				
 				// Seta no DTO o objetoo encontrado
 				list = new ArrayList<ClienteDTO>();
 				while (rs.next()) {
@@ -145,6 +146,7 @@ public class ClienteDAO extends GenericDAO{
 					if (ps != null) {
 						ps.close();
 					}
+					
 				} catch (Exception e) {
 					throw e;
 				}
@@ -170,7 +172,7 @@ public class ClienteDAO extends GenericDAO{
 				ps.setString(5, cliente.getRg());
 				ps.setString(6, cliente.getEmail());
 				ps.setTimestamp(7, new Timestamp(cliente.getNasc().getTime()));
-				ps.setBoolean(8, cliente.getStatus());
+				ps.setBoolean(8, cliente.getAtivo());
 				ps.setString(9, cliente.getTelefone());
 				ps.setString(10, cliente.getCelular());
 				ps.setLong(11, cliente.getPerfil().getId());
@@ -213,7 +215,7 @@ public class ClienteDAO extends GenericDAO{
 				
 				ps.setLong(1, this.getLastIdTable("Pessoa", "idPessoa", con));
 				ps.setString(2, cliente.getEndereco());
-				ps.setBoolean(3, cliente.getStatus());
+				ps.setBoolean(3, cliente.getAtivo());
 				ps.setString(4, cliente.getCep());
 				ps.setString(5, cliente.getCidade());
 				ps.setLong(6, cliente.getUf().getId());
@@ -296,7 +298,7 @@ public class ClienteDAO extends GenericDAO{
 				"cpf," +
 				"email,"+
 				"nasc," +
-				"status," +
+				"ativo," +
 				"dataCadastro," +
 				"telefone," +
 				"celular," +
@@ -312,8 +314,7 @@ public class ClienteDAO extends GenericDAO{
 				"FROM casaweb.cliente " +
 				"inner join casaweb.pessoa on cliente.idcliente=pessoa.idpessoa " +
 				"inner join casaweb.perfil on perfil.idperfil=pessoa.idperfil " +
-				"INNER JOIN CASAWEB.UF ON uf.iduf=cliente.iduf "+
-				"WHERE Pessoa.cpf = ?";
+				"INNER JOIN CASAWEB.UF ON uf.iduf=cliente.iduf ";
 
 	
 	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,status,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";

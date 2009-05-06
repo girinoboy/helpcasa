@@ -117,7 +117,7 @@
 			</div>
 			
 			<div id="divname9" class="hiddencontent">				
-				<IFRAME name="palco" src='historico!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				<IFRAME name="palco" src='historico!historicoListar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
 			
 			<div id="divname" class="hiddencontent">				

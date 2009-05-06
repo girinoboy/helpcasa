@@ -5,7 +5,8 @@
 		<h1>
 			Cadastro de Profissão
 		</h1>
-
+		
+		<s:hidden id="idProfissao" name="profissaoDTO.id" value="${profissaoDTO.id}"/>
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 
@@ -36,8 +37,8 @@
 		</table>
 
 		<div class="footer">
-			<input type="button" value="Salvar"
-				onClick="selectAction('incluir');" class="adicionar" />
+			<input type="button" value="Alterar"
+				onClick="selectAction('altera');" class="adicionar" />
 			<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />
 		</div>

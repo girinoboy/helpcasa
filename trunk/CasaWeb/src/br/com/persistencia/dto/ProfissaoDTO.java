@@ -5,8 +5,7 @@ import java.util.Date;
 public class ProfissaoDTO extends GenericDTO{
 	
 	private String nome;
-	private Double precoVisita;
-	private Date dataCadastro;
+	private Double precoVisita;	
 	private String descricao;
 	
 	public ProfissaoDTO() {}
@@ -29,12 +28,7 @@ public class ProfissaoDTO extends GenericDTO{
 	public void setPrecoVisita(Double precoVisita) {
 		this.precoVisita = precoVisita;
 	}
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
+
 	public String getDescricao() {
 		return descricao;
 	}

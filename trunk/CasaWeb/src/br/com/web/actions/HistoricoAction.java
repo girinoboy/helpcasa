@@ -17,7 +17,7 @@ public class HistoricoAction extends GenericAction{
 	}
 	
 	public String load(){
-		historicoListar();
+		
 		return "load.fwd";
 	}
 	

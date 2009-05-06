@@ -12,16 +12,29 @@
 					Nome:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.nome" label="NOME" size="60"
+					<s:textfield name="funcionarioDTO.nome" label="NOME" size="60"
 						id="nome" />
 				</td>
+			</tr>
+			<tr>
+				<td class="label_entrada_dados">
+					Matricula:*
+				</td>
+				<td>
+					<s:textfield name="funcionarioDTO.matricula" label="NOME" size="60"
+						id="matricula" />
+				</td>
+			</tr>
+			<tr>
+				<td class="label_entrada_dados">Profissao</td>
+				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" /></td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
 					CPF:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cpf" label="CPF" size="14" id="cpf" />
+					<s:textfield name="funcionarioDTO.cpf" label="CPF" size="14" id="cpf" />
 				</td>
 			</tr>
 			<tr>
@@ -29,40 +42,7 @@
 					RG:
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.rg" label="RG" size="10" id="rg" />
-				</td>
-			</tr>
-			<tr>
-				<td class="label_entrada_dados">
-					Endereço:
-				</td>
-				<td>
-					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="100"
-						id="endereco" />
-				</td>
-			</tr>
-			<tr>
-				<td class="label_entrada_dados">
-					Cidade
-				</td>
-				<td>
-					<s:textfield name="clienteDTO.cidade" label="CIDADE" size="30" id="cidade" />
-					<label class="td_rotulo_linha_inf">
-					UF
-					</label>
-					<select id="uf" name="clienteDTO.uf.uf">
-						<option value="df" selected="selected">
-							DF
-						</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td class="label_entrada_dados">
-					CEP
-				</td>
-				<td>
-					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" />
+					<s:textfield name="funcionarioDTO.rg" label="RG" size="10" id="rg" />
 				</td>
 			</tr>
 			<tr>
@@ -70,7 +50,7 @@
 					Telefone:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.telefone" label="TELEFONE" size="10"
+					<s:textfield name="funcionarioDTO.telefone" label="TELEFONE" size="10"
 						id="telefone" />
 				</td>
 			</tr>
@@ -79,17 +59,7 @@
 					Celular:
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.celular" label="CELULAR" size="10" id="telefone" />
-				</td>
-			</tr>
-			<tr>
-				<td class="label_entrada_dados">
-					Data de Nascimento:
-				</td>
-				<td>
-					<s:datetimepicker name="clienteDTO.nasc" label="Data de Nascimento"
-						displayFormat="dd/MM/yyyy" toggleType="explode"
-						toggleDuration="200" />
+					<s:textfield name="funcionarioDTO.celular" label="CELULAR" size="10" id="telefone" />
 				</td>
 			</tr>
 			<tr>
@@ -97,7 +67,17 @@
 					E-mail:
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.email" label="EMAIL" size="100" id="email" />
+					<s:textfield name="funcionarioDTO.email" label="EMAIL" size="100" id="email" />
+				</td>
+			</tr>
+			<tr>
+				<td class="label_entrada_dados">
+					Data de Nascimento:
+				</td>
+				<td>
+					<s:datetimepicker name="funcionarioDTO.nasc" label="Data de Nascimento"
+						displayFormat="dd/MM/yyyy" toggleType="explode"
+						toggleDuration="200" />
 				</td>
 			</tr>
 			<tr>
@@ -105,7 +85,7 @@
 					Nome de usuario:
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.usuario" label="NOME DE USUARIO"
+					<s:textfield name="funcionarioDTO.usuario" label="NOME DE USUARIO"
 						size="60" id="user" />
 				</td>
 			</tr>
@@ -114,7 +94,7 @@
 					Senha:
 				</td>
 				<td>
-					<s:password name="clienteDTO.senha" label="SENHA" size="60"
+					<s:password name="funcionarioDTO.senha" label="SENHA" size="60"
 						id="senha" />
 				</td>
 			</tr>
@@ -123,7 +103,7 @@
 					Repita sua senha:
 				</td>
 				<td>
-					<s:password name="clienteDTO.senhaRepita" label="REPITA SUA SENHA"
+					<s:password name="funcionarioDTO.senhaRepita" label="REPITA SUA SENHA"
 						size="60" id="senhaRepita" />
 				</td>
 			</tr>
@@ -133,7 +113,7 @@
 			<input type="button" value="Cadastrar"
 				onClick="selectAction('incluir');" class="principal" />
 			<input type="button" value="Cancelar"
-				onClick="selectAction('direcionaLogin');" class="voltar" />
+				onClick="selectAction('voltar');" class="voltar" />
 		</div>
 	</s:form>
 </div>
