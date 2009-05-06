@@ -31,9 +31,7 @@
 			<s:elseif test="${pessoaSessao.perfil.descricao eq 'Profissional'}">
 				<div id="nav">
 					<a href="#" title="divname1">Agenda</a>
-					<a href="#" title="divname9">Consultar Histórico de Serviços</a>
-					
-					
+									
 					<div class="clear"></div>
 				</div><!-- fim div nav -->
 				

@@ -6,7 +6,7 @@
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 				<td class="label_entrada_dados">
-					Data:
+					Data:*
 				</td>
 				<td>
 					<s:datetimepicker name="solicitacaoDTO.data" label="Data"
@@ -16,7 +16,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Servico:
+					Servico:*
 				</td>
 				<td>					
 					<s:select name="solicitacaoDTO.servico.id" id="id" list="servicos" headerKey="-1" />
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					periodo
+					Período:*
 				</td>
 				<td>
 					<s:radio list="#{'1':'manha','2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo"/>
