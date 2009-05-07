@@ -57,7 +57,8 @@ public class SolicitacaoAction extends GenericAction{
 	}
 	
 	public String solicitacaoInclui(){
-		try{			
+		try{
+			solicitacaoDTO.setCliente((ClienteDTO) getSessaoPessoa());
 			solicitacaoBO.solicitacaoInclui(solicitacaoDTO);
 		}catch(Exception e){
 			e.printStackTrace();

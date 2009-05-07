@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.ConstantesENUM;
 import br.com.bo.FactoryBO;
 import br.com.bo.FuncionarioBO;
 import br.com.bo.ProfissaoBO;
 import br.com.persistencia.dto.FuncionarioDTO;
+import br.com.persistencia.dto.PerfilDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
 
 public class FuncionarioAction extends GenericAction {
@@ -54,6 +56,11 @@ public class FuncionarioAction extends GenericAction {
 
 	public String inclui() throws Exception {
 		try {
+			funcionarioDTO.setAtivo(true);
+
+			PerfilDTO perfil = new PerfilDTO();
+			perfil.setId(ConstantesENUM.PROFISSIONAL_ID.id());
+			funcionarioDTO.setPerfil(perfil);
 			funcionarioBO.inclui(funcionarioDTO);
 		} catch (Exception e) {
 

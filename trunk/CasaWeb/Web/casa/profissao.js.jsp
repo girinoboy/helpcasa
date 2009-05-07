@@ -17,7 +17,7 @@ function selectAction(action){
 		submeter = true;
 	}else if(action == 'excluir'){
 		url = '<c:url value="/casa/profissao!exclui.action?"/>';
-		submeter = confirm('Deseja realmente excluir o(s) selecionado(s)');
+		submeter = confirm('Deseja realmente excluir o(s) selecionado(s)?');
 	}else if(action == 'altera'){
 		url = '<c:url value="/casa/profissao!altera.action?"/>';
 		submeter = validaCamposAoIncluir();
@@ -56,17 +56,17 @@ function validaCamposAoIncluir(){
 	var descricao = document.getElementById('descricao');
 	
 	if(nome.value == ''){
-		alert('O Nome é obrigatório.');
+		alert('O campo Profissão é obrigatório.');
 		nome.focus();
 		return false;
 	}
 	if(precoVisita.value == ''){
-		alert('O Preco da Visita é obrigatório.');
+		alert('O campo Preço da Visita é obrigatório.');
 		precoVisita.focus();
 		return false;
 	}
 	if(descricao.value == ''){
-		alert('A Descrição é obrigatória.');
+		alert('O campo Descrição é obrigatóriO.');
 		descricao.focus();
 		return false;
 	}

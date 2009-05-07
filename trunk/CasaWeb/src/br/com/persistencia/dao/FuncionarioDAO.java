@@ -18,9 +18,13 @@ import br.com.persistencia.util.DTOFactory;
 
 public class FuncionarioDAO extends GenericDAO{
 
-	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,status,dataCadastro,telefone,celular,telefoneComercial,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
+	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";
 	protected static final String strInsertFuncionario ="INSERT INTO casaweb.funcionario(idFuncionario,matricula,idProfissao)VALUES((SELECT MAX(idPessoa) FROM casaweb.Pessoa),?,?)";
-	protected static final String strConsult ="";
+	protected static final String strConsult ="select ps.idpessoa as id, ps.nome,ps.cpf,pr.descricao,f.matricula from casaweb.funcionario f " +
+	"inner join casaweb.pessoa ps on idpessoa = idfuncionario " +
+	"inner join casaweb.perfil pr on pr.idperfil = ps.idperfil " +
+	"GROUP BY pr.idperfil " +
+	"ORDER BY ps.nome";
 
 	public List<FuncionarioDTO> profissaoListar(Connection conn) throws Exception {
 		List<FuncionarioDTO> list =null;
@@ -28,12 +32,12 @@ public class FuncionarioDAO extends GenericDAO{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		StringBuffer qBuffer = new StringBuffer();		
+
+		qBuffer.append(strConsult);
 		
-		String sql = "select ps.idpessoa as id, ps.nome,ps.cpf,pr.descricao,f.matricula from casaweb.funcionario f " +
-				"inner join casaweb.pessoa ps on idpessoa = idfuncionario " +
-				"inner join casaweb.perfil pr on pr.idperfil = ps.idperfil";
 		try{
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(qBuffer.toString());
 			rs = ps.executeQuery();
 			list = new ArrayList<FuncionarioDTO>();
 			while(rs.next()){
@@ -159,8 +163,7 @@ public class FuncionarioDAO extends GenericDAO{
 			ps.setBoolean(8, funcionario.getAtivo());
 			ps.setString(9, funcionario.getTelefone());
 			ps.setString(10, funcionario.getCelular());
-			ps.setString(11, funcionario.getTelefoneComercial());
-			ps.setLong(12, funcionario.getPerfil().getId());
+			ps.setLong(11, funcionario.getPerfil().getId());
 
 			ps.executeUpdate();
 			executado=true;

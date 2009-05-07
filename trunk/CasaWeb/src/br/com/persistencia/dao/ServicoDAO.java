@@ -13,30 +13,35 @@ import br.com.persistencia.util.DTOFactory;
 
 public class ServicoDAO extends GenericDAO{
 
+	protected static final String strConsult = "SELECT s.idServico," +
+	"s.nome as nomeServico," +
+	"s.descricao as descricaoServico," +				
+	"p.idProfissao," +
+	"p.nome as nomeProfissao," +
+	"p.precovisita," +				
+	"p.descricao as descricaoProfissao  " +
+	"FROM casaweb.servico s " +
+	"INNER JOIN casaweb.profissao p ON s.idProfissao=p.idProfissao";
+
 	public List<ServicoDTO> servicosListar(Connection conn) throws Exception {
 		List<ServicoDTO> list =null;
 		ServicoDTO servicoDTO = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+			
+		StringBuffer qBuffer = new StringBuffer();		
+
+		qBuffer.append(strConsult);
+		qBuffer.append(" WHERE s.ativo = 1");
 		
-		
-		String sql = "SELECT s.idServico," +
-				"s.nome as nomeServico," +
-				"s.descricao as descricaoServico," +				
-				"p.idProfissao," +
-				"p.nome as nomeProfissao," +
-				"p.precovisita," +				
-				"p.descricao as descricaoProfissao  " +
-				"FROM casaweb.servico s " +
-				"INNER JOIN casaweb.profissao p ON s.idProfissao=p.idProfissao";
 		try{
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(qBuffer.toString());
 			rs = ps.executeQuery();
 			list = new ArrayList<ServicoDTO>();
 			while(rs.next()){
 				ServicoDTO dto = new ServicoDTO();
 				
-				servicoDTO = this.populaServico(dto,rs);
+				servicoDTO = this.populaServicoDTO(dto,rs);
 				//servicoDTO = (ServicoDTO) DTOFactory.getDTO(ServicoDTO.class, rs);
 				
 				list.add(servicoDTO);
@@ -53,7 +58,7 @@ public class ServicoDAO extends GenericDAO{
 		return list;
 	}
 
-	private ServicoDTO populaServico(ServicoDTO dto, ResultSet rs) throws SQLException {
+	private ServicoDTO populaServicoDTO(ServicoDTO dto, ResultSet rs) throws SQLException {
 
 
 		dto.setId(rs.getLong("idServico"));
@@ -110,6 +115,74 @@ public class ServicoDAO extends GenericDAO{
 				ps.close();
 		}
 		
+	}
+
+	public void altera(ServicoDTO servicoDTO, Connection conn) throws Exception {
+		PreparedStatement ps = null;
+
+		String sql="UPDATE casaweb.Servico SET nome = ?, idProfissao = ?, descricao = ? WHERE Servico.idServico=?";
+		try{
+			
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, servicoDTO.getNome());
+				ps.setDouble(2, servicoDTO.getProfissaoDTO().getId());
+				ps.setString(3, servicoDTO.getDescricao());
+				ps.setLong(4, servicoDTO.getId());
+				ps.executeUpdate();
+
+		}catch(Exception e){
+			throw e;
+		}finally{
+			if(ps!=null)
+				ps.close();
+		}
+		
+	}
+
+	public ServicoDTO consultarPor(Long id, Connection con) throws Exception {
+		ServicoDTO servicoDTO = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		StringBuffer qBuffer = new StringBuffer();		
+
+		qBuffer.append(strConsult);
+		qBuffer.append(" WHERE s.idServico = ? ");
+
+		try {
+			ps = con.prepareStatement(qBuffer.toString());
+
+			ps.setLong(1, id);
+
+			rs = ps.executeQuery();
+			
+			// Seta no DTO o objetoo encontrado
+			
+			while (rs.next()) {
+				servicoDTO = new ServicoDTO();
+
+				this.populaServicoDTO(servicoDTO,rs);
+				
+			}
+		//	this.populaClienteDTO(clienteDTO,null);
+		} catch (SQLException sqlE) {
+			throw sqlE;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+
+		return servicoDTO;
 	}
 
 

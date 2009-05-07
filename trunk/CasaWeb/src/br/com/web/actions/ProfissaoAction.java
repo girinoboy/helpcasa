@@ -43,13 +43,17 @@ public class ProfissaoAction extends GenericAction {
 			if (idsProfissao != null && idsProfissao.length > 0) {
 				profissaoBO.exclui(idsProfissao);
 			} else {
-				System.out.println("Nenhum item selecionado.");
+				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
 			}
 		} catch (Exception e) {
 			System.out.println("Existe um funcionari anexado a essa função");
 			e.printStackTrace();
 		}
 		return load();
+	}
+	
+	public String cadastrar(){
+		return "cadastrar.fwd";
 	}
 	
 	public String altera(){
@@ -66,10 +70,6 @@ public class ProfissaoAction extends GenericAction {
 		
 	}
 	
-	public String cadastrar(){
-		return "cadastrar.fwd";
-	}
-	
 	public String alterar(){
 		try {
 			Long id = profissaoDTO.getId();
@@ -79,6 +79,7 @@ public class ProfissaoAction extends GenericAction {
 		}
 		return "alterar.fwd";
 	}
+	
 	public List<ProfissaoDTO> getListProfissoes() {
 		return listProfissoes;
 	}

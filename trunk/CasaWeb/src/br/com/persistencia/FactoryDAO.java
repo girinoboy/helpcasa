@@ -2,6 +2,7 @@ package br.com.persistencia;
 
 import br.com.persistencia.dao.ClienteDAO;
 import br.com.persistencia.dao.FuncionarioDAO;
+import br.com.persistencia.dao.HistoricoDAO;
 import br.com.persistencia.dao.LoginDAO;
 import br.com.persistencia.dao.ProfissaoDAO;
 import br.com.persistencia.dao.ServicoDAO;
@@ -14,15 +15,15 @@ public class FactoryDAO {
 	private static FactoryDAO instance;
 	
 	//----------------------- DAO's -----------------------------------
-	ClienteDAO clienteDAO;
-	LoginDAO loginDAO;
+	private ClienteDAO clienteDAO;
+	private LoginDAO loginDAO;
 	private ProfissaoDAO profissaoDAO;
 	private ServicoDAO servicoDAO;
 	private FuncionarioDAO funcionarioDAO;
 	private SolicitacaoDAO solicitacaoDAO;
+	private HistoricoDAO historicoDAO;
 	
-	private FactoryDAO() {
-	}
+	private FactoryDAO() {}
 
 	public static FactoryDAO getInstance() {
 		if (instance == null) {
@@ -101,5 +102,12 @@ public class FactoryDAO {
 			solicitacaoDAO = new SolicitacaoDAO();
 		}
 		return solicitacaoDAO;
+	}
+
+	public HistoricoDAO getHistoricoDAO() {
+		if(historicoDAO == null){
+			historicoDAO = new HistoricoDAO();
+		}
+		return historicoDAO;
 	}
 }

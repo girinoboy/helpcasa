@@ -13,12 +13,15 @@ function selectAction(action){
 		url = '<c:url value="/casa/login!load.action?"/>';
 		submeter = true;
 	}else if(action == 'pesquisar'){
+		var cpf = document.getElementById('cpf');
 		var funcao = document.getElementById('funcao');
 		if(funcao.value == 'cliente'){
-			url = '<c:url value="/casa/cliente!pesquisar.action?"/>';			
+			url = '<c:url value="/casa/cliente!pesquisar.action?"/>';	
+			params='clienteDTO.cpf='+cpf.value;
 		}
 		else{
-			url = '<c:url value="/casa/solicitacao!load.action?"/>';			
+			url = '<c:url value="/casa/solicitacao!load.action?"/>';	
+			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
 		}
 		submeter = true;
 	}else if(action == 'voltar'){

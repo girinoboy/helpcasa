@@ -97,7 +97,7 @@
     	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
     	
     </definition>
-     <definition name="ProfissaoAlterar.def"	extends="template1.def">
+    <definition name="ProfissaoAlterar.def"	extends="template1.def">
     	<put-attribute name="title" 			value="help home" />		
     	<put-attribute name="body" 				value="/casa/profissaoAlterar.jsp" />	
     	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
@@ -112,9 +112,15 @@
     	<put-attribute name="js" 			value="/casa/servico.js.jsp" />
     </definition>
     <definition name="ServicoCadastrar.def"		extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="Cadastro de Serviços" />		
     	<put-attribute name="body" 				value="/casa/servicoCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
+    </definition>
+    <definition name="ServicoAlterar.def"	extends="template1.def">
+    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="body" 				value="/casa/servicoAlterar.jsp" />	
+    	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
+    	
     </definition>
      <!-- FIM DE SERVICOS -->
      

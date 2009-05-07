@@ -57,4 +57,29 @@ public class ServicoBO extends GenericBO{
 		
 	}
 
+	public void altera(ServicoDTO servicoDTO) throws Exception {
+		Connection conn = Conexao.getConnection();
+		try{
+			servicoDAO.altera(servicoDTO,conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+	}
+
+	public ServicoDTO consultarPor(Long id) throws Exception {
+		Connection con = Conexao.getConnection();
+		ServicoDTO servicoDTOConsultada = null;
+		try {
+			servicoDTOConsultada = this.servicoDAO.consultarPor(id, con);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			con.close();
+		}
+		return servicoDTOConsultada;
+	}
+
 }

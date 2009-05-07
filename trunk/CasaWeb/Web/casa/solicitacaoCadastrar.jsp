@@ -23,6 +23,7 @@
 				</td>
 				
 			</tr>
+			<tr><s:submit value="Verificar Horários Disponiveis" onclick="selectAction('disponiveis')"/> </tr>
 			<tr>
 				<td class="label_entrada_dados">
 					Período:*
@@ -38,7 +39,7 @@
 			<input type="button" value="Solicitar"
 				onClick="selectAction('incluir');" class="principal" />
 			<input type="button" value="Cancelar"
-				onClick="selectAction('direcionaLogin');" class="voltar" />
+				onClick="selectAction('voltar');" class="voltar" />
 		</div>
 	</s:form>
 </div>

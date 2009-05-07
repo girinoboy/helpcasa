@@ -26,7 +26,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="label_entrada_dados">Profissao</td>
+				<td class="label_entrada_dados">
+					Profissão:	
+				</td>
 				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" /></td>
 			</tr>
 			<tr>
@@ -39,7 +41,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					RG:
+					RG:*
 				</td>
 				<td>
 					<s:textfield name="funcionarioDTO.rg" label="RG" size="10" id="rg" />
@@ -59,12 +61,12 @@
 					Celular:
 				</td>
 				<td>
-					<s:textfield name="funcionarioDTO.celular" label="CELULAR" size="10" id="telefone" />
+					<s:textfield name="funcionarioDTO.celular" label="CELULAR" size="10" id="celular" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					E-mail:
+					E-mail:*
 				</td>
 				<td>
 					<s:textfield name="funcionarioDTO.email" label="EMAIL" size="100" id="email" />
@@ -72,7 +74,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Data de Nascimento:
+					Data de Nascimento:*
 				</td>
 				<td>
 					<s:datetimepicker name="funcionarioDTO.nasc" label="Data de Nascimento"
@@ -82,16 +84,16 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Nome de usuario:
+					Nome de usuario:*
 				</td>
 				<td>
 					<s:textfield name="funcionarioDTO.usuario" label="NOME DE USUARIO"
-						size="60" id="user" />
+						size="60" id="usuario" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Senha:
+					Senha:*
 				</td>
 				<td>
 					<s:password name="funcionarioDTO.senha" label="SENHA" size="60"
@@ -100,7 +102,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Repita sua senha:
+					Repita sua senha:*
 				</td>
 				<td>
 					<s:password name="funcionarioDTO.senhaRepita" label="REPITA SUA SENHA"

@@ -33,7 +33,7 @@ function selectAction(action){
 function validaCamposAoIncluir(){
 	var nome = document.getElementById('nome');
 	var cpf = document.getElementById('cpf');
-	var cpf = document.getElementById('cpf');
+	var idprofissao = document.getElementById('idprofissao');
 	var telefone = document.getElementById('telefone');
 	var matricula = document.getElementById('matricula');
 	
@@ -55,16 +55,6 @@ function validaCamposAoIncluir(){
 		cpf.focus();
 		return false;
 	}
-	if(cep.value == ''){
-		alert('O CEP é obrigatório.');
-		cep.focus();
-		return false;
-	}
-	if(endereco.value == ''){
-		alert('O Endereço é obrigatório.');
-		endereco.focus();
-		return false;
-	}
 	if(telefone.value == ''){
 		alert('O Telefone é obrigatório.');
 		telefone.focus();
@@ -75,14 +65,9 @@ function validaCamposAoIncluir(){
 		matricula.focus();
 		return false;
 	}
-	if(cidade.value == ''){
-		alert('A Cidade é obrigatória.');
-		cidade.focus();
-		return false;
-	}
-	if(uf.value == ''){
-		alert('A UF é obrigatória.');
-		uf.focus();
+	if(idprofissao.value == ''){
+		alert('O campo Profissão é obrigatório.');
+		idprofissao.focus();
 		return false;
 	}
 	if(celular.value == ''){
@@ -90,11 +75,7 @@ function validaCamposAoIncluir(){
 		celular.focus();
 		return false;
 	}
-	if(nasc.value == ''){
-		alert('O Nascimento é obrigatório.');
-		nasc.focus();
-		return false;
-	}/*
+	/*
 	if(email.value == ''){
 		alert('O Email é obrigatório.');
 		email.focus();

@@ -86,16 +86,21 @@ public class ClienteAction extends GenericAction {
 					Mensagem.ERRO);
 			return this.direcionaMenu();
 		}
-		return "clienteConsultar.fwd";
+		getRequest().getSession().removeAttribute("pessoaSessao");
+		getRequest().getSession(true).setAttribute("pessoaSessao", clienteDTO);
+		if(funcao != null && funcao.equals("cliente"))
+			return "clienteConsultar.fwd";
+		else if(funcao != null && funcao.equals("servico"))
+			return "servicosListar.fwd";
+		
+		return null;
 	}
 
 	public String pesquisar() throws Exception {
 		try {
-			if (clienteDTO != null && clienteDTO.getCpf() != null && funcao != null && funcao.equals("cliente")) {
+			if (clienteDTO != null && clienteDTO.getCpf() != null) 
 				return consultaParaCliente();
-			}if(clienteDTO != null && clienteDTO.getCpf() != null && funcao != null && funcao.equals("servico")){
-				return "servicosListar.fwd";
-			}else
+			else
 				return "clientePesquisar.fwd";
 		} catch (Exception e) {
 			System.out.println(e);

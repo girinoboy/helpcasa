@@ -3,37 +3,37 @@
 <div style="width: 710px;" class="container">
 	<s:form name="form1" method="post" id="form1" action="">
 		<h1>
-			Alterar a Profissão
+			Alteração de Serviço
 		</h1>
-		
-		<s:hidden id="idProfissao" name="profissaoDTO.id" value="${profissaoDTO.id}"/>
+		<s:hidden id="idServico" name="servicoDTO.id" value="${servicoDTO.id}"/>
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 
 				<td class="label_entrada_dados">
-					Profissão:*
+					Serviço:
 				</td>
 				<td>
-					<s:textfield id="nome" name="profissaoDTO.nome" />
+					<s:textfield id="nome" name="servicoDTO.nome" />
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Preço da Visita:*
+					Profissão:
 				</td>
 				<td>
-					<s:textfield id="precoVisita"
-						name="profissaoDTO.precoVisita" />
+					<s:select name="servicoDTO.profissaoDTO.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" />					
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Descrição:*
+					Descricao:
 				</td>
 				<td>
-					<s:textfield id="descricao" name="profissaoDTO.descricao" />
+					<s:textfield id="descricao"
+						name="servicoDTO.descricao" />
 				</td>
 			</tr>
+			
 		</table>
 
 		<div class="footer">
