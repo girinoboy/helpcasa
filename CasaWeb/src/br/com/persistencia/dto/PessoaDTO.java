@@ -17,7 +17,6 @@ public class PessoaDTO extends GenericDTO{
 	private Date dataCadastro;
 	private String telefone;
 	private String celular;
-	private String telefoneComercial;
 	
 	private PerfilDTO perfil;
 
@@ -102,12 +101,6 @@ public class PessoaDTO extends GenericDTO{
 	}
 	public void setCelular(String celular) {
 		this.celular = celular;
-	}
-	public String getTelefoneComercial() {
-		return telefoneComercial;
-	}
-	public void setTelefoneComercial(String telefoneComercial) {
-		this.telefoneComercial = telefoneComercial;
 	}
 	public PerfilDTO getPerfil() {
 		return perfil;

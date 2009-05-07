@@ -61,26 +61,10 @@
 				
 					<div class="clear"></div>
 				</div><!-- fim div nav -->
-			</s:elseif>	
-			<!-- 					
-			<div id="nav">
-				<a href="#" title="divname0">Perfil</a>
-				<a href="#" title="divname1">Agenda</a>
-				<a href="#" title="divname2">Consultar Cliente</a>
-				<a href="#" title="divname3">Funcionario</a>
-				<a href="#" title="divname4">Profissoes</a>
-				<a href="#" title="divname5">Serviços</a>
-				<a href="#" title="divname6">Relatórios</a>
-				<a href="#" title="divname7">Gerar Boletos</a>
-				<a href="#" title="divname8">Solicitar Serviços</a>
-				<a href="#" title="divname9">Consultar Histórico de Serviços</a>
-				<a href="#" title="divname">Como chegar</a>
-				
-				
-				<div class="clear"></div>
-			</div>--><!-- fim div nav -->
+			</s:elseif><!--	
+			######################################################################################################
 			 
-			<div id="divname0" class="hiddencontent" >				
+			--><div id="divname0" class="hiddencontent" >				
 				<IFRAME name="palco" src='cliente!consultaParaCliente.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
 			

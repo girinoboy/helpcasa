@@ -9,6 +9,13 @@ function selectAction(action){
 	if(action == 'incluir'){
 		url = '<c:url value="/casa/solicitacao!solicitacaoInclui.action?"/>';
 		submeter = validaCamposAoIncluir();
+	}else if(action == 'voltar'){
+		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
+		params='funcao=servico';
+		submeter = true;
+	}else if(action == 'disponiveis'){
+		url = '<c:url value="/casa/solicitacao!pesquisar.action?"/>';
+		submeter = true;
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;

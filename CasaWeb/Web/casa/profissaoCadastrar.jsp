@@ -10,7 +10,7 @@
 			<tr>
 
 				<td class="label_entrada_dados">
-					Profissão:
+					Profissão:*
 				</td>
 				<td>
 					<s:textfield id="nome" name="profissaoDTO.nome" />
@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Preço da Visita:
+					Preço da Visita:*
 				</td>
 				<td>
 					<s:textfield id="precoVisita"
@@ -27,7 +27,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Descrição:
+					Descrição:*
 				</td>
 				<td>
 					<s:textfield id="descricao" name="profissaoDTO.descricao" />

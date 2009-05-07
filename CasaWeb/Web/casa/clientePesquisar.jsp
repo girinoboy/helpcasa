@@ -14,7 +14,7 @@
 		
 		<!--<c:out value="${requestScope.funcao}"></c:out>-->
 		
-		CPF:<s:textfield name="clienteDTO.cpf" id="cpf"  />
+		CPF:<s:textfield name="cliente.cpf" id="cpf"  />
 		<s:submit value="Pesquisar" onclick="selectAction('pesquisar');" cssClass="principal"/>
 	</div>
 </s:form>

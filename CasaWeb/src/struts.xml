@@ -46,6 +46,7 @@
 			<result type="tiles" name="load.fwd">ServicoLoad.def</result>
 			<result type="tiles" name="listar.fwd">ServicoListar.def</result>
 			<result type="tiles" name="cadastrar.fwd">ServicoCadastrar.def</result>
+			<result type="tiles" name="alterar.fwd">ServicoAlterar.def</result>
 		</action>
 		
 		<action name="funcionario!*" method="{1}" class="br.com.web.actions.FuncionarioAction">

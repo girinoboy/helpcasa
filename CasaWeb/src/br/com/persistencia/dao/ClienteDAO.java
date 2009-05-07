@@ -18,7 +18,7 @@ import br.com.persistencia.util.DTOFactory;
 public class ClienteDAO extends GenericDAO{
 
 	public ClienteDTO consulta(String cpf, Connection con) throws SQLException, Exception {
-		List<ClienteDTO> list = null;
+		
 		ClienteDTO clienteDTO = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -36,13 +36,13 @@ public class ClienteDAO extends GenericDAO{
 			rs = ps.executeQuery();
 			
 			// Seta no DTO o objetoo encontrado
-			list = new ArrayList<ClienteDTO>();
+			
 			while (rs.next()) {
 				clienteDTO = new ClienteDTO();
 
 				this.populaClienteDTO(clienteDTO,rs);
 
-				list.add(clienteDTO);
+				
 			}
 		//	this.populaClienteDTO(clienteDTO,null);
 		} catch (SQLException sqlE) {
@@ -317,7 +317,7 @@ public class ClienteDAO extends GenericDAO{
 				"INNER JOIN CASAWEB.UF ON uf.iduf=cliente.iduf ";
 
 	
-	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,status,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";
+	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";
 	protected static final String strInsertCliente ="INSERT INTO casaweb.Cliente(idCliente,endereco,situacao,cep,cidade,idUF)VALUES(?,?,?,?,?,?);";
 	
 }

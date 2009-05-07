@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.Mensagem;
 import br.com.bo.FactoryBO;
 import br.com.bo.ProfissaoBO;
 import br.com.bo.ServicoBO;
@@ -18,20 +19,22 @@ public class ServicoAction extends GenericAction{
 	private ProfissaoBO profissaoBO;
 	private List<ProfissaoDTO> listProfissoes;
 	private Map<Number, String> profissoes;
-	private ProfissaoDTO profissaoDTO;
 
-	public ServicoAction() {
-		super();
+	public ServicoAction() {		
 		servicoBO = FactoryBO.getInstance().getServicoBO();
 		profissaoBO = FactoryBO.getInstance().getProfissaoBO();
 	}
 	
-	public String load() throws Exception{
+	public String load() {
 		return listar();
 	}
 
-	public String listar() throws Exception{
-		listServicos = servicoBO.servicosListar();
+	public String listar() {
+		try {
+			listServicos = servicoBO.servicosListar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "listar.fwd";
 	}
 	
@@ -50,7 +53,7 @@ public class ServicoAction extends GenericAction{
 			if (idsServico != null && idsServico.length > 0) {
 				servicoBO.exclui(idsServico);
 			} else {
-				System.out.println("Nenhum item selecionado.");
+				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
 			}
 		} catch (Exception e) {
 			
@@ -72,6 +75,36 @@ public class ServicoAction extends GenericAction{
 			e.printStackTrace();
 		}
 		return "cadastrar.fwd";
+	}
+	
+	public String altera(){
+		
+		try{
+			servicoBO.altera(servicoDTO);
+			getMensagemGlobal().addMensagem("Serviço alterado com sucesso.", Mensagem.ALERTA);
+		}catch(Exception e){
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Serviço.", Mensagem.ALERTA);
+			e.printStackTrace();			
+		}
+	
+		return load();
+		
+	}
+	
+	public String alterar(){
+		profissoes = new HashMap<Number, String>();
+		profissoes.put(0, "Selecione...");
+		try {
+			this.listProfissoes = profissaoBO.profissaoListar();
+			for (ProfissaoDTO profissao : listProfissoes) {
+				profissoes.put(profissao.getId(), profissao.getNome());
+			}
+			Long id = servicoDTO.getId();
+			servicoDTO = servicoBO.consultarPor(id);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		return "alterar.fwd";
 	}
 
 	public List<ServicoDTO> getListServicos() {

@@ -13,7 +13,7 @@
 					Serviço:
 				</td>
 				<td>
-					<s:textfield id="servicoDTO.nome" name="servicoDTO.nome" />
+					<s:textfield id="nome" name="servicoDTO.nome" />
 				</td>
 			</tr>
 			<tr>
@@ -29,7 +29,7 @@
 					Descricao:
 				</td>
 				<td>
-					<s:textfield id="servicoDTO.descricao"
+					<s:textfield id="descricao"
 						name="servicoDTO.descricao" />
 				</td>
 			</tr>

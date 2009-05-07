@@ -20,6 +20,9 @@ function selectAction(action){
 	}else if(action == 'excluir'){
 		url = '<c:url value="/casa/servico!exclui.action?"/>';
 		submeter = confirm('Deseja realmente excluir o(s) selecionado(s)');
+	}else if(action == 'altera'){
+		url = '<c:url value="/casa/servico!altera.action?"/>';
+		submeter = validaCamposAoIncluir();
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;
@@ -50,6 +53,24 @@ function checkUnCheckAll(check, nameCheckBox){
 }
 
 function validaCamposAoIncluir(){
-
+	var nome = document.getElementById('nome');
+	var idprofissao = document.getElementById('idprofissao');
+	var descricao = document.getElementById('descricao');
+	
+	if(nome.value == ''){
+		alert('O campo Profissão é obrigatório.');
+		nome.focus();
+		return false;
+	}
+	if(idprofissao.value == 0){
+		alert('O campo Profissão é obrigatório.');
+		idprofissao.focus();
+		return false;
+	}
+	if(descricao.value == ''){
+		alert('O campo Descrição é obrigatóriO.');
+		descricao.focus();
+		return false;
+	}
 	return true;
 }

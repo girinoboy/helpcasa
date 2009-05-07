@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ConstantesENUM;
 import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
 import br.com.persistencia.util.DTOFactory;
@@ -25,8 +26,13 @@ public class ProfissaoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsult);
+		qBuffer.append(" WHERE ativo = 1");
+		qBuffer.append(" AND idProfissao <> ?");
+		qBuffer.append(" AND idProfissao <> ?");
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
+			ps.setLong(1, ConstantesENUM.ADMINISTRADOR_ID.id());
+			ps.setLong(2, ConstantesENUM.ATENDENTE_ID.id());
 			rs = ps.executeQuery();
 			list = new ArrayList<ProfissaoDTO>();
 			while(rs.next()){
@@ -133,7 +139,7 @@ public class ProfissaoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsult);
-		qBuffer.append(" WHERE Profissao.idProfissao = ?");
+		qBuffer.append(" WHERE Profissao.idProfissao = ? ");
 
 		try {
 			ps = con.prepareStatement(qBuffer.toString());
