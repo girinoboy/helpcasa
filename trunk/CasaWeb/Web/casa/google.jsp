@@ -1,82 +1,27 @@
-<%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
-
-function selectAction(action){
-	
-	var url = '';
-	var params = '';
-	var submeter;
-	
-	if(action == 'incluir'){
-		url = '<c:url value="/casa/solicitacao!solicitacaoInclui.action?"/>';
-		submeter = validaCamposAoIncluir();
-		caculaDistanciaFixa();
-	}else if(action == 'voltar'){
-		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
-		params='funcao=servico';
-		submeter = true;
-	}else if(action == 'disponiveis'){
-		var arraydistancia = new Array();
-		arraydistancia[0]='2.34';
-		arraydistancia[1]='2.35';
-		arraydistancia[2]='2.36';
-		url = '<c:url value="/casa/solicitacao!calcula.action?"/>';
-		params='clienteDTO.cpf='+cpf.value;
-		submeter =  validaCamposAoIncluir();
-	}else{
-		alert('Ação não encontrada.');
-		submeter = false;
-	}
-	//var a = setDirections('73340-702','70390-130','pt_BR');
-	//alert(a.substr(0,a.indexOf('&'))); 
-	//document.getElementById('distancia1').value = setDirections('73340-702','70390-130','pt_BR').substr(0,4);
-	//Caso necessite de validação dos campos
-	if(submeter == true){
-		document.getElementById('form1').action = url + params;
-		document.getElementById('form1').submit(); 
-	}
-	
-}
-
-function validaCamposAoIncluir(){
-	var data = dojo.widget.byId('data');
-	var id = document.getElementById('id');
-	var periodo1 = document.getElementById('periodo1');
-	var periodo2 = document.getElementById('periodo2');
-	var periodo3 = document.getElementById('periodo3');
-	
-	if(data.inputNode.value == ''){
-		alert('A Data é obrigatória.');
-		data.focus();
-		return false;
-	}
-	if(id.value == 0){
-		alert('O Serviço é obrigatório.');
-		id.focus();
-		return false;
-	}
-	if(periodo1.check == false && periodo2.check == false && periodo3.check == false){
-		alert('O Periodo é obrigatório.');
-		id.focus();
-		return false;
-	}
-	
-	return true;
-}
-
-function caculaDistanciaFixa(){
-	//var distancias = new Array();
-	var max = document.getElementById('max').value;
-	var distancia;
-	var cep;	
-	for(var i=1;i<=max;i++){
-		cep = document.getElementById('cep'+i+'').value;
-		distancia = setDirections('${pessoaSessao.cep}',cep,'pt_BR');
-		
-		document.getElementById('distancia'+i+'').value = distancia.substr(0,distancia.indexOf('&'));
-	}
-}
-
- 	var map;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example: Advanced Directions</title>
+    <script src=" http://maps.google.com/?file=api&amp;v=2.x&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA" type="text/javascript"></script>
+    <style type="text/css">
+      body {
+        font-family: Verdana, Arial, sans serif;
+        font-size: 11px;
+        margin: 2px;
+      }
+      table.directions th {
+	background-color:#EEEEEE;
+      }
+	  
+      img {
+        color: #000000;
+      }
+    </style>
+    <script type="text/javascript">
+ 
+    var map;
     var gdir;
     var geocoder = null;
     var addressMarker;
@@ -96,17 +41,15 @@ function caculaDistanciaFixa(){
     function setDirections(fromAddress, toAddress, locale) {
       gdir.load("from: " + fromAddress + " to: " + toAddress,
                 { "locale": locale });
-        /*        
+                
        alert('distância total da solicitação de direções (por todas as rotas): '+gdir.getDistance().html);
 	   alert('tempo total da solicitação de direções (por todas as rotas): '+gdir.getDuration().html);
 	   alert('número de entradas geocodificadas disponíveis no resultado: '+gdir.getNumGeocodes());
 	   alert('Numeto de rotas: '+gdir.getNumRoutes());
-	   */
+	   
 	   var distancia = document.getElementById('distancia');
 		        	distancia.value = gdir.getDistance().html;
-		document.getElementById('distance').innerHTML = 'distancia: '+gdir.getDistance().html;
-		
-		return gdir.getDistance().html;
+	   
     }
 
     function handleErrors(){
@@ -141,4 +84,54 @@ function caculaDistanciaFixa(){
       // document.getElementById("getStatus").innerHTML = gdir.getStatus().code;
 	  // and yada yada yada...
 	}
-	
+    </script>
+
+  </head>
+  <body onload="initialize(); return false" onunload="GUnload()">
+  
+  <h2>Maps API Directions Illustrated</h2>
+  <form action="#" onsubmit="setDirections(this.from.value, this.to.value, this.locale.value); return false">
+
+  <table>
+
+   <tr><th align="right">De:&nbsp;</th>
+
+   <td><input type="text" size="25" id="fromAddress" name="from"
+     value="73340-702"/></td>
+   <th align="right">&nbsp;&nbsp;Para:&nbsp;</th>
+   <td align="right"><input type="text" size="25" id="toAddress" name="to"
+     value="70390-130" /></td></tr>
+
+   <tr><th>Language:&nbsp;</th>
+   <td colspan="3">
+   <select id="locale" name="locale">
+   	<option value="pt_BR" selected="selected">Portugues</option>	
+    <option value="en">English</option>
+    <option value="fr">French</option>
+    <option value="de">German</option>
+    <option value="ja">Japanese</option>
+    <option value="es">Spanish</option>
+    </select>
+
+    <input name="submit" type="submit" value="Como chegar" />
+    <label>distancia</label>
+			    <input type='text' id='distancia' name='solicitacaoDTO.funcionario.distancia' />
+
+   </td></tr>
+   </table>
+
+    
+  </form>
+
+    <br/>
+    <table class="directions">
+    <tr><th>Formatted Directions</th><th>Map</th></tr>
+
+    <tr>
+    <td valign="top"><div id="directions" style="width: 275px"></div></td>
+    <td valign="top"><div id="map_canvas" style="width: 310px; height: 400px"></div></td>
+
+    </tr>
+    </table> 
+  </body>
+</html>

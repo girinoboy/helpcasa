@@ -24,6 +24,7 @@
 			<result type="tiles" name="abertura.fwd">Abertura.def</result>
 			<result type="tiles" name="clienteBoleto.fwd">ClienteBoleto.def</result>
 			<result type="tiles" name="clienteClassificar.fwd">ClienteClassificar.def</result>
+			<result type="tiles" name="clienteAlterar.fwd">ClienteAlterar.def</result>
 			<result type="tiles" name="clientePesquisar.fwd">ClientePesquisar.def</result>								
 		</action>	
 		
@@ -52,12 +53,15 @@
 		<action name="funcionario!*" method="{1}" class="br.com.web.actions.FuncionarioAction">
 			<result type="tiles" name="funcionariosListar.fwd">FuncionariosListar.def</result>
 			<result type="tiles" name="cadastrar.fwd">FuncionariosCadastrar.def</result>
+			<result type="tiles" name="alterar.fwd">FuncionarioAlterar.def</result>
 		</action>
 		
 		
 		<action name="solicitacao!*" method="{1}" class="br.com.web.actions.SolicitacaoAction">
 			<result type="tiles" name="solicitacoesListar.fwd">SolicitacoesListar.def</result>
 			<result type="tiles" name="load.fwd">SolicitacoesLoad.def</result>
+			<result type="tiles" name="faturaBasica.fwd">SolicitacoesFaturaBasica.def</result>
+			<result type="tiles" name="google.fwd">google.def</result>
 		</action>
 		
 		<action name="historico!*" method="{1}" class="br.com.web.actions.HistoricoAction">

@@ -277,17 +277,58 @@ public class ClienteDAO extends GenericDAO{
 			return list;
 		}
 
-	private UfDTO populaUF(UfDTO dto, ResultSet rs) {
-		try{
-			
-			dto.setId(new Long (rs.getLong("id")));
-			dto.setUf(rs.getString("uf"));
-			dto.setDescricao(rs.getString("descricao"));
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}	
+		private UfDTO populaUF(UfDTO dto, ResultSet rs) {
+			try{
+
+				dto.setId(new Long (rs.getLong("id")));
+				dto.setUf(rs.getString("uf"));
+				dto.setDescricao(rs.getString("descricao"));
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}	
 			return dto;
+		}
+
+		public ClienteDTO altera(ClienteDTO clienteDTO, Connection conn) throws Exception {
+			PreparedStatement ps = null;
+
+			String sql="UPDATE casaweb.Pessoa " +
+			"SET senha=?," +
+			"nome=?," +
+			"cpf=?," +
+			"rg=?," +
+			"email=?," +
+			"nasc=?," +
+			"telefone=?," +
+			"celular=?," +
+			"cep=? " +
+			"where idPessoa=?";
+			try{
+
+				ps = conn.prepareStatement(sql);																
+
+				ps.setString(1, clienteDTO.getSenha());
+				ps.setString(2, clienteDTO.getNome());
+				ps.setString(3, clienteDTO.getCpf());
+				ps.setString(4, clienteDTO.getRg());
+				ps.setString(5, clienteDTO.getEmail());
+				ps.setTimestamp(6, new Timestamp(clienteDTO.getNasc().getTime()));
+				ps.setString(7, clienteDTO.getTelefone());
+				ps.setString(8, clienteDTO.getCelular());
+				ps.setString(9, clienteDTO.getCep());
+				ps.setLong(10, clienteDTO.getId());
+
+				ps.executeUpdate();
+
+			}catch(Exception e){
+				throw e;
+			}finally{
+				if(ps!=null)
+					ps.close();
+			}
+			return clienteDTO;
+
 		}
 
 	protected static final String strConsult ="SELECT idPessoa as \"id\", " +
@@ -306,7 +347,7 @@ public class ClienteDAO extends GenericDAO{
 				"Perfil.descricao as \"perfil.descricao\", " +
 				"Cliente.endereco,"+
 				"Cliente.situacao,"+
-				"Cliente.cep,"+
+				"Pessoa.cep,"+
 				"Cliente.cidade,"+
 				"uf.iduf,"+
 				"uf.uf,"+

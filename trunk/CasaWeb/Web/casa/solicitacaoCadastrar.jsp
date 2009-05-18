@@ -1,8 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <s:hidden id="distancia" name="solicitacao.funcionario.distancia"/>
 <div style="width: 710px;" class="container">
 	<s:form name="form1" id="form1">
 	<s:hidden id="idCliente" name="solicitacaoDTO.cliente.id" value="${solicitacaoDTO.cliente.id}"/>
+	<s:hidden id="cpf" name="solicitacaoDTO.cliente.cpf" value="${pessoaSessao.cpf}"/>
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 				<td class="label_entrada_dados">
@@ -23,23 +25,51 @@
 				</td>
 				
 			</tr>
-			<tr><s:submit value="Verificar Horários Disponiveis" onclick="selectAction('disponiveis')"/> </tr>
+			<tr><td></td><td><div id="distance">distancia:</div> </td></tr>
 			<tr>
 				<td class="label_entrada_dados">
 					Período:*
 				</td>
 				<td>
-					<s:radio list="#{'1':'manha','2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo"/>
+				<s:if test="${not empty listHorariosDisponiveis}">
+					<s:iterator value="listHorariosDisponiveis" status="stat">
+						
+						Periodo:<c:out value="${periodo}" default="null"></c:out><br>
+						idFuncionario:<c:out value="${funcionario.id}" default="null"></c:out><br>
+						CEP:<c:out value="${funcionario.cep}" default="null"></c:out><br>
+						<s:hidden name="distancia" id="distancia${stat.index+1}" value="3" onmouseup="javascript:setDirections('${pessoaSessao.cep}','${funcionario.cep}','pt_BR').substr(0,4)"/> 	
+						<s:hidden name="idFuncionario" id="idFuncionario${stat.index+1}" value="${funcionario.id}" />
+						<s:hidden name="cep" id="cep${stat.index+1}" value="${funcionario.cep}" />
+						<br>
+						<script>
+							document.getElementById('distancia${stat.index+1}').value = setDirections('${pessoaSessao.cep}','${funcionario.cep}','pt_BR').substr(0,4);
+						</script>
+						<s:set name="max" value="${stat.index+1}" scope="session"/>
+					</s:iterator>
+				</s:if>
+					<s:hidden name="max" id="max" value="${sessionScope.max}" />					
+					<br>
+					CEP - cliente:<c:out value="${pessoaSessao.cep}" default="null"></c:out><br>
+					<s:radio list="#{'1':'manha','2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" />
 				</td>
+				
 			</tr>
-			
+
 		</table>
 
 		<div class="footer">
 			<input type="button" value="Solicitar"
 				onClick="selectAction('incluir');" class="principal" />
+			<input type="button" value="Verificar Horários Disponiveis" 
+				onclick="selectAction('disponiveis');" class="secundario"/>
+			<input type="button" value="distancia" 
+				onclick="caculaDistanciaFixa(); "/>
 			<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />
 		</div>
 	</s:form>
 </div>
+
+
+<div id="directions" style="width: 275px; display: none;" display="block"></div>
+<div id="map_canvas" style="width: 310px; height: 400px; display: none; " display="none"></div>

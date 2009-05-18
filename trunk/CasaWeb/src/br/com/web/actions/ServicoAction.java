@@ -26,10 +26,10 @@ public class ServicoAction extends GenericAction{
 	}
 	
 	public String load() {
-		return listar();
+		return servicosListar();
 	}
 
-	public String listar() {
+	public String servicosListar() {
 		try {
 			listServicos = servicoBO.servicosListar();
 		} catch (Exception e) {
