@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.Mensagem;
+import br.com.RegraNegocioException;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.persistencia.dto.ClienteDTO;
@@ -17,36 +18,36 @@ public class ClienteAction extends GenericAction {
 
 	// DTOs
 	private ClienteDTO clienteDTO;
-	
+
 	private List<UfDTO> listUf;
 	private Map<Number, String> ufs;
-	
+
 	private String funcao;
 
 	public ClienteAction() {
 		clienteBO = FactoryBO.getInstance().getClienteBO();
 	}
 
-	public String load() throws Exception {
+	public String load() {
 
 		return clienteCadastrar();
 	}
-	
+
 	public String clienteCadastrar(){
 		try {
-			 	ufs = new HashMap<Number, String>();
-			 	ufs.put(0, "Selecione...");
+			ufs = new HashMap<Number, String>();
+			ufs.put(0, "Selecione...");
 			this.listUf = this.clienteBO.listUf();
-			
+
 			for(UfDTO uf: listUf ){
 				ufs.put(uf.getId(), uf.getUf());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "clienteCadastrar.fwd";
-		
+
 	}
 
 	private String direcionaMenu() {
@@ -54,46 +55,56 @@ public class ClienteAction extends GenericAction {
 		return "abertura.fwd";
 	}
 
-	public String inclui() throws Exception {
+	public String inclui(){
 		try {
 
 			this.clienteDTO = this.clienteBO.inclui(this.clienteDTO);
 
-		} catch (Exception e) {
+		} catch (RegraNegocioException e){
 			e.printStackTrace();
-			// Manda para o request a mensagem de exceï¿½ï¿½o vinda do BO
+			//manda para o request a mensagem de exceção vinda do bo
+			getMensagemGlobal().setMensagens(e.getMensagens());	
+			return this.load();
+		}catch (Exception e) {
+			e.printStackTrace();			
 			getMensagemGlobal().addMensagem("Erro ao incluir Cliente.",
 					Mensagem.ERRO);
 			return this.direcionaMenu();
 		}
 
-		 return consultaParaCliente();
+		return consultaParaCliente();
 		//return "clienteCadastrar.fwd";
 	}
 
-	public String consultaParaCliente() throws Exception {
+	public String consultaParaCliente() {
 		try {
+			ufs = new HashMap<Number, String>();
+			ufs.put(0, "Selecione...");
+			this.listUf = this.clienteBO.listUf();
+
+			for(UfDTO uf: listUf ){
+				ufs.put(uf.getId(), uf.getDescricao());
+			}
 			if(getSessaoPessoa() != null && getSessaoPessoa().getCpf() !=null && this.clienteDTO == null){
 				this.clienteDTO = this.clienteBO.consulta(getSessaoPessoa().getCpf());
 			}
 			if (this.clienteDTO != null && this.clienteDTO.getCpf() != null) {
 				this.clienteDTO = this.clienteBO.consulta(this.clienteDTO.getCpf());
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			// Manda para o request a mensagem de exceï¿½ï¿½o vinda do BO
+			// Manda para o request a mensagem de exceção vinda do BO
 			getMensagemGlobal().addMensagem("Erro ao buscar Cliente.",
 					Mensagem.ERRO);
 			return this.direcionaMenu();
 		}
-		getRequest().getSession().removeAttribute("pessoaSessao");
-		getRequest().getSession(true).setAttribute("pessoaSessao", clienteDTO);
 		if(funcao != null && funcao.equals("cliente"))
 			return "clienteConsultar.fwd";
 		else if(funcao != null && funcao.equals("servico"))
 			return "servicosListar.fwd";
-		
-		return null;
+
+		return "clienteConsultar.fwd";
 	}
 
 	public String pesquisar() throws Exception {
@@ -107,6 +118,20 @@ public class ClienteAction extends GenericAction {
 			e.printStackTrace();
 		}
 		return "clientePesquisar.fwd";
+	}
+
+	public String altera(){
+
+		try{
+			clienteDTO = clienteBO.altera(clienteDTO);
+			getMensagemGlobal().addMensagem("Alterações salvas com sucesso.", Mensagem.ALERTA);
+		}catch(Exception e){
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Cliente.", Mensagem.ALERTA);
+			e.printStackTrace();			
+		}
+
+		return load();
+
 	}
 
 	public String boleto() {
@@ -149,7 +174,7 @@ public class ClienteAction extends GenericAction {
 	public void setListUf(List<UfDTO> listUf) {
 		this.listUf = listUf;
 	}
-	
+
 	public Map<Number, String> getUfs() {
 		return ufs;
 	}

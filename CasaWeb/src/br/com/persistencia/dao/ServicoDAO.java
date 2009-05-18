@@ -164,7 +164,7 @@ public class ServicoDAO extends GenericDAO{
 				this.populaServicoDTO(servicoDTO,rs);
 				
 			}
-		//	this.populaClienteDTO(clienteDTO,null);
+
 		} catch (SQLException sqlE) {
 			throw sqlE;
 		} catch (Exception e) {

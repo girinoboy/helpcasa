@@ -17,6 +17,9 @@ function selectAction(action){
 	}else if(action == 'cadastrar'){
 		url = '<c:url value="/casa/funcionario!cadastrar.action?"/>';
 		submeter = true;
+	}else if(action == 'altera'){
+		url = '<c:url value="/casa/funcionario!altera.action?"/>';
+		submeter = validaCamposAoIncluir();
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;

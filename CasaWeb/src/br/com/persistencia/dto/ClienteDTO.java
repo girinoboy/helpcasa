@@ -4,8 +4,7 @@ package br.com.persistencia.dto;
 public class ClienteDTO  extends PessoaDTO{
 	
 	private String endereco;
-	private String situacao;
-	private String cep;
+	private String situacao;	
 	private String cidade;
 	private UfDTO uf;
 	private String senhaRepita;
@@ -26,13 +25,7 @@ public class ClienteDTO  extends PessoaDTO{
 	}
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
+	}	
 	public String getCidade() {
 		return cidade;
 	}

@@ -20,7 +20,7 @@
 		</tr>
 		<s:if test="${not empty listProfissoes}">
 			<s:iterator value="listProfissoes" status="stat">
-				<s:set name="corLinha" />
+				<s:set name="corLinha" value=""/>
 				<s:if test="${stat.index%2 eq 0}">
 					<s:set name="corLinha" value="'#e6f7ff'" />
 				</s:if>
@@ -37,7 +37,7 @@
 					</td>					
 					<td>
 						<input type="checkbox" name="idsProfissao"
-							id="idsProfissao" value="<s:property value='id'/>" />
+							id="idsProfissao" value="${id}" />
 					</td>
 					<td>
 						<s:a href="/CasaWeb/casa/profissao!alterar.action?profissaoDTO.id=${id}" value="${nome}"><c:out value="${nome}" /></s:a> 

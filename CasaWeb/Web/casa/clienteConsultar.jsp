@@ -3,6 +3,7 @@
 
 <div style="width: 710px;" class="container">
 	<s:form name="form1" id="form1">
+		<s:hidden name="clienteDTO.id" id="id"/>
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 				<td class="label_entrada_dados">
@@ -18,7 +19,7 @@
 					CPF:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cpf" label="CPF" size="14" id="cpf" />
+					<s:textfield name="clienteDTO.cpf" label="CPF" size="14" id="cpf" readonly="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -26,7 +27,7 @@
 					RG:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.rg" label="RG" size="10" id="rg" />
+					<s:textfield name="clienteDTO.rg" label="RG" size="10" id="rg" readonly="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -35,7 +36,7 @@
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="100"
-						id="endereco" />
+						id="endereco" readonly="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -43,12 +44,13 @@
 					Cidade:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cidade" label="CIDADE" size="30" id="cidade" />
+					<s:textfield name="clienteDTO.cidade" label="CIDADE" size="30" id="cidade" readonly="true"/>
 					<label class="table">
 						UF:*
 					</label>
-					<s:property value="clienteDTO.uf.descricao"/>					
-				</td>
+					<s:select name="clienteDTO.uf.id" id="id" label="UF" list="ufs" headerKey="-1" disabled="true"/>
+					<!--<s:property value="clienteDTO.uf.descricao"/>					
+				--></td>
 				
 			</tr>
 			<tr>
@@ -56,7 +58,7 @@
 					CEP:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" />
+					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" readonly="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -81,9 +83,9 @@
 					Data de Nascimento:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.nasc" id="nasc"/>
-					<s:date name="clienteDTO.nasc" format="dd/MM/yyyy"
-						id="nascimento" />
+				<s:datetimepicker name="clienteDTO.nasc" label="Data de Nascimento"
+						displayFormat="dd/MM/yyyy" toggleType="explode"
+						toggleDuration="200" id="nasc" />
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +102,7 @@
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.usuario" label="NOME DE USUARIO"
-						size="60" id="usuario" />
+						size="60" id="usuario" readonly="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -123,7 +125,7 @@
 			</tr>
 		</table>
 		<div class="footer">
-			<input type="button" value="Editar" onClick="selectAction('editar');"
+			<input type="button" value="Salvar" onClick="selectAction('altera');"
 				class="principal" />
 			<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />

@@ -8,7 +8,7 @@ function selectAction(action){
 	
 	if(action == 'incluir'){
 		url = '<c:url value="/casa/login!incluiCliente.action?"/>';
-		submeter = true;
+		submeter = validaCamposAoIncluir();
 	}else if(action == 'direcionaLogin'){
 		url = '<c:url value="/casa/login!load.action?"/>';
 		submeter = true;
@@ -24,11 +24,13 @@ function selectAction(action){
 			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
 		}
 		submeter = true;
-	}else if(action == 'voltar'){
-		
+	}else if(action == 'voltar'){		
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='funcao=cliente';
 		submeter = true;
+	}else if(action == 'altera'){
+		url = '<c:url value="/casa/cliente!altera.action?"/>';
+		submeter = validaCamposAoIncluir();
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;
@@ -54,7 +56,7 @@ function validaCamposAoIncluir(){
 	var cidade = document.getElementById('cidade');
 	var uf = document.getElementById('id');
 	var celular = document.getElementById('celular');
-	var nasc = document.getElementById('nasc');
+	var nasc = dojo.widget.byId('nasc');
 	var email = document.getElementById('email');
 	var usuario = document.getElementById('usuario');
 	var senha = document.getElementById('senha');
@@ -105,7 +107,7 @@ function validaCamposAoIncluir(){
 		celular.focus();
 		return false;
 	}
-	if(nasc.value == ''){
+	if(nasc.inputNode.value == ''){
 		alert('O Nascimento é obrigatório.');
 		nasc.focus();
 		return false;

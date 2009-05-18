@@ -8,6 +8,7 @@ import br.com.persistencia.Conexao;
 import br.com.persistencia.dao.FuncionarioDAO;
 import br.com.persistencia.dto.FuncionarioDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
+import br.com.persistencia.dto.ServicoDTO;
 
 public class FuncionarioBO extends GenericBO{
 
@@ -21,7 +22,7 @@ public class FuncionarioBO extends GenericBO{
 		Connection conn = Conexao.getConnection();
 		List<FuncionarioDTO> list = null;
 		try{
-			list = funcionarioDAO.profissaoListar(conn);
+			list = funcionarioDAO.funcionariosListar(conn);
 		}catch(Exception e){
 			throw e;
 		}finally{
@@ -55,6 +56,30 @@ public class FuncionarioBO extends GenericBO{
 			conn.close();
 		}
 		
+	}
+
+	public void altera(FuncionarioDTO funcionarioDTO) throws Exception {
+		Connection conn = Conexao.getConnection();
+		try{
+			funcionarioDAO.altera(funcionarioDTO,conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+	}
+
+	public FuncionarioDTO consultarPor(Long id) throws Exception {
+		Connection con = Conexao.getConnection();
+		FuncionarioDTO funcionarioDTOConsultada = null;
+		try {
+			funcionarioDTOConsultada = this.funcionarioDAO.consultarPor(id, con);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			con.close();
+		}
+		return funcionarioDTOConsultada;
 	}
 
 }

@@ -3,6 +3,7 @@ package br.com.web.actions;
 import br.com.ConstantesENUM;
 import br.com.Mensagem;
 import br.com.MensagemLista;
+import br.com.RegraNegocioException;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.LoginBO;
@@ -39,12 +40,16 @@ public class LoginAction extends GenericAction{
 	public String checkLogin(){
 		try{
 			boolean logado = getRequest().getSession().getAttribute("usuarioLogadoSistema") !=null && ((Boolean)getRequest().getSession().getAttribute("usuarioLogadoSistema")).booleanValue() ? true:false;
-			
-			if (isInvalid(pessoaDTO.getUsuario()) || isInvalid(pessoaDTO.getSenha())){
-				getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
-				return load();
-				
-			}else if(!logado){
+
+			if(!logado){
+				if(pessoaDTO !=null){
+					if (isInvalid(pessoaDTO.getUsuario()) || isInvalid(pessoaDTO.getSenha())){
+						getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
+						return load();
+
+					}
+				}else
+					return load();
 				PessoaDTO usuarioLogadoSistema = loginBO.login(pessoaDTO);
 				if(usuarioLogadoSistema != null){
 					pessoaDTO = usuarioLogadoSistema;
@@ -57,15 +62,15 @@ public class LoginAction extends GenericAction{
 					getRequest().getSession().setAttribute("mensagem", "Login invalido.");
 					getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
 					return load();
-				}
-				
-			}
+				}				
+			}else
+				return abertura();
+
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("O Login ou a Senha não existe no sistema. Tente novamente.",Mensagem.ERRO);
 			e.printStackTrace();
 			return load();
-		}
-		return abertura();
+		}		
 	}
 
 	public String abertura(){
@@ -82,9 +87,17 @@ public class LoginAction extends GenericAction{
 		/*	UfDTO uf = new UfDTO();
 			uf.setId(new Long(7));
 			clienteDTO.setUf(uf);*/
-
+try{
 			pessoaDTO = clienteBO.inclui(clienteDTO);
-			
+}catch (RegraNegocioException e){
+	e.printStackTrace();
+	//manda para o request a mensagem de exceção vinda do bo
+	getMensagemGlobal().setMensagens(e.getMensagens());	
+	//return this.direcionaMenu();
+	//ClienteAction.this.clienteCadastrar();
+}catch(Exception e){
+	
+}
 		
 		return checkLogin();
 	}
@@ -95,7 +108,7 @@ public class LoginAction extends GenericAction{
 		getRequest().getSession().removeAttribute("pessoaSessao");
 		getRequest().getSession().removeAttribute("mensagem");
 		
-		return load();
+		return checkLogin();
 	}
 
 	private boolean isInvalid(String value){

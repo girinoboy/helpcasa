@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.ConstantesENUM;
+import br.com.Mensagem;
 import br.com.bo.FactoryBO;
 import br.com.bo.FuncionarioBO;
 import br.com.bo.ProfissaoBO;
@@ -81,6 +82,37 @@ public class FuncionarioAction extends GenericAction {
 			e.printStackTrace();
 		}
 		return load();
+	}
+	
+	public String altera(){
+		
+		try{
+			funcionarioBO.altera(funcionarioDTO);
+			getMensagemGlobal().addMensagem("Alterações salvas com sucesso.", Mensagem.ALERTA);
+		}catch(Exception e){
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Funcionario.", Mensagem.ALERTA);
+			e.printStackTrace();			
+		}
+	
+		return load();
+		
+	}
+	
+	public String alterar(){
+		profissoes = new HashMap<Number, String>();
+		profissoes.put(0, "Selecione...");
+		try {
+			this.listProfissoes = profissaoBO.profissaoListar();
+			for (ProfissaoDTO profissao : listProfissoes) {
+				profissoes.put(profissao.getId(), profissao.getNome());
+			}
+			Long id = funcionarioDTO.getId();
+			funcionarioDTO = funcionarioBO.consultarPor(id);
+		} catch (Exception e) {				
+			e.printStackTrace();
+			return load();
+		}
+		return "alterar.fwd";
 	}
 
 	public FuncionarioDTO getFuncionarioDTO() {
