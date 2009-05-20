@@ -18,11 +18,11 @@ public class HistoricoBO extends GenericBO{
 		historicoDAO = FactoryDAO.getInstance().getHistoricoDAO();
 	}
 
-	public void concedeDesistencia(Long id, Long idRespondavelClassificar) throws Exception {
-		Connection con = getConnection();
+	public void aplicaClassificacao(Long id, Long idRespondavelClassificar) throws Exception {
+		Connection con = Conexao.getConnection();
 		
 		try {
-			this.historicoDAO.concedeDesistencia(id,idRespondavelClassificar, con);
+			this.historicoDAO.aplicaClassificacao(id,idRespondavelClassificar, con);
 		} catch (Exception e) {
 			throw e;
 		} finally {

@@ -5,7 +5,7 @@ import br.com.persistencia.dto.PessoaDTO;
 public class FactoryBO {
 	
 	private static FactoryBO instance;
-	private PessoaDTO sessaoUsuario;
+	private PessoaDTO pessoaSessao;
 
 	//----------------------- BO's -----------------------------------
 	private ClienteBO clienteBO;
@@ -16,6 +16,7 @@ public class FactoryBO {
 	private FuncionarioBO funcionarioBO;
 	private SolicitacaoBO solicitacaoBO;
 	private HistoricoBO historicoBO;
+	private ProfissionalBO profissionalBO;
 	
 	private FactoryBO() {
 	}
@@ -27,26 +28,26 @@ public class FactoryBO {
 		return instance;
 	}
 	
-	public static FactoryBO getInstance(PessoaDTO sessaoUsuario) {
+	public static FactoryBO getInstance(PessoaDTO pessoaSessao) {
 		if (instance == null) {
 			instance = new FactoryBO();
 		}
-		instance.setSessaoUsuario(sessaoUsuario);
+		instance.setSessaoPessoa(pessoaSessao);
 		return instance;
 	}
 	
 	/**
-	 * @return UsuarioDTO sessaoUsuario
+	 * @return UsuarioDTO sessaoPessoa
 	 */
-	public PessoaDTO getSessaoUsuario() {
-		return sessaoUsuario;
+	public PessoaDTO getSessaoPessoa() {
+		return pessoaSessao;
 	}
 
 	/**
-	 * @param Seta o UsuarioDTO sessaoUsuario
+	 * @param Seta o UsuarioDTO sessaoPessoa
 	 */
-	public void setSessaoUsuario(PessoaDTO sessaoUsuario) {
-		this.sessaoUsuario = sessaoUsuario;
+	public void setSessaoPessoa(PessoaDTO pessoaSessao) {
+		this.pessoaSessao = pessoaSessao;
 	}
 	
 	
@@ -104,6 +105,13 @@ public class FactoryBO {
 			historicoBO = new HistoricoBO();
 		}
 		return historicoBO;
+	}
+
+	public ProfissionalBO getProfissionalBO() {
+		if (profissionalBO == null) {
+			profissionalBO = new ProfissionalBO();
+		}
+		return profissionalBO;
 	}
 
 }

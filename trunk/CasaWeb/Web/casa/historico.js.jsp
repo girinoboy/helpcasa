@@ -7,9 +7,9 @@ function selectAction(action,valor){
 	var params = '';
 	var submeter;
 
-	if(action =='concedeDesistencia'){
-		url = '<c:url value="/gswebjsp/gerenciamento_concedeDesistencia.action?"/>';
-		params = 'idPip=' + valor;
+	if(action =='aplicaClassificacao'){
+		url = '<c:url value="/casa/historico!aplicaClassificacao.action?"/>';
+		params = 'idNota=' + valor;
 		submeter = true;
 	}else{
 		alert('Solicitação não poderá ser encaminhada, pois a ação não foi encontrada.');

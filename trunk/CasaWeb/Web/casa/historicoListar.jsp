@@ -3,7 +3,7 @@
 
 <s:form name="form1" method="post" id="form1" action="">
 	<h1>
-		<c:out value="Nome do Serviço" />
+		<c:out value="Consulta do Historico de Serviço" />
 	</h1>	
 	<table width="100%" cellspacing="1" cellpadding="3" border="1"
 		align="center">

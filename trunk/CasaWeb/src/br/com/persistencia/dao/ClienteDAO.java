@@ -176,6 +176,7 @@ public class ClienteDAO extends GenericDAO{
 				ps.setString(9, cliente.getTelefone());
 				ps.setString(10, cliente.getCelular());
 				ps.setLong(11, cliente.getPerfil().getId());
+				ps.setString(12, cliente.getCep());
 
 				ps.executeUpdate();
 				executado=true;
@@ -358,7 +359,7 @@ public class ClienteDAO extends GenericDAO{
 				"INNER JOIN CASAWEB.UF ON uf.iduf=cliente.iduf ";
 
 	
-	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";
-	protected static final String strInsertCliente ="INSERT INTO casaweb.Cliente(idCliente,endereco,situacao,cep,cidade,idUF)VALUES(?,?,?,?,?,?);";
+	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil,cep) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
+	protected static final String strInsertCliente ="INSERT INTO casaweb.Cliente(idCliente,endereco,situacao,cidade,idUF)VALUES(?,?,?,?,?,?);";
 	
 }

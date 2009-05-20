@@ -20,6 +20,9 @@ function selectAction(action){
 	}else if(action == 'altera'){
 		url = '<c:url value="/casa/funcionario!altera.action?"/>';
 		submeter = validaCamposAoIncluir();
+	}else if(action == 'excluir'){
+		url = '<c:url value="/casa/funcionario!exclui.action?"/>';
+		submeter = confirm('Deseja realmente excluir o(s) selecionado(s)');
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;

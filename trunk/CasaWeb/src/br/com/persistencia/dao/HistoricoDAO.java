@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.persistencia.dto.FuncionarioDTO;
 import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.NotaDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
@@ -18,14 +19,16 @@ public class HistoricoDAO extends GenericDAO{
 
 	private static final String strUpdateClassificacao = "";
 	
-	private static final String strConsult = "SELECT sv.nome,h.data,sl.periodo,p.nome,h.status,h.perfil,n.descricao FROM casaweb.historico h " +
+	private static final String strConsult = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita, sum(valor)+precovisita as total FROM casaweb.historico h " +
 			"inner join casaweb.solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
 			"inner join casaweb.servico sv on sv.idServico = sl.idServico " +
 			"inner join casaweb.funcionario f on sl.idFuncionario = f.idFuncionario " +
+			"inner join casaweb.profissao pr on pr.idProfissao = f.idProfissao "+
 			"inner join casaweb.pessoa p on p.idPessoa = f.idFuncionario " +
+			"left join casaweb.adicionais a on a.idSolicitacao = sl.idSolicitacao "+
 			"inner join casaweb.nota n on n.idnota= sl.idnota";
 
-	public void concedeDesistencia(Long id, Long idRespondavelClassificar,
+	public void aplicaClassificacao(Long id, Long idRespondavelClassificar,
 			Connection con) throws Exception {
 		PreparedStatement ps = null;
 		
@@ -91,20 +94,37 @@ public class HistoricoDAO extends GenericDAO{
 	}
 
 	private HistoricoDTO populaHistoricoDTO(HistoricoDTO dto, ResultSet rs) throws Exception {
-		dto.setId(rs.getLong("idServico"));
+		dto.setId(rs.getLong("idHistorico"));
 		dto.setData(new Date(rs.getDate("data").getTime()));
-		dto.setStatus(rs.getInt("status"));
-		dto.setPerfil(rs.getString("perfil"));
-		dto.setAuteradoPor(rs.getString("auteradoPor"));
-		dto.setObservacao(rs.getString("observacao"));
+		dto.setTotal(rs.getDouble("total"));
+		//dto.setStatus(rs.getInt("status"));
+		//dto.setPerfil(rs.getString("perfil"));
+		//dto.setAuteradoPor(rs.getString("auteradoPor"));
+		//dto.setObservacao(rs.getString("observacao"));
+		
+		SolicitacaoDTO solicitacao = new SolicitacaoDTO();
+		
+		ServicoDTO servico = new ServicoDTO();
+		servico.setNome(rs.getString("nomeServico"));
+		
+		solicitacao.setServico(servico);
+		solicitacao.setPeriodo(rs.getInt("periodo"));
+		dto.setSolicitacao(solicitacao);
 		
 		NotaDTO nota = new NotaDTO();
 		nota.setId((rs.getLong("idNota")));
 		nota.setDescricao(rs.getString("descricao"));
 		
-		SolicitacaoDTO solicitacao = new SolicitacaoDTO();
 		solicitacao.setNota(nota);
-	
+		
+		ProfissaoDTO profissao = new ProfissaoDTO();
+		profissao.setPrecoVisita(rs.getDouble("precoVisita"));
+		
+		FuncionarioDTO funcionario = new FuncionarioDTO();
+		funcionario.setNome(rs.getString("nomeFuncionario"));
+		funcionario.setProfissao(profissao);
+		solicitacao.setFuncionario(funcionario);
+		
 		dto.setSolicitacao(solicitacao);
 		return dto;
 	}
