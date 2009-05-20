@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>   
-<h2 align="center">Help Casa</h2>
+<h2 align="center">SIGSD - Sistema de Informação Gerencial de Serviços Domesticos</h2>
 <h3 align="center">Entrar no Sistema</h3>
 <div class="container" style="width: 200px">
 	<s:form action="login!checkLogin">

@@ -29,12 +29,12 @@ public class LoginDAO extends GenericDAO{
 				"dataCadastro," +
 				"telefone," +
 				"celular," +
-				"Perfil.idPerfil as \"perfil.id\", " +
-				"Perfil.descricao as \"perfil.descricao\" " +
-				"FROM casaweb.Pessoa " +
-				"INNER JOIN casaweb.Perfil ON pessoa.idPerfil = Perfil.idPerfil " +
-				"WHERE Pessoa.usuario=? " +
-				"	AND Pessoa.senha=?";
+				"perfil.idPerfil as \"perfil.id\", " +
+				"perfil.descricao as \"perfil.descricao\" " +
+				"FROM casaweb.pessoa " +
+				"INNER JOIN casaweb.perfil ON pessoa.idPerfil = perfil.idPerfil " +
+				"WHERE pessoa.usuario=? " +
+				"	AND pessoa.senha=?";
 		
 		try{
 			ps = conn.prepareStatement(sql);

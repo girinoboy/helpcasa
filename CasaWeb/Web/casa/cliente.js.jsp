@@ -63,67 +63,67 @@ function validaCamposAoIncluir(){
 	var senhaRepita = document.getElementById('senhaRepita');
 	
 	if(nome.value == ''){
-		alert('O Nome é obrigatório.');
+		alert('O campo Nome é obrigatório.');
 		nome.focus();
 		return false;
 	}
 	if(cpf.value == ''){
-		alert('O CPF é obrigatório.');
+		alert('O campo CPF é obrigatório.');
 		cpf.focus();
 		return false;
 	}
 	if(cep.value == ''){
-		alert('O CEP é obrigatório.');
+		alert('O campo CEP é obrigatório.');
 		cep.focus();
 		return false;
 	}
 	if(endereco.value == ''){
-		alert('O Endereço é obrigatório.');
+		alert('O campo Endereço é obrigatório.');
 		endereco.focus();
 		return false;
 	}
 	if(telefone.value == ''){
-		alert('O Telefone é obrigatório.');
+		alert('O campo Telefone é obrigatório.');
 		telefone.focus();
 		return false;
 	}
 	if(rg.value == ''){
-		alert('O RG é obrigatório.');
+		alert('O campo RG é obrigatório.');
 		rg.focus();
 		return false;
 	}
 	if(cidade.value == ''){
-		alert('A Cidade é obrigatória.');
+		alert('O campo Cidade é obrigatório.');
 		cidade.focus();
 		return false;
 	}
 	if(uf.value == ''){
-		alert('A UF é obrigatória.');
+		alert('O campo UF é obrigatório.');
 		uf.focus();
 		return false;
 	}
 	if(celular.value == ''){
-		alert('O Celular é obrigatório.');
+		alert('O campo Celular é obrigatório.');
 		celular.focus();
 		return false;
 	}
 	if(nasc.inputNode.value == ''){
-		alert('O Nascimento é obrigatório.');
+		alert('O campo Nascimento é obrigatório.');
 		nasc.focus();
 		return false;
 	}/*
 	if(email.value == ''){
-		alert('O Email é obrigatório.');
+		alert('O campo Email é obrigatório.');
 		email.focus();
 		return false;
 	}*/
 	if(usuario.value == ''){
-		alert('O Usuario é obrigatório.');
+		alert('O campo Usuario é obrigatório.');
 		usuario.focus();
 		return false;
 	}
 	if(senha.value == ''){
-		alert('A Senha é obrigatório.');
+		alert('O campo Senha é obrigatório.');
 		senha.focus();
 		return false;
 	}

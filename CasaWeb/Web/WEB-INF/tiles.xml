@@ -25,7 +25,7 @@
     
      <!-- INICIO DE CLIENTE -->
     <definition name="ClienteCadastrar.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/clienteCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     	<put-attribute name="jQuery" 			value="true" />
@@ -33,7 +33,7 @@
     	<put-attribute name="dojo" 				value="true" />
     </definition>
     <definition name="ClienteConsultar.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/clienteConsultar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     	<put-attribute name="onload" 			value="loadMascara();" />
@@ -41,28 +41,28 @@
     	<put-attribute name="dojo" 				value="true" />
     </definition>
     <definition name="ClienteAlterar.def"		extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/clienteAlterar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     	
     </definition>
     <definition name="ClienteListar.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/clienteListar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     </definition>
     <definition name="ClienteBoleto.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/clienteEfetuarPagamento.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     </definition>
     <definition name="ClienteClassificar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/aplicarClassificacao.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     </definition> 
     <definition name="ClientePesquisar.def"		extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/clientePesquisar.jsp" />	
     	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
     	<put-attribute name="jQuery" 			value="true" />
@@ -72,12 +72,12 @@
     
      <!-- INICIO DE ADMINISTRADOR -->
     <definition name="AdministradorManterServico.def"	extends="template1.def">
-    	<put-attribute name="title" 					value="help home" />		
+    	<put-attribute name="title" 					value="SIGSD" />		
     	<put-attribute name="body" 						value="/casa/administradorManterServico.jsp" />	
     	<put-attribute name="js" 						value="/casa/administrador.js.jsp" />
     </definition>
     <definition name="AdministradorManterFuncionario.def"	extends="template1.def">
-    	<put-attribute name="title" 						value="help home" />		
+    	<put-attribute name="title" 						value="SIGSD" />		
     	<put-attribute name="body" 							value="/casa/administradorManterFuncionario.jsp" />	
     	<put-attribute name="js" 							value="/casa/administrador.js.jsp" />
     </definition>
@@ -85,7 +85,7 @@
      
      <!-- INICIO DE PROFISSIONAL -->
     <definition name="ProfissionalLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="title" 		value="SIGSD" />		
     	<put-attribute name="body" 			value="/casa/profissionalManterAgenda.jsp" />	
     	<put-attribute name="js" 			value="/casa/profissional.js.jsp" />
     	<put-attribute name="dojo" 				value="true" />
@@ -94,19 +94,19 @@
      
      <!-- INICIO DE PROFISSOES -->
     <definition name="ProfissaoLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="title" 		value="SIGSD" />		
     	<put-attribute name="body" 			value="/casa/profissao.jsp" />	
     	<put-attribute name="js" 			value="/casa/profissao.js.jsp" />
     	
     </definition>
     <definition name="ProfissaoCadastrar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/profissaoCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
     	
     </definition>
     <definition name="ProfissaoAlterar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/profissaoAlterar.jsp" />	
     	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
     	
@@ -115,7 +115,7 @@
      
      <!-- INICIO DE SERVICOS -->
     <definition name="ServicoListar.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="title" 		value="SIGSD" />		
     	<put-attribute name="body" 			value="/casa/servicos.jsp" />	
     	<put-attribute name="js" 			value="/casa/servico.js.jsp" />
     </definition>
@@ -125,7 +125,7 @@
     	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
     </definition>
     <definition name="ServicoAlterar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/servicoAlterar.jsp" />	
     	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
     	
@@ -134,7 +134,7 @@
      
       <!-- INICIO DE FUNCIONARIOS -->
     <definition name="FuncionariosListar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/funcionarioListar.jsp" />	
     	<put-attribute name="js" 				value="/casa/funcionario.js.jsp" />
     </definition>
@@ -147,7 +147,7 @@
     	<put-attribute name="dojo" 				 value="true" />
     </definition>
     <definition name="FuncionarioAlterar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="help home" />		
+    	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/funcionarioAlterar.jsp" />	
     	<put-attribute name="js" 				value="/casa/funcionario.js.jsp" />
     	<put-attribute name="jQuery" 			value="true" />
@@ -158,30 +158,37 @@
      <!-- FIM DE FUNCIONARIOS -->
      
       <!-- INICIO DE SOLICITACOES -->
-    <definition name="SolicitacoesLoad.def" extends="template1.def">
-    	<put-attribute name="title" 			 value="help casa" />		
+    <definition name="SolicitacoesLoad.def" 	 extends="template1.def">
+    	<put-attribute name="title" 			 value="SIGSD" />		
     	<put-attribute name="body" 				 value="/casa/solicitacaoCadastrar.jsp" />	
     	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />
     	 <put-attribute name="onload" 			 value="initialize();" /> 
     	<put-attribute name="dojo" 				 value="true" />
     </definition>
     <definition name="SolicitacoesFaturaBasica.def" extends="template1.def">
-    	<put-attribute name="title" 			 value="help casa" />		
+    	<put-attribute name="title" 			 value="SIGSD" />		
     	<put-attribute name="body" 				 value="/casa/faturaBasica.jsp" />	
     	<put-attribute name="js" 				 value="/casa/fatura.js.jsp" />    	
     	<put-attribute name="dojo" 				 value="true" />
     </definition>
     <definition name="google.def" 			  	 extends="template1.def">
-    	<put-attribute name="title" 			 value="help casa" />		
+    	<put-attribute name="title" 			 value="SIGSD" />		
     	<put-attribute name="body" 				 value="/casa/google.jsp" />	
     	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />    	
+    	<put-attribute name="dojo" 				 value="true" />
+    </definition>
+    <definition name="SolicitacoesListar.def" 	 extends="template1.def">
+    	<put-attribute name="title" 			 value="SIGSD" />		
+    	<put-attribute name="body" 				 value="/casa/solicitacaoListar.jsp" />	
+    	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />
+    	 <put-attribute name="onload" 			 value="initialize();" /> 
     	<put-attribute name="dojo" 				 value="true" />
     </definition>
       <!-- FIM DE SOLICITACOES -->
     
      <!-- INICIO DE HISTORICO -->
     <definition name="HistoricoLoad.def" extends="template1.def">
-    	<put-attribute name="title" 			 value="help casa" />		
+    	<put-attribute name="title" 			 value="SIGSD" />		
     	<put-attribute name="body" 				 value="/casa/historico.jsp" />	
     	<put-attribute name="js" 				 value="/casa/historico.js.jsp" />
     </definition>
@@ -189,7 +196,7 @@
      
      <!-- INICIO DE RELATORIOS -->
     <definition name="RelatoriosLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="help home" />		
+    	<put-attribute name="title" 		value="SIGSD" />		
     	<put-attribute name="body" 			value="/casa/relatorios.jsp" />	
     </definition>  
      <!-- FIM DE RELATORIOS -->

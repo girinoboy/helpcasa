@@ -11,12 +11,14 @@ import org.apache.poi.hssf.record.formula.functions.Request;
 
 import com.sun.mail.iap.Response;
 
+import br.com.Mensagem;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.ServicoBO;
 import br.com.bo.SolicitacaoBO;
 import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.FuncionarioDTO;
+import br.com.persistencia.dto.ProfissaoDTO;
 import br.com.persistencia.dto.ServicoDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
 import br.com.persistencia.dto.UfDTO;
@@ -34,16 +36,8 @@ public class SolicitacaoAction extends GenericAction{
 	private List<SolicitacaoDTO> listFaturaDetalhada;
 	private List<SolicitacaoDTO> listHorariosDisponiveis;
 	private Double[] distancia;
-	
+	private Long[] idsSolicitacao;
 
-
-	public Double[] getDistancia() {
-		return distancia;
-	}
-
-	public void setDistancia(Double[] distancia) {
-		this.distancia = distancia;
-	}
 
 	public SolicitacaoAction() {
 		solicitacaoBO = FactoryBO.getInstance().getSolicitacaoBO();
@@ -85,14 +79,15 @@ public class SolicitacaoAction extends GenericAction{
 			this.listHorariosDisponiveis = solicitacaoBO.horariosDisponiveisListar(solicitacaoDTO);
 			
 			int i = 1;
-			int j = 1;
+			int j = 0;
 			List<SolicitacaoDTO> novalista = new ArrayList<SolicitacaoDTO>();
 			for(SolicitacaoDTO solicitacao: listHorariosDisponiveis){
 				FuncionarioDTO funcionario = new FuncionarioDTO();
-				funcionario.setId(solicitacao.getId());
+				funcionario.setId(solicitacao.getFuncionario().getId());
 				funcionario.setCep(solicitacao.getFuncionario().getCep());
+				funcionario.setOcupado(solicitacao.getFuncionario().getOcupado());
 				solicitacao.setPeriodo(solicitacao.getPeriodo());
-				i++;
+				j=1;
 				
 				for(Double distancia : this.distancia){
 					if(j==i){
@@ -101,7 +96,7 @@ public class SolicitacaoAction extends GenericAction{
 					}
 					j++;
 				}
-								
+				i++;			
 				novalista.add(solicitacao);
 				//solicitacao.setFuncionario(funcionario);
 			}
@@ -109,7 +104,7 @@ public class SolicitacaoAction extends GenericAction{
 			solicitacaoDTO.setCliente((ClienteDTO) getSessaoPessoa());
 			//solicitacaoDTO.setFuncionario(funcionario);
 			solicitacaoBO.solicitacaoInclui(solicitacaoDTO,listHorariosDisponiveis);
-		
+			getMensagemGlobal().addMensagem("Solicitacao efetuada.", Mensagem.ALERTA);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -159,11 +154,19 @@ public class SolicitacaoAction extends GenericAction{
 		return null;
 	}
 	
-	public String alteraCancela(){
-		
-		return "solicitacoesListar.fwd";
+	public String cancela(){
+		try {
+			if (idsSolicitacao != null && idsSolicitacao.length > 0) {
+				solicitacaoBO.cancela(idsSolicitacao);
+			} else {
+				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return solicitacaoListar();
 	}
-	
 
 	public SolicitacaoDTO getSolicitacaoDTO() {
 		return solicitacaoDTO;
@@ -222,6 +225,20 @@ public class SolicitacaoAction extends GenericAction{
 		this.listHorariosDisponiveis = listHorariosDisponiveis;
 	}
 	
-	
+	public Long[] getIdsSolicitacao() {
+		return idsSolicitacao;
+	}
+
+	public void setIdsSolicitacao(Long[] idsSolicitacao) {
+		this.idsSolicitacao = idsSolicitacao;
+	}
+
+	public Double[] getDistancia() {
+		return distancia;
+	}
+
+	public void setDistancia(Double[] distancia) {
+		this.distancia = distancia;
+	}
 
 }

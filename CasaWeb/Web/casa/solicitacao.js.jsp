@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
 
-function selectAction(action){
+function selectAction(action,validaTudo){
 	
 	var url = '';
 	var params = '';
@@ -8,7 +8,7 @@ function selectAction(action){
 	
 	if(action == 'incluir'){
 		url = '<c:url value="/casa/solicitacao!solicitacaoInclui.action?"/>';
-		submeter = validaCamposAoIncluir();
+		submeter = validaCamposAoIncluir(validaTudo);
 		caculaDistanciaFixa();
 	}else if(action == 'voltar'){
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
@@ -22,6 +22,9 @@ function selectAction(action){
 		url = '<c:url value="/casa/solicitacao!calcula.action?"/>';
 		params='clienteDTO.cpf='+cpf.value;
 		submeter =  validaCamposAoIncluir();
+	}else if(action == 'listar'){
+		url = '<c:url value="/casa/solicitacao!solicitacaoListar.action?"/>';		
+		submeter = true;
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;
@@ -29,6 +32,7 @@ function selectAction(action){
 	//var a = setDirections('73340-702','70390-130','pt_BR');
 	//alert(a.substr(0,a.indexOf('&'))); 
 	//document.getElementById('distancia1').value = setDirections('73340-702','70390-130','pt_BR').substr(0,4);
+	
 	//Caso necessite de validação dos campos
 	if(submeter == true){
 		document.getElementById('form1').action = url + params;
@@ -37,7 +41,7 @@ function selectAction(action){
 	
 }
 
-function validaCamposAoIncluir(){
+function validaCamposAoIncluir(validaTudo){
 	var data = dojo.widget.byId('data');
 	var id = document.getElementById('id');
 	var periodo1 = document.getElementById('periodo1');
@@ -46,7 +50,7 @@ function validaCamposAoIncluir(){
 	
 	if(data.inputNode.value == ''){
 		alert('A Data é obrigatória.');
-		data.focus();
+		data.inputNode.focus();
 		return false;
 	}
 	if(id.value == 0){
@@ -54,7 +58,8 @@ function validaCamposAoIncluir(){
 		id.focus();
 		return false;
 	}
-	if(periodo1.check == false && periodo2.check == false && periodo3.check == false){
+	if(validaTudo)
+	if(periodo1.checked == false && periodo2.checked == false && periodo3.checked == false){
 		alert('O Periodo é obrigatório.');
 		id.focus();
 		return false;

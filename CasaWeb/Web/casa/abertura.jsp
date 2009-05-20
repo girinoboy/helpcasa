@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <s:form>
-<h2>Menu de Ações do Sistema Help Casa</h2><hr/>
+<h2>Menu de Ações do Sistema SIGSD</h2><hr/>
 <s:head theme="ajax"/>
 <div id="wrap">
 			
@@ -58,7 +58,7 @@
 					<a href="#" title="divname7">Gerar Boletos</a>
 					<a href="#" title="divname8">Solicitar Serviços</a>
 					<a href="#" title="divname9">Consultar Histórico de Serviços</a>
-					<a href="#" title="google">google</a>
+					
 					<div class="clear"></div>
 				</div>	
 				<!-- fim div nav -->
@@ -135,18 +135,18 @@
 			<div id="divname8" class="hiddencontent">				
 				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=servico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
-			<!--
+			
 			<div id="divname9" class="hiddencontent">				
 				<IFRAME name="palco" src='historico!historicoListar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
-			
+			<!--
 			<div id="divname" class="hiddencontent">				
 				<IFRAME name="palco" src='http://maps.google.com.br/' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
-				-->
+				
 			<div id="google" class="hiddencontent">				
 				<IFRAME name="palco" src='solicitacao!google.action?' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
-							
+				-->			
 </div><!-- fim div wrap -->
 </s:form>

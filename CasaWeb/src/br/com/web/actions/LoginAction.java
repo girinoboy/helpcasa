@@ -67,8 +67,8 @@ public class LoginAction extends GenericAction{
 				return abertura();
 
 		}catch(Exception e){
-			getMensagemGlobal().addMensagem("O Login ou a Senha não existe no sistema. Tente novamente.",Mensagem.ERRO);
 			e.printStackTrace();
+			getMensagemGlobal().addMensagem("O Login ou a Senha não existe no sistema. Tente novamente.",Mensagem.ERRO);			
 			return load();
 		}		
 	}
