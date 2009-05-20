@@ -75,7 +75,7 @@ public class FuncionarioAction extends GenericAction {
 			if (idsFuncionario != null && idsFuncionario.length > 0) {
 				funcionarioBO.exclui(idsFuncionario);
 			} else {
-				System.out.println("Nenhum item selecionado.");
+				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
 			}
 		} catch (Exception e) {
 			

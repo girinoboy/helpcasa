@@ -19,7 +19,7 @@ public class LoginAction extends GenericAction{
 	private ClienteBO clienteBO;
 	ClienteDTO clienteDTO;
 	private PessoaDTO pessoaDTO;
-	private PessoaDTO pessoaSessao = null;
+	private PessoaDTO pessoaSessao;
 	
 	public LoginAction(){
 		loginBO = FactoryBO.getInstance().getLoginBO();

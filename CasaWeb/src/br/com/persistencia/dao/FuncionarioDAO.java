@@ -54,6 +54,7 @@ public class FuncionarioDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsult);
+		qBuffer.append(" WHERE ps.ativo=1");
 		qBuffer.append(" ORDER BY pr.idPerfil,ps.nome");
 		
 		try{
@@ -217,7 +218,7 @@ public class FuncionarioDAO extends GenericDAO{
 	public void exclui(Long[] idsFuncionario, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="DELETE FROM casaweb.Funcionario WHERE Funcionario.idFuncionario=?";
+		String sql="UPDATE casaweb.Pessoa SET ativo = 0 WHERE Pessoa.idPessoa=?";
 		try{
 			for (Long id : idsFuncionario) {
 				ps = conn.prepareStatement(sql);

@@ -62,7 +62,7 @@ public class GenericAction extends ActionSupport{
 	}
 	
 	/**
-	 * Método responsável por retornar a Sessão da Pessoal (PessoaDTO)
+	 * Método responsável por retornar a Sessão da Pessoa (PessoaDTO)
 	 * 
 	 * @return PessoaDTO
 	 */

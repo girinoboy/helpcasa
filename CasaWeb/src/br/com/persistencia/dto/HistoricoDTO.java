@@ -8,7 +8,9 @@ public class HistoricoDTO extends GenericDTO {
 	private String perfil;
 	private String auteradoPor;
 	private String observacao;
+	private Double total;
 	private SolicitacaoDTO solicitacao;
+	
 
 	public HistoricoDTO() {
 	}
@@ -59,6 +61,14 @@ public class HistoricoDTO extends GenericDTO {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 
 	public SolicitacaoDTO getSolicitacao() {

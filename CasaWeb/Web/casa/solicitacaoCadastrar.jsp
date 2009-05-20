@@ -25,19 +25,20 @@
 				</td>
 				
 			</tr>
-			<tr><td></td><td><div id="distance">distancia:</div> </td></tr>
+			<tr><td></td><td><div id="distance">distancia:</div> </td></tr> 
 			<tr>
 				<td class="label_entrada_dados">
 					Período:*
 				</td>
 				<td>
+				<s:set name="periodos" value="3" scope="session"/>
 				<s:if test="${not empty listHorariosDisponiveis}">
-					<s:iterator value="listHorariosDisponiveis" status="stat">
+					<s:iterator value="listHorariosDisponiveis" status="stat"><!--
 						
 						Periodo:<c:out value="${periodo}" default="null"></c:out><br>
 						idFuncionario:<c:out value="${funcionario.id}" default="null"></c:out><br>
 						CEP:<c:out value="${funcionario.cep}" default="null"></c:out><br>
-						<s:hidden name="distancia" id="distancia${stat.index+1}" value="3" onmouseup="javascript:setDirections('${pessoaSessao.cep}','${funcionario.cep}','pt_BR').substr(0,4)"/> 	
+						--><s:hidden name="distancia" id="distancia${stat.index+1}" value="3" onmouseup="javascript:setDirections('${pessoaSessao.cep}','${funcionario.cep}','pt_BR').substr(0,4)"/> 	
 						<s:hidden name="idFuncionario" id="idFuncionario${stat.index+1}" value="${funcionario.id}" />
 						<s:hidden name="cep" id="cep${stat.index+1}" value="${funcionario.cep}" />
 						<br>
@@ -45,12 +46,38 @@
 							document.getElementById('distancia${stat.index+1}').value = setDirections('${pessoaSessao.cep}','${funcionario.cep}','pt_BR').substr(0,4);
 						</script>
 						<s:set name="max" value="${stat.index+1}" scope="session"/>
-					</s:iterator>
+						<s:if test="${periodo eq 1}">
+							<s:set name="periodos" value="1" scope="session"/>
+						</s:if>
+						<s:elseif test="${periodo eq 2}">
+							<s:set name="periodos" value="2" scope="session"/>
+						</s:elseif>
+						<s:elseif test="${periodo eq 0}">
+							<s:set name="periodos" value="0" scope="session"/>
+						</s:elseif>
+						<s:else>
+							<s:set name="periodos" value="3" scope="session"/>
+						</s:else>
+					</s:iterator>									
 				</s:if>
 					<s:hidden name="max" id="max" value="${sessionScope.max}" />					
 					<br>
-					CEP - cliente:<c:out value="${pessoaSessao.cep}" default="null"></c:out><br>
-					<s:radio list="#{'1':'manha','2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" />
+					<!-- CEP - cliente:<c:out value="${pessoaSessao.cep}" default="null"></c:out><br> -->
+					<s:if test="${periodos eq 0}">
+						<s:radio list="#{'1':'manha','2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" />
+					</s:if>
+					<s:elseif test="${periodos eq 1}">
+						<s:radio list="#{'1':'manha'}" name="solicitacaoDTO.periodo" id="periodo" disabled="true"/>
+						<s:radio list="#{'2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" />
+					</s:elseif>
+					<s:elseif test="${periodos eq 2}">
+						<s:radio list="#{'1':'manha'}" name="solicitacaoDTO.periodo" id="periodo" />
+						<s:radio list="#{'2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" disabled="true"/>
+					</s:elseif>
+					<s:else>
+						<s:radio list="#{'1':'manha','2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" disabled="true"/>
+					</s:else>
+					
 				</td>
 				
 			</tr>
@@ -64,7 +91,7 @@
 				onclick="selectAction('disponiveis');" class="secundario"/>
 			<!--<input type="button" value="distancia" 
 				onclick="caculaDistanciaFixa(); "/>-->
-			<input type="button" value="Alterar/Cancelar Solicitações"
+			<input type="button" value="Cancelar Solicitações"
 				onClick="selectAction('listar');" class="geral" />	
 			<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />

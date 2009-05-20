@@ -11,6 +11,7 @@ public class HistoricoAction extends GenericAction{
 	private HistoricoDTO historicoDTO;
 	private HistoricoBO historicoBO;
 	private List<HistoricoDTO> listHistorico;
+	private List<HistoricoDTO> listaHistoricoDetalhada;
 
 	public HistoricoAction() {
 		historicoBO = FactoryBO.getInstance().getHistoricoBO();
@@ -30,17 +31,24 @@ public class HistoricoAction extends GenericAction{
 		return load();
 	}
 	
-	public String classifica(){
+	public String aplicaClassificacao(){
 		try{
 			Long idRespondavelClassificar = getSessaoPessoa().getId();
 				Long id = null;
-				this.historicoBO.concedeDesistencia(id,idRespondavelClassificar);
+				this.historicoBO.aplicaClassificacao(id,idRespondavelClassificar);
 		
 		}catch (Exception e) {
 			e.printStackTrace();			
 		}
 		
 		return load();
+	}
+	
+	public String consultarHistorico(){
+		
+		Long idSolicitacao;
+		listaHistoricoDetalhada = historicoBO.consultarHistorico(idSolicitacao);
+		return null;
 	}
 
 	public HistoricoDTO getHistoricoDTO() {

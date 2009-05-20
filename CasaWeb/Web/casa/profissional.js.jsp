@@ -7,7 +7,7 @@ function selectAction(action){
 	var submeter;
 	
 	if(action == 'listar'){
-		url = '<c:url value="/casa/profissional!consultar.action?"/>';
+		url = '<c:url value="/casa/profissional!consultarAgenda.action?"/>';
 		params='profissionalDTO.listar=true';
 		submeter = true;
 	}

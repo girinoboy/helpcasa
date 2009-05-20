@@ -5,6 +5,7 @@ import br.com.persistencia.dao.FuncionarioDAO;
 import br.com.persistencia.dao.HistoricoDAO;
 import br.com.persistencia.dao.LoginDAO;
 import br.com.persistencia.dao.ProfissaoDAO;
+import br.com.persistencia.dao.ProfissionalDAO;
 import br.com.persistencia.dao.ServicoDAO;
 import br.com.persistencia.dao.SolicitacaoDAO;
 import br.com.persistencia.dto.PessoaDTO;
@@ -22,6 +23,7 @@ public class FactoryDAO {
 	private FuncionarioDAO funcionarioDAO;
 	private SolicitacaoDAO solicitacaoDAO;
 	private HistoricoDAO historicoDAO;
+	private ProfissionalDAO profissionalDAO;
 	
 	private FactoryDAO() {}
 
@@ -109,5 +111,12 @@ public class FactoryDAO {
 			historicoDAO = new HistoricoDAO();
 		}
 		return historicoDAO;
+	}
+
+	public ProfissionalDAO getProfissionalDAO() {
+		if(profissionalDAO == null){
+			profissionalDAO = new ProfissionalDAO();
+		}
+		return profissionalDAO;
 	}
 }
