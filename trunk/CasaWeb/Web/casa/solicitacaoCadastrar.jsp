@@ -59,11 +59,13 @@
 
 		<div class="footer">
 			<input type="button" value="Solicitar"
-				onClick="selectAction('incluir');" class="principal" />
+				onClick="selectAction('incluir',true);" class="principal" />
 			<input type="button" value="Verificar Horários Disponiveis" 
 				onclick="selectAction('disponiveis');" class="secundario"/>
-			<input type="button" value="distancia" 
-				onclick="caculaDistanciaFixa(); "/>
+			<!--<input type="button" value="distancia" 
+				onclick="caculaDistanciaFixa(); "/>-->
+			<input type="button" value="Alterar/Cancelar Solicitações"
+				onClick="selectAction('listar');" class="geral" />	
 			<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />
 		</div>

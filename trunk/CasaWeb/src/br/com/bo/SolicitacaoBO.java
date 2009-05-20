@@ -25,8 +25,10 @@ public class SolicitacaoBO extends GenericBO{
 		Connection conn = Conexao.getConnection();
 
 		try {
+			
 			FuncionarioDTO funcionario=aplicaRegraDeNegocio(solicitacaoDTO,listHorariosDisponiveis);
 			solicitacaoDTO.setFuncionario(funcionario);
+			Boolean ocupado = solicitacaoDAO.existeSolicitacao(solicitacaoDTO, conn);
 			solicitacaoDAO.inclui(solicitacaoDTO, conn);
 		} catch (Exception e) {
 			throw e;
@@ -37,7 +39,11 @@ public class SolicitacaoBO extends GenericBO{
 	}
 
 	private FuncionarioDTO aplicaRegraDeNegocio(SolicitacaoDTO solicitacaoDTO, List<SolicitacaoDTO> listHorariosDisponiveis) {
-		FuncionarioDTO funcionarioDTO =null;
+		FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
+		Double menorDistancia;
+		Double proximaDistancia;
+		Double atualDistancia = new Double(999999999);
+		
 		if(solicitacaoDTO.getPeriodo()==2){//faz a pesquisa se escolher periodo da manha
 			solicitacaoDTO.getCliente().getCep();
 			
@@ -46,6 +52,19 @@ public class SolicitacaoBO extends GenericBO{
 			funcionarioDTO.setId(id);
 			
 		}
+		
+		Long idFuncionario = null;
+		for(SolicitacaoDTO solicitacao : listHorariosDisponiveis){
+			proximaDistancia = solicitacao.getFuncionario().getDistancia();
+			if((solicitacao.getFuncionario().getOcupado() == false && solicitacaoDTO.getPeriodo() != solicitacao.getPeriodo()) && (atualDistancia>proximaDistancia)){
+				atualDistancia = proximaDistancia;
+				idFuncionario = solicitacao.getFuncionario().getId();
+				
+			}			
+		}
+		menorDistancia = atualDistancia;
+		funcionarioDTO.setId(idFuncionario);
+		funcionarioDTO.setDistancia(menorDistancia);
 		
 		return funcionarioDTO;
 		
@@ -92,6 +111,32 @@ public class SolicitacaoBO extends GenericBO{
 		}
 		
 		return list;
+	}
+
+	public List<SolicitacaoDTO> solicitacaoListar(Long id) throws Exception {
+		Connection conn = Conexao.getConnection();
+		List<SolicitacaoDTO> list = null;
+		try{
+			list = solicitacaoDAO.solicitacaoListar(id,conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+		return list;
+	}
+
+	public void cancela(Long[] idsSolicitacao) throws Exception {
+		Connection conn = Conexao.getConnection();
+		try{
+			solicitacaoDAO.cancela(idsSolicitacao,conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
 	}
 
 }
