@@ -8,9 +8,32 @@ function selectAction(action,valor){
 	var submeter;
 
 	if(action =='aplicaClassificacao'){
+		var indexSelect = document.getElementById("notas").selectedIndex;
+		var valueSelected = document.form1.notas.options[indexSelect].text;
+		var idNota;
 		url = '<c:url value="/casa/historico!aplicaClassificacao.action?"/>';
-		params = 'idNota=' + valor;
-		submeter = true;
+		params = 'historicoDTO.solicitcao.id=' + valor.value;
+		if(valueSelected =='nenhuma'){
+		 idNota=1;
+		}
+		if(valueSelected =='Excelente'){
+		 idNota=2;
+		}
+		if(valueSelected =='Ótimo'){
+		 idNota=3;
+		}
+		if(valueSelected =='Bom'){
+		 idNota=4;
+		}
+		if(valueSelected =='Ruim'){
+		 idNota=5;
+		}
+		if(valueSelected =='Péssimo'){
+		 idNota=6;
+		}
+		params +='&historicoDTO.solicitcao.notas.id='+idNota;
+		alert(valor.value+'-'+valor.name+'-'+valueSelected);     
+		submeter = false;
 	}else{
 		alert('Solicitação não poderá ser encaminhada, pois a ação não foi encontrada.');
 		submeter = false;

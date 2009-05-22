@@ -22,11 +22,11 @@ public class HistoricoBO extends GenericBO{
 		notasDAO = FactoryDAO.getInstance().getNotasDAO();
 	}
 
-	public void aplicaClassificacao(Long id, Long idRespondavelClassificar) throws Exception {
+	public void aplicaClassificacao(Long id, Long idNota) throws Exception {
 		Connection con = Conexao.getConnection();
 		
 		try {
-			this.historicoDAO.aplicaClassificacao(id,idRespondavelClassificar, con);
+			this.historicoDAO.aplicaClassificacao(id,idNota, con);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -54,6 +54,20 @@ public class HistoricoBO extends GenericBO{
 		List<NotaDTO> list = null;
 		try{
 			list = notasDAO.consultarNotas(conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+		return list;
+	}
+
+	public List<HistoricoDTO> consultarHistorico(Long idSolicitacao) throws Exception {
+		Connection conn = Conexao.getConnection();
+		List<HistoricoDTO> list = null;
+		try{
+			list = historicoDAO.consultarHistorico(idSolicitacao,conn);
 		}catch(Exception e){
 			throw e;
 		}finally{

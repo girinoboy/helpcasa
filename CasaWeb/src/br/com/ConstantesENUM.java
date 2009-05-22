@@ -60,6 +60,15 @@ public enum ConstantesENUM {
 		public String descricao(){
 			return "Pago";
 		}
+	},
+	STATUS_CLASSIFICADO(){
+		public Long id(){
+			return new Long(5);
+					
+		}
+		public String descricao(){
+			return "Classificado";
+		}
 	}
 	;
 	

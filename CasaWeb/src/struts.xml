@@ -71,8 +71,9 @@
 		</action>
 		
 		<action name="historico!*" method="{1}" class="br.com.web.actions.HistoricoAction">
-			<result type="tiles" name="historicodependencias.fwd">historicodependencias.def</result>
+			<result type="tiles" name="historicodependencias.fwd">HistoricoDependencias.def</result>
 			<result type="tiles" name="load.fwd">HistoricoLoad.def</result>
+			<result type="tiles" name="historicoConsultar.fwd">HistoricoConsultar.def</result>
 		</action>
 		
 		<action name="relatorio!*" method="{1}" class="br.com.web.actions.RelatoriosAction">

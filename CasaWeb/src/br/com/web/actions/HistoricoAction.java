@@ -40,25 +40,29 @@ public class HistoricoAction extends GenericAction{
 		}
 		return load();
 	}
-	
+
 	public String aplicaClassificacao(){
-		try{
-			Long idRespondavelClassificar = getSessaoPessoa().getId();
-				Long id = null;
-				this.historicoBO.aplicaClassificacao(id,idRespondavelClassificar);
-		
+		try{			
+			Long idSolicitacao = historicoDTO.getSolicitacao().getId();
+			Long idNota = historicoDTO.getSolicitacao().getNota().getId();
+			this.historicoBO.aplicaClassificacao(idSolicitacao,idNota);
+
 		}catch (Exception e) {
 			e.printStackTrace();			
 		}
-		
+
 		return load();
 	}
 	
 	public String consultarHistorico(){
 		
-		Long idSolicitacao;
-		listaHistoricoDetalhada = historicoBO.consultarHistorico(idSolicitacao);
-		return null;
+		Long idSolicitacao = historicoDTO.getSolicitacao().getId();
+		try {
+			listaHistoricoDetalhada = historicoBO.consultarHistorico(idSolicitacao);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		return "historicoConsultar.fwd";
 	}
 
 	public HistoricoDTO getHistoricoDTO() {
