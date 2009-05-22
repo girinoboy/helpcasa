@@ -36,6 +36,12 @@
 		
 		<action name="profissional!*" method="{1}" class="br.com.web.actions.ProfissionalAction">
 			<result type="tiles" name="load.fwd">ProfissionalLoad.def</result>
+			<result type="tiles" name="profissionalAdicionais.fwd">ProfissionalAdicionais.def</result>
+		</action>
+		
+		<action name="adicionais!*" method="{1}" class="br.com.web.actions.AdicionaisAction">
+			<result type="tiles" name="load.fwd">AgendaLoad.def</result>
+			<result type="tiles" name="profissionalAdicionais.fwd">ProfissionalAdicionais.def</result>
 		</action>
 		
 		<action name="profissao!*" method="{1}" class="br.com.web.actions.ProfissaoAction">

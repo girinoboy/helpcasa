@@ -27,6 +27,9 @@
 					<div class="clear"></div>
 				</div><!-- fim div nav -->
 				
+				<div id="divname0" class="hiddencontent" >				
+					<IFRAME name="palco" src='cliente!consultaParaCliente.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</div>
 			</s:if>
 			<s:elseif test="${pessoaSessao.perfil.descricao eq 'Profissional'}">
 				<div id="nav">
@@ -35,6 +38,9 @@
 					<div class="clear"></div>
 				</div><!-- fim div nav -->
 				
+				<div id="divname1" class="hiddencontent">			
+					<IFRAME name="palco" src='profissional!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>	
+				</div>
 			</s:elseif>
 			<s:elseif test="${pessoaSessao.perfil.descricao eq 'Atendente'}">
 				<div id="nav">
@@ -60,8 +66,23 @@
 					<a href="#" title="divname9">Consultar Histórico de Serviços</a>
 					
 					<div class="clear"></div>
-				</div>	
-				<!-- fim div nav -->
+				</div>	<!-- fim div nav -->
+				
+				<div id="divname3" class="hiddencontent">		
+					<IFRAME name="palco" src='funcionario!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</div>		
+			 
+				<div id="divname4" class="hiddencontent">		
+					<IFRAME name="palco" src='profissao!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</div>
+			
+				<div id="divname5" class="hiddencontent">				
+					<IFRAME name="palco" src='servico!servicosListar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</div>
+			
+				<div id="divname6" class="hiddencontent">				
+					<IFRAME name="palco" src='relatorio!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</div>
 			</s:elseif>
 			<s:else>
 				<div id="nav"><a href="#" title="erro">Não logado</a><div class="clear"></div>
@@ -98,44 +119,23 @@
 			<s:div id="google" href='solicitacao!google.action?' cssClass="hiddencontent" theme="ajax"></s:div>
 		-->		
 			
-			
-			
-			<div id="divname0" class="hiddencontent" >				
-				<IFRAME name="palco" src='cliente!consultaParaCliente.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</div>
-			
-			<div id="divname1" class="hiddencontent">			
-				<IFRAME name="palco" src='profissional!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>	
-			</div>
-			
 			<div id="divname2" class="hiddencontent">			
 				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=cliente' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>				
-			</div>
-			
-			<div id="divname3" class="hiddencontent">		
-				<IFRAME name="palco" src='funcionario!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</div>		
-			 
-			<div id="divname4" class="hiddencontent">		
-				<IFRAME name="palco" src='profissao!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</div>
-			
-			<div id="divname5" class="hiddencontent">				
-				<IFRAME name="palco" src='servico!servicosListar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</div>
-			
-			<div id="divname6" class="hiddencontent">				
-				<IFRAME name="palco" src='relatorio!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</div>
+			</div>						
 			
 			<div id="divname7" class="hiddencontent">				
 				<IFRAME name="palco" src='solicitacao!consultarFaturaBasica.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>
-			
-			<div id="divname8" class="hiddencontent">				
-				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=servico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</div>
-			
+			<s:if test="${pessoaSessao.perfil.descricao eq 'Administrador'}">
+				<div id="divname8" class="hiddencontent">				
+					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=servico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</div>
+			</s:if>
+			<s:else>
+				<div id="divname8" class="hiddencontent">				
+					<IFRAME name="palco" src='solicitacao!load.action?solicitacaoDTO.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</div>
+			</s:else>
 			<div id="divname9" class="hiddencontent">				
 				<IFRAME name="palco" src='historico!historicoListar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</div>

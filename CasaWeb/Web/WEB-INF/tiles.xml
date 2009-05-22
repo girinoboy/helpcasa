@@ -13,7 +13,7 @@
     </definition>
     
     <definition name="LoginLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 	value="Login Help Casa" />			
+    	<put-attribute name="title" 	value="Login SIGSD" />			
     	<put-attribute name="body" 		value="/casa/login.jsp" />	    	
     </definition>
     <definition name="Abertura.def"				extends="template1.def">
@@ -88,7 +88,19 @@
     	<put-attribute name="title" 		value="SIGSD" />		
     	<put-attribute name="body" 			value="/casa/profissionalManterAgenda.jsp" />	
     	<put-attribute name="js" 			value="/casa/profissional.js.jsp" />
-    	<put-attribute name="dojo" 				value="true" />
+    	<put-attribute name="dojo" 			value="true" />
+    </definition>
+    <definition name="ProfissionalAdicionais.def"	extends="template1.def">
+    	<put-attribute name="title" 				value="SIGSD" />		
+    	<put-attribute name="body" 					value="/casa/agendaDetalhada.jsp" />	
+    	<put-attribute name="js" 					value="/casa/agenda.js.jsp" />
+    	<put-attribute name="dojo" 					value="true" />
+    </definition>
+    <definition name="AgendaLoad.def"				extends="template1.def">
+    	<put-attribute name="title" 				value="SIGSD" />		
+    	<put-attribute name="body" 					value="/casa/adicionaisCadastrar.jsp" />	
+    	<put-attribute name="js" 					value="/casa/adicionais.js.jsp" />
+    	<put-attribute name="dojo" 					value="true" />
     </definition>
      <!-- FIM DE PROFISSIONAL -->
      

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class AdicionaisDTO extends GenericDTO{
 
+	private String observacao;
 	private String descricao;
 	private Double valor;
 	private Date data;
@@ -16,6 +17,12 @@ public class AdicionaisDTO extends GenericDTO{
 	
 	public Long getId(){
 		return id;
+	}
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 	public String getDescricao() {
 		return descricao;

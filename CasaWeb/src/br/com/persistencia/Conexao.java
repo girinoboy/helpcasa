@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 public class Conexao {
 
-public static final Connection getConnection(int idUsuario) throws SQLException {
+public static final Connection getConnection(Long idUsuario) throws SQLException {
 		
 		Connection conexao = null;
 		

@@ -111,12 +111,17 @@ function validaCamposAoIncluir(){
 		alert('O campo Nascimento é obrigatório.');
 		nasc.focus();
 		return false;
-	}/*
+	}
 	if(email.value == ''){
 		alert('O campo Email é obrigatório.');
 		email.focus();
 		return false;
-	}*/
+	}else if (checkMail(email.value)){
+		alert('Email invalido.');
+		email.focus();
+		return false;
+	}
+	
 	if(usuario.value == ''){
 		alert('O campo Usuario é obrigatório.');
 		usuario.focus();
@@ -135,7 +140,18 @@ function validaCamposAoIncluir(){
 	return true;
 }
 
-
+function checkMail(mail){
+    var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+    if(typeof(mail) == "string"){
+        if(er.test(mail)){ return true; }
+    }else if(typeof(mail) == "object"){
+        if(er.test(mail.value)){
+                    return true;
+                }
+    }else{
+        return false;
+        }
+}
 function disableAll(){
 	var arrayInput = document.getElementsByTagName('input');
 	var arrayTextarea = document.getElementsByTagName('textarea');	

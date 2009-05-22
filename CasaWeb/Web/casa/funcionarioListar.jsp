@@ -27,7 +27,7 @@
 		</tr>
 		<s:if test="${not empty listFuncionarios}">
 			<s:iterator value="listFuncionarios" status="stat">
-				<s:set name="corLinha" />
+				<s:set name="corLinha" value=""/>
 				<s:if test="${stat.index%2 eq 0}">
 					<s:set name="corLinha" value="'#e6f7ff'" />
 				</s:if>

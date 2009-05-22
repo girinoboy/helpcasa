@@ -78,30 +78,30 @@ public class LoginAction extends GenericAction{
 	}
 	
 	public String incluiCliente() throws Exception{
-		
-			clienteDTO.setAtivo(true);
 
-			PerfilDTO perfil = new PerfilDTO();
-			perfil.setId(ConstantesENUM.CLIENTE_ID.id());
-			clienteDTO.setPerfil(perfil);
+		clienteDTO.setAtivo(true);
+
+		PerfilDTO perfil = new PerfilDTO();
+		perfil.setId(ConstantesENUM.CLIENTE_ID.id());
+		clienteDTO.setPerfil(perfil);
 		/*	UfDTO uf = new UfDTO();
 			uf.setId(new Long(7));
 			clienteDTO.setUf(uf);*/
-try{
+		try{
 			pessoaDTO = clienteBO.inclui(clienteDTO);
-}catch (RegraNegocioException e){
-	e.printStackTrace();
-	//manda para o request a mensagem de exceção vinda do bo
-	getMensagemGlobal().setMensagens(e.getMensagens());	
-	//return this.direcionaMenu();
-	//ClienteAction.this.clienteCadastrar();
-}catch(Exception e){
-	
-}
-		
+		}catch (RegraNegocioException e){
+			e.printStackTrace();
+			//manda para o request a mensagem de exceção vinda do bo
+			getMensagemGlobal().setMensagens(e.getMensagens());	
+			//return this.direcionaMenu();
+			//ClienteAction.this.clienteCadastrar();
+		}catch(Exception e){
+
+		}
+
 		return checkLogin();
 	}
-	
+
 	public String logout(){
 		getRequest().getSession().removeAttribute("usuarioLogadoSistema");
 		getRequest().getSession().removeAttribute("pessoaDTO");

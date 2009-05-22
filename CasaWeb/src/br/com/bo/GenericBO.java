@@ -33,7 +33,7 @@ public abstract class GenericBO {
 	 * @throws SQLException
 	 */
 	public Connection getConnection() throws SQLException {
-		return Conexao.getConnection(getSessaoPessoa().getPessoaId());
+		return Conexao.getConnection(getSessaoPessoa().getId());
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public abstract class GenericBO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Connection getConnection(int pessoaId) throws SQLException {
+	public Connection getConnection(Long pessoaId) throws SQLException {
 		return Conexao.getConnection(pessoaId);
 	}
 
