@@ -75,7 +75,11 @@
 					</td>
 					<s:if test="${solicitacao.nota.id eq '1'}">
 						<td>
-							<s:select name="solicitacao.nota.id"  id="idNota" list="#{'false':'Bom','${nota.id}':'Otimo'}" onchange="selectAction('aplicaClassificacao',this.value);"/>
+						<s:select list="listNota" name="notas"
+						id="notas" headerKey="0" headerValue="Selecione..."
+						listValue="descricao" listKey="id"
+						cssStyle="vertical-align: top;" onchange="selectAction('aplicaClassificacao',this.value);"/>
+							<!--<s:select name="solicitacao.nota.id"  id="idNota" list="#{'false':'Bom','${nota.id}':'Otimo'}" onchange="selectAction('aplicaClassificacao',this.value);"/>-->
 						</td>
 					</s:if>
 					<s:else>						

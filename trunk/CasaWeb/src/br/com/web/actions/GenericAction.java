@@ -67,7 +67,7 @@ public class GenericAction extends ActionSupport{
 	 * @return PessoaDTO
 	 */
 	public PessoaDTO getSessaoPessoa() {
-		return (PessoaDTO) getSession().getAttribute("pessoaSessao");
+		return (PessoaDTO) getSession().getAttribute("pessoaDTO");
 	}
 	
 	/**

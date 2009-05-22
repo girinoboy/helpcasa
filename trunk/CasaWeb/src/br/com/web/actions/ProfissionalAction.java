@@ -2,9 +2,12 @@ package br.com.web.actions;
 
 import java.util.List;
 
+import br.com.Mensagem;
+import br.com.bo.AdicionaisBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.ProfissionalBO;
 import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.PessoaDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
 
@@ -17,11 +20,13 @@ public class ProfissionalAction extends GenericAction {
 	private ProfissionalDTO profissionalDTO;
 	private ProfissionalBO profissionalBO;
 	private List<SolicitacaoDTO> listAgenda;
-	private List<AdicionaisDTO> listAgendaDetalhada;
-	
+	private List<AdicionaisDTO> listAdicionais;
+	private Long[] idsAdicional;
+	private AdicionaisBO adicionaisBO;
 	
 	public ProfissionalAction() {
 		profissionalBO = FactoryBO.getInstance().getProfissionalBO();
+		adicionaisBO = FactoryBO.getInstance().getAdicionaisBO();
 	}
 
 	public String load(){
@@ -31,10 +36,11 @@ public class ProfissionalAction extends GenericAction {
 	
 	public String consultarAgenda(){
 		try{
+			profissionalDTO.setListar(true);			
 			Long idFuncionario = getSessaoPessoa().getId();
 			listAgenda = profissionalBO.consultarAgenda(profissionalDTO.getData(),idFuncionario);
 			
-			profissionalDTO.setListar(true);
+			
 		}catch(Exception e){
 			System.out.println(e);
 			e.printStackTrace();			
@@ -44,16 +50,39 @@ public class ProfissionalAction extends GenericAction {
 	
 	public String consultarAgendaDetalhada(){
 		try{
-			listAgendaDetalhada = profissionalBO.consultarAgendaDetalhada(idSolicitacao);
+			Long idSolicitacao=profissionalDTO.getSolicitacao().getId();
+			listAdicionais = profissionalBO.consultarAgendaDetalhada(idSolicitacao);
+			SolicitacaoDTO solicitacao=profissionalBO.consultarSolicitacaoAgendaDetalhada(idSolicitacao);;
+			profissionalDTO.setSolicitacao(solicitacao); 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "profissionalAgendaDetalhada.fwd";
+		return "profissionalAdicionais.fwd";
 	}
 	
 	public String finalizarServico(){
-		profissionalBO.finalizarServico(idSolicitacao);
+		Long idSolicitacao=profissionalDTO.getSolicitacao().getId();
+		try {
+			profissionalBO.finalizarServico(idSolicitacao);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		return load();
+	}
+	
+	public String exclui(){
+		try {
+			if (idsAdicional != null && idsAdicional.length > 0) {
+				adicionaisBO.exclui(idsAdicional);
+			} else {
+				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return consultarAgendaDetalhada();
 	}
 
 	public ProfissionalDTO getProfissionalDTO() {
@@ -75,12 +104,12 @@ public class ProfissionalAction extends GenericAction {
 		this.listAgenda = listAgenda;
 	}
 
-	public List<AdicionaisDTO> getListAgendaDetalhada() {
-		return listAgendaDetalhada;
+	public List<AdicionaisDTO> getListAdicionais() {
+		return listAdicionais;
 	}
 
-	public void setListAgendaDetalhada(List<AdicionaisDTO> listAgendaDetalhada) {
-		this.listAgendaDetalhada = listAgendaDetalhada;
+	public void setListAdicionais(List<AdicionaisDTO> listAdicionais) {
+		this.listAdicionais = listAdicionais;
 	}
 
 }

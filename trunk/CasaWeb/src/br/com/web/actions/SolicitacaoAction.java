@@ -57,7 +57,7 @@ public class SolicitacaoAction extends GenericAction{
 			}
 			//getRequest().getSession().removeAttribute("pessoaSessao");
 			getRequest().getSession(true).setAttribute("pessoaSessao", solicitacaoDTO.getCliente());
-			distancia = (Double[]) getRequest().getSession().getAttribute("distancia");
+			//distancia = (Double[]) getRequest().getSession().getAttribute("distancia");
 		} catch (Exception e) {
 
 			e.printStackTrace();

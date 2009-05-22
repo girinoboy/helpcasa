@@ -21,6 +21,7 @@ public class LoginDAO extends GenericDAO{
 				"usuario," +
 				"senha," +
 				"nome," +
+				"cep," +
 				"rg," +
 				"cpf," +
 				"email,"+
@@ -63,9 +64,11 @@ public class LoginDAO extends GenericDAO{
 	private PessoaDTO populaPessoa(PessoaDTO dto, ResultSet rs) throws Exception {
 		
 		dto.setPessoaId(new Integer((int) rs.getLong("id")));
+		dto.setId(rs.getLong("id"));
 		dto.setUsuario(rs.getString("usuario"));
 		dto.setSenha(rs.getString("senha"));
 		dto.setNome(rs.getString("nome"));
+		dto.setCep(rs.getString("cep"));
 		dto.setRg(rs.getString("rg"));
 		dto.setCpf(rs.getString("cpf"));
 		dto.setEmail(rs.getString("email"));

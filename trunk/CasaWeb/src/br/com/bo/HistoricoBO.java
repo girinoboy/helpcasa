@@ -7,15 +7,19 @@ import java.util.List;
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.HistoricoDAO;
+import br.com.persistencia.dao.NotasDAO;
 import br.com.persistencia.dto.HistoricoDTO;
+import br.com.persistencia.dto.NotaDTO;
 import br.com.persistencia.dto.ServicoDTO;
 
 public class HistoricoBO extends GenericBO{
 	
 	private HistoricoDAO historicoDAO;
+	private NotasDAO notasDAO;
 
 	public HistoricoBO() {
 		historicoDAO = FactoryDAO.getInstance().getHistoricoDAO();
+		notasDAO = FactoryDAO.getInstance().getNotasDAO();
 	}
 
 	public void aplicaClassificacao(Long id, Long idRespondavelClassificar) throws Exception {
@@ -36,6 +40,20 @@ public class HistoricoBO extends GenericBO{
 		List<HistoricoDTO> list = null;
 		try{
 			list = historicoDAO.historicoListar(conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+		return list;
+	}
+
+	public List<NotaDTO> consultarNotas() throws Exception {
+		Connection conn = Conexao.getConnection();
+		List<NotaDTO> list = null;
+		try{
+			list = notasDAO.consultarNotas(conn);
 		}catch(Exception e){
 			throw e;
 		}finally{

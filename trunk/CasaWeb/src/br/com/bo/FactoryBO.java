@@ -17,6 +17,8 @@ public class FactoryBO {
 	private SolicitacaoBO solicitacaoBO;
 	private HistoricoBO historicoBO;
 	private ProfissionalBO profissionalBO;
+	private AdicionaisBO adicionaisBO;
+	private NotasBO notasBO;
 	
 	private FactoryBO() {
 	}
@@ -37,14 +39,14 @@ public class FactoryBO {
 	}
 	
 	/**
-	 * @return UsuarioDTO sessaoPessoa
+	 * @return PessoaDTO sessaoPessoa
 	 */
 	public PessoaDTO getSessaoPessoa() {
 		return pessoaSessao;
 	}
 
 	/**
-	 * @param Seta o UsuarioDTO sessaoPessoa
+	 * @param Seta o PessoaDTO sessaoPessoa
 	 */
 	public void setSessaoPessoa(PessoaDTO pessoaSessao) {
 		this.pessoaSessao = pessoaSessao;
@@ -112,6 +114,20 @@ public class FactoryBO {
 			profissionalBO = new ProfissionalBO();
 		}
 		return profissionalBO;
+	}
+
+	public AdicionaisBO getAdicionaisBO() {
+		if (adicionaisBO == null) {
+			adicionaisBO = new AdicionaisBO();
+		}
+		return adicionaisBO;
+	}
+
+	public NotasBO getNotasBO() {
+		if (notasBO == null) {
+			notasBO = new NotasBO();
+		}
+		return notasBO;
 	}
 
 }

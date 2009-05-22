@@ -5,6 +5,7 @@ import java.util.Date;
 public class ProfissionalDTO extends FuncionarioDTO {
 	private Boolean listar;
 	private Date data;
+	private SolicitacaoDTO solicitacao;
 	
 	public Boolean getListar() {
 		return listar;
@@ -21,4 +22,14 @@ public class ProfissionalDTO extends FuncionarioDTO {
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public SolicitacaoDTO getSolicitacao() {
+		return solicitacao;
+	}
+
+	public void setSolicitacao(SolicitacaoDTO solicitacao) {
+		this.solicitacao = solicitacao;
+	}
+	
+	
 }

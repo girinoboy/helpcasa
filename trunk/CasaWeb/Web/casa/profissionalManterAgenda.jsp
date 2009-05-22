@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <s:form name="form1" id="form1">
-	<div class="container" style="width: 650px">
+	<div class="container" style="width: 700px">
 		<h2>
 			Agenda Virtual
 		</h2>
@@ -17,7 +17,7 @@
 		<br><br><br><br>
 		<s:if test="${profissionalDTO.listar}">
 			<h1>
-				Data&nbsp;${profissionalDTO.data}
+				Data:&nbsp;${profissionalDTO.data}
 			</h1>
 			<table width="100%" cellspacing="1" cellpadding="3" border="1"
 				align="center">
@@ -71,25 +71,33 @@
 									value="<s:property value='id'/>" />
 							</td>
 							--><td>
-								<s:a href="/CasaWeb/casa/profissional!consultarAgendaDetalhada.action?servicoDTO.id=${id}"><c:out value="${nome}" /></s:a>
+								<s:a href="/CasaWeb/casa/profissional!consultarAgendaDetalhada.action?profissionalDTO.solicitacao.id=${id}"><c:out value="${servico.nome}" /></s:a>
 							</td>
 							<td>
-								<c:out value="${profissaoDTO.nome}" />
+								<s:if test="${periodo eq 1} ">
+									<c:out value="Manha" />
+								</s:if>
+								<s:elseif test="${periodo eq 2}">
+									<c:out value="Tarde" />
+								</s:elseif>
+								<s:else>
+									<c:out value="Integral" />
+								</s:else>
 							</td>
 							<td>
-								<c:out value="${descricao}" />
+								<c:out value="${cliente.nome}" />
 							</td>
 							<td>
-								<c:out value="${descricao}" />
+								<c:out value="${cliente.endereco}" />
 							</td>
 							<td>
-								<c:out value="${descricao}" />
+								<c:out value="${cliente.cep}" />
 							</td>
 							<td>
-								<c:out value="${descricao}" />
+								<c:out value="${cliente.telefone}" />
 							</td>
 							<td>
-								<c:out value="${descricao}" />
+								<c:out value="${historico.status}" />
 							</td>
 						</tr>
 					</s:iterator>
