@@ -37,16 +37,14 @@
 				<s:else>
 					<s:set name="corLinha" value="'#FFFFFF'" />
 				</s:else>
-				<s:if test="${statusFormatado == 'Inválido'}">
-					<s:set name="corLinha" value="'#FF6633'" />
-				</s:if>
+				
 				<tr bgcolor="${corLinha}" onmouseover="this.bgColor='#C9D7DE'"
 					onmouseout="this.bgColor='${corLinha}'">
 					<td>
 						<c:out value="${stat.index+1}" />
 					</td>					
 					<td>
-						<s:a href="#"><c:out value="${solicitacao.servico.nome}" /></s:a>
+						<s:a href="/CasaWeb/casa/historico!consultarHistorico.action?historicoDTO.solicitacao.id=${solicitacao.id}"><c:out value="${solicitacao.servico.nome}" /></s:a>
 					</td>
 					<td>
 						<s:date format="dd/MM/yyyy HH:mm:ss"  name="data" />
@@ -77,8 +75,8 @@
 						<td>
 						<s:select list="listNota" name="notas"
 						id="notas" headerKey="0" headerValue="Selecione..."
-						listValue="descricao" listKey="id"
-						cssStyle="vertical-align: top;" onchange="selectAction('aplicaClassificacao',this.value);"/>
+						listValue="descricao" listKey="${solicitacao.id}"
+						cssStyle="vertical-align: top;" onchange="selectAction('aplicaClassificacao',this);"/>
 							<!--<s:select name="solicitacao.nota.id"  id="idNota" list="#{'false':'Bom','${nota.id}':'Otimo'}" onchange="selectAction('aplicaClassificacao',this.value);"/>-->
 						</td>
 					</s:if>

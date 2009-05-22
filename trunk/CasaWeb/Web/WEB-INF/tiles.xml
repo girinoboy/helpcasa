@@ -199,9 +199,14 @@
       <!-- FIM DE SOLICITACOES -->
     
      <!-- INICIO DE HISTORICO -->
-    <definition name="HistoricoLoad.def" extends="template1.def">
+    <definition name="HistoricoLoad.def"		 extends="template1.def">
     	<put-attribute name="title" 			 value="SIGSD" />		
     	<put-attribute name="body" 				 value="/casa/historico.jsp" />	
+    	<put-attribute name="js" 				 value="/casa/historico.js.jsp" />
+    </definition>
+     <definition name="HistoricoConsultar.def" 	extends="template1.def">
+    	<put-attribute name="title" 			 value="SIGSD" />		
+    	<put-attribute name="body" 				 value="/casa/historicoListar.jsp" />	
     	<put-attribute name="js" 				 value="/casa/historico.js.jsp" />
     </definition>
      <!-- FIM DE HISTORICO -->
