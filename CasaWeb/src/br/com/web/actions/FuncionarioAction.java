@@ -64,8 +64,9 @@ public class FuncionarioAction extends GenericAction {
 			funcionarioDTO.setPerfil(perfil);
 			funcionarioBO.inclui(funcionarioDTO);
 		} catch (Exception e) {
-
 			e.printStackTrace();
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao cadastrar Funcionario.", Mensagem.ALERTA);
+			return cadastrar() ;
 		}
 		return load();
 	}

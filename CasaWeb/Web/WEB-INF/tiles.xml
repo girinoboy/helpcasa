@@ -115,6 +115,7 @@
     	<put-attribute name="title" 			value="SIGSD" />		
     	<put-attribute name="body" 				value="/casa/profissaoCadastrar.jsp" />	
     	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
+    	<put-attribute name="jQuery" 			value="true" />
     	<put-attribute name="onload" 			value="loadMascara();" />
     	
     </definition>

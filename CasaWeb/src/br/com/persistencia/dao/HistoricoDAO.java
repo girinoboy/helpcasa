@@ -26,7 +26,7 @@ public class HistoricoDAO extends GenericDAO{
 			"inner join casaweb.funcionario f on sl.idFuncionario = f.idFuncionario " +
 			"inner join casaweb.profissao pr on pr.idProfissao = f.idProfissao "+
 			"inner join casaweb.pessoa p on p.idPessoa = f.idFuncionario " +
-			"left  join casaweb.adicionais a on a.idSolicitacao = sl.idSolicitacao "+
+			"left  join casaweb.adicional a on a.idSolicitacao = sl.idSolicitacao "+
 			"inner join casaweb.nota n on n.idnota= sl.idnota";
 
 	public void aplicaClassificacao(Long idSolicitacao, Long idNota,Connection conn) throws Exception {

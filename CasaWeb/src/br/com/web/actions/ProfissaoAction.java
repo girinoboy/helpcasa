@@ -32,8 +32,8 @@ public class ProfissaoAction extends GenericAction {
 		try {
 			profissaoBO.inclui(profissaoDTO);
 		} catch (Exception e) {
-
 			e.printStackTrace();
+			return cadastrar();
 		}
 		return load();
 	}

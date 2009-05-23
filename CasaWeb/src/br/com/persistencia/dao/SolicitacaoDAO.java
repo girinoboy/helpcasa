@@ -28,7 +28,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN casaweb.funcionario f ON f.idFuncionario = s.idFuncionario " +
 			"INNER JOIN casaweb.pessoa p ON f.idFuncionario = p.idPessoa " +
 			"INNER JOIN casaweb.Servico v ON v.idServico = s.idServico " +
-			"INNER JOIN casaweb.adicionais a ON a.idSolicitacao = s.idSolicitacao ";
+			"INNER JOIN casaweb.adicional a ON a.idSolicitacao = s.idSolicitacao ";
 		
 	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario " +
 			"FROM casaweb.solicitacao " +
