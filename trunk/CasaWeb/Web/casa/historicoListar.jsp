@@ -98,4 +98,8 @@
 			</tr>
 		</s:else>
 	</table>
+		<div class="footer">			
+			<input type="button" value="Voltar"
+				onClick="selectAction('volta');" class="voltar" />
+		</div>
 </s:form>
