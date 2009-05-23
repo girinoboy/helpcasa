@@ -71,7 +71,7 @@
 									value="<s:property value='id'/>" />
 							</td>
 							--><td>
-								<s:a href="/CasaWeb/casa/profissional!consultarAgendaDetalhada.action?profissionalDTO.solicitacao.id=${id}"><c:out value="${servico.nome}" /></s:a>
+								<s:a href="./casa/profissional!consultarAgendaDetalhada.action?profissionalDTO.historico.solicitacao.id=${solicitacao.id}"><c:out value="${solicitacao.servico.nome}" /></s:a>
 							</td>
 							<td>
 								<s:if test="${periodo eq 1} ">
@@ -85,19 +85,19 @@
 								</s:else>
 							</td>
 							<td>
-								<c:out value="${cliente.nome}" />
+								<c:out value="${solicitacao.cliente.nome}" />
 							</td>
 							<td>
-								<c:out value="${cliente.endereco}" />
+								<c:out value="${solicitacao.cliente.endereco}" />
 							</td>
 							<td>
-								<c:out value="${cliente.cep}" />
+								<c:out value="${solicitacao.cliente.cep}" />
 							</td>
 							<td>
-								<c:out value="${cliente.telefone}" />
+								<c:out value="${solicitacao.cliente.telefone}" />
 							</td>
 							<td>
-								<c:out value="${historico.status}" />
+								<c:out value="${status}" />
 							</td>
 						</tr>
 					</s:iterator>

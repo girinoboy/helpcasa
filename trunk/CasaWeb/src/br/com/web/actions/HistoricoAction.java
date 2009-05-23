@@ -46,7 +46,7 @@ public class HistoricoAction extends GenericAction{
 			Long idSolicitacao = historicoDTO.getSolicitacao().getId();
 			Long idNota = historicoDTO.getSolicitacao().getNota().getId();
 			this.historicoBO.aplicaClassificacao(idSolicitacao,idNota);
-
+			getSessaoPessoa();
 		}catch (Exception e) {
 			e.printStackTrace();			
 		}

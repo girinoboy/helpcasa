@@ -39,11 +39,11 @@ public class HistoricoDAO extends GenericDAO{
 		String sql = "INSERT INTO casaweb.historico(data,status,perfil,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?,?)";
 		try{
 
-			ps2 = conn.prepareStatement(qBuffer.toString());	
-			ps2.setLong(1, idNota);
-			ps2.setLong(2, idSolicitacao);
-			ps2.executeUpdate();
-			
+			ps = conn.prepareStatement(qBuffer.toString());	
+			ps.setLong(1, idNota);
+			ps.setLong(2, idSolicitacao);
+			ps.executeUpdate();
+			/*
 			ps = conn.prepareStatement(sql);
 			ps.setLong(1, ConstantesENUM.STATUS_CLASSIFICADO.id());
 			ps.setString(2, getSessaoPessoa().getPerfil().getId()+"-"+getSessaoPessoa().getPerfil().getDescricao());
@@ -51,7 +51,7 @@ public class HistoricoDAO extends GenericDAO{
 			ps.setString(4,null);
 			ps.setLong(5,idSolicitacao);
 			
-			ps.executeUpdate();
+			ps.executeUpdate();*/
 		} catch (SQLException sqlE) {
 			throw sqlE;
 		} catch (Exception e) {

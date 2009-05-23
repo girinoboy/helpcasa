@@ -49,7 +49,7 @@
 
 		<div class="footer">
 			<input type="button" value="Salvar" class="principal" onclick="selectAction('incluir');"/>
-			<input type="button" value="voltar" class="voltar" onclick="selectAction('voltar');"/>
+			<input type="button" value="Cancelar" class="voltar" onclick="selectAction('voltar');"/>
 
 		</div>
 		<!--container footer-->

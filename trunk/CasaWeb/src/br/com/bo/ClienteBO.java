@@ -46,10 +46,13 @@ public class ClienteBO extends GenericBO{
 		MensagemLista mensagens = new  MensagemLista();
 		
 		try{
-			if(aplicaRegraDeNegocio(clienteDTO)){	
+			if(!aplicaRegraDeNegocio(clienteDTO)){	
 				mensagens.addMensagem("CPF invalido.", Mensagem.ALERTA);
 				throw new RegraNegocioException(mensagens);
 			//	throw new Exception("CPF invalido.");
+			}if(clienteDAO.existeCadastro(clienteDTO,conn)){	
+				mensagens.addMensagem("Cadastro existente no sistema.", Mensagem.ALERTA);
+				throw new RegraNegocioException(mensagens);
 			}
 			clienteDTOConsultada = this.clienteDAO.inclui(clienteDTO, conn);
 		} catch(SQLException sqlE) {
@@ -65,7 +68,8 @@ public class ClienteBO extends GenericBO{
 	}
 
 
-	private Boolean aplicaRegraDeNegocio(ClienteDTO cliente) {
+	private Boolean aplicaRegraDeNegocio(ClienteDTO cliente) {			
+		
 		/** Realiza a validação do CPF.
 	    *
 	    * @param   strCPF número de CPF a ser validado

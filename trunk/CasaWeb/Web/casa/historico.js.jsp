@@ -12,7 +12,7 @@ function selectAction(action,valor){
 		var valueSelected = document.form1.notas.options[indexSelect].text;
 		var idNota;
 		url = '<c:url value="/casa/historico!aplicaClassificacao.action?"/>';
-		params = 'historicoDTO.solicitcao.id=' + valor.value;
+		params = 'historicoDTO.solicitacao.id=' + valor.value;
 		if(valueSelected =='nenhuma'){
 		 idNota=1;
 		}
@@ -31,9 +31,10 @@ function selectAction(action,valor){
 		if(valueSelected =='Péssimo'){
 		 idNota=6;
 		}
-		params +='&historicoDTO.solicitcao.notas.id='+idNota;
-		alert(valor.value+'-'+valor.name+'-'+valueSelected);     
-		submeter = false;
+		params +='&historicoDTO.solicitacao.nota.id='+idNota;
+		//alert(valor.value+'-'+valor.name+'-'+valueSelected);
+		alert(url + params);  
+		submeter = true;
 	}else{
 		alert('Solicitação não poderá ser encaminhada, pois a ação não foi encontrada.');
 		submeter = false;

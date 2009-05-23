@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
 
 <s:form name="form1" id="form1">
-<s:hidden id="idSolicitacao" value="${profissionalDTO.solicitacao.id}" name="profissionalDTO.solicitacao.id"/>
+<s:hidden id="idSolicitacao" value="${profissionalDTO.historico.solicitacao.id}" name="profissionalDTO.historico.solicitacao.id"/>
 	<div class="container" style="width: 650px">
 		<h2>
 			Detalhamento do Serviço
@@ -11,11 +11,53 @@
 		<h1>
 			Detalhamento do Serviço
 		</h1><br><br><br>
-		Serviço: <s:property value="profissionalDTO.solicitacao.servico.nome"/> <br> 
-		data:  <s:property value="data"/> <br>   periodo: <s:property value="profissionalDTO.solicitacao.periodo"/> <br>
-		cliente: <s:property value="profissionalDTO.solicitacao.cliente.nome"/> <br>
-		valor: <s:property value="profissionalDTO.solicitacao.funcionario.profissao.precoVisita"/> <br>
-		situação: <s:property value="historicoDTO.status"/> <br>
+		<label class="label_entrada_dados" style="width: 220px;">
+			Serviço:
+		</label>
+		<label class="c_e_dados_float">
+			<s:property
+				value="profissionalDTO.historico.solicitacao.servico.nome" />
+		</label>
+		<br class="clr" />
+		<label class="label_entrada_dados" style="width: 220px;">
+			data:
+		</label>
+		<label class="c_e_dados_float">
+			<s:property value="data" />
+		</label>
+		<br class="clr" />
+		<label class="label_entrada_dados" style="width: 220px;">
+			periodo:
+		</label>
+		<label class="c_e_dados_float">
+			<s:property value="profissionalDTO.historico.solicitacao.periodo" />
+		</label>
+		<br class="clr" />
+		<label class="label_entrada_dados" style="width: 220px;">
+			cliente:
+		</label>
+		<label class="c_e_dados_float">
+			<s:property
+				value="profissionalDTO.historico.solicitacao.cliente.nome" />
+		</label>
+		<br class="clr" />
+		<label class="label_entrada_dados" style="width: 220px;">
+			valor:
+		</label>
+		<label class="c_e_dados_float">
+			<s:property
+				value="profissionalDTO.historico.solicitacao.funcionario.profissao.precoVisita" />
+		</label>
+		<br class="clr" />
+		<label class="label_entrada_dados" style="width: 220px;">
+			situação:
+		</label>
+		<label class="c_e_dados_float">
+			<s:property value="profissionalDTO.historico.status" />
+		</label>
+		<br class="clr" />
+
+
 		<br><br><br><br>
 	
 			<h1>
@@ -90,7 +132,7 @@
 		<div class="footer">
 			<input type="button" value="Finalizar Solicitação" onClick="selectAction('finalizar');"
 				class="principal" />
-			<input type="button" value="Adicionar Adicionais"
+			<input type="button" value="Adicionar Extras"
 				onClick="selectAction('adicionar');" class="adicionar" />
 			<input type="button" value="Excluir Adicionais"
 				onClick="selectAction('excluir');" class="secundario" />

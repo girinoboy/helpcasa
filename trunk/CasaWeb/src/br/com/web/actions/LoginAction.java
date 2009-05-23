@@ -96,7 +96,7 @@ public class LoginAction extends GenericAction{
 			//return this.direcionaMenu();
 			//ClienteAction.this.clienteCadastrar();
 		}catch(Exception e){
-
+			e.printStackTrace();
 		}
 
 		return checkLogin();
