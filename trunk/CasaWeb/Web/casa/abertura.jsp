@@ -80,9 +80,9 @@
 					<IFRAME name="palco" src='servico!servicosListar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 				</div>
 			
-				<div id="divname6" class="hiddencontent">				
+				<s:div id="divname6" cssClass="hiddencontent" refreshOnShow="true">				
 					<IFRAME name="palco" src='relatorio!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-				</div>
+				</s:div>
 			</s:elseif>
 			<s:else>
 				<div id="nav"><a href="#" title="erro">Não logado</a><div class="clear"></div>
