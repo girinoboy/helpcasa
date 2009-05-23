@@ -46,7 +46,7 @@ public class ClienteBO extends GenericBO{
 		MensagemLista mensagens = new  MensagemLista();
 		
 		try{
-			if(!aplicaRegraDeNegocio(clienteDTO)){	
+			if(aplicaRegraDeNegocio(clienteDTO)){	
 				mensagens.addMensagem("CPF invalido.", Mensagem.ALERTA);
 				throw new RegraNegocioException(mensagens);
 			//	throw new Exception("CPF invalido.");

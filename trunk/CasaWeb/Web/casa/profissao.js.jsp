@@ -74,6 +74,6 @@ function validaCamposAoIncluir(){
 }
 
 function loadMascara(){
-	jQuery('#precoVisita').numeric(,);
+	jQuery('#precoVisita').numeric();
 	
 }
