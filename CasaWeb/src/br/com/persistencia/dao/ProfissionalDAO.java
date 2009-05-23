@@ -12,6 +12,7 @@ import java.util.List;
 import br.com.ConstantesENUM;
 import br.com.persistencia.dto.AdicionaisDTO;
 import br.com.persistencia.dto.ClienteDTO;
+import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
 import br.com.persistencia.dto.ServicoDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
@@ -27,9 +28,9 @@ public class ProfissionalDAO extends GenericDAO{
 	
 	protected static final String strConsultAdicionais ="SELECT * FROM adicionais";
 	
-	public List<SolicitacaoDTO> consultarAgenda(Date data, Long idFuncionario, Connection conn) throws Exception {
-		List<SolicitacaoDTO> list =null;
-		SolicitacaoDTO solicitacaoDTO = null;
+	public List<HistoricoDTO> consultarAgenda(Date data, Long idFuncionario, Connection conn) throws Exception {
+		List<HistoricoDTO> list =null;
+		HistoricoDTO historicoDTO = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 			
@@ -44,17 +45,17 @@ public class ProfissionalDAO extends GenericDAO{
 			ps = conn.prepareStatement(qBuffer.toString());
 			ps.setTimestamp(1, new Timestamp(data.getTime()));	
 			ps.setLong(2, idFuncionario);
-			ps.setLong(2, ConstantesENUM.STATUS_SOLICITADO.id());
+			ps.setLong(3, ConstantesENUM.STATUS_SOLICITADO.id());
 			
 			rs = ps.executeQuery();
-			list = new ArrayList<SolicitacaoDTO>();
+			list = new ArrayList<HistoricoDTO>();
 			while(rs.next()){
-				SolicitacaoDTO dto = new SolicitacaoDTO();
+				HistoricoDTO dto = new HistoricoDTO();
 				
-				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs);
-				//servicoDTO = (ServicoDTO) DTOFactory.getDTO(ServicoDTO.class, rs);
+				historicoDTO = this.populaHistoricoDTO(dto,rs);
+				//historicoDTO = (HistoricoDTO) DTOFactory.getDTO(HistoricoDTO.class, rs);
 				
-				list.add(solicitacaoDTO);
+				list.add(historicoDTO);
 				
 			}
 		}catch(Exception e){
@@ -129,8 +130,8 @@ public class ProfissionalDAO extends GenericDAO{
 		dto.setData(rs.getTimestamp("data"));
 		return dto;
 	}
-	public SolicitacaoDTO consultarSolicitacaoAgendaDetalhada(Long idSolicitacao, Connection conn) throws Exception {		
-		SolicitacaoDTO solicitacaoDTO = null;
+	public HistoricoDTO consultarHistoricoAgendaDetalhada(Long idSolicitacao, Connection conn) throws Exception {		
+		HistoricoDTO historicoDTO = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 			
@@ -147,9 +148,9 @@ public class ProfissionalDAO extends GenericDAO{
 			rs = ps.executeQuery();
 			
 			while(rs.next()){
-				SolicitacaoDTO dto = new SolicitacaoDTO();
+				HistoricoDTO dto = new HistoricoDTO();
 				
-				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs);
+				historicoDTO = this.populaHistoricoDTO(dto,rs);
 															
 			}
 		}catch(Exception e){
@@ -160,8 +161,31 @@ public class ProfissionalDAO extends GenericDAO{
 			if(rs!=null)
 				rs.close();
 		}
-		return solicitacaoDTO;
+		return historicoDTO;
 	}
+	
+	private HistoricoDTO populaHistoricoDTO(HistoricoDTO dto, ResultSet rs) throws SQLException {
+		
+		dto.setStatus(rs.getInt("status"));
+		SolicitacaoDTO solicitacao = new SolicitacaoDTO();
+		solicitacao.setId(rs.getLong("idSolicitacao"));
+		solicitacao.setPeriodo(rs.getInt("periodo"));
+		
+		ServicoDTO servico = new ServicoDTO();
+		servico.setNome(rs.getString("nomeServico"));
+		solicitacao.setServico(servico);
+		
+		ClienteDTO cliente = new ClienteDTO();
+		cliente.setNome(rs.getString("nomeCliente"));
+		cliente.setEndereco(rs.getString("endereco"));
+		cliente.setCep(rs.getString("cep"));
+		cliente.setTelefone(rs.getString("telefone"));
+		solicitacao.setCliente(cliente );
+		
+		dto.setSolicitacao(solicitacao);
+		return dto;
+	}
+	
 	public void finalizarServico(Long idSolicitacao, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 

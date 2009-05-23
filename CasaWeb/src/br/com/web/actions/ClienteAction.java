@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.ConstantesENUM;
 import br.com.Mensagem;
 import br.com.RegraNegocioException;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.persistencia.dto.ClienteDTO;
+import br.com.persistencia.dto.PerfilDTO;
 import br.com.persistencia.dto.UfDTO;
 
 public class ClienteAction extends GenericAction {
@@ -57,7 +59,11 @@ public class ClienteAction extends GenericAction {
 
 	public String inclui(){
 		try {
+			clienteDTO.setAtivo(true);
 
+			PerfilDTO perfil = new PerfilDTO();
+			perfil.setId(ConstantesENUM.CLIENTE_ID.id());
+			clienteDTO.setPerfil(perfil);
 			this.clienteDTO = this.clienteBO.inclui(this.clienteDTO);
 
 		} catch (RegraNegocioException e){
@@ -69,11 +75,12 @@ public class ClienteAction extends GenericAction {
 			e.printStackTrace();			
 			getMensagemGlobal().addMensagem("Erro ao incluir Cliente.",
 					Mensagem.ERRO);
-			return this.direcionaMenu();
+			return this.load();
 		}
 
-		return consultaParaCliente();
+		//return consultaParaCliente();
 		//return "clienteCadastrar.fwd";
+		return "paginaAbertura.fwd";
 	}
 
 	public String consultaParaCliente() {
@@ -130,7 +137,7 @@ public class ClienteAction extends GenericAction {
 			e.printStackTrace();			
 		}
 
-		return load();
+		return consultaParaCliente();
 
 	}
 

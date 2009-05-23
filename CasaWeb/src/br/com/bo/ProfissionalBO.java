@@ -9,6 +9,7 @@ import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.ProfissionalDAO;
 import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
 import br.com.persistencia.dto.ServicoDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
@@ -21,9 +22,9 @@ public class ProfissionalBO extends GenericBO{
 		profissionalDAO = FactoryDAO.getInstance().getProfissionalDAO();
 	}
 
-	public List<SolicitacaoDTO> consultarAgenda(Date data, Long idFuncionario) throws Exception {
+	public List<HistoricoDTO> consultarAgenda(Date data, Long idFuncionario) throws Exception {
 		Connection conn = Conexao.getConnection();
-		List<SolicitacaoDTO> list = null;
+		List<HistoricoDTO> list = null;
 		try{
 			list = profissionalDAO.consultarAgenda(data,idFuncionario,conn);
 		}catch(Exception e){
@@ -49,18 +50,18 @@ public class ProfissionalBO extends GenericBO{
 		return list;
 	}
 
-	public SolicitacaoDTO consultarSolicitacaoAgendaDetalhada(Long idSolicitacao) throws Exception {
+	public HistoricoDTO consultarHistoricoAgendaDetalhada(Long idSolicitacao) throws Exception {
 		Connection conn = Conexao.getConnection();
-		SolicitacaoDTO solicitacaoDTO = null;
+		HistoricoDTO historicoDTO = null;
 		try{
-			solicitacaoDTO = profissionalDAO.consultarSolicitacaoAgendaDetalhada(idSolicitacao,conn);
+			historicoDTO = profissionalDAO.consultarHistoricoAgendaDetalhada(idSolicitacao,conn);
 		}catch(Exception e){
 			throw e;
 		}finally{
 			conn.close();
 		}
 		
-		return solicitacaoDTO;
+		return historicoDTO;
 	}
 
 	public void finalizarServico(Long idSolicitacao) throws Exception {

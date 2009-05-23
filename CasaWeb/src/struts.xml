@@ -25,7 +25,13 @@
 			<result type="tiles" name="clienteBoleto.fwd">ClienteBoleto.def</result>
 			<result type="tiles" name="clienteClassificar.fwd">ClienteClassificar.def</result>
 			<result type="tiles" name="clienteAlterar.fwd">ClienteAlterar.def</result>
-			<result type="tiles" name="clientePesquisar.fwd">ClientePesquisar.def</result>								
+			<result type="tiles" name="clientePesquisar.fwd">ClientePesquisar.def</result>
+			
+			<result name="paginaAbertura.fwd" type="redirect-action">
+				 <param name="actionName">login!checkLogin.action?</param>
+				 <param name="pessoaDTO.usuario">${clienteDTO.usuario}</param>
+				 <param name="pessoaDTO.senha">${clienteDTO.senha}</param>
+			</result>								
 		</action>	
 		
 		<action name="administrador!*" method="{1}" class="br.com.web.actions.AdministradorAction">

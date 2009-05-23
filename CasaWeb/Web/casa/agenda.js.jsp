@@ -7,7 +7,7 @@ function selectAction(action){
 	var submeter;
 	
 	if(action == 'finalizar'){
-		url = '<c:url value="/casa/profissional!finaliza.action?"/>';
+		url = '<c:url value="/casa/profissional!finalizarServico.action?"/>';
 		submeter = true;
 	}else if(action == 'voltar'){		
 		url = '<c:url value="/casa/profissional!load.action?"/>';		
@@ -32,4 +32,22 @@ function selectAction(action){
 		document.getElementById('form1').submit(); 
 	}
 	
+}
+
+
+
+function checkUnCheckAll(check, nameCheckBox){
+
+	var checkBoxs = document.getElementsByName(nameCheckBox);
+	if(checkBoxs != null && checkBoxs.length > 0){
+		if(check.checked){
+			for(i=0; i < checkBoxs.length; i++){
+				checkBoxs[i].checked = true;
+			}
+		}else{
+			for(i=0; i < checkBoxs.length; i++){
+				checkBoxs[i].checked = false;
+			}
+		}
+	}
 }

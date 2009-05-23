@@ -82,8 +82,7 @@ public class ClienteDAO extends GenericDAO{
 			dto.setTelefone(rs.getString("telefone"));
 			dto.setCelular(rs.getString("celular"));
 			//dados do cliente
-			dto.setEndereco(rs.getString("endereco"));
-			dto.setSituacao(rs.getString("situacao"));
+			dto.setEndereco(rs.getString("endereco"));			
 			dto.setCep(rs.getString("cep"));
 			dto.setCidade(rs.getString("cidade"));
 			
@@ -104,7 +103,7 @@ public class ClienteDAO extends GenericDAO{
 		
 	}
 	
-	public ClienteDTO inclui(ClienteDTO clienteDTO, Connection con) throws SQLException, Exception {
+	public ClienteDTO inclui(ClienteDTO clienteDTO, Connection conn) throws SQLException, Exception {
 			List<ClienteDTO> list = null;
 
 			PreparedStatement ps = null;
@@ -113,15 +112,15 @@ public class ClienteDAO extends GenericDAO{
 			StringBuffer qBuffer = new StringBuffer();		
 			qBuffer.append(strConsult);
 			qBuffer.append("WHERE Pessoa.idPessoa = ?");
-			insertPessoa(clienteDTO, con);
-			insertCliente(clienteDTO, con);
-			con.commit();
+			insertPessoa(clienteDTO, conn);
+			insertCliente(clienteDTO, conn);
+			conn.commit();
 			try {
-				ps = con.prepareStatement(qBuffer.toString());
+				ps = conn.prepareStatement(qBuffer.toString());
 
 				String nomeTabela = "Cliente";
 				String nomeColuna = "idCliente";
-				ps.setLong(1, this.getLastIdTable(nomeTabela, nomeColuna, con));
+				ps.setLong(1, this.getLastIdTable(nomeTabela, nomeColuna, conn));
 
 				rs = ps.executeQuery();
 				
@@ -216,10 +215,9 @@ public class ClienteDAO extends GenericDAO{
 				
 				ps.setLong(1, this.getLastIdTable("Pessoa", "idPessoa", con));
 				ps.setString(2, cliente.getEndereco());
-				ps.setBoolean(3, cliente.getAtivo());
-				ps.setString(4, cliente.getCep());
-				ps.setString(5, cliente.getCidade());
-				ps.setLong(6, cliente.getUf().getId());
+				//ps.setBoolean(3, cliente.getAtivo());				
+				ps.setString(3, cliente.getCidade());
+				ps.setLong(4, cliente.getUf().getId());
 
 				ps.executeUpdate();
 				executado=true;
@@ -331,6 +329,33 @@ public class ClienteDAO extends GenericDAO{
 			return clienteDTO;
 
 		}
+		
+		public Boolean existeCadastro(ClienteDTO cliente, Connection conn) throws Exception {
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			
+			
+			String sql = "SELECT casaweb.existe_cpf_usuario(?,?) as existe";
+					
+			try{
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, cliente.getUsuario());
+				ps.setString(2, cliente.getCpf());
+				rs = ps.executeQuery();
+				
+				while(rs.next()){
+					return rs.getBoolean("existe");
+				}
+			}catch(Exception e){
+				throw e;
+			}finally{
+				if(ps!=null)
+					ps.close();
+				if(rs!=null)
+					rs.close();
+			}
+			return true;
+		}
 
 	protected static final String strConsult ="SELECT idPessoa as \"id\", " +
 				"usuario," +
@@ -346,8 +371,7 @@ public class ClienteDAO extends GenericDAO{
 				"celular," +
 				"Perfil.idPerfil as \"perfil.id\", " +
 				"Perfil.descricao as \"perfil.descricao\", " +
-				"Cliente.endereco,"+
-				"Cliente.situacao,"+
+				"Cliente.endereco,"+				
 				"Pessoa.cep,"+
 				"Cliente.cidade,"+
 				"uf.iduf,"+
@@ -360,6 +384,7 @@ public class ClienteDAO extends GenericDAO{
 
 	
 	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil,cep) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
-	protected static final String strInsertCliente ="INSERT INTO casaweb.Cliente(idCliente,endereco,situacao,cidade,idUF)VALUES(?,?,?,?,?,?);";
+	protected static final String strInsertCliente ="INSERT INTO casaweb.Cliente(idCliente,endereco,cidade,idUF)VALUES(?,?,?,?);";
+	
 	
 }

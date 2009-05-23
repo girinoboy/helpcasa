@@ -7,7 +7,7 @@ function selectAction(action){
 	var submeter;
 	
 	if(action == 'incluir'){
-		url = '<c:url value="/casa/login!incluiCliente.action?"/>';
+		url = '<c:url value="/casa/cliente!inclui.action?"/>';
 		submeter = validaCamposAoIncluir();
 	}else if(action == 'direcionaLogin'){
 		url = '<c:url value="/casa/login!load.action?"/>';
@@ -116,7 +116,7 @@ function validaCamposAoIncluir(){
 		alert('O campo Email é obrigatório.');
 		email.focus();
 		return false;
-	}else if (checkMail(email.value)){
+	}else if (!checkMail(email.value)){
 		alert('Email invalido.');
 		email.focus();
 		return false;
@@ -166,6 +166,7 @@ function disableAll(){
 }
 
 function loadMascara(){
+	jQuery('#rg').numeric();
   	//jQuery('#cpf').numeric();
 	jQuery('#cpf').mask('999.999.999-99');
 	//document.getElementById('cpf').value = '';

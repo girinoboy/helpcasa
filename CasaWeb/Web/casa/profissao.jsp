@@ -40,7 +40,7 @@
 							id="idsProfissao" value="${id}" />
 					</td>
 					<td>
-						<s:a href="/CasaWeb/casa/profissao!alterar.action?profissaoDTO.id=${id}" value="${nome}"><c:out value="${nome}" /></s:a> 
+						<s:a href="./casa/profissao!alterar.action?profissaoDTO.id=${id}" value="${nome}"><c:out value="${nome}" /></s:a> 
 					</td>						
 				</tr>
 			</s:iterator>

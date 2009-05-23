@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="CasaWeb"
+  name="SIGSD"
   id="myeclipse.1237258054723"
-  context-root="/CasaWeb"
+  context-root="/SIGSD"
   j2ee-spec="1.4"
-  archive="CasaWeb.war">
+  archive="SIGSD.war">
   <attributes>
     <attribute name="webrootdir" value="/Web" />
   </attributes>

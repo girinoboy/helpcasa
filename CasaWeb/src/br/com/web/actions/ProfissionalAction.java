@@ -7,6 +7,7 @@ import br.com.bo.AdicionaisBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.ProfissionalBO;
 import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.PessoaDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
@@ -19,7 +20,7 @@ public class ProfissionalAction extends GenericAction {
 	
 	private ProfissionalDTO profissionalDTO;
 	private ProfissionalBO profissionalBO;
-	private List<SolicitacaoDTO> listAgenda;
+	private List<HistoricoDTO> listAgenda;
 	private List<AdicionaisDTO> listAdicionais;
 	private Long[] idsAdicional;
 	private AdicionaisBO adicionaisBO;
@@ -50,10 +51,10 @@ public class ProfissionalAction extends GenericAction {
 	
 	public String consultarAgendaDetalhada(){
 		try{
-			Long idSolicitacao=profissionalDTO.getSolicitacao().getId();
+			Long idSolicitacao=profissionalDTO.getHistorico().getSolicitacao().getId();
 			listAdicionais = profissionalBO.consultarAgendaDetalhada(idSolicitacao);
-			SolicitacaoDTO solicitacao=profissionalBO.consultarSolicitacaoAgendaDetalhada(idSolicitacao);;
-			profissionalDTO.setSolicitacao(solicitacao); 
+			HistoricoDTO historico=profissionalBO.consultarHistoricoAgendaDetalhada(idSolicitacao);
+			profissionalDTO.setHistorico(historico); 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -61,7 +62,7 @@ public class ProfissionalAction extends GenericAction {
 	}
 	
 	public String finalizarServico(){
-		Long idSolicitacao=profissionalDTO.getSolicitacao().getId();
+		Long idSolicitacao=profissionalDTO.getHistorico().getSolicitacao().getId();
 		try {
 			profissionalBO.finalizarServico(idSolicitacao);
 		} catch (Exception e) {
@@ -96,11 +97,11 @@ public class ProfissionalAction extends GenericAction {
 		this.profissionalDTO = profissionalDTO;
 	}
 
-	public List<SolicitacaoDTO> getListAgenda() {
+	public List<HistoricoDTO> getListAgenda() {
 		return listAgenda;
 	}
 
-	public void setListAgenda(List<SolicitacaoDTO> listAgenda) {
+	public void setListAgenda(List<HistoricoDTO> listAgenda) {
 		this.listAgenda = listAgenda;
 	}
 
@@ -110,6 +111,14 @@ public class ProfissionalAction extends GenericAction {
 
 	public void setListAdicionais(List<AdicionaisDTO> listAdicionais) {
 		this.listAdicionais = listAdicionais;
+	}
+
+	public Long[] getIdsAdicional() {
+		return idsAdicional;
+	}
+
+	public void setIdsAdicional(Long[] idsAdicional) {
+		this.idsAdicional = idsAdicional;
 	}
 
 }

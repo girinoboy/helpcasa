@@ -35,7 +35,8 @@ public class LoginDAO extends GenericDAO{
 				"FROM casaweb.pessoa " +
 				"INNER JOIN casaweb.perfil ON pessoa.idPerfil = perfil.idPerfil " +
 				"WHERE pessoa.usuario=? " +
-				"	AND pessoa.senha=?";
+				"	AND pessoa.senha=?" +
+				"	AND ativo=1";
 		
 		try{
 			ps = conn.prepareStatement(sql);

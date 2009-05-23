@@ -3,8 +3,7 @@ package br.com.persistencia.dto;
 
 public class ClienteDTO  extends PessoaDTO{
 	
-	private String endereco;
-	private String situacao;	
+	private String endereco;	
 	private String cidade;
 	private UfDTO uf;
 	private String senhaRepita;
@@ -19,12 +18,6 @@ public class ClienteDTO  extends PessoaDTO{
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-	public String getSituacao() {
-		return situacao;
-	}
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
 	}	
 	public String getCidade() {
 		return cidade;

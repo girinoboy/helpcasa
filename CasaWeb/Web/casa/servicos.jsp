@@ -48,7 +48,7 @@
 					</td>
 					<td>
 						<s:a
-							href="/CasaWeb/casa/servico!alterar.action?servicoDTO.id=${id}">
+							href="./casa/servico!alterar.action?servicoDTO.id=${id}">
 							<c:out value="${nome}" />
 						</s:a>
 					</td>
