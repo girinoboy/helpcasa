@@ -199,6 +199,7 @@ public class SolicitacaoDAO extends GenericDAO{
 		qBuffer.append(" AND idPerfil = 4");
 		qBuffer.append(" AND (periodo IS NULL OR periodo <> 3 OR cep = '70390-130')");//CEP da empresaand 
 		qBuffer.append(" AND ocupado =0");
+		qBuffer.append(" AND pessoa.ativo =1");
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());

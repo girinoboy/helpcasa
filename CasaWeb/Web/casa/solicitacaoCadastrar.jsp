@@ -25,7 +25,7 @@
 				</td>
 				
 			</tr>
-			<tr><td></td><td><div id="distance">distancia:</div> </td></tr> 
+			<tr><td></td><td><div id="distance" style="display: none;">distancia:</div> </td></tr> 
 			<tr>
 				<td class="label_entrada_dados">
 					Período:*

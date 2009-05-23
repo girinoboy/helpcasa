@@ -186,7 +186,7 @@ public class ProfissionalDAO extends GenericDAO{
 		return dto;
 	}
 	
-	public void finalizarServico(Long idSolicitacao, Connection conn) throws Exception {
+	public void finalizarServico(Long idSolicitacao, Long alteradoPor, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
 		String sql = "INSERT INTO casaweb.historico(data,status,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?)";
@@ -194,8 +194,8 @@ public class ProfissionalDAO extends GenericDAO{
 
 			ps = conn.prepareStatement(sql);
 			ps.setLong(1, ConstantesENUM.STATUS_FINALIZADO.id());
-			ps.setLong(2, getSessaoPessoa().getPerfil().getId());
-			ps.setString(3, "Finalizado-"+getSessaoPessoa().getId()+"-"+getSessaoPessoa().getNome());
+			ps.setLong(2, alteradoPor);
+			ps.setString(3, "Finalizado-");
 			ps.setLong(4,idSolicitacao);
 			
 			ps.executeUpdate();

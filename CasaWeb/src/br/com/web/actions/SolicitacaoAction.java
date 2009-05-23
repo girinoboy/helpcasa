@@ -57,6 +57,7 @@ public class SolicitacaoAction extends GenericAction{
 			}
 			//getRequest().getSession().removeAttribute("pessoaSessao");
 			getRequest().getSession(true).setAttribute("pessoaSessao", solicitacaoDTO.getCliente());
+			getRequest().getSession(true).setAttribute("pessoaDTO", solicitacaoDTO.getCliente());
 			//distancia = (Double[]) getRequest().getSession().getAttribute("distancia");
 		} catch (Exception e) {
 
@@ -106,9 +107,10 @@ public class SolicitacaoAction extends GenericAction{
 			solicitacaoBO.solicitacaoInclui(solicitacaoDTO,listHorariosDisponiveis);
 			getMensagemGlobal().addMensagem("Solicitacao efetuada.", Mensagem.ALERTA);
 		}catch(Exception e){
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao efetuar solicitação.", Mensagem.ALERTA);
 			e.printStackTrace();
 		}
-		return load();
+		return calcula();
 	}
 	
 	public String calcula(){

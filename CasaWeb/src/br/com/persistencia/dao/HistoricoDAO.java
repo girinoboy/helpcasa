@@ -148,7 +148,7 @@ public class HistoricoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsult);
-		qBuffer.append("WHERE sl.idSolicitacao=?");
+		qBuffer.append(" WHERE sl.idSolicitacao=?");
 	
 		
 		try{
