@@ -11,7 +11,7 @@ public class AdicionaisDAO extends GenericDAO {
 	public void inclui(AdicionaisDTO adicional, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql = "INSERT INTO casaweb.adicionais(descricao,valor,observacao,data,idSolicitacao)VALUES(?,?,?,now(),?)";
+		String sql = "INSERT INTO casaweb.adicional(descricao,valor,observacao,data,idSolicitacao)VALUES(?,?,?,now(),?)";
 		try {
 
 			ps = conn.prepareStatement(sql);
@@ -34,7 +34,7 @@ public class AdicionaisDAO extends GenericDAO {
 	public void exclui(Long[] idsAdicional, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="DELETE FROM casaweb.adicionais WHERE idAdicionais=?";
+		String sql="DELETE FROM casaweb.adicional WHERE idAdicional=?";
 		try{
 			for (Long id : idsAdicional) {
 				ps = conn.prepareStatement(sql);

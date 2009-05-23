@@ -24,7 +24,7 @@ public class HistoricoAction extends GenericAction{
 	
 	public String load(){
 		try {
-			listNota = notasBO.consultarNotas();
+			//listNota = notasBO.consultarNotas();
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -35,6 +35,7 @@ public class HistoricoAction extends GenericAction{
 	public String historicoListar(){
 		try{
 			this.listHistorico = historicoBO.historicoListar();
+			this.listNota = notasBO.consultarNotas();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -35,6 +35,9 @@ function selectAction(action,valor){
 		//alert(valor.value+'-'+valor.name+'-'+valueSelected);
 		alert(url + params);  
 		submeter = true;
+	}else if(action == 'voltar'){		
+		url = '<c:url value="/casa/historico!load.action?"/>';		
+		submeter = true;
 	}else{
 		alert('Solicitação não poderá ser encaminhada, pois a ação não foi encontrada.');
 		submeter = false;
