@@ -64,10 +64,10 @@ public class ProfissionalBO extends GenericBO{
 		return historicoDTO;
 	}
 
-	public void finalizarServico(Long idSolicitacao) throws Exception {
+	public void finalizarServico(Long idSolicitacao, Long alteradoPor) throws Exception {
 		Connection conn = Conexao.getConnection();
 		try{
-			profissionalDAO.finalizarServico(idSolicitacao,conn);
+			profissionalDAO.finalizarServico(idSolicitacao,alteradoPor,conn);
 		}catch(Exception e){
 			throw e;
 		}finally{

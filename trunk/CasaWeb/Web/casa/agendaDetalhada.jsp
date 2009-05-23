@@ -7,7 +7,7 @@
 		<h2>
 			Detalhamento do Serviço
 		</h2>
-		</hr>
+		<hr/>
 		<h1>
 			Detalhamento do Serviço
 		</h1><br><br><br>

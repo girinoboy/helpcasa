@@ -261,7 +261,10 @@ public class FuncionarioDAO extends GenericDAO{
 				ps.setTimestamp(6, new Timestamp(funcionarioDTO.getNasc().getTime()));
 				ps.setString(7, funcionarioDTO.getTelefone());
 				ps.setString(8, funcionarioDTO.getCelular());
-				ps.setString(9, funcionarioDTO.getCep());
+				if(funcionarioDTO.getCep() == null)
+					ps.setString(9, "70390-130");//cep da empresa, obs criar constante pra ela
+				else
+					ps.setString(9, funcionarioDTO.getCep());
 				ps.setLong(10, funcionarioDTO.getId());
 				
 				ps.executeUpdate();

@@ -63,8 +63,9 @@ public class ProfissionalAction extends GenericAction {
 	
 	public String finalizarServico(){
 		Long idSolicitacao=profissionalDTO.getHistorico().getSolicitacao().getId();
+		Long alteradoPor = getSessaoPessoa().getId();
 		try {
-			profissionalBO.finalizarServico(idSolicitacao);
+			profissionalBO.finalizarServico(idSolicitacao,alteradoPor);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
