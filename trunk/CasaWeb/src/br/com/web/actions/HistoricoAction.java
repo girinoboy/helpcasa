@@ -24,12 +24,12 @@ public class HistoricoAction extends GenericAction{
 	
 	public String load(){
 		try {
-			//listNota = notasBO.consultarNotas();
+			listNota = notasBO.consultarNotas();
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
-		return "load.fwd";
+		return historicoListar();
 	}
 	
 	public String historicoListar(){
@@ -39,7 +39,7 @@ public class HistoricoAction extends GenericAction{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return load();
+		return "load.fwd";
 	}
 
 	public String aplicaClassificacao(){
