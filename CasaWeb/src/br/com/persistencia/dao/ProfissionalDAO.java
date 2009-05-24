@@ -26,7 +26,7 @@ public class ProfissionalDAO extends GenericDAO{
 			"INNER JOIN casaweb.pessoa ON pessoa.idPessoa = cliente.idCliente " +
 			"INNER JOIN casaweb.historico ON historico.idSolicitacao = solicitacao.idSolicitacao ";
 	
-	protected static final String strConsultAdicionais ="SELECT * FROM adicionais";
+	protected static final String strConsultAdicionais ="SELECT * FROM adicional";
 	
 	public List<HistoricoDTO> consultarAgenda(Date data, Long idFuncionario, Connection conn) throws Exception {
 		List<HistoricoDTO> list =null;
@@ -123,7 +123,7 @@ public class ProfissionalDAO extends GenericDAO{
 		return list;
 	}
 	private AdicionalDTO populaAdicionaisDTO(AdicionalDTO dto, ResultSet rs) throws Exception {
-		dto.setId(rs.getLong("idAdicionais"));
+		dto.setId(rs.getLong("idAdicional"));
 		dto.setDescricao(rs.getString("descricao"));
 		dto.setValor(rs.getDouble("valor"));
 		dto.setObservacao(rs.getString("observacao"));
