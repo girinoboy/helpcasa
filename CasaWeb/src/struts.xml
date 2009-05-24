@@ -97,6 +97,11 @@
 			</result>	
 		</action>	
 		
+		<!-- BoletoAction -->
+		<action name="boleto!*" method="{1}" class="br.com.web.actions.BoletoAction">
+				<result type="tiles" name="gerado.fws">Abertura.def</result>			
+		</action>
+		
 	</package>
 
 </struts>
