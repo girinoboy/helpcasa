@@ -54,6 +54,10 @@ public class LoginAction extends GenericAction{
 				if(usuarioLogadoSistema != null){
 					pessoaDTO = usuarioLogadoSistema;
 					pessoaSessao = usuarioLogadoSistema;
+					getRequest().getSession(true).getCreationTime();//indica quando a sessao foi criada
+					getRequest().getSession(true).getLastAccessedTime();//indica quando foi a ultima vez que o utilizador acedeu a sessao
+					
+					getRequest().getSession(true).isNew();//indica se a sessao foi criada agora
 					getRequest().getSession(true).setAttribute("pessoaDTO", pessoaDTO);
 					getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<c:redirect url="/casa/login!checkLogin.action?" />
+<c:redirect url="/casa/login!logout.action?" />
 <!--<script src= "<c:url value="/casa/abertura.js.jsp"/>" type="text/javascript" />  
 --></body>
 </html>

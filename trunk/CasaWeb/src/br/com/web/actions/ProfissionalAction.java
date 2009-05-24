@@ -6,7 +6,7 @@ import br.com.Mensagem;
 import br.com.bo.AdicionaisBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.ProfissionalBO;
-import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.AdicionalDTO;
 import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.PessoaDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
@@ -21,7 +21,7 @@ public class ProfissionalAction extends GenericAction {
 	private ProfissionalDTO profissionalDTO;
 	private ProfissionalBO profissionalBO;
 	private List<HistoricoDTO> listAgenda;
-	private List<AdicionaisDTO> listAdicionais;
+	private List<AdicionalDTO> listAdicionais;
 	private Long[] idsAdicional;
 	private AdicionaisBO adicionaisBO;
 	
@@ -37,7 +37,10 @@ public class ProfissionalAction extends GenericAction {
 	
 	public String consultarAgenda(){
 		try{
-			profissionalDTO.setListar(true);			
+			profissionalDTO.setListar(true);	
+			getSession().getAttribute("pessoaSessao");
+			getSession().getAttribute("pessoaDTO");
+			getSession().getAttribute("usuarioLogadoSistema");
 			Long idFuncionario = getSessaoPessoa().getId();
 			listAgenda = profissionalBO.consultarAgenda(profissionalDTO.getData(),idFuncionario);
 			
@@ -106,11 +109,11 @@ public class ProfissionalAction extends GenericAction {
 		this.listAgenda = listAgenda;
 	}
 
-	public List<AdicionaisDTO> getListAdicionais() {
+	public List<AdicionalDTO> getListAdicionais() {
 		return listAdicionais;
 	}
 
-	public void setListAdicionais(List<AdicionaisDTO> listAdicionais) {
+	public void setListAdicionais(List<AdicionalDTO> listAdicionais) {
 		this.listAdicionais = listAdicionais;
 	}
 

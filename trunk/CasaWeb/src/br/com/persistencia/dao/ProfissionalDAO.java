@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.ConstantesENUM;
-import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.AdicionalDTO;
 import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
@@ -86,9 +86,9 @@ public class ProfissionalDAO extends GenericDAO{
 		
 		return dto;
 	}
-	public List<AdicionaisDTO> consultarAgendaDetalhada(Long idSolicitacao,	Connection conn) throws Exception {
-		List<AdicionaisDTO> list =null;
-		AdicionaisDTO adicionaisDTO = null;
+	public List<AdicionalDTO> consultarAgendaDetalhada(Long idSolicitacao,	Connection conn) throws Exception {
+		List<AdicionalDTO> list =null;
+		AdicionalDTO adicionaisDTO = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 			
@@ -102,9 +102,9 @@ public class ProfissionalDAO extends GenericDAO{
 			ps.setLong(1, idSolicitacao);
 			
 			rs = ps.executeQuery();
-			list = new ArrayList<AdicionaisDTO>();
+			list = new ArrayList<AdicionalDTO>();
 			while(rs.next()){
-				AdicionaisDTO dto = new AdicionaisDTO();
+				AdicionalDTO dto = new AdicionalDTO();
 				
 				adicionaisDTO = this.populaAdicionaisDTO(dto,rs);
 				//servicoDTO = (ServicoDTO) DTOFactory.getDTO(ServicoDTO.class, rs);
@@ -122,7 +122,7 @@ public class ProfissionalDAO extends GenericDAO{
 		}
 		return list;
 	}
-	private AdicionaisDTO populaAdicionaisDTO(AdicionaisDTO dto, ResultSet rs) throws Exception {
+	private AdicionalDTO populaAdicionaisDTO(AdicionalDTO dto, ResultSet rs) throws Exception {
 		dto.setId(rs.getLong("idAdicionais"));
 		dto.setDescricao(rs.getString("descricao"));
 		dto.setValor(rs.getDouble("valor"));

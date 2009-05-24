@@ -3,12 +3,12 @@ package br.com.web.actions;
 import br.com.Mensagem;
 import br.com.bo.AdicionaisBO;
 import br.com.bo.FactoryBO;
-import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.AdicionalDTO;
 
 public class AdicionaisAction extends GenericAction{
 
 	private AdicionaisBO adicionaisBO;
-	private AdicionaisDTO adicionaisDTO;
+	private AdicionalDTO adicionaisDTO;
 	public AdicionaisAction() {
 		adicionaisBO = FactoryBO.getInstance().getAdicionaisBO();
 	}
@@ -29,11 +29,11 @@ public class AdicionaisAction extends GenericAction{
 		return load();
 	}
 
-	public AdicionaisDTO getAdicionaisDTO() {
+	public AdicionalDTO getAdicionaisDTO() {
 		return adicionaisDTO;
 	}
 
-	public void setAdicionaisDTO(AdicionaisDTO adicionaisDTO) {
+	public void setAdicionaisDTO(AdicionalDTO adicionaisDTO) {
 		this.adicionaisDTO = adicionaisDTO;
 	}
 

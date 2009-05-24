@@ -88,7 +88,7 @@
 				<param name="location">
 					/casa/relatorios/relResumoFaturamentoMensal.jasper
 				</param>
-				<param name="dataSource">listaPDFSolicitacao</param>
+				<param name="dataSource">listaPDFTRelatorio</param>
 				<param name="path">path</param>
 				<param name="pathAssinatura">pathAssinatura</param>
 				<param name="pathLogo">pathLogo</param>

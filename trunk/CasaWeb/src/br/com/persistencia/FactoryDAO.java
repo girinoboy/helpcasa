@@ -8,6 +8,7 @@ import br.com.persistencia.dao.LoginDAO;
 import br.com.persistencia.dao.NotasDAO;
 import br.com.persistencia.dao.ProfissaoDAO;
 import br.com.persistencia.dao.ProfissionalDAO;
+import br.com.persistencia.dao.RelatoriosDAO;
 import br.com.persistencia.dao.ServicoDAO;
 import br.com.persistencia.dao.SolicitacaoDAO;
 import br.com.persistencia.dto.PessoaDTO;
@@ -28,6 +29,7 @@ public class FactoryDAO {
 	private ProfissionalDAO profissionalDAO;
 	private AdicionaisDAO adicionaisDAO;
 	private NotasDAO notasDAO;
+	private RelatoriosDAO relatoriosDAO;
 	
 	private FactoryDAO() {}
 
@@ -136,5 +138,12 @@ public class FactoryDAO {
 			notasDAO = new NotasDAO();
 		}
 		return notasDAO;
+	}
+
+	public RelatoriosDAO getRelatoriosDAO() {
+		if(relatoriosDAO == null){
+			relatoriosDAO = new RelatoriosDAO();
+		}
+		return relatoriosDAO;
 	}
 }

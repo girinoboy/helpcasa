@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.AdicionaisDAO;
-import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.AdicionalDTO;
 
 public class AdicionaisBO extends GenericBO {
 
@@ -16,7 +16,7 @@ public class AdicionaisBO extends GenericBO {
 		adicionaisDAO = FactoryDAO.getInstance().getAdicionaisDAO();
 	}
 
-	public void inclui(AdicionaisDTO adicionaisDTO) throws Exception {
+	public void inclui(AdicionalDTO adicionaisDTO) throws Exception {
 		Connection conn = Conexao.getConnection();
 
 		try {
