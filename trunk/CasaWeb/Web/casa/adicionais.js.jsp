@@ -12,7 +12,7 @@ function selectAction(action){
 	}else if(action == 'voltar'){	
 		var idSolicitacao = document.getElementById('idSolicitacao');	
 		url = '<c:url value="/casa/profissional!consultarAgendaDetalhada.action?"/>';
-		params ='profissionalDTO.solicitacao.id='+idSolicitacao.value;		
+		params ='profissionalDTO.historico.solicitacao.id='+idSolicitacao.value;		
 		submeter = true;
 	}else if(action == 'adicionar'){		
 		url = '<c:url value="/casa/adicionais!load.action?"/>';		

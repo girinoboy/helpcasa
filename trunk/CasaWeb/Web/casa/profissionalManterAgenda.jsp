@@ -17,7 +17,7 @@
 		<br><br><br><br>
 		<s:if test="${profissionalDTO.listar}">
 			<h1>
-				Data:&nbsp;${profissionalDTO.data}
+				Data:&nbsp;<s:date format="dd/MM/yyyy HH:mm:ss"  name="profissionalDTO.data" />
 			</h1>
 			<table width="100%" cellspacing="1" cellpadding="3" border="1"
 				align="center">

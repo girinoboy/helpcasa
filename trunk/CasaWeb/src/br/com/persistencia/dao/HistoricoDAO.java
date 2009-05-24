@@ -104,6 +104,7 @@ public class HistoricoDAO extends GenericDAO{
 
 	private HistoricoDTO populaHistoricoDTO(HistoricoDTO dto, ResultSet rs) throws Exception {
 		dto.setId(rs.getLong("idHistorico"));
+		if(rs.getDate("data") !=null )
 		dto.setData(new Date(rs.getDate("data").getTime()));
 		dto.setTotal(rs.getDouble("total"));
 		//dto.setStatus(rs.getInt("status"));
