@@ -20,6 +20,7 @@ public class LoginAction extends GenericAction{
 	ClienteDTO clienteDTO;
 	private PessoaDTO pessoaDTO;
 	private PessoaDTO pessoaSessao;
+	private PessoaDTO pessoa;
 	
 	public LoginAction(){
 		loginBO = FactoryBO.getInstance().getLoginBO();
@@ -54,12 +55,14 @@ public class LoginAction extends GenericAction{
 				if(usuarioLogadoSistema != null){
 					pessoaDTO = usuarioLogadoSistema;
 					pessoaSessao = usuarioLogadoSistema;
+					pessoa = usuarioLogadoSistema;
 					getRequest().getSession(true).getCreationTime();//indica quando a sessao foi criada
 					getRequest().getSession(true).getLastAccessedTime();//indica quando foi a ultima vez que o utilizador acedeu a sessao
 					
 					getRequest().getSession(true).isNew();//indica se a sessao foi criada agora
 					getRequest().getSession(true).setAttribute("pessoaDTO", pessoaDTO);
 					getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
+					getRequest().getSession(true).setAttribute("pessoa", pessoa);
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
 					return abertura();
 				}else{
@@ -110,6 +113,7 @@ public class LoginAction extends GenericAction{
 		getRequest().getSession().removeAttribute("usuarioLogadoSistema");
 		getRequest().getSession().removeAttribute("pessoaDTO");
 		getRequest().getSession().removeAttribute("pessoaSessao");
+		getRequest().getSession().removeAttribute("pessoa");
 		getRequest().getSession().removeAttribute("mensagem");
 		
 		return checkLogin();
@@ -141,6 +145,14 @@ public class LoginAction extends GenericAction{
 
 	public void setClienteDTO(ClienteDTO clienteDTO) {
 		this.clienteDTO = clienteDTO;
+	}
+
+	public PessoaDTO getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(PessoaDTO pessoa) {
+		this.pessoa = pessoa;
 	}
 	
 	
