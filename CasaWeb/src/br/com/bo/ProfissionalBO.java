@@ -8,7 +8,7 @@ import java.util.List;
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.ProfissionalDAO;
-import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.AdicionalDTO;
 import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
 import br.com.persistencia.dto.ServicoDTO;
@@ -36,9 +36,9 @@ public class ProfissionalBO extends GenericBO{
 		return list;
 	}
 
-	public List<AdicionaisDTO> consultarAgendaDetalhada(Long idSolicitacao) throws Exception {
+	public List<AdicionalDTO> consultarAgendaDetalhada(Long idSolicitacao) throws Exception {
 		Connection conn = Conexao.getConnection();
-		List<AdicionaisDTO> list = null;
+		List<AdicionalDTO> list = null;
 		try{
 			list = profissionalDAO.consultarAgendaDetalhada(idSolicitacao,conn);
 		}catch(Exception e){

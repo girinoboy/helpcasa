@@ -22,7 +22,6 @@
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-digester-1.6.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/jasperreports-2.0.2.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/javamail_1.4.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/struts2-jasperreports-plugin-2.0.9.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/struts.jar"/>
@@ -41,7 +40,6 @@
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/displaytag-1.1.1.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/displaytag-export-poi-1.1.1.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/ehcache-1.1.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/itext-2.0.5.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/jakarta-oro.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/jaxen-core.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/jaxen-jdom.jar"/>
@@ -68,5 +66,9 @@
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/myfaces-api-1.1.2.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/iText-2.1.5.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/jasperreports-3.5.1.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/jbarcodebean-1.2.0.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/jboleto.jar"/>
 	<classpathentry kind="output" path="Web/WEB-INF/classes"/>
 </classpath>

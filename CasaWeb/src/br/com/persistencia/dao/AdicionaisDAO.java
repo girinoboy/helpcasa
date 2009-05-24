@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 
-import br.com.persistencia.dto.AdicionaisDTO;
+import br.com.persistencia.dto.AdicionalDTO;
 
 public class AdicionaisDAO extends GenericDAO {
 
-	public void inclui(AdicionaisDTO adicional, Connection conn) throws Exception {
+	public void inclui(AdicionalDTO adicional, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
 		String sql = "INSERT INTO casaweb.adicional(descricao,valor,observacao,data,idSolicitacao)VALUES(?,?,?,now(),?)";

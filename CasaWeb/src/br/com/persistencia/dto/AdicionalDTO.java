@@ -2,7 +2,7 @@ package br.com.persistencia.dto;
 
 import java.util.Date;
 
-public class AdicionaisDTO extends GenericDTO{
+public class AdicionalDTO extends GenericDTO{
 
 	private String observacao;
 	private String descricao;
@@ -10,8 +10,8 @@ public class AdicionaisDTO extends GenericDTO{
 	private Date data;
 	private SolicitacaoDTO solicitacao;
 	
-	public AdicionaisDTO(){}
-	public AdicionaisDTO(Long id){
+	public AdicionalDTO(){}
+	public AdicionalDTO(Long id){
 		this.id = id;
 	} 
 	
