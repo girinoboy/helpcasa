@@ -54,7 +54,7 @@ function validaCamposAoIncluir(){
 	var rg = document.getElementById('rg');
 	
 	var cidade = document.getElementById('cidade');
-	var uf = document.getElementById('id');
+	var uf = document.getElementById('uf');
 	var celular = document.getElementById('celular');
 	var nasc = dojo.widget.byId('nasc');
 	var email = document.getElementById('email');
@@ -74,6 +74,11 @@ function validaCamposAoIncluir(){
 	}
 	if(cep.value == ''){
 		alert('O campo CEP é obrigatório.');
+		cep.focus();
+		return false;
+	}
+	if(!valida_cep('cep')){
+		alert('O CEP não pertence ao estado selecionado.');
 		cep.focus();
 		return false;
 	}
@@ -174,4 +179,89 @@ function loadMascara(){
 	jQuery('#cep').mask('99999-999');
 	jQuery('#telefone').mask('(99) 9999-9999');
 	jQuery('#celular').mask('(99) 9999-9999');
+}
+
+
+//função que valida o cep de acorodo com o estado selecionado, é feito um loop e de acorodo com o indice do estado é verificado
+//a expressão regular correspondente ao cep no indice
+function valida_cep(Ncampo)
+{
+	var er;
+	var cep = document.getElementById(Ncampo).value;
+	var uf=new Array('AM','SP','RJ','MS','MG','MT','AC','AL','AP','CE','DF','ES','GO','MA','PA','PE','PI','PR','RN','RO','RR','RS','SC','SE','TO','BA');
+	var ers=new Array(/^[6][9][0-8][0-9]{2}-[0-9]{3}$/,/^([1][0-9]{3}|[01][0-9]{4})-[0-9]{3}$/,/^[2][0-8][0-9]{3}-[0-9]{3}$/,
+	/^[2][0-8][0-9]{3}-[0-9]{3}$/,/^[2][0-8][0-9]{3}-[0-9]{3}$/,/^[7][8][8][0-9]{2}-[0-9]{3}$/,/^[6][9]{2}[0-9]{2}-[0-9]{3}$/,
+	/^[5][7][0-9]{3}-[0-9]{3}$/,/^[6][89][9][0-9]{2}-[0-9]{3}$/,/^[6][0-3][0-9]{3}-[0-9]{3}$/,/^[7][0-3][0-6][0-9]{2}-[0-9]{3}$/,
+	/^[2][9][0-9]{3}-[0-9]{3}$/,/^[7][3-6][7-9][0-9]{2}-[0-9]{3}$/,/^[6][5][0-9]{3}-[0-9]{3}$/,/^[6][6-8][0-8][0-9]{2}-[0-9]{3}$/,
+	/^[5][0-6][0-9]{2}-[0-9]{3}$/,/^[6][4][0-9]{3}-[0-9]{3}$/,/^[8][0-7][0-9]{3}-[0-9]{3}$/,/^[5][9][0-9]{3}-[0-9]{3}$/,
+	/^[7][8][9][0-9]{2}-[0-9]{3}$/,/^[6][9][3][0-9]{2}-[0-9]{3}$/,/^[9][0-9]{4}-[0-9]{3}$/,/^[8][89][0-9]{3}-[0-9]{3}$/,
+	/^[4][9][0-9]{3}-[0-9]{3}$/,/^[7][7][0-9]{3}-[0-9]{3}$/,/^[4][0-8][0-9]{3}-[0-9]{3}$/);
+	
+		
+		//document.getElementById('resposta'+Ncampo).innerHTML="";
+			
+	/*if(document.getElementById('uf').value=="0")//selecione...
+	{
+		document.getElementById('resposta'+Ncampo).innerHTML="selecione o estado";
+		return false;
+	}*/
+	if(document.getElementById('uf').value=="0" && document.getElementById('cep').value!="")
+	{
+		//document.getElementById(Ncampo).style.background="red";
+		alert("selecione o estado antes de informar o CEP");
+		//document.getElementById(Ncampo).innerHTML ="selecione o estado antes de informar o CEP";
+		return false;
+	}
+	
+	var indexSelect = document.getElementById("uf").selectedIndex;
+	var valueSelected = document.form1.uf.options[indexSelect].text;
+	
+	for(i=0;i < uf.length;i++)
+	{	
+			if(uf[i]==valueSelected)
+			{	
+				if(cep!="")
+				{	
+					er=ers[i];
+					if(!er.test(cep))
+					{	
+						return erro(Ncampo);						
+					}		
+					else
+					{	
+						return ok(Ncampo);					
+					}
+				}
+				
+
+		 }	document.getElementById(Ncampo).style.background="#FFFFFF";
+			//document.getElementById('resposta'+Ncampo).innerHTML="";
+	}
+		
+}
+
+//função que retorna o erro na div correspondente ao campo, uando a vlaidação falha
+function erro(Ncampo)
+{
+	//if(Ncampo=="nome")
+	//resposta="nome deve ter no minimo 3 caracteres";
+	if(Ncampo=="cpf")
+	resposta="número de CPF inválido";
+	
+	/*document.getElementById('resposta'+Ncampo).innerHTML="nome deve ter no minimo 3 caracteres";
+	//document.getElementById(Ncampo).style.background="red";
+	//document.getElementById(Ncampo).focus();
+	return false;
+	}*/
+	//document.getElementById(Ncampo).style.background="red";
+	//document.getElementById('resposta'+Ncampo).innerHTML="informe " + Ncampo;
+	//document.getElementById(Ncampo).focus();
+	return false;
+}
+//função que formata o campo se a validação estiver ok
+function ok(Ncampo)
+{
+	//document.getElementById(Ncampo).style.background="#98EE84";
+	//document.getElementById('resposta'+Ncampo).innerHTML="";
+	return true;
 }

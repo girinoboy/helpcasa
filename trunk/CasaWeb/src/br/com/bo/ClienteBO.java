@@ -46,14 +46,12 @@ public class ClienteBO extends GenericBO{
 		MensagemLista mensagens = new  MensagemLista();
 		
 		try{
-			if(aplicaRegraDeNegocio(clienteDTO)){	
-				mensagens.addMensagem("CPF invalido.", Mensagem.ALERTA);
-				throw new RegraNegocioException(mensagens);
-			//	throw new Exception("CPF invalido.");
-			}if(clienteDAO.existeCadastro(clienteDTO,conn)){	
-				mensagens.addMensagem("Cadastro existente no sistema.", Mensagem.ALERTA);
-				throw new RegraNegocioException(mensagens);
-			}
+			System.out.printf("CPF Valido:%s \n", isValidCPF("01115375502"));
+			System.out.printf("CPF Valido:%s \n", isValidCPF("98765232456"));
+			System.out.printf("CPF Valido:%s \n", isValidCPF("19214849823"));
+		    
+			aplicaRegraDeNegocio(clienteDTO,conn);
+			
 			clienteDTOConsultada = this.clienteDAO.inclui(clienteDTO, conn);
 		} catch(SQLException sqlE) {
 			conn.rollback();
@@ -68,61 +66,43 @@ public class ClienteBO extends GenericBO{
 	}
 
 
-	private Boolean aplicaRegraDeNegocio(ClienteDTO cliente) {			
+	private Boolean aplicaRegraDeNegocio(ClienteDTO cliente, Connection conn) throws RegraNegocioException, Exception {		
+		MensagemLista mensagens = new  MensagemLista();
+		String strCpf = cliente.getCpf().replace("-", "").replace(".", "");
+
+		if(clienteDAO.existeCadastro(cliente,conn)){	
+			mensagens.addMensagem("Cadastro existente no sistema.", Mensagem.ALERTA);
+			throw new RegraNegocioException(mensagens);
+		}
+		if(!isValidCPF(strCpf)){	
+			mensagens.addMensagem("CPF invalido.", Mensagem.ALERTA);
+			throw new RegraNegocioException(mensagens);
 		
-		/** Realiza a validação do CPF.
-	    *
-	    * @param   strCPF número de CPF a ser validado
-	    * @return  true se o CPF é válido e false se não é válido
-	    */
-		  int     d1, d2;
-	      int     digito1, digito2, resto;
-	      int     digitoCPF;
-	      String  nDigResult;
+		}
+		
+		return true;		
+	}
+	
+	
+	private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+	
 
-	      d1 = d2 = 0;
-	      digito1 = digito2 = resto = 0;
+	private static int calcularDigito(String str, int[] peso) {
+		int soma = 0;
+		for (int indice=str.length()-1, digito; indice >= 0; indice-- ) {
+			digito = Integer.parseInt(str.substring(indice,indice+1));
+			soma += digito*peso[peso.length-str.length()+indice];
+		}
+		soma = 11 - soma % 11;
+		return soma > 9 ? 0 : soma;
+	}
 
-	      String strCpf = cliente.getCpf().replace("-", "").replace(".", "");
-		for (int nCount = 1; nCount < strCpf.length() -1; nCount++)
-	      {
-	         digitoCPF = Integer.valueOf (strCpf.substring(nCount -1, nCount)).intValue();
+	public static boolean isValidCPF(String cpf) {
+		if ((cpf==null) || (cpf.length()!=11)) return false;
 
-	         //multiplique a ultima casa por 2 a seguinte por 3 a seguinte por 4 e assim por diante.
-	         d1 = d1 + ( 11 - nCount ) * digitoCPF;
-
-	         //para o segundo digito repita o procedimento incluindo o primeiro digito calculado no passo anterior.
-	         d2 = d2 + ( 12 - nCount ) * digitoCPF;
-	      };
-
-	      //Primeiro resto da divisão por 11.
-	      resto = (d1 % 11);
-
-	      //Se o resultado for 0 ou 1 o digito é 0 caso contrário o digito é 11 menos o resultado anterior.
-	      if (resto < 2)
-	         digito1 = 0;
-	      else
-	         digito1 = 11 - resto;
-
-	      d2 += 2 * digito1;
-
-	      //Segundo resto da divisão por 11.
-	      resto = (d2 % 11);
-
-	      //Se o resultado for 0 ou 1 o digito é 0 caso contrário o digito é 11 menos o resultado anterior.
-	      if (resto < 2)
-	         digito2 = 0;
-	      else
-	         digito2 = 11 - resto;
-
-	      //Digito verificador do CPF que está sendo validado.
-	      String nDigVerific = strCpf.substring (strCpf.length()-2, strCpf.length());
-
-	      //Concatenando o primeiro resto com o segundo.
-	      nDigResult = String.valueOf(digito1) + String.valueOf(digito2);
-
-	      //comparar o digito verificador do cpf com o primeiro resto + o segundo resto.
-	      return nDigVerific.equals(nDigResult);		
+		Integer digito1 = calcularDigito(cpf.substring(0,9), pesoCPF);
+		Integer digito2 = calcularDigito(cpf.substring(0,9) + digito1, pesoCPF);
+		return cpf.equals(cpf.substring(0,9) + digito1.toString() + digito2.toString());
 	}
 
 
