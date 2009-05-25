@@ -39,7 +39,7 @@
 				</s:div><!-- fim div nav -->
 				
 				<s:div refreshOnShow="true"  id="divname1" cssClass="hiddencontent">			
-					<IFRAME name="palco" src='profissional!load.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>	
+					<IFRAME name="palco" src='profissional!load.action?profissionalDTO.id=${pessoaSessao.id}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>	
 				</s:div>
 			</s:elseif>
 			<s:elseif test="${pessoaSessao.perfil.descricao eq 'Atendente'}">
@@ -124,9 +124,9 @@
 			</s:div>						
 			
 			<s:div refreshOnShow="true"  id="divname7" cssClass="hiddencontent">				
-				<IFRAME name="palco" src='solicitacao!consultarFaturaBasica.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=boleto' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</s:div>
-			<s:if test="${pessoaSessao.perfil.descricao eq 'Administrador'}">
+			<s:if test="${pessoaSessao.perfil.descricao eq 'Administrador' or pessoaSessao.perfil.descricao eq 'Atendente'}">
 				<s:div refreshOnShow="true"  id="divname8" cssClass="hiddencontent" theme="ajax">				
 					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=servico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 				</s:div>

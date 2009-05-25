@@ -74,6 +74,7 @@
 			<result type="tiles" name="load.fwd">SolicitacoesLoad.def</result>
 			<result type="tiles" name="faturaBasica.fwd">SolicitacoesFaturaBasica.def</result>
 			<result type="tiles" name="google.fwd">google.def</result>
+			<result type="tiles" name="faturaDetalhada.fwd">SolicitacoesFaturaDetalhada.def</result>
 		</action>
 		
 		<action name="historico!*" method="{1}" class="br.com.web.actions.HistoricoAction">

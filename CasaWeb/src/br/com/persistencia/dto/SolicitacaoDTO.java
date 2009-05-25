@@ -10,6 +10,7 @@ public class SolicitacaoDTO extends GenericDTO{
 	private FuncionarioDTO funcionario;
 	private ServicoDTO servico;
 	private NotaDTO nota;
+	private Double total;
 	
 	public SolicitacaoDTO(){
 		
@@ -69,6 +70,14 @@ public class SolicitacaoDTO extends GenericDTO{
 
 	public void setNota(NotaDTO nota) {
 		this.nota = nota;
+	}
+
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 	
 	

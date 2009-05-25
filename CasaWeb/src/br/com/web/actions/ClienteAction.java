@@ -109,7 +109,7 @@ public class ClienteAction extends GenericAction {
 		if(funcao != null && funcao.equals("cliente"))
 			return "clienteConsultar.fwd";
 		else if(funcao != null && funcao.equals("servico"))
-			return "servicosListar.fwd";
+			return "servicosListar.fwd";		
 
 		return "clienteConsultar.fwd";
 	}

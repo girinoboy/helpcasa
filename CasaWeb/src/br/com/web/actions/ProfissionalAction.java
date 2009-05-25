@@ -42,7 +42,7 @@ public class ProfissionalAction extends GenericAction {
 			getSession().getAttribute("pessoa");
 			getSession().getAttribute("pessoaDTO");
 			getSession().getAttribute("usuarioLogadoSistema");
-			Long idFuncionario = getSessaoPessoa().getId();
+			Long idFuncionario = profissionalDTO.getId();
 			listAgenda = profissionalBO.consultarAgenda(profissionalDTO.getData(),idFuncionario);
 			
 			

@@ -55,12 +55,12 @@
 					</td>
 					<td>
 						<s:a
-							href="/CasaWeb/casa/servico!alterar.action?servicoDTO.id=${id}">
+							href="/CasaWeb/casa/solicitacao!consultarFaturaDetalhada.action?solicitacaoDTO.id=${id}">
 							<c:out value="${servico.nome}" />
 						</s:a>
 					</td>
 					<td>
-						<c:out value="${funcionario.profissao.nome}" />
+						<c:out value="${funcionario.nome}" />
 					</td>
 					<td>
 						<c:out value="${total}" />
