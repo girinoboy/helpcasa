@@ -50,7 +50,7 @@
 					<label class="table">
 						UF:*
 					</label>
-					<s:select name="clienteDTO.uf.id" id="id" label="UF" list="ufs" headerKey="-1" />
+					<s:select name="clienteDTO.uf.id" id="uf" label="UF" list="ufs" headerKey="-1" />
 				</td>
 				
 			</tr>
@@ -59,7 +59,7 @@
 					CEP:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" />
+					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" onblur="valida_cep('cep')" />
 				</td>
 			</tr>
 			<tr>
