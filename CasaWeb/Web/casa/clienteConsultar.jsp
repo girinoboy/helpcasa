@@ -90,7 +90,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					E-mail:
+					E-mail:*
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.email" label="EMAIL" size="100" id="email" />
