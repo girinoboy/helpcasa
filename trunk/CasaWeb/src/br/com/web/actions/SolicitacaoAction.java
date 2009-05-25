@@ -58,6 +58,7 @@ public class SolicitacaoAction extends GenericAction{
 			//getRequest().getSession().removeAttribute("pessoaSessao");
 			getRequest().getSession(true).setAttribute("pessoaSessao", solicitacaoDTO.getCliente());
 			getRequest().getSession(true).setAttribute("pessoaDTO", solicitacaoDTO.getCliente());
+			getRequest().getSession(true).setAttribute("pessoa", solicitacaoDTO.getCliente());
 			//distancia = (Double[]) getRequest().getSession().getAttribute("distancia");
 		} catch (Exception e) {
 
@@ -130,15 +131,15 @@ public class SolicitacaoAction extends GenericAction{
 		return "google.fwd";
 	}
 	
-	public String consultarFaturaBasica(){
-
-		Long idCliente = null;
-		try {
-
-			if(getSessaoPessoa().getId() != null){
-				idCliente = getSessaoPessoa().getId();
+	public String consultarFaturaBasica(){		
+		
+		try {			
+			if(solicitacaoDTO != null){			
+				solicitacaoDTO.setCliente(clienteBO.consulta(solicitacaoDTO.getCliente().getCpf()));
+				Long idCliente = solicitacaoDTO.getCliente().getId();
 				this.listFaturaBasica = this.solicitacaoBO.consultarFaturaBasica(idCliente);
-			}
+			}else
+				this.listFaturaBasica = this.solicitacaoBO.consultarFaturaBasica(getSessaoPessoa().getId());
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
@@ -153,7 +154,7 @@ public class SolicitacaoAction extends GenericAction{
 			
 			e.printStackTrace();
 		}
-		return null;
+		return "faturaDetalhada.fwd";
 	}
 	
 	public String cancela(){

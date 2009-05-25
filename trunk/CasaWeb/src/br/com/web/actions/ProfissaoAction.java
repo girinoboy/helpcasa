@@ -45,6 +45,7 @@ public class ProfissaoAction extends GenericAction {
 			} else {
 				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
 			}
+			getMensagemGlobal().addMensagem("Profissão excluida com sucesso.",Mensagem.ALERTA);
 		} catch (Exception e) {
 			System.out.println("Existe um funcionari anexado a essa função");
 			e.printStackTrace();

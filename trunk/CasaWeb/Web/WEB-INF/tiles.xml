@@ -179,11 +179,17 @@
     	 <put-attribute name="onload" 			 value="initialize();" /> 
     	<put-attribute name="dojo" 				 value="true" />
     </definition>
-    <definition name="SolicitacoesFaturaBasica.def" extends="template1.def">
-    	<put-attribute name="title" 			 value="SIGSD" />		
-    	<put-attribute name="body" 				 value="/casa/faturaBasica.jsp" />	
-    	<put-attribute name="js" 				 value="/casa/fatura.js.jsp" />    	
-    	<put-attribute name="dojo" 				 value="true" />
+    <definition name="SolicitacoesFaturaBasica.def"  extends="template1.def">
+    	<put-attribute name="title" 				 value="SIGSD" />		
+    	<put-attribute name="body" 					 value="/casa/faturaBasica.jsp" />	
+    	<put-attribute name="js" 					 value="/casa/fatura.js.jsp" />    	
+    	<put-attribute name="dojo" 					 value="true" />
+    </definition>
+    <definition name="SolicitacoesFaturaDetalhada.def" extends="template1.def">
+    	<put-attribute name="title" 				   value="SIGSD" />		
+    	<put-attribute name="body" 					   value="/casa/faturaDetalhada.jsp" />	
+    	<put-attribute name="js" 					   value="/casa/fatura.js.jsp" />    	
+    	<put-attribute name="dojo" 					   value="true" />
     </definition>
     <definition name="google.def" 			  	 extends="template1.def">
     	<put-attribute name="title" 			 value="SIGSD" />		

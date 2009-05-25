@@ -19,8 +19,12 @@ function selectAction(action){
 			url = '<c:url value="/casa/cliente!pesquisar.action?"/>';	
 			params='clienteDTO.cpf='+cpf.value;
 		}
-		else{
+		else if(funcao.value == 'servico'){
 			url = '<c:url value="/casa/solicitacao!load.action?"/>';	
+			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
+		}
+		else if(funcao.value == 'boleto'){
+			url = '<c:url value="/casa/solicitacao!consultarFaturaBasica.action?"/>';	
 			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
 		}
 		submeter = true;

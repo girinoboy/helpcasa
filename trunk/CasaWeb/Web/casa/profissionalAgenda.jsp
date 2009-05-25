@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <s:form name="form1" id="form1">
+<s:hidden id="idProfissional" name="profissionalDTO.id" value="${pessoaSessao.id}"/>
 	<div class="container" style="width: 700px">
 		<h2>
 			Agenda Virtual
