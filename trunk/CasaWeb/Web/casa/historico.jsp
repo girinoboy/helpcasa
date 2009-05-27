@@ -44,7 +44,7 @@
 						<c:out value="${stat.index+1}" />
 					</td>					
 					<td>
-						<s:a href="/CasaWeb/casa/historico!consultarHistorico.action?historicoDTO.solicitacao.id=${solicitacao.id}"><c:out value="${solicitacao.servico.nome}" /></s:a>
+						<s:a href="./casa/historico!consultarHistorico.action?historicoDTO.solicitacao.id=${solicitacao.id}"><c:out value="${solicitacao.servico.nome}" /></s:a>
 					</td>
 					<td>
 						<s:date format="dd/MM/yyyy HH:mm:ss"  name="data" />

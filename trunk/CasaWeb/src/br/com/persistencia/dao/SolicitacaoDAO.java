@@ -38,10 +38,13 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN casaweb.servico ON servico.idprofissao = profissao.idprofissao";
 
 
-	protected static final String strConsultFaturaDetalhada = "SELECT sum(valor)+precoVisita as total,precoVisita,adicional.descricao,adicional.data,valor, observacao FROM casaweb.adicional, solicitacao.idSolicitacao " +
+	protected static final String strConsultFaturaDetalhada = "SELECT sum(valor)+precoVisita as total,precoVisita,adicional.descricao,adicional.data,valor, observacao, solicitacao.idSolicitacao,servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,pessoa.idPessoa " +
+			"	FROM casaweb.adicional " +
 			"	inner join casaweb.solicitacao on solicitacao.idSolicitacao = adicional.idSolicitacao " +
 			"	inner join casaweb.funcionario on solicitacao.idFuncionario = funcionario.idFuncionario " +
-			"	inner join casaweb.profissao on profissao.idProfissao = funcionario.idProfissao ";
+			"	INNER JOIN casaweb.pessoa  ON funcionario.idFuncionario = pessoa.idPessoa " +
+			"	inner join casaweb.profissao on profissao.idProfissao = funcionario.idProfissao " +
+			"	INNER JOIN casaweb.servico ON servico.idprofissao = profissao.idprofissao ";
 
 	public void inclui(SolicitacaoDTO solicitacao, Connection conn)
 			throws Exception {

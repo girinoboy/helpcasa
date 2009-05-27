@@ -68,7 +68,7 @@ public class HistoricoDAO extends GenericDAO{
 		
 	}
 
-	public List<HistoricoDTO> historicoListar(Connection conn) throws Exception {
+	public List<HistoricoDTO> historicoListar(Long idCliente, Connection conn) throws Exception {
 		List<HistoricoDTO> list =null;
 		HistoricoDTO historicoDTO = null;
 		PreparedStatement ps = null;
@@ -76,10 +76,12 @@ public class HistoricoDAO extends GenericDAO{
 			
 		StringBuffer qBuffer = new StringBuffer();		
 
-		qBuffer.append(strConsult);		
+		qBuffer.append(strConsult);	
+		qBuffer.append(" WHERE sl.idCliente=?");	
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
+			ps.setLong(1, idCliente);
 			rs = ps.executeQuery();
 			list = new ArrayList<HistoricoDTO>();
 			while(rs.next()){

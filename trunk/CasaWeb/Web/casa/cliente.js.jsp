@@ -27,6 +27,10 @@ function selectAction(action){
 			url = '<c:url value="/casa/solicitacao!consultarFaturaBasica.action?"/>';	
 			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
 		}
+		else if(funcao.value == 'historico'){
+			url = '<c:url value="/casa/historico!historicoListar.action?"/>';	
+			params='historicoDTO.solicitacao.cliente.cpf='+cpf.value;	
+		}
 		submeter = true;
 	}else if(action == 'voltar'){		
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';

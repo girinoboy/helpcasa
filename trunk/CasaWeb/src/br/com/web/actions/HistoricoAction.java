@@ -2,6 +2,7 @@ package br.com.web.actions;
 
 import java.util.List;
 
+import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.HistoricoBO;
 import br.com.bo.NotasBO;
@@ -12,6 +13,7 @@ public class HistoricoAction extends GenericAction{
 	
 	private HistoricoDTO historicoDTO;
 	private HistoricoBO historicoBO;
+	private ClienteBO clienteBO;
 	private List<HistoricoDTO> listHistorico;
 	private List<HistoricoDTO> listaHistoricoDetalhada;
 	private NotasBO notasBO;
@@ -20,6 +22,7 @@ public class HistoricoAction extends GenericAction{
 	public HistoricoAction() {
 		historicoBO = FactoryBO.getInstance().getHistoricoBO();
 		notasBO = FactoryBO.getInstance().getNotasBO();
+		clienteBO = FactoryBO.getInstance().getClienteBO();
 	}
 	
 	public String load(){
@@ -33,8 +36,10 @@ public class HistoricoAction extends GenericAction{
 	}
 	
 	public String historicoListar(){
-		try{
-			this.listHistorico = historicoBO.historicoListar();
+		try{			
+			historicoDTO.getSolicitacao().setCliente(clienteBO.consulta(historicoDTO.getSolicitacao().getCliente().getCpf()));
+			Long idCliente = historicoDTO.getSolicitacao().getCliente().getId();
+			this.listHistorico = historicoBO.historicoListar(idCliente);
 			this.listNota = notasBO.consultarNotas();
 		}catch(Exception e){
 			e.printStackTrace();

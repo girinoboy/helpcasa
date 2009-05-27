@@ -14,7 +14,7 @@
 	<br />
 	<br />
 	<br />
-	<s:submit value="Gerar Boleto" >sss</s:submit>
+	<s:submit value="Gerar Boleto" />
 </div>
 </s:form>
 </div>

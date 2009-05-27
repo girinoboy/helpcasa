@@ -32,7 +32,7 @@ public class BoletoAction  extends GenericAction {
 	private Date dataVencimento=new Date();
 	private String banco;
 	private  String cedente="";
-	private Vector descricoes = new Vector();
+	private Vector<String> descricoes = new Vector<String>();
 	private String valor;
 	private JBoletoBean jBoletoBean=new  JBoletoBean();
 	private String localDePagamento="ATE O VENCIMENTO, PREFERENCIALMENTE NA CAIXA ECONOMICA";
@@ -70,6 +70,15 @@ public class BoletoAction  extends GenericAction {
 	    jBoletoBean.setUfSacado(cliente1.getCliEstado());
 	    jBoletoBean.setCepSacado(cliente1.getCliCep());
 	    jBoletoBean.setCpfSacado(cliente1.getCliCPFCNPJ());*/
+	    
+	    
+	    jBoletoBean.setNomeSacado(getSessaoPessoa().getNome());
+	    jBoletoBean.setEnderecoSacado("endereço");
+	    jBoletoBean.setBairroSacado("");
+	    jBoletoBean.setCidadeSacado("");
+	    jBoletoBean.setUfSacado("");
+	    jBoletoBean.setCepSacado(getSessaoPessoa().getCep());
+	    jBoletoBean.setCpfSacado(getSessaoPessoa().getCpf());
 	    jBoletoBean.setDataVencimento(fm.format(getDataVencimento()));
 	    jBoletoBean.setValorBoleto(getValor());
 	   jBoletoBean.setDataDocumento(fm.format(dataDocumento));
@@ -446,14 +455,14 @@ public class BoletoAction  extends GenericAction {
 	    /**
 	     * @return the descricoes
 	     */
-	    public Vector getDescricoes() {
+	    public Vector<String> getDescricoes() {
 	        return descricoes;
 	    }
 
 	    /**
 	     * @param descricoes the descricoes to set
 	     */
-	    public void setDescricoes(Vector descricoes) {
+	    public void setDescricoes(Vector<String> descricoes) {
 	        this.descricoes = descricoes;
 	    }
 
