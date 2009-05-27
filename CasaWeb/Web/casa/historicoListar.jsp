@@ -9,23 +9,21 @@
 		align="center">
 		<tr>
 			<td></td>			
-			<td title="Serviço">
-				<strong><c:out value="Serviço" /> </strong>
-			</td>
+			
 			<td title="Data">
 				<strong><c:out value="Data" /> </strong>
 			</td>	
 			<td title="Periodo">
 				<strong><c:out value="Periodo" /> </strong>
 			</td>
-			<td title="Profissional">
-				<strong><c:out value="Profissional" /> </strong>
+			<td title="Status">
+				<strong><c:out value="Status" /> </strong>
 			</td>
-			<td title="Total">
-				<strong><c:out value="Total" /> </strong>
+			<td title="Perfil">
+				<strong><c:out value="Perfil" /> </strong>
 			</td>
-			<td title="Classificação">
-				<strong><c:out value="Classificação" /> </strong>
+			<td title="Nome">
+				<strong><c:out value="Nome" /> </strong>
 			</td>			
 		</tr>
 		<s:if test="${not empty listHistorico}">
