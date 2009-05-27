@@ -43,7 +43,7 @@ public class BoletoAction  extends GenericAction {
 	private String instrucao4="APOS O VENCIMENTO COBRAR R$ 1.50 DE TAXA DE OPERAÇÂO ";
 	private String instrucao5="ANTES DO VENCIMENTO APLICAR DESCONTO DE 5%";
 	private String descricao1="Boleta referente a cobrança de serviços prestados. ";
-	private String descricao2="Os serviços de jardinagem foram encerrados no dia 19/12/2009";
+	private String descricao2="Os serviços do SIGSD foram encerrados no dia 19/12/2009";
 	private Date dataDocumento=new Date();
 	public BoletoAction() {
     }
@@ -73,14 +73,14 @@ public class BoletoAction  extends GenericAction {
 	    
 	    
 	    jBoletoBean.setNomeSacado(getSessaoPessoa().getNome());
-	    jBoletoBean.setEnderecoSacado("endereço");
-	    jBoletoBean.setBairroSacado("");
-	    jBoletoBean.setCidadeSacado("");
-	    jBoletoBean.setUfSacado("");
+	    jBoletoBean.setEnderecoSacado("Endereço");
+	    jBoletoBean.setBairroSacado("Bairo");
+	    jBoletoBean.setCidadeSacado("Cidade");
+	    jBoletoBean.setUfSacado("UF");
 	    jBoletoBean.setCepSacado(getSessaoPessoa().getCep());
 	    jBoletoBean.setCpfSacado(getSessaoPessoa().getCpf());
 	    jBoletoBean.setDataVencimento(fm.format(getDataVencimento()));
-	    jBoletoBean.setValorBoleto(getValor());
+	    jBoletoBean.setValorBoleto("25");
 	   jBoletoBean.setDataDocumento(fm.format(dataDocumento));
 	   boletos.gerarBoleto(jBoletoBean,"Banco do Brasil",getRequest(),getResponse());
 
