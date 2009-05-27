@@ -35,11 +35,11 @@ public class HistoricoBO extends GenericBO{
 		
 	}
 
-	public List<HistoricoDTO> historicoListar() throws Exception {
+	public List<HistoricoDTO> historicoListar(Long idCliente) throws Exception {
 		Connection conn = Conexao.getConnection();
 		List<HistoricoDTO> list = null;
 		try{
-			list = historicoDAO.historicoListar(conn);
+			list = historicoDAO.historicoListar(idCliente,conn);
 		}catch(Exception e){
 			throw e;
 		}finally{

@@ -55,7 +55,7 @@
 					</td>
 					<td>
 						<s:a
-							href="/CasaWeb/casa/solicitacao!consultarFaturaDetalhada.action?solicitacaoDTO.id=${id}">
+							href="./casa/solicitacao!consultarFaturaDetalhada.action?solicitacaoDTO.id=${id}">
 							<c:out value="${servico.nome}" />
 						</s:a>
 					</td>

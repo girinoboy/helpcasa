@@ -30,7 +30,17 @@
 				<s:div refreshOnShow="true"  id="divname0" cssClass="hiddencontent" >				
 					<IFRAME name="palco" src='cliente!consultaParaCliente.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 				</s:div>
+				<s:div refreshOnShow="true"  id="divname7" cssClass="hiddencontent">				
+					<IFRAME name="palco" src='solicitacao!consultarFaturaBasica.action?solicitacaoDTO.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</s:div>
+				<s:div refreshOnShow="true"  id="divname8" cssClass="hiddencontent" theme="ajax">				
+					<IFRAME name="palco" src='solicitacao!load.action?solicitacaoDTO.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</s:div>
+				<s:div refreshOnShow="true"  id="divname9" cssClass="hiddencontent" theme="ajax">				
+				<IFRAME name="palco" src='historico!historicoListar.action?historicoDTO.solicitacao.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+			</s:div>
 			</s:if>
+				
 			<s:elseif test="${pessoaSessao.perfil.descricao eq 'Profissional'}">
 				<s:div refreshOnShow="true"  id="nav">
 					<a href="#" title="divname1">Agenda</a>
@@ -123,22 +133,20 @@
 				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=cliente' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>				
 			</s:div>						
 			
-			<s:div refreshOnShow="true"  id="divname7" cssClass="hiddencontent">				
-				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=boleto' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</s:div>
+			
 			<s:if test="${pessoaSessao.perfil.descricao eq 'Administrador' or pessoaSessao.perfil.descricao eq 'Atendente'}">
+				<s:div refreshOnShow="true"  id="divname7" cssClass="hiddencontent">				
+					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=boleto' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				</s:div>
 				<s:div refreshOnShow="true"  id="divname8" cssClass="hiddencontent" theme="ajax">				
 					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=servico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 				</s:div>
-			</s:if>
-			<s:else>
-				<s:div refreshOnShow="true"  id="divname8" cssClass="hiddencontent" theme="ajax">				
-					<IFRAME name="palco" src='solicitacao!load.action?solicitacaoDTO.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-				</s:div>
-			</s:else>
-			<s:div refreshOnShow="true"  id="divname9" cssClass="hiddencontent" theme="ajax">				
-				<IFRAME name="palco" src='historico!historicoListar.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				<s:div refreshOnShow="true"  id="divname9" cssClass="hiddencontent" theme="ajax">				
+				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=historico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</s:div>
+			</s:if>
+			
+			
 			<!--
 			<s:div refreshOnShow="true"  id="divname" cssClass="hiddencontent">				
 				<IFRAME name="palco" src='http://maps.google.com.br/' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
