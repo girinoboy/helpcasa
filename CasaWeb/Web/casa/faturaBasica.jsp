@@ -23,8 +23,8 @@
 			<td title="Serviço">
 				<strong><c:out value="Serviço" /> </strong>
 			</td>
-			<td title="Profissão">
-				<strong><c:out value="Profissão" /> </strong>
+			<td title="Profissional">
+				<strong><c:out value="Profissional" /> </strong>
 			</td>
 			<td title="Valor">
 				<strong><c:out value="Valor Total" /> </strong>
@@ -55,7 +55,7 @@
 					</td>
 					<td>
 						<s:a
-							href="./casa/solicitacao!consultarFaturaDetalhada.action?solicitacaoDTO.id=${id}">
+							href="./casa/solicitacao!consultarFaturaDetalhada.action?solicitacaoDTO.id=${id}&solicitacaoDTO.cliente.cpf=${solicitacaoDTO.cliente.cpf}&solicitacaoDTO.cliente.nome=${solicitacaoDTO.cliente.nome}">
 							<c:out value="${servico.nome}" />
 						</s:a>
 					</td>
