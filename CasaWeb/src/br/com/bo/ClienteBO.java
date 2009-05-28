@@ -42,14 +42,13 @@ public class ClienteBO extends GenericBO{
 	public ClienteDTO inclui(ClienteDTO clienteDTO) throws RegraNegocioException, Exception {
 		Connection conn = Conexao.getConnection();
 		ClienteDTO clienteDTOConsultada =  null;
-		conn.setAutoCommit(false);
-		MensagemLista mensagens = new  MensagemLista();
+		conn.setAutoCommit(false);	
 		
 		try{
 			System.out.printf("CPF Valido:%s \n", isValidCPF("01115375502"));
 			System.out.printf("CPF Valido:%s \n", isValidCPF("98765232456"));
 			System.out.printf("CPF Valido:%s \n", isValidCPF("19214849823"));
-		    
+		    //verifica se cpf eh valido e se ja exite cadastro duplicado no sistema
 			aplicaRegraDeNegocio(clienteDTO,conn);
 			
 			clienteDTOConsultada = this.clienteDAO.inclui(clienteDTO, conn);

@@ -16,7 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jboleto.JBoletoBean;
 
-import br.com.boleto.Boleto;
+import br.com.Boleto;
+import br.com.bo.ClienteBO;
+import br.com.bo.FactoryBO;
+import br.com.persistencia.dto.ClienteDTO;
 
 public class BoletoAction  extends GenericAction {
 
@@ -43,9 +46,12 @@ public class BoletoAction  extends GenericAction {
 	private String instrucao4="APOS O VENCIMENTO COBRAR R$ 1.50 DE TAXA DE OPERAÇÂO ";
 	private String instrucao5="ANTES DO VENCIMENTO APLICAR DESCONTO DE 5%";
 	private String descricao1="Boleta referente a cobrança de serviços prestados. ";
-	private String descricao2="Os serviços do SIGSD foram encerrados no dia 19/12/2009";
+	private String descricao2="Os serviços do SIGSD foram encerrados no dia 25/05/2009";
 	private Date dataDocumento=new Date();
+	private ClienteBO clienteBO;
+	private ClienteDTO clienteDTO;
 	public BoletoAction() {
+		clienteBO = FactoryBO.getInstance().getClienteBO();
     }
 	public void gerarBoleto(){
 	    SimpleDateFormat fm=new SimpleDateFormat("dd/MM/yyyy");
@@ -71,16 +77,21 @@ public class BoletoAction  extends GenericAction {
 	    jBoletoBean.setCepSacado(cliente1.getCliCep());
 	    jBoletoBean.setCpfSacado(cliente1.getCliCPFCNPJ());*/
 	    
-	    
-	    jBoletoBean.setNomeSacado(getSessaoPessoa().getNome());
-	    jBoletoBean.setEnderecoSacado("Endereço");
-	    jBoletoBean.setBairroSacado("Bairo");
-	    jBoletoBean.setCidadeSacado("Cidade");
-	    jBoletoBean.setUfSacado("UF");
-	    jBoletoBean.setCepSacado(getSessaoPessoa().getCep());
-	    jBoletoBean.setCpfSacado(getSessaoPessoa().getCpf());
+	    try {
+	    	if(clienteDTO != null)
+			clienteDTO = clienteBO.consulta(clienteDTO.getCpf());
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	    jBoletoBean.setNomeSacado(clienteDTO.getNome());
+	    jBoletoBean.setEnderecoSacado(clienteDTO.getEndereco());
+	    jBoletoBean.setBairroSacado("");
+	    jBoletoBean.setCidadeSacado(clienteDTO.getCidade());
+	    jBoletoBean.setUfSacado(clienteDTO.getUf().getDescricao());
+	    jBoletoBean.setCepSacado(clienteDTO.getCep());
+	    jBoletoBean.setCpfSacado(clienteDTO.getCpf());
 	    jBoletoBean.setDataVencimento(fm.format(getDataVencimento()));
-	    jBoletoBean.setValorBoleto("25");
+	    jBoletoBean.setValorBoleto(valor);
 	   jBoletoBean.setDataDocumento(fm.format(dataDocumento));
 	   boletos.gerarBoleto(jBoletoBean,"Banco do Brasil",getRequest(),getResponse());
 
@@ -509,6 +520,14 @@ public class BoletoAction  extends GenericAction {
 	    public void setDataDocumento(Date dataDocumento) {
 	        this.dataDocumento = dataDocumento;
 	    }
+	    
+	    
+		public ClienteDTO getClienteDTO() {
+			return clienteDTO;
+		}
+		public void setClienteDTO(ClienteDTO clienteDTO) {
+			this.clienteDTO = clienteDTO;
+		}
 
 
 
