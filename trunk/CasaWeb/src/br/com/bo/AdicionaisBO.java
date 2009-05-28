@@ -2,11 +2,13 @@ package br.com.bo;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.AdicionaisDAO;
 import br.com.persistencia.dto.AdicionalDTO;
+import br.com.persistencia.dto.ServicoDTO;
 
 public class AdicionaisBO extends GenericBO {
 
@@ -39,6 +41,20 @@ public class AdicionaisBO extends GenericBO {
 			conn.close();
 		}
 		
+	}
+	
+	public List<AdicionalDTO> adicionalListar(Long idSolicitacao) throws Exception {
+		Connection conn = Conexao.getConnection();
+		List<AdicionalDTO> list = null;
+		try{
+			list = adicionaisDAO.adicionalListar(idSolicitacao,conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+		return list;
 	}
 
 }

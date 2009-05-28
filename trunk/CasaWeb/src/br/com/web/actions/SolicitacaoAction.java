@@ -12,10 +12,12 @@ import org.apache.poi.hssf.record.formula.functions.Request;
 import com.sun.mail.iap.Response;
 
 import br.com.Mensagem;
+import br.com.bo.AdicionaisBO;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.ServicoBO;
 import br.com.bo.SolicitacaoBO;
+import br.com.persistencia.dto.AdicionalDTO;
 import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.FuncionarioDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
@@ -29,20 +31,24 @@ public class SolicitacaoAction extends GenericAction{
 	private SolicitacaoBO solicitacaoBO;
 	private ServicoBO servicoBO;
 	private ClienteBO clienteBO;
+	private AdicionaisBO adicionalBO;
 	private List<SolicitacaoDTO> listSolicitacoes;
 	private List<ServicoDTO> listServicos;
 	private Map<Number, String> servicos;
 	private List<SolicitacaoDTO> listFaturaBasica;
 	private List<SolicitacaoDTO> listFaturaDetalhada;
 	private List<SolicitacaoDTO> listHorariosDisponiveis;
+	private List<AdicionalDTO> listAdicional;
 	private Double[] distancia;
 	private Long[] idsSolicitacao;
+	
 
 
 	public SolicitacaoAction() {
 		solicitacaoBO = FactoryBO.getInstance().getSolicitacaoBO();
 		servicoBO = FactoryBO.getInstance().getServicoBO();
 		clienteBO = FactoryBO.getInstance().getClienteBO();
+		adicionalBO =FactoryBO.getInstance().getAdicionaisBO();
 	}
 	
 	public String load() {
@@ -139,7 +145,7 @@ public class SolicitacaoAction extends GenericAction{
 				Long idCliente = solicitacaoDTO.getCliente().getId();
 				this.listFaturaBasica = this.solicitacaoBO.consultarFaturaBasica(idCliente);
 			}else
-				this.listFaturaBasica = this.solicitacaoBO.consultarFaturaBasica(getSessaoPessoa().getId());
+				this.listFaturaBasica = this.solicitacaoBO.consultarFaturaBasica(getSessaoPessoa().getId());			
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
@@ -150,6 +156,8 @@ public class SolicitacaoAction extends GenericAction{
 		Long idSolicitacao = solicitacaoDTO.getId();
 		try {
 			this.listFaturaDetalhada = this.solicitacaoBO.consultarFaturaDetalhada(idSolicitacao);
+			
+			this.listAdicional= adicionalBO.adicionalListar(idSolicitacao);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -242,6 +250,14 @@ public class SolicitacaoAction extends GenericAction{
 
 	public void setDistancia(Double[] distancia) {
 		this.distancia = distancia;
+	}
+
+	public List<AdicionalDTO> getListAdicional() {
+		return listAdicional;
+	}
+
+	public void setListAdicional(List<AdicionalDTO> listAdicional) {
+		this.listAdicional = listAdicional;
 	}
 
 }

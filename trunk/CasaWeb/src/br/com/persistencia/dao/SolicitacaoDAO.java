@@ -15,22 +15,24 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class SolicitacaoDAO extends GenericDAO{
 
-	protected static final String strConsultListaPorIdCliente = "SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, funcionario.ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao " +
+	protected static final String strConsultListaPorIdCliente = "SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, funcionario.ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao,precoVisita " +
 			"FROM casaweb.solicitacao " +
 			"INNER JOIN casaweb.servico ON solicitacao.idServico = servico.idServico " +
 			"INNER JOIN casaweb.funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario " +
+			"INNER JOIN casaweb.profissao ON profissao.idprofissao = f.idprofissao " +
 			"INNER JOIN casaweb.pessoa on pessoa.idPessoa = funcionario.idFuncionario " ;
 			
 	
-	protected static final String strConsultFaturaBasica = "SELECT v.nome as nomeServico, p.nome as 'Profissional',s.data,s.periodo,p.idPessoa as idFuncionario, f.ocupado, p.nome as nomeFuncionario,p.cep, SUM(a.valor) as 'Total', s.idSolicitacao " +
+	protected static final String strConsultFaturaBasica = "SELECT v.nome as nomeServico, p.nome as 'Profissional',s.data,s.periodo,p.idPessoa as idFuncionario, f.ocupado, p.nome as nomeFuncionario,p.cep, SUM(a.valor) as 'Total', s.idSolicitacao,precoVisita " +
 			"FROM casaweb.solicitacao s " +
 			"INNER JOIN casaweb.cliente c ON c.idCliente = s.idCliente " +
 			"INNER JOIN casaweb.funcionario f ON f.idFuncionario = s.idFuncionario " +
+			"INNER JOIN casaweb.profissao ON profissao.idprofissao = f.idprofissao " +
 			"INNER JOIN casaweb.pessoa p ON f.idFuncionario = p.idPessoa " +
 			"INNER JOIN casaweb.Servico v ON v.idServico = s.idServico " +
 			"LEFT JOIN casaweb.adicional a ON a.idSolicitacao = s.idSolicitacao ";
 		
-	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao" +
+	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao,precoVisita" +
 			"FROM casaweb.solicitacao " +
 			"RIGHT JOIN casaweb.pessoa ON idpessoa=idfuncionario " +
 			"INNER JOIN casaweb.funcionario on funcionario.idfuncionario = pessoa.idpessoa " +
@@ -38,7 +40,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN casaweb.servico ON servico.idprofissao = profissao.idprofissao";
 
 
-	protected static final String strConsultFaturaDetalhada = "SELECT sum(valor)+precoVisita as total,precoVisita,adicional.descricao,adicional.data,valor, observacao, solicitacao.idSolicitacao,servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,pessoa.idPessoa " +
+	protected static final String strConsultFaturaDetalhada = "SELECT sum(valor)+precoVisita as total,precoVisita,adicional.descricao,adicional.data,valor, observacao, solicitacao.idSolicitacao,servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,pessoa.idPessoa,precoVisita " +
 			"	FROM casaweb.adicional " +
 			"	inner join casaweb.solicitacao on solicitacao.idSolicitacao = adicional.idSolicitacao " +
 			"	inner join casaweb.funcionario on solicitacao.idFuncionario = funcionario.idFuncionario " +
@@ -132,14 +134,14 @@ public class SolicitacaoDAO extends GenericDAO{
 		funcionario.setCep(rs.getString("cep"));
 		funcionario.setOcupado(rs.getBoolean("ocupado"));
 		dto.setFuncionario(funcionario);
-		/*
-		ProfissaoDTO profissao = new ProfissaoDTO();
+		
+		ProfissaoDTO profissao = new ProfissaoDTO();/*
 		profissao.setId(rs.getLong("idProfissao"));
 		profissao.setNome(rs.getString("nomeProfissao"));
-		profissao.setPrecoVisita(rs.getDouble("precoVisita"));
-		profissao.setDescricao(rs.getString("descricaoProfissao"));
+		profissao.setDescricao(rs.getString("descricaoProfissao"));*/
+		profissao.setPrecoVisita(rs.getDouble("precoVisita"));		
 		funcionario.setProfissao(profissao);
-		*/
+		
 		ServicoDTO servico = new ServicoDTO();
 		servico.setNome(rs.getString("nomeServico"));
 		dto.setServico(servico);
