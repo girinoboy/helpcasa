@@ -15,26 +15,25 @@
 			Serviço:
 		</label>
 		<label class="c_e_dados_float">
-			<s:property
-				value="profissionalDTO.historico.solicitacao.servico.nome" />
+			<s:property	value="profissionalDTO.historico.solicitacao.servico.nome" />
 		</label>
 		<br class="clr" />
 		<label class="label_entrada_dados" style="width: 220px;">
-			data:
+			Data:
 		</label>
 		<label class="c_e_dados_float">
-			<s:property value="data" />
+			<s:property value="profissionalDTO.data" />
 		</label>
 		<br class="clr" />
 		<label class="label_entrada_dados" style="width: 220px;">
-			periodo:
+			Periodo:
 		</label>
 		<label class="c_e_dados_float">
 			<s:property value="profissionalDTO.historico.solicitacao.periodo" />
 		</label>
 		<br class="clr" />
 		<label class="label_entrada_dados" style="width: 220px;">
-			cliente:
+			Cliente:
 		</label>
 		<label class="c_e_dados_float">
 			<s:property
@@ -42,7 +41,7 @@
 		</label>
 		<br class="clr" />
 		<label class="label_entrada_dados" style="width: 220px;">
-			valor:
+			Valor:
 		</label>
 		<label class="c_e_dados_float">
 			<s:property
@@ -50,7 +49,7 @@
 		</label>
 		<br class="clr" />
 		<label class="label_entrada_dados" style="width: 220px;">
-			situação:
+			Situação:
 		</label>
 		<label class="c_e_dados_float">
 			<s:property value="profissionalDTO.historico.status" />
@@ -134,7 +133,7 @@
 				class="principal" />
 			<input type="button" value="Adicionar Extras"
 				onClick="selectAction('adicionar');" class="adicionar" />
-			<input type="button" value="Excluir Adicionais"
+			<input type="button" value="Excluir Extras"
 				onClick="selectAction('excluir');" class="secundario" />
 			<input type="button" value="Voltar"
 				onClick="selectAction('voltar');" class="voltar" />

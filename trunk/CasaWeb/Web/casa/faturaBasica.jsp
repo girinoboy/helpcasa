@@ -12,6 +12,8 @@
 	<h2 align="center">
 		<c:out value="Listagem de Serviços Prestados" />
 	</h2>
+	<br />
+			<div class="td_rotulo_linha_inf">Cliente: ${solicitacaoDTO.cliente.nome}</div>
 	<table width="100%" cellspacing="1" cellpadding="3" border="1"
 		align="center">
 		<tr>
@@ -27,7 +29,7 @@
 				<strong><c:out value="Profissional" /> </strong>
 			</td>
 			<td title="Valor">
-				<strong><c:out value="Valor Total" /> </strong>
+				<strong><c:out value="Valor" /> </strong>
 			</td>
 
 
