@@ -32,8 +32,8 @@
 					<td title="Valor">
 						<strong><c:out value="Valor" /> </strong>
 					</td>
-					<td title="Observação">
-						<strong><c:out value="Observação" /> </strong>
+					<td title="Observações">
+						<strong><c:out value="Observações" /> </strong>
 					</td>
 
 				</tr>

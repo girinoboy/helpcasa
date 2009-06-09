@@ -9,7 +9,7 @@ function selectAction(action){
 	if(action == 'voltar'){
 			var cpf = document.getElementById('cpf');
 			url = '<c:url value="/casa/solicitacao!consultarFaturaBasica.action?"/>';	
-			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
+			//params='solicitacaoDTO.cliente.cpf='+cpf.value;	
 			submeter = true;
 	}else if(action == 'boleto'){
 			var cpf = document.getElementById('cpf');
