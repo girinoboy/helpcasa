@@ -20,16 +20,19 @@ public class RelatoriosAction extends GenericAction {
 		relatoriosBO = FactoryBO.getInstance().getRelatoriosBO();
 	}
 
-	public String load() throws Exception {
+	public String load()  {
 
 		return "load.fwd";
 	}
 
-	public String resumoFaturamentoMensal() throws Exception {
+	public String resumoFaturamentoMensal() {
+		try{
 	//	listaPDFTRelatorio = new ArrayList<RelatorioDTO>();
 		
 		listaPDFTRelatorio = relatoriosBO.resumoFaturamentoMensal();
-		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return "gerarPDF.fwd";
 	}
 

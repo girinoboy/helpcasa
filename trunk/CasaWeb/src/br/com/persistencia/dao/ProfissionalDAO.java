@@ -12,19 +12,23 @@ import java.util.List;
 import br.com.ConstantesENUM;
 import br.com.persistencia.dto.AdicionalDTO;
 import br.com.persistencia.dto.ClienteDTO;
+import br.com.persistencia.dto.FuncionarioDTO;
 import br.com.persistencia.dto.HistoricoDTO;
+import br.com.persistencia.dto.ProfissaoDTO;
 import br.com.persistencia.dto.ProfissionalDTO;
 import br.com.persistencia.dto.ServicoDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class ProfissionalDAO extends GenericDAO{
 
-	protected static final String strConsult ="SELECT servico.nome AS nomeServico,periodo,pessoa.nome AS nomeCliente,endereco,cep,telefone,status,solicitacao.idSolicitacao " +
-			"FROM casaweb.solicitacao " +
-			"INNER JOIN casaweb.servico ON servico.idServico = solicitacao.idServico " +
-			"INNER JOIN casaweb.cliente ON cliente.idCliente = solicitacao.idCliente " +
-			"INNER JOIN casaweb.pessoa ON pessoa.idPessoa = cliente.idCliente " +
-			"INNER JOIN casaweb.historico ON historico.idSolicitacao = solicitacao.idSolicitacao ";
+	protected static final String strConsult ="SELECT servico.nome AS nomeServico,periodo,pessoa.nome AS nomeCliente,endereco,cep,telefone,status,solicitacao.idSolicitacao,precoVisita" +
+			"			FROM casaweb.solicitacao" +
+			"			INNER JOIN casaweb.servico ON servico.idServico = solicitacao.idServico" +
+			"			INNER JOIN casaweb.cliente ON cliente.idCliente = solicitacao.idCliente" +
+			"			INNER JOIN casaweb.pessoa ON pessoa.idPessoa = cliente.idCliente" +
+			"      INNER JOIN casaweb.funcionario ON funcionario.idFuncionario = solicitacao.idFuncionario" +
+			"      INNER JOIN casaweb.profissao ON profissao.idProfissao = funcionario.idProfissao" +
+			"      INNER JOIN casaweb.historico ON historico.idSolicitacao = solicitacao.idSolicitacao ";
 	
 	protected static final String strConsultAdicionais ="SELECT * FROM adicional";
 	
@@ -38,7 +42,7 @@ public class ProfissionalDAO extends GenericDAO{
 
 		qBuffer.append(strConsult);
 		qBuffer.append(" WHERE solicitacao.data = ?");
-		qBuffer.append(" AND idFuncionario = ?");
+		qBuffer.append(" AND solicitacao.idFuncionario = ?");
 		qBuffer.append(" AND status = ?");
 		
 		try{
@@ -175,12 +179,18 @@ public class ProfissionalDAO extends GenericDAO{
 		servico.setNome(rs.getString("nomeServico"));
 		solicitacao.setServico(servico);
 		
+		FuncionarioDTO funcionario = new FuncionarioDTO();
+		ProfissaoDTO profissao = new ProfissaoDTO();
+		profissao.setPrecoVisita(rs.getDouble("precoVisita"));
+		funcionario.setProfissao(profissao);
+		solicitacao.setFuncionario(funcionario);
+		
 		ClienteDTO cliente = new ClienteDTO();
 		cliente.setNome(rs.getString("nomeCliente"));
 		cliente.setEndereco(rs.getString("endereco"));
 		cliente.setCep(rs.getString("cep"));
 		cliente.setTelefone(rs.getString("telefone"));
-		solicitacao.setCliente(cliente );
+		solicitacao.setCliente(cliente);
 		
 		dto.setSolicitacao(solicitacao);
 		return dto;

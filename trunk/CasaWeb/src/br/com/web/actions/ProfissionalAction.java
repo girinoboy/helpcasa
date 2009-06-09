@@ -1,5 +1,6 @@
 package br.com.web.actions;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.Mensagem;
@@ -45,7 +46,7 @@ public class ProfissionalAction extends GenericAction {
 			Long idFuncionario = profissionalDTO.getId();
 			listAgenda = profissionalBO.consultarAgenda(profissionalDTO.getData(),idFuncionario);
 			
-			
+			getRequest().setAttribute("data", profissionalDTO.getData());
 		}catch(Exception e){
 			System.out.println(e);
 			e.printStackTrace();			
@@ -54,11 +55,14 @@ public class ProfissionalAction extends GenericAction {
 	}
 	
 	public String consultarAgendaDetalhada(){
-		try{
+		try{			
 			Long idSolicitacao=profissionalDTO.getHistorico().getSolicitacao().getId();
 			listAdicionais = profissionalBO.consultarAgendaDetalhada(idSolicitacao);
 			HistoricoDTO historico=profissionalBO.consultarHistoricoAgendaDetalhada(idSolicitacao);
 			profissionalDTO.setHistorico(historico); 
+			Date data = (Date) getRequest().getAttribute("data");
+			getRequest().getParameter("data");
+			profissionalDTO.setData(data);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
