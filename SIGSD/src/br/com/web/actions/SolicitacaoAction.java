@@ -12,6 +12,7 @@ import org.apache.poi.hssf.record.formula.functions.Request;
 import com.sun.mail.iap.Response;
 
 import br.com.Mensagem;
+import br.com.RegraNegocioException;
 import br.com.bo.AdicionaisBO;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
@@ -113,6 +114,10 @@ public class SolicitacaoAction extends GenericAction{
 			//solicitacaoDTO.setFuncionario(funcionario);
 			solicitacaoBO.solicitacaoInclui(solicitacaoDTO,listHorariosDisponiveis);
 			getMensagemGlobal().addMensagem("Solicitacao efetuada.", Mensagem.ALERTA);
+		} catch (RegraNegocioException e){
+			//e.printStackTrace();
+			//manda para o request a mensagem de exceção vinda do bo
+			getMensagemGlobal().setMensagens(e.getMensagens());				
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao efetuar solicitação.", Mensagem.ALERTA);
 			e.printStackTrace();

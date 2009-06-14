@@ -19,7 +19,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			"FROM casaweb.solicitacao " +
 			"INNER JOIN casaweb.servico ON solicitacao.idServico = servico.idServico " +
 			"INNER JOIN casaweb.funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario " +
-			"INNER JOIN casaweb.profissao ON profissao.idprofissao = f.idprofissao " +
+			"INNER JOIN casaweb.profissao ON profissao.idprofissao = funcionario.idprofissao " +
 			"INNER JOIN casaweb.pessoa on pessoa.idPessoa = funcionario.idFuncionario " ;
 			
 	
@@ -32,7 +32,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN casaweb.Servico v ON v.idServico = s.idServico " +
 			"LEFT JOIN casaweb.adicional a ON a.idSolicitacao = s.idSolicitacao ";
 		
-	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao,precoVisita" +
+	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao,precoVisita " +
 			"FROM casaweb.solicitacao " +
 			"RIGHT JOIN casaweb.pessoa ON idpessoa=idfuncionario " +
 			"INNER JOIN casaweb.funcionario on funcionario.idfuncionario = pessoa.idpessoa " +
@@ -65,7 +65,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			ps.setDouble(5, solicitacao.getServico().getId());
 			
 			ps.executeUpdate();
-			//set o novo endereço do funcionario
+			//set o novo endereço do funcionario como o cep 70390-130 da empresa
 			ps2 = conn.prepareStatement(sql2);
 			ps2.setString(1, solicitacao.getCliente().getCep());
 			ps2.setLong(2, solicitacao.getFuncionario().getId());

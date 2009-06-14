@@ -4,6 +4,7 @@
 <div style="width: 710px;" class="container">
 	<s:form name="form1" id="form1">
 		<s:hidden name="clienteDTO.id" id="id"/>
+		
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 				<td class="label_entrada_dados">
@@ -124,11 +125,23 @@
 				</td>
 			</tr>
 		</table>
+		<s:set name="alterado" value="false" id="alterado"/>
+		
 		<div class="footer">
+		 <s:if test="${not alterado}">
+			<input type="button" value="Alterar" onClick="selectAction('alterar');"
+				class="principal" />
+			<input type="button" value="Excluir"
+				onClick="selectAction('exclui');" class="secundario" />
+			<input type="button" value="Cancelar"
+				onClick="selectAction('voltar');" class="voltar" />
+		</s:if>
+		<s:else>
 			<input type="button" value="Salvar" onClick="selectAction('altera');"
 				class="principal" />
 			<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />
+		</s:else>
 		</div>
 	</s:form>
 </div>

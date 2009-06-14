@@ -31,7 +31,12 @@
 				 <param name="actionName">login!checkLogin.action?</param>
 				 <param name="pessoaDTO.usuario">${clienteDTO.usuario}</param>
 				 <param name="pessoaDTO.senha">${clienteDTO.senha}</param>
-			</result>								
+			</result>
+			
+			<result name="paginaLogin.fwd" type="redirect-action">
+				 <param name="actionName">login!logout.action?</param>
+				 
+			</result>										
 		</action>	
 		
 		<action name="administrador!*" method="{1}" class="br.com.web.actions.AdministradorAction">

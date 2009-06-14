@@ -6,6 +6,9 @@ import java.util.List;
 
 import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
+import br.com.Mensagem;
+import br.com.MensagemLista;
+import br.com.RegraNegocioException;
 import br.com.persistencia.Conexao;
 import br.com.persistencia.FactoryDAO;
 import br.com.persistencia.dao.SolicitacaoDAO;
@@ -23,13 +26,19 @@ public class SolicitacaoBO extends GenericBO{
 
 	public void solicitacaoInclui(SolicitacaoDTO solicitacaoDTO, List<SolicitacaoDTO> listHorariosDisponiveis) throws Exception {
 		Connection conn = Conexao.getConnection();
-
+		MensagemLista mensagens = new  MensagemLista();
 		try {
 			
 			FuncionarioDTO funcionario=aplicaRegraDeNegocio(solicitacaoDTO,listHorariosDisponiveis);
 			solicitacaoDTO.setFuncionario(funcionario);
 			Boolean ocupado = solicitacaoDAO.existeSolicitacao(solicitacaoDTO, conn);
-			solicitacaoDAO.inclui(solicitacaoDTO, conn);
+			if(!ocupado)
+				solicitacaoDAO.inclui(solicitacaoDTO, conn);
+			else{
+				mensagens.addMensagem("Todos os horarios ocupados.", Mensagem.ALERTA);
+				throw new RegraNegocioException(mensagens);
+			}
+				
 		} catch (Exception e) {
 			throw e;
 		} finally {
