@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="s" uri="/struts-tags"%>
 function selectAction(action){
 	
 	var url = '';
@@ -38,6 +38,15 @@ function selectAction(action){
 		submeter = true;
 	}else if(action == 'altera'){
 		url = '<c:url value="/casa/cliente!altera.action?"/>';
+		submeter = validaCamposAoIncluir();
+	}else if(action == 'alterar'){
+		var cpf = document.getElementById('cpf');
+		<s:set name="alterado" value="false"/>		
+		url = '<c:url value="/casa/cliente!consultaParaCliente.action?"/>';
+		params='clienteDTO.cpf='+cpf.value;	
+		submeter = true;
+	}else if(action == 'exclui'){
+		url = '<c:url value="/casa/cliente!exclui.action?"/>';
 		submeter = validaCamposAoIncluir();
 	}else{
 		alert('Ação não encontrada.');
@@ -189,6 +198,14 @@ function loadMascara(){
 	jQuery('#celular').mask('(99) 9999-9999');
 }
 
+function loadWin(){
+	var alterado = ${alterado};
+	
+	if(!alterado){
+		disableAll();
+	}
+
+}
 
 //função que valida o cep de acorodo com o estado selecionado, é feito um loop e de acorodo com o indice do estado é verificado
 //a expressão regular correspondente ao cep no indice

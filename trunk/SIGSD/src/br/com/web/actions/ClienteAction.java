@@ -140,6 +140,11 @@ public class ClienteAction extends GenericAction {
 		return consultaParaCliente();
 
 	}
+	
+	public String exclui(){
+		getMensagemGlobal().addMensagem("Cadastro excluido!.", Mensagem.ALERTA);
+		return "paginaAbertura.fwd";
+	}
 
 	public String boleto() {
 

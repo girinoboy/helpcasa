@@ -1,230 +1,243 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
-             
+
 <tiles-definitions>
- 
-    <definition name="template1.def" 		template="/template1.jsp">    	
-    	<put-attribute name="filtro" 		value="" />
-    	<put-attribute name="body" 			value="" />
-		<put-attribute name="js" 			value="" />
-		<put-attribute name="onload" 		value="" />
-		<put-attribute name="title" 		value="" />		
-    </definition>
-    
-    <definition name="LoginLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 	value="Login SIGSD" />			
-    	<put-attribute name="body" 		value="/casa/login.jsp" />	    	
-    </definition>
-    <definition name="Abertura.def"				extends="template1.def">
-    	<put-attribute name="title" 			value="Menu de ações do sistema" />			
-    	<put-attribute name="body" 				value="/casa/abertura.jsp" />	    	
-    	<put-attribute name="js" 				value="/casa/abertura.js.jsp" />
-    	<put-attribute name="jtabber" 			value="true" />
-    </definition>
-    
-     <!-- INICIO DE CLIENTE -->
-    <definition name="ClienteCadastrar.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/clienteCadastrar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    	<put-attribute name="jQuery" 			value="true" />
-    	<put-attribute name="onload" 			value="loadMascara();" />
-    	<put-attribute name="dojo" 				value="true" />
-    </definition>
-    <definition name="ClienteConsultar.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/clienteConsultar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    	<put-attribute name="onload" 			value="loadMascara();" />
-    	<put-attribute name="jQuery" 			value="true" />
-    	<put-attribute name="dojo" 				value="true" />
-    </definition>
-    <definition name="ClienteAlterar.def"		extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/clienteAlterar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    	
-    </definition>
-    <definition name="ClienteListar.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/clienteListar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    </definition>
-    <definition name="ClienteBoleto.def"	    extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/clienteEfetuarPagamento.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    </definition>
-    <definition name="ClienteClassificar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/aplicarClassificacao.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    </definition> 
-    <definition name="ClientePesquisar.def"		extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/clientePesquisar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/cliente.js.jsp" />
-    	<put-attribute name="jQuery" 			value="true" />
-    	<put-attribute name="onload" 			value="loadMascara();" />
-    </definition> 
-     <!-- FIM DE CLIENTE -->
-    
-     <!-- INICIO DE ADMINISTRADOR -->
-    <definition name="AdministradorManterServico.def"	extends="template1.def">
-    	<put-attribute name="title" 					value="SIGSD" />		
-    	<put-attribute name="body" 						value="/casa/administradorManterServico.jsp" />	
-    	<put-attribute name="js" 						value="/casa/administrador.js.jsp" />
-    </definition>
-    <definition name="AdministradorManterFuncionario.def"	extends="template1.def">
-    	<put-attribute name="title" 						value="SIGSD" />		
-    	<put-attribute name="body" 							value="/casa/administradorManterFuncionario.jsp" />	
-    	<put-attribute name="js" 							value="/casa/administrador.js.jsp" />
-    </definition>
-     <!-- FIM DE ADMINISTRADOR -->
-     
-     <!-- INICIO DE PROFISSIONAL -->
-    <definition name="ProfissionalLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="SIGSD" />		
-    	<put-attribute name="body" 			value="/casa/profissionalAgenda.jsp" />	
-    	<put-attribute name="js" 			value="/casa/profissional.js.jsp" />
-    	<put-attribute name="dojo" 			value="true" />
-    </definition>
-    <definition name="ProfissionalAdicionais.def"	extends="template1.def">
-    	<put-attribute name="title" 				value="SIGSD" />		
-    	<put-attribute name="body" 					value="/casa/agendaDetalhada.jsp" />	
-    	<put-attribute name="js" 					value="/casa/agenda.js.jsp" />
-    	<put-attribute name="dojo" 					value="true" />
-    </definition>
-    <definition name="AgendaLoad.def"				extends="template1.def">
-    	<put-attribute name="title" 				value="SIGSD" />		
-    	<put-attribute name="body" 					value="/casa/adicionaisCadastrar.jsp" />	
-    	<put-attribute name="js" 					value="/casa/adicionais.js.jsp" />
-    	<put-attribute name="dojo" 					value="true" />
-    </definition>
-     <!-- FIM DE PROFISSIONAL -->
-     
-     <!-- INICIO DE PROFISSOES -->
-    <definition name="ProfissaoLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="SIGSD" />		
-    	<put-attribute name="body" 			value="/casa/profissao.jsp" />	
-    	<put-attribute name="js" 			value="/casa/profissao.js.jsp" />
-    	
-    </definition>
-    <definition name="ProfissaoCadastrar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/profissaoCadastrar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
-    	<put-attribute name="jQuery" 			value="true" />
-    	<put-attribute name="onload" 			value="loadMascara();" />
-    	
-    </definition>
-    <definition name="ProfissaoAlterar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/profissaoAlterar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/profissao.js.jsp" />
-    	
-    </definition>
-     <!-- FIM DE PROFISSOES -->
-     
-     <!-- INICIO DE SERVICOS -->
-    <definition name="ServicoListar.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="SIGSD" />		
-    	<put-attribute name="body" 			value="/casa/servicos.jsp" />	
-    	<put-attribute name="js" 			value="/casa/servico.js.jsp" />
-    </definition>
-    <definition name="ServicoCadastrar.def"		extends="template1.def">
-    	<put-attribute name="title" 			value="Cadastro de Serviços" />		
-    	<put-attribute name="body" 				value="/casa/servicoCadastrar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
-    </definition>
-    <definition name="ServicoAlterar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/servicoAlterar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/servico.js.jsp" />
-    	
-    </definition>
-     <!-- FIM DE SERVICOS -->
-     
-      <!-- INICIO DE FUNCIONARIOS -->
-    <definition name="FuncionariosListar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/funcionarioListar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/funcionario.js.jsp" />
-    </definition>
-    <definition name="FuncionariosCadastrar.def" extends="template1.def">
-    	<put-attribute name="title" 			 value="Cadastrar Funcionario" />		
-    	<put-attribute name="body" 				 value="/casa/funcionarioCadastrar.jsp" />	
-    	<put-attribute name="js" 				 value="/casa/funcionario.js.jsp" />
-    	<put-attribute name="jQuery" 			value="true" />
-    	<put-attribute name="onload" 			value="loadMascara();" />
-    	<put-attribute name="dojo" 				 value="true" />
-    </definition>
-    <definition name="FuncionarioAlterar.def"	extends="template1.def">
-    	<put-attribute name="title" 			value="SIGSD" />		
-    	<put-attribute name="body" 				value="/casa/funcionarioAlterar.jsp" />	
-    	<put-attribute name="js" 				value="/casa/funcionario.js.jsp" />
-    	<put-attribute name="jQuery" 			value="true" />
-    	<put-attribute name="onload" 			value="loadMascara();" />
-    	<put-attribute name="dojo" 				 value="true" />
-    	
-    </definition>
-     <!-- FIM DE FUNCIONARIOS -->
-     
-      <!-- INICIO DE SOLICITACOES -->
-    <definition name="SolicitacoesLoad.def" 	 extends="template1.def">
-    	<put-attribute name="title" 			 value="SIGSD" />		
-    	<put-attribute name="body" 				 value="/casa/solicitacaoCadastrar.jsp" />	
-    	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />
-    	 <put-attribute name="onload" 			 value="initialize();" /> 
-    	<put-attribute name="dojo" 				 value="true" />
-    	<put-attribute name="gMaps" 			value="true" />
-    </definition>
-    <definition name="SolicitacoesFaturaBasica.def"  extends="template1.def">
-    	<put-attribute name="title" 				 value="SIGSD" />		
-    	<put-attribute name="body" 					 value="/casa/faturaBasica.jsp" />	
-    	<put-attribute name="js" 					 value="/casa/fatura.js.jsp" />    	
-    	<put-attribute name="dojo" 					 value="true" />
-    </definition>
-    <definition name="SolicitacoesFaturaDetalhada.def" extends="template1.def">
-    	<put-attribute name="title" 				   value="SIGSD" />		
-    	<put-attribute name="body" 					   value="/casa/faturaDetalhada.jsp" />	
-    	<put-attribute name="js" 					   value="/casa/fatura.js.jsp" />    	
-    	<put-attribute name="dojo" 					   value="true" />
-    </definition>
-    <definition name="google.def" 			  	 extends="template1.def">
-    	<put-attribute name="title" 			 value="SIGSD" />		
-    	<put-attribute name="body" 				 value="/casa/google.jsp" />	
-    	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />    	
-    	<put-attribute name="dojo" 				 value="true" />
-    </definition>
-    <definition name="SolicitacoesListar.def" 	 extends="template1.def">
-    	<put-attribute name="title" 			 value="SIGSD" />		
-    	<put-attribute name="body" 				 value="/casa/solicitacaoListar.jsp" />	
-    	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />
-    	 <put-attribute name="onload" 			 value="initialize();" /> 
-    	<put-attribute name="dojo" 				 value="true" />
-    </definition>
-      <!-- FIM DE SOLICITACOES -->
-    
-     <!-- INICIO DE HISTORICO -->
-    <definition name="HistoricoLoad.def"		 extends="template1.def">
-    	<put-attribute name="title" 			 value="SIGSD" />		
-    	<put-attribute name="body" 				 value="/casa/historico.jsp" />	
-    	<put-attribute name="js" 				 value="/casa/historico.js.jsp" />
-    </definition>
-     <definition name="HistoricoConsultar.def" 	extends="template1.def">
-    	<put-attribute name="title" 			 value="SIGSD" />		
-    	<put-attribute name="body" 				 value="/casa/historicoListar.jsp" />	
-    	<put-attribute name="js" 				 value="/casa/historico.js.jsp" />
-    </definition>
-     <!-- FIM DE HISTORICO -->
-     
-     <!-- INICIO DE RELATORIOS -->
-    <definition name="RelatoriosLoad.def"	extends="template1.def">
-    	<put-attribute name="title" 		value="SIGSD" />		
-    	<put-attribute name="body" 			value="/casa/relatorios.jsp" />	
-    </definition>  
-     <!-- FIM DE RELATORIOS -->
-   
+
+	<definition name="template1.def" template="/template1.jsp">
+		<put-attribute name="filtro" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="onload" value="" />
+		<put-attribute name="title" value="" />
+	</definition>
+
+	<definition name="LoginLoad.def" extends="template1.def">
+		<put-attribute name="title" value="Login SIGSD" />
+		<put-attribute name="body" value="/casa/login.jsp" />
+	</definition>
+	<definition name="Abertura.def" extends="template1.def">
+		<put-attribute name="title" value="Menu de ações do sistema" />
+		<put-attribute name="body" value="/casa/abertura.jsp" />
+		<put-attribute name="js" value="/casa/abertura.js.jsp" />
+		<put-attribute name="jtabber" value="true" />
+	</definition>
+
+	<!-- INICIO DE CLIENTE -->
+	<definition name="ClienteCadastrar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/clienteCadastrar.jsp" />
+		<put-attribute name="js" value="/casa/cliente.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="ClienteConsultar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/clienteConsultar.jsp" />
+		<put-attribute name="js" value="/casa/cliente.js.jsp" />
+		<put-attribute name="onload" value="loadMascara();loadWin();" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="ClienteAlterar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/clienteAlterar.jsp" />
+		<put-attribute name="js" value="/casa/cliente.js.jsp" />
+
+	</definition>
+	<definition name="ClienteListar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/clienteListar.jsp" />
+		<put-attribute name="js" value="/casa/cliente.js.jsp" />
+	</definition>
+	<definition name="ClienteBoleto.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body"
+			value="/casa/clienteEfetuarPagamento.jsp" />
+		<put-attribute name="js" value="/casa/cliente.js.jsp" />
+	</definition>
+	<definition name="ClienteClassificar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body"
+			value="/casa/aplicarClassificacao.jsp" />
+		<put-attribute name="js" value="/casa/cliente.js.jsp" />
+	</definition>
+	<definition name="ClientePesquisar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/clientePesquisar.jsp" />
+		<put-attribute name="js" value="/casa/cliente.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />
+	</definition>
+	<!-- FIM DE CLIENTE -->
+
+	<!-- INICIO DE ADMINISTRADOR -->
+	<definition name="AdministradorManterServico.def"
+		extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body"
+			value="/casa/administradorManterServico.jsp" />
+		<put-attribute name="js" value="/casa/administrador.js.jsp" />
+	</definition>
+	<definition name="AdministradorManterFuncionario.def"
+		extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body"
+			value="/casa/administradorManterFuncionario.jsp" />
+		<put-attribute name="js" value="/casa/administrador.js.jsp" />
+	</definition>
+	<!-- FIM DE ADMINISTRADOR -->
+
+	<!-- INICIO DE PROFISSIONAL -->
+	<definition name="ProfissionalLoad.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/profissionalAgenda.jsp" />
+		<put-attribute name="js" value="/casa/profissional.js.jsp" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="ProfissionalAdicionais.def"
+		extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/agendaDetalhada.jsp" />
+		<put-attribute name="js" value="/casa/agenda.js.jsp" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="AgendaLoad.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body"
+			value="/casa/adicionaisCadastrar.jsp" />
+		<put-attribute name="js" value="/casa/adicionais.js.jsp" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<!-- FIM DE PROFISSIONAL -->
+
+	<!-- INICIO DE PROFISSOES -->
+	<definition name="ProfissaoLoad.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/profissao.jsp" />
+		<put-attribute name="js" value="/casa/profissao.js.jsp" />
+
+	</definition>
+	<definition name="ProfissaoCadastrar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/profissaoCadastrar.jsp" />
+		<put-attribute name="js" value="/casa/profissao.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />
+
+	</definition>
+	<definition name="ProfissaoAlterar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/profissaoAlterar.jsp" />
+		<put-attribute name="js" value="/casa/profissao.js.jsp" />
+
+	</definition>
+	<!-- FIM DE PROFISSOES -->
+
+	<!-- INICIO DE SERVICOS -->
+	<definition name="ServicoListar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/servicos.jsp" />
+		<put-attribute name="js" value="/casa/servico.js.jsp" />
+	</definition>
+	<definition name="ServicoCadastrar.def" extends="template1.def">
+		<put-attribute name="title" value="Cadastro de Serviços" />
+		<put-attribute name="body" value="/casa/servicoCadastrar.jsp" />
+		<put-attribute name="js" value="/casa/servico.js.jsp" />
+	</definition>
+	<definition name="ServicoAlterar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/servicoAlterar.jsp" />
+		<put-attribute name="js" value="/casa/servico.js.jsp" />
+
+	</definition>
+	<!-- FIM DE SERVICOS -->
+
+	<!-- INICIO DE FUNCIONARIOS -->
+	<definition name="FuncionariosListar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/funcionarioListar.jsp" />
+		<put-attribute name="js" value="/casa/funcionario.js.jsp" />
+	</definition>
+	<definition name="FuncionariosCadastrar.def"
+		extends="template1.def">
+		<put-attribute name="title" value="Cadastrar Funcionario" />
+		<put-attribute name="body"
+			value="/casa/funcionarioCadastrar.jsp" />
+		<put-attribute name="js" value="/casa/funcionario.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="FuncionarioAlterar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/funcionarioAlterar.jsp" />
+		<put-attribute name="js" value="/casa/funcionario.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />
+		<put-attribute name="dojo" value="true" />
+
+	</definition>
+	<!-- FIM DE FUNCIONARIOS -->
+
+	<!-- INICIO DE SOLICITACOES -->
+	<definition name="SolicitacoesLoad.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body"
+			value="/casa/solicitacaoCadastrar.jsp" />
+		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />
+		<put-attribute name="onload" value="initialize();" />
+		<put-attribute name="dojo" value="true" />
+		<put-attribute name="gMaps" value="true" />
+	</definition>
+	<definition name="SolicitacoesFaturaBasica.def"
+		extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/faturaBasica.jsp" />
+		<put-attribute name="js" value="/casa/fatura.js.jsp" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="SolicitacoesFaturaDetalhada.def"
+		extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/faturaDetalhada.jsp" />
+		<put-attribute name="js" value="/casa/fatura.js.jsp" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="google.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/google.jsp" />
+		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<definition name="SolicitacoesListar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/solicitacaoListar.jsp" />
+		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />
+		<put-attribute name="onload" value="initialize();" />
+		<put-attribute name="dojo" value="true" />
+	</definition>
+	<!-- FIM DE SOLICITACOES -->
+
+	<!-- INICIO DE HISTORICO -->
+	<definition name="HistoricoLoad.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/historico.jsp" />
+		<put-attribute name="js" value="/casa/historico.js.jsp" />
+	</definition>
+	<definition name="HistoricoConsultar.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/historicoListar.jsp" />
+		<put-attribute name="js" value="/casa/historico.js.jsp" />
+	</definition>
+	<!-- FIM DE HISTORICO -->
+
+	<!-- INICIO DE RELATORIOS -->
+	<definition name="RelatoriosLoad.def" extends="template1.def">
+		<put-attribute name="title" value="SIGSD" />
+		<put-attribute name="body" value="/casa/relatorios.jsp" />
+	</definition>
+	<!-- FIM DE RELATORIOS -->
+
 </tiles-definitions>
