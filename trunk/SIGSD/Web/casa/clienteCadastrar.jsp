@@ -50,7 +50,7 @@
 					<label class="table">
 						UF:*
 					</label>
-					<s:select name="clienteDTO.uf.id" id="uf" label="UF" list="ufs" headerKey="-1" />
+					<s:select name="clienteDTO.uf.id" id="uf" label="UF" list="ufs" headerKey="0" headerValue="Selecione"/>
 				</td>
 				
 			</tr>
@@ -133,4 +133,4 @@
 				onClick="selectAction('direcionaLogin');" class="voltar" />
 		</div>
 	</s:form>
-</div>
+</div>s

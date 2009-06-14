@@ -15,13 +15,16 @@
 	<tiles:useAttribute name="jQueryMultipleFileUpload" scope="request" ignore="true"/>
 	<tiles:useAttribute name="dojo" scope="request" ignore="true"/>
 	<tiles:useAttribute name="jtabber" scope="request" ignore="true"/>
+	<tiles:useAttribute name="gMaps" scope="request" ignore="true"/>
 	
 	<head>
 		
 		<title><tiles:getAsString name="title" /></title>
 		
 		<!-- api google maps -->
+		<s:if test="${not empty gMaps and gMaps == 'true'}">
 		<script src=" http://maps.google.com/?file=api&amp;v=2.x&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA" type="text/javascript"></script>
+		</s:if>
 		
 		<!-- css -->
 		<link href='<s:url value="/estilos/casa_web.css"/>' rel="stylesheet" type="text/css"></link>

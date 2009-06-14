@@ -178,6 +178,7 @@
     	<put-attribute name="js" 				 value="/casa/solicitacao.js.jsp" />
     	 <put-attribute name="onload" 			 value="initialize();" /> 
     	<put-attribute name="dojo" 				 value="true" />
+    	<put-attribute name="gMaps" 			value="true" />
     </definition>
     <definition name="SolicitacoesFaturaBasica.def"  extends="template1.def">
     	<put-attribute name="title" 				 value="SIGSD" />		
