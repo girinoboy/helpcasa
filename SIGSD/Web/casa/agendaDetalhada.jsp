@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
 
 <s:form name="form1" id="form1">
+<s:hidden id="data" name="profissionalDTO.data"/>
 <s:hidden id="idSolicitacao" value="${profissionalDTO.historico.solicitacao.id}" name="profissionalDTO.historico.solicitacao.id"/>
 	<div class="container" style="width: 650px">
 		<h2>
@@ -22,14 +23,23 @@
 			Data:
 		</label>
 		<label class="c_e_dados_float">
-			<s:property value="profissionalDTO.data" />
+			<s:property value="profissionalDTO.historico.solicitacao.data" />
 		</label>
 		<br class="clr" />
 		<label class="label_entrada_dados" style="width: 220px;">
 			Periodo:
 		</label>
 		<label class="c_e_dados_float">
-			<s:property value="profissionalDTO.historico.solicitacao.periodo" />
+			<s:set name="periodo" value="<s:property value='profissionalDTO.historico.solicitacao.periodo' />" />
+			<s:if test="${periodo eq 1} ">
+				<c:out value="Manha" />
+			</s:if>
+			<s:elseif test="${periodo eq 2}">
+				<c:out value="Tarde" />
+			</s:elseif>
+			<s:else>
+				<c:out value="Integral" />
+			</s:else>
 		</label>
 		<br class="clr" />
 		<label class="label_entrada_dados" style="width: 220px;">
@@ -52,7 +62,16 @@
 			Situação:
 		</label>
 		<label class="c_e_dados_float">
-			<s:property value="profissionalDTO.historico.status" />
+			<s:set name="situacao" value="profissionalDTO.historico.status" />			
+			<s:if test="${situacao eq 1} ">
+				<c:out value="Solicitado" />
+			</s:if>
+			<s:elseif test="${situacao eq 2}">
+				<c:out value="Finalizado" />
+			</s:elseif>
+			<s:else>
+				<c:out value="Nenhum" />
+			</s:else>
 		</label>
 		<br class="clr" />
 

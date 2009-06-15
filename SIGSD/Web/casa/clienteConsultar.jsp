@@ -124,10 +124,11 @@
 						size="60" id="senhaRepita" />
 				</td>
 			</tr>
-		</table>
-		<s:set name="alterado" value="false" id="alterado"/>
+		</table>		
 		
 		<div class="footer">
+		<s:hidden id="alterado" name="alterado"/>
+		<s:hidden id="telaConsulta" name="telaConsulta"/>
 		 <s:if test="${not alterado}">
 			<input type="button" value="Alterar" onClick="selectAction('alterar');"
 				class="principal" />
@@ -139,8 +140,14 @@
 		<s:else>
 			<input type="button" value="Salvar" onClick="selectAction('altera');"
 				class="principal" />
+			<s:if test="${pessoaSessao.perfil.descricao eq 'Cliente'}">
 			<input type="button" value="Cancelar"
-				onClick="selectAction('voltar');" class="voltar" />
+				onClick="selectAction('voltarCliente');" class="voltar" />
+			</s:if>
+			<s:else>
+				<input type="button" value="Cancelar"
+				onClick="selectAction('voltar');" class="voltar" />			
+			</s:else>
 		</s:else>
 		</div>
 	</s:form>

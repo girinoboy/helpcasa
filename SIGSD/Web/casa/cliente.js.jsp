@@ -36,14 +36,18 @@ function selectAction(action){
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='funcao=cliente';
 		submeter = true;
+	}else if(action == 'voltarCliente'){
+		var cpf = document.getElementById('cpf');			
+		url = '<c:url value="/casa/cliente!consultaParaCliente.action?"/>';
+		params='telaConsulta=false';	
+		submeter = true;
 	}else if(action == 'altera'){
 		url = '<c:url value="/casa/cliente!altera.action?"/>';
 		submeter = validaCamposAoIncluir();
 	}else if(action == 'alterar'){
-		var cpf = document.getElementById('cpf');
-		<s:set name="alterado" value="false"/>		
+		var cpf = document.getElementById('cpf');			
 		url = '<c:url value="/casa/cliente!consultaParaCliente.action?"/>';
-		params='clienteDTO.cpf='+cpf.value;	
+		params='telaConsulta=true';	
 		submeter = true;
 	}else if(action == 'exclui'){
 		url = '<c:url value="/casa/cliente!exclui.action?"/>';
@@ -199,9 +203,10 @@ function loadMascara(){
 }
 
 function loadWin(){
-	var alterado = ${alterado};
 	
-	if(!alterado){
+	var alterado = document.getElementById('alterado');
+	
+	if(!alterado.value){
 		disableAll();
 	}
 

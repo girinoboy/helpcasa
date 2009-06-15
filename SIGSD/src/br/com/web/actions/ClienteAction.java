@@ -25,6 +25,9 @@ public class ClienteAction extends GenericAction {
 	private Map<Number, String> ufs;
 
 	private String funcao;
+	private Boolean alterado;
+
+	private Boolean telaConsulta = new Boolean(false);
 
 	public ClienteAction() {
 		clienteBO = FactoryBO.getInstance().getClienteBO();
@@ -85,6 +88,10 @@ public class ClienteAction extends GenericAction {
 
 	public String consultaParaCliente() {
 		try {
+			if(telaConsulta)//se estiver na pagina de cliente consultar
+				setAlterado(true);
+			else
+				setAlterado(false);
 			ufs = new HashMap<Number, String>();
 			ufs.put(0, "Selecione...");
 			this.listUf = this.clienteBO.listUf();
@@ -140,6 +147,12 @@ public class ClienteAction extends GenericAction {
 		return consultaParaCliente();
 
 	}
+	/*
+	public String alterar(){
+		setAlterado(true);
+		clienteDTO.setCpf(clienteDTO.getCpf());
+		return consultaParaCliente();
+	}*/
 	
 	public String exclui(){
 		getMensagemGlobal().addMensagem("Cadastro excluido!.", Mensagem.ALERTA);
@@ -193,6 +206,22 @@ public class ClienteAction extends GenericAction {
 
 	public void setUfs(Map<Number, String> ufs) {
 		this.ufs = ufs;
+	}
+
+	public Boolean getAlterado() {
+		return alterado;
+	}
+
+	public void setAlterado(Boolean alterado) {
+		this.alterado = alterado;
+	}
+
+	public Boolean getTelaConsulta() {
+		return telaConsulta;
+	}
+
+	public void setTelaConsulta(Boolean telaConsulta) {
+		this.telaConsulta = telaConsulta;
 	}
 
 }
