@@ -77,7 +77,7 @@ function validaCamposAoIncluir(){
 	var cidade = document.getElementById('cidade');
 	var uf = document.getElementById('uf');
 	var celular = document.getElementById('celular');
-	var nasc = dojo.widget.byId('nasc');
+	var nasc = document.getElementById('nasc');
 	var email = document.getElementById('email');
 	var usuario = document.getElementById('usuario');
 	var senha = document.getElementById('senha');
@@ -133,7 +133,7 @@ function validaCamposAoIncluir(){
 		celular.focus();
 		return false;
 	}
-	if(nasc.inputNode.value == ''){
+	if(nasc.value == ''){
 		alert('O campo Nascimento é obrigatório.');
 		nasc.focus();
 		return false;
@@ -200,6 +200,7 @@ function loadMascara(){
 	jQuery('#cep').mask('99999-999');
 	jQuery('#telefone').mask('(99) 9999-9999');
 	jQuery('#celular').mask('(99) 9999-9999');
+	jQuery('#nasc').mask('99/99/99');
 }
 
 function loadWin(){

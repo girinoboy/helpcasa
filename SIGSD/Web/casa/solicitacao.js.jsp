@@ -42,13 +42,13 @@ function selectAction(action,validaTudo){
 }
 
 function validaCamposAoIncluir(validaTudo){
-	var data = dojo.widget.byId('data');
+	var data = document.getElementById('data');
 	var id = document.getElementById('id');
 	var periodo1 = document.getElementById('periodo1');
 	var periodo2 = document.getElementById('periodo2');
 	var periodo3 = document.getElementById('periodo3');
 	
-	if(data.inputNode.value == ''){
+	if(data.value == ''){
 		alert('A Data é obrigatória.');
 		data.inputNode.focus();
 		return false;
