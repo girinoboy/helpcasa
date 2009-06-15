@@ -50,7 +50,7 @@
 						<strong><c:out value="Situação" /> </strong>
 					</td>
 				</tr>
-				<s:if test="${not empty listAgenda}">
+				<s:if test="${not empty listAgenda}">			
 					<s:iterator value="listAgenda" status="stat">
 						<s:set name="corLinha" value="" />
 						<s:if test="${stat.index%2 eq 0}">
@@ -97,8 +97,16 @@
 							<td>
 								<c:out value="${solicitacao.cliente.telefone}" />
 							</td>
-							<td>
-								<c:out value="${status}" />
+							<td>								
+								<s:if test="${status eq 1} ">
+									<c:out value="Solicitado" />
+								</s:if>
+								<s:elseif test="${status eq 2}">
+									<c:out value="Finalizado" />
+								</s:elseif>
+								<s:else>
+									<c:out value="nenhum" />
+								</s:else>
 							</td>
 						</tr>
 					</s:iterator>

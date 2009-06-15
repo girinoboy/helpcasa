@@ -21,7 +21,7 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class ProfissionalDAO extends GenericDAO{
 
-	protected static final String strConsult ="SELECT servico.nome AS nomeServico,periodo,pessoa.nome AS nomeCliente,endereco,cep,telefone,status,solicitacao.idSolicitacao,precoVisita" +
+	protected static final String strConsult ="SELECT servico.nome AS nomeServico,periodo,pessoa.nome AS nomeCliente,endereco,cep,telefone,status,solicitacao.idSolicitacao,solicitacao.data,precoVisita" +
 			"			FROM casaweb.solicitacao" +
 			"			INNER JOIN casaweb.servico ON servico.idServico = solicitacao.idServico" +
 			"			INNER JOIN casaweb.cliente ON cliente.idCliente = solicitacao.idCliente" +
@@ -174,6 +174,7 @@ public class ProfissionalDAO extends GenericDAO{
 		SolicitacaoDTO solicitacao = new SolicitacaoDTO();
 		solicitacao.setId(rs.getLong("idSolicitacao"));
 		solicitacao.setPeriodo(rs.getInt("periodo"));
+		solicitacao.setData(rs.getDate("data"));
 		
 		ServicoDTO servico = new ServicoDTO();
 		servico.setNome(rs.getString("nomeServico"));
