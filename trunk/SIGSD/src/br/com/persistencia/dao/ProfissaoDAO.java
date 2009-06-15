@@ -27,12 +27,12 @@ public class ProfissaoDAO extends GenericDAO{
 
 		qBuffer.append(strConsult);
 		qBuffer.append(" WHERE ativo = 1");
-		qBuffer.append(" AND idProfissao <> ?");
-		qBuffer.append(" AND idProfissao <> ?");
+	//	qBuffer.append(" AND idProfissao <> ?");
+	//	qBuffer.append(" AND idProfissao <> ?");
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
-			ps.setLong(1, ConstantesENUM.ADMINISTRADOR_ID.id());
-			ps.setLong(2, ConstantesENUM.ATENDENTE_ID.id());
+		//	ps.setLong(1, ConstantesENUM.ADMINISTRADOR_ID.id());
+		//	ps.setLong(2, ConstantesENUM.ATENDENTE_ID.id());
 			rs = ps.executeQuery();
 			list = new ArrayList<ProfissaoDTO>();
 			while(rs.next()){

@@ -147,3 +147,7 @@ function caculaDistanciaFixa(){
 	  // and yada yada yada...
 	}
 	
+
+function loadMascara(){  	
+	jQuery('#data').mask('99/99/99');
+}

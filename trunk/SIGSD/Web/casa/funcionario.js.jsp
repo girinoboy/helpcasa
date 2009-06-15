@@ -136,6 +136,7 @@ function disableAll(){
 
 function loadMascara(){
   	//jQuery('#cpf').numeric();
+  	jQuery('#rg').mask('9.999.999');
 	jQuery('#cpf').mask('999.999.999-99');
 //	document.getElementById('cpf').value = '';
 	jQuery('#cep').mask('99999-999');
