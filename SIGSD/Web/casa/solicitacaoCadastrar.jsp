@@ -11,9 +11,7 @@
 					Data:*
 				</td>
 				<td>
-					<s:datetimepicker name="solicitacaoDTO.data" label="Data"
-						displayFormat="dd/MM/yyyy" toggleType="explode"
-						toggleDuration="200" id="data" required="true"/>
+					<s:textfield id="data" name="solicitacaoDTO.data" />
 				</td>
 			</tr>
 			<tr>
