@@ -97,7 +97,7 @@ public class ClienteAction extends GenericAction {
 			this.listUf = this.clienteBO.listUf();
 
 			for(UfDTO uf: listUf ){
-				ufs.put(uf.getId(), uf.getDescricao());
+				ufs.put(uf.getId(), uf.getUf());
 			}
 			if(getSessaoPessoa() != null && getSessaoPessoa().getCpf() !=null && this.clienteDTO == null){
 				this.clienteDTO = this.clienteBO.consulta(getSessaoPessoa().getCpf());

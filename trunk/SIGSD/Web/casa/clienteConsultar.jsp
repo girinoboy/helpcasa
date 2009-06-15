@@ -49,7 +49,7 @@
 					<label class="table">
 						UF:*
 					</label>
-					<s:select name="clienteDTO.uf.id" id="id" label="UF" list="ufs" headerKey="-1" disabled="true"/>
+					<s:select name="clienteDTO.uf.id" id="uf" label="UF" list="ufs" headerKey="-1" disabled="true"/>
 					<!--<s:property value="clienteDTO.uf.descricao"/>					
 				--></td>
 				
@@ -84,9 +84,7 @@
 					Data de Nascimento:*
 				</td>
 				<td>
-				<s:datetimepicker name="clienteDTO.nasc" label="Data de Nascimento"
-						displayFormat="dd/MM/yyyy" toggleType="explode"
-						toggleDuration="200" id="nasc" />
+				<s:textfield name="clienteDTO.nasc" id="nasc" />
 				</td>
 			</tr>
 			<tr>

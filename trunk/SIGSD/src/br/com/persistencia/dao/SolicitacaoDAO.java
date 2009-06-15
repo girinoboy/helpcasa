@@ -253,7 +253,7 @@ public class SolicitacaoDAO extends GenericDAO{
 		qBuffer.append(" AND (periodo IS NULL OR periodo <> 3 OR cep = '70390-130')");//CEP da empresa
 		qBuffer.append(" AND idPessoa = ?");
 		
-		
+		System.out.println("Existe Solicitação: "+qBuffer.toString());
 		StringBuffer qBuffer2 = new StringBuffer();	
 		qBuffer2.append("UPDATE casaweb.funcionario SET ocupado = 1 WHERE idFuncionario =?");
 		
