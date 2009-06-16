@@ -29,9 +29,7 @@
 				Data:*
 			</label>
 			<label class="c_e_dados_float">
-			<s:datetimepicker name="adicionaisDTO.data" label="Data de Nascimento"
-						displayFormat="dd/MM/yyyy" toggleType="explode"
-						toggleDuration="200" id="data" />
+			<s:textfield name="adicionaisDTO.data" id="data" />
 			
 			</label>
 			<br class="clr" />
@@ -40,7 +38,7 @@
 			</label>
 			<label class="c_e_dados_float">
 			
-			<s:textarea name="adicionaisDTO.observacoes" id="observacoes" />
+			<s:textarea name="adicionaisDTO.observacao" id="observacoes" />
 			
 			</label>
 			<br class="clr" />

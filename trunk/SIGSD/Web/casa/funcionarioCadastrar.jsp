@@ -29,7 +29,7 @@
 				<td class="label_entrada_dados">
 					Profissão:	
 				</td>
-				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" /></td>
+				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="0" headerValue="Selecione" /></td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
@@ -77,9 +77,7 @@
 					Data de Nascimento:*
 				</td>
 				<td>
-					<s:datetimepicker name="funcionarioDTO.nasc" label="Data de Nascimento"
-						displayFormat="dd/MM/yyyy" toggleType="explode"
-						toggleDuration="200" />
+					<s:textfield name="funcionarioDTO.nasc" id="nasc"/>
 				</td>
 			</tr>
 			<tr>

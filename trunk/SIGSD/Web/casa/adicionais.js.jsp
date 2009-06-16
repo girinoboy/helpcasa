@@ -61,3 +61,7 @@ function validaCamposAoIncluir(){
 
 	return true;
 }
+
+function loadMascara(){  	
+	jQuery('#data').mask('99/99/9999');
+}

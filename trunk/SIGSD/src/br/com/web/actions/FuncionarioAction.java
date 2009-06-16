@@ -60,7 +60,14 @@ public class FuncionarioAction extends GenericAction {
 			funcionarioDTO.setAtivo(true);
 
 			PerfilDTO perfil = new PerfilDTO();
-			perfil.setId(ConstantesENUM.PROFISSIONAL_ID.id());
+			
+			if(funcionarioDTO.getProfissao().getId() == 1)
+				perfil.setId(ConstantesENUM.ADMINISTRADOR_ID.id());
+			else if(funcionarioDTO.getProfissao().getId() == 2)
+				perfil.setId(ConstantesENUM.ATENDENTE_ID.id());
+			else
+				perfil.setId(ConstantesENUM.PROFISSIONAL_ID.id());
+			
 			funcionarioDTO.setPerfil(perfil);
 			funcionarioBO.inclui(funcionarioDTO);
 		} catch (Exception e) {

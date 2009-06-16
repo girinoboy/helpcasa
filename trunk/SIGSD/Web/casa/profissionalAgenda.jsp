@@ -11,9 +11,8 @@
 		<h1>
 			Agenda Virtual
 		</h1><br><br><br>
-		<s:datetimepicker name="profissionalDTO.data"
-			label="Dia que deseja visualizar" theme="ajax"
-			displayFormat="dd/MM/yyyy" onblur="selectAction('listar')" />
+		<s:textfield id="data" name="profissionalDTO.data"
+			label="Dia que deseja visualizar" onblur="selectAction('listar')" />
 		<input type="button" value="ok" onclick="selectAction('listar')" class="principal">
 		<br><br><br><br>
 		<s:if test="${profissionalDTO.listar}">
@@ -101,7 +100,7 @@
 								<s:if test="${status eq 1} ">
 									<c:out value="Solicitado" />
 								</s:if>
-								<s:elseif test="${status eq 2}">
+								<s:elseif test="${status eq 3}">
 									<c:out value="Finalizado" />
 								</s:elseif>
 								<s:else>

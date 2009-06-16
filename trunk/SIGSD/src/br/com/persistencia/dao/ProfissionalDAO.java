@@ -43,7 +43,7 @@ public class ProfissionalDAO extends GenericDAO{
 		qBuffer.append(strConsult);
 		qBuffer.append(" WHERE solicitacao.data = ?");
 		qBuffer.append(" AND solicitacao.idFuncionario = ?");
-		qBuffer.append(" AND status = ?");
+		qBuffer.append(" AND statusAtual = ?");
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
@@ -199,18 +199,24 @@ public class ProfissionalDAO extends GenericDAO{
 	
 	public void finalizarServico(Long idSolicitacao, Long alteradoPor, Connection conn) throws Exception {
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
 
 		String sql = "INSERT INTO casaweb.historico(data,status,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?)";
+		
+		String sql2 ="UPDATE casaweb.solicitacao SET statusAtual=?";
 		try {
 
 			ps = conn.prepareStatement(sql);
 			ps.setLong(1, ConstantesENUM.STATUS_FINALIZADO.id());
 			ps.setLong(2, alteradoPor);
-			ps.setString(3, "Finalizado-");
+			ps.setString(3, "Finalizado");
 			ps.setLong(4,idSolicitacao);
 			
 			ps.executeUpdate();
-
+			
+			ps2 = conn.prepareStatement(sql2);
+			ps2.setLong(1, ConstantesENUM.STATUS_FINALIZADO.id());
+			ps2.executeUpdate();
 		} catch (Exception e) {
 			throw e;
 		} finally {

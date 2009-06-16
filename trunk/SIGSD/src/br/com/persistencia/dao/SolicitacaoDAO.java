@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ConstantesENUM;
 import br.com.persistencia.dto.FuncionarioDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
 import br.com.persistencia.dto.ServicoDTO;
@@ -52,9 +53,11 @@ public class SolicitacaoDAO extends GenericDAO{
 			throws Exception {
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
+		PreparedStatement ps3 = null;
 
 		String sql = "INSERT INTO casaweb.Solicitacao(data,periodo,idCliente,idFuncionario,idServico) VALUES(?,?,?,?,?)";
-		String sql2 = "UPDATE casaweb.Pessoa SET cep = ? WHERE idPessoa=?";
+		String sql2 = "UPDATE casaweb.Pessoa SET cep = ? WHERE idPessoa=?";//updade para o local atual do profissional para fazer a consulta do google api
+		String sql3 ="UPDATE casaweb.solicitacao SET statusAtual=?";
 		try {
 
 			ps = conn.prepareStatement(sql);
@@ -72,6 +75,10 @@ public class SolicitacaoDAO extends GenericDAO{
 			
 			ps2.executeUpdate();
 			
+			//
+			ps3 = conn.prepareStatement(sql3);
+			ps3.setLong(1, ConstantesENUM.STATUS_SOLICITADO.id());
+			ps3.executeUpdate();
 
 		} catch (Exception e) {
 			throw e;
