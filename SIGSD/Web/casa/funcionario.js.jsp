@@ -143,4 +143,5 @@ function loadMascara(){
 	jQuery('#matricula').mask('999999-9');
 	jQuery('#telefone').mask('(99) 9999-9999');
 	jQuery('#celular').mask('(99) 9999-9999');
+	jQuery('#nasc').mask('99/99/9999');
 }

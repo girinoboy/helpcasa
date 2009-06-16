@@ -41,6 +41,10 @@ function selectAction(action,validaTudo){
 	
 }
 
+function loadMascara(){  	
+	jQuery('#data').mask('99/99/9999');
+}
+
 function validaCamposAoIncluir(validaTudo){
 	var data = document.getElementById('data');
 	var id = document.getElementById('id');
@@ -148,6 +152,3 @@ function caculaDistanciaFixa(){
 	}
 	
 
-function loadMascara(){  	
-	jQuery('#data').mask('99/99/99');
-}
