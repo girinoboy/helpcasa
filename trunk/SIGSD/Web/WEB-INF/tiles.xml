@@ -94,6 +94,8 @@
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/profissionalAgenda.jsp" />
 		<put-attribute name="js" value="/casa/profissional.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />
 		<put-attribute name="dojo" value="true" />
 	</definition>
 	<definition name="ProfissionalAdicionais.def"
@@ -101,6 +103,8 @@
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/agendaDetalhada.jsp" />
 		<put-attribute name="js" value="/casa/agenda.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />
 		<put-attribute name="dojo" value="true" />
 	</definition>
 	<definition name="AgendaLoad.def" extends="template1.def">
@@ -186,10 +190,10 @@
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body"  value="/casa/solicitacaoCadastrar.jsp" />
 		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />
-		<put-attribute name="onload" value="initialize();loadMascara();" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();initialize();" />		
 		<put-attribute name="gMaps" value="true" />
-		<put-attribute name="jQuery" value="true" />			
+		<put-attribute name="dojo" value="true" />			
 	</definition>
 	<definition name="SolicitacoesFaturaBasica.def"
 		extends="template1.def">
