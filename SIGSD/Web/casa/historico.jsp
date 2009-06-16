@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <s:form name="form1" method="post" id="form1" action="">
+<s:hidden id="cpf" name="historicoDTO.solicitacao.cliente.cpf"/>
 	<h1>
 		<c:out value="Nome do Serviço" />
 	</h1>	

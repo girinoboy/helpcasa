@@ -34,7 +34,8 @@ function selectAction(action){
 function validaCamposAoIncluir(){
 	var descricao = document.getElementById('descricao');
 	var valor = document.getElementById('valor');
-	var data = dojo.widget.byId('data');
+	//var data = dojo.widget.byId('data');
+	var data = document.getElementById('data');
 	var observacoes = document.getElementById('observacoes');
 	
 	
@@ -48,11 +49,16 @@ function validaCamposAoIncluir(){
 		valor.focus();
 		return false;
 	}
-	if(data.inputNode.value == ''){
+	if(data.value == ''){
 		alert('O campo Data é obrigatório.');
 		data.focus();
 		return false;
 	}/*
+	if(data.inputNode.value == ''){
+		alert('O campo Data é obrigatório.');
+		data.focus();
+		return false;
+	}
 	if(observacoes.value == ''){
 		alert('O campo Observacoes é obrigatório.');
 		observacoes.focus();

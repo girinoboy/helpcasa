@@ -31,4 +31,18 @@ public class RelatoriosBO extends GenericBO{
 		return list;
 	}
 
+	public Collection<RelatorioDTO> resumoFaturamentoMensalPorProfissional() throws Exception {
+		Connection conn = Conexao.getConnection();
+		List<RelatorioDTO> list =null;
+		
+		try {
+			list = relatoriosDAO.resumoFaturamentoMensalPorProfissional(conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		return list;
+	}
+
 }

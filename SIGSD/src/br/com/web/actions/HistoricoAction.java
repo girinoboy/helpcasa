@@ -95,4 +95,13 @@ public class HistoricoAction extends GenericAction{
 		this.listNota = listNota;
 	}
 
+	public List<HistoricoDTO> getListaHistoricoDetalhada() {
+		return listaHistoricoDetalhada;
+	}
+
+	public void setListaHistoricoDetalhada(
+			List<HistoricoDTO> listaHistoricoDetalhada) {
+		this.listaHistoricoDetalhada = listaHistoricoDetalhada;
+	}
+
 }
