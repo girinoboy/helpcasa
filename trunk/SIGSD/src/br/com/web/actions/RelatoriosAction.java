@@ -35,6 +35,17 @@ public class RelatoriosAction extends GenericAction {
 		}
 		return "gerarPDF.fwd";
 	}
+	
+	public String resumoFaturamentoMensalPorProfissional(){
+		try{
+			//	listaPDFTRelatorio = new ArrayList<RelatorioDTO>();
+
+			listaPDFTRelatorio = relatoriosBO.resumoFaturamentoMensalPorProfissional();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "gerarPDF.fwd";
+	}
 
 	public List<SolicitacaoDTO> getListaPDFSolicitacao() {
 		return listaPDFSolicitacao;

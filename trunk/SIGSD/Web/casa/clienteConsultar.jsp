@@ -128,6 +128,7 @@
 		<s:hidden id="alterado" name="alterado"/>
 		<s:hidden id="telaConsulta" name="telaConsulta"/>
 		 <s:if test="${not alterado}">
+		 	<script>disableAll();</script>
 			<input type="button" value="Alterar" onClick="selectAction('alterar');"
 				class="principal" />
 			<input type="button" value="Excluir"

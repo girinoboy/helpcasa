@@ -26,8 +26,8 @@
 				<strong><c:out value="Nome" /> </strong>
 			</td>			
 		</tr>
-		<s:if test="${not empty listHistorico}">
-			<s:iterator value="listHistorico" status="stat">
+		<s:if test="${not empty listaHistoricoDetalhada}">
+			<s:iterator value="listaHistoricoDetalhada" status="stat">
 				<s:set name="corLinha" />
 				<s:if test="${stat.index%2 eq 0}">
 					<s:set name="corLinha" value="'#e6f7ff'" />
@@ -50,10 +50,10 @@
 						<s:date format="dd/MM/yyyy HH:mm:ss"  name="data" />
 					</td>	
 					<td>
-						<s:if test="${periodo eq 1} ">
+						<s:if test="${solicitacao.periodo eq 1} ">
 							<c:out value="Manha" />
 						</s:if>
-						<s:elseif test="${periodo eq 2}">
+						<s:elseif test="${solicitacao.periodo eq 2}">
 							<c:out value="Tarde" />
 						</s:elseif>
 						<s:else>

@@ -76,4 +76,39 @@ public class RelatoriosDAO extends GenericDAO{
 		dto.setAdicional(adicional);
 		return dto;
 	}
+
+	public List<RelatorioDTO> resumoFaturamentoMensalPorProfissional(Connection conn) throws Exception {
+		List<RelatorioDTO> list =null;
+		RelatorioDTO relatorioDTO = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+			
+		StringBuffer qBuffer = new StringBuffer();		
+
+		qBuffer.append(strConsultResumoFaturamentoMensal);
+		//qBuffer.append(" WHERE ativo = 1");
+		
+		try{
+			ps = conn.prepareStatement(qBuffer.toString());
+			rs = ps.executeQuery();
+			list = new ArrayList<RelatorioDTO>();
+			while(rs.next()){
+				RelatorioDTO dto = new RelatorioDTO();
+				
+				relatorioDTO = this.populaRelatorioDTO(dto,rs);
+				
+				list.add(relatorioDTO);
+				
+			}
+		}catch(Exception e){
+			throw e;
+		}finally{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+		}
+		
+		return list;
+	}
 }

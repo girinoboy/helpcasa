@@ -33,7 +33,7 @@ function selectAction(action,valor){
 		}
 		params +='&historicoDTO.solicitacao.nota.id='+idNota;
 		//alert(valor.value+'-'+valor.name+'-'+valueSelected);
-		alert(url + params);  
+		//alert(url + params);  
 		submeter = true;
 	}else if(action == 'voltar'){		
 		url = '<c:url value="/casa/historico!load.action?"/>';		
