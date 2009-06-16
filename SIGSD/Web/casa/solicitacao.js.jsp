@@ -9,7 +9,9 @@ function selectAction(action,validaTudo){
 	if(action == 'incluir'){
 		url = '<c:url value="/casa/solicitacao!solicitacaoInclui.action?"/>';
 		submeter = validaCamposAoIncluir(validaTudo);
+		
 		caculaDistanciaFixa();
+		
 	}else if(action == 'voltar'){
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='funcao=servico';
@@ -42,7 +44,7 @@ function selectAction(action,validaTudo){
 }
 
 function loadMascara(){  	
-	jQuery('#data').mask('99/99/9999');
+	jQuery('#data').mask('99/99/99');
 }
 
 function validaCamposAoIncluir(validaTudo){
@@ -77,12 +79,14 @@ function caculaDistanciaFixa(){
 	var max = document.getElementById('max').value;
 	var distancia;
 	var cep;	
+	
 	for(var i=1;i<=max;i++){
 		cep = document.getElementById('cep'+i+'').value;
 		distancia = setDirections('${pessoaSessao.cep}',cep,'pt_BR');
 		
 		document.getElementById('distancia'+i+'').value = distancia.substr(0,distancia.indexOf('&'));
 	}
+	
 }
 
  	var map;
@@ -132,10 +136,10 @@ function caculaDistanciaFixa(){
 	     
 	   else if (gdir.getStatus().code == G_GEO_BAD_KEY)
 	     alert("The given key is either invalid or does not match the domain for which it was given. \n Error code: " + gdir.getStatus().code);
-
+/*
 	   else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
 	     alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
-	    
+	*/    
 	   else alert("An unknown error occurred.");
 	   
 	   

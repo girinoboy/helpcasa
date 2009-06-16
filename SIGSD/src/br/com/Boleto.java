@@ -125,33 +125,26 @@ public class Boleto{
 	     */
 
 	  public void exibir(HttpServletRequest request, HttpServletResponse response){
-	    
-	      // ServletContext serveletContext=(ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-	     try {
-	         File arq=new File(s);
-	         byte[] b = fileToByte(arq);
 
-	     
-	      response.setContentType("application/pdf");
-	      response.setHeader("Content-disposition", "inline; filename=\"" + arq.getName() + ".pdf\"");
-	      response.getOutputStream().write(b);
-	      response.getCharacterEncoding();
-	      response.getOutputStream().flush();  
-	      response.getOutputStream().close();
-
-	     
-	} catch (Exception e) {
-	            e.printStackTrace();
-	        }
+		  // ServletContext serveletContext=(ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		  try {
+			  File arq=new File(s);
+			  byte[] b = fileToByte(arq);
 
 
+			  response.setContentType("application/pdf");
+			  response.setHeader("Content-disposition", "inline; filename=\"" + arq.getName() + ".pdf\"");
+			  response.getOutputStream().write(b);
+			  response.getCharacterEncoding();
+			  response.getOutputStream().flush();  
+			  response.getOutputStream().close();
 
 
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
 
-
-
-
-	}
+	  }
 	public void gerarBoleto(JBoletoBean jBoletoBean,String banco, HttpServletRequest request, HttpServletResponse response){
 	     /*   if(banco.equals("Caixa Econômica")){//OK
 	           geraCaixa(jBoletoBean);

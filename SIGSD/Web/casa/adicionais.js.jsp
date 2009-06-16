@@ -70,4 +70,9 @@ function validaCamposAoIncluir(){
 
 function loadMascara(){  	
 	jQuery('#data').mask('99/99/9999');
+	var descricao = document.getElementById('descricao').value='';
+	var valor = document.getElementById('valor').value='';	
+	var data = document.getElementById('data').value='';
+	var observacoes = document.getElementById('observacoes').value='';
+	
 }
