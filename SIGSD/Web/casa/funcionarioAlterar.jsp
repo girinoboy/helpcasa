@@ -30,7 +30,7 @@
 				<td class="label_entrada_dados">
 					Profissão:	
 				</td>
-				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" /></td>
+				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" disabled="true"/></td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
