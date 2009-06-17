@@ -29,14 +29,14 @@
 				<td class="label_entrada_dados">
 					Profissão:	
 				</td>
-				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="0" headerValue="Selecione" disabled="true"/></td>
+				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="0" headerValue="Selecione" /></td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
 					CPF:*
 				</td>
 				<td>
-					<s:textfield name="funcionarioDTO.cpf" label="CPF" size="14" id="cpf" readonly="true"/>
+					<s:textfield name="funcionarioDTO.cpf" label="CPF" size="14" id="cpf" />
 				</td>
 			</tr>
 			<tr>
@@ -44,7 +44,7 @@
 					RG:*
 				</td>
 				<td>
-					<s:textfield name="funcionarioDTO.rg" label="RG" size="10" id="rg" readonly="true"/>
+					<s:textfield name="funcionarioDTO.rg" label="RG" size="10" id="rg" />
 				</td>
 			</tr>
 			<tr>
@@ -86,7 +86,7 @@
 				</td>
 				<td>
 					<s:textfield name="funcionarioDTO.usuario" label="NOME DE USUARIO"
-						size="60" id="usuario" readonly="true"/>
+						size="60" id="usuario" />
 				</td>
 			</tr>
 			<tr>

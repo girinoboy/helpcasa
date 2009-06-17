@@ -85,7 +85,8 @@
 				</label>
 				<s:hidden name="valor" value="${total}"/>
 			</div>
-			<div class="footer">
+			<div class="footer">				
+			
 				<input type="button" value="Gerar Boleto" 
 					onClick="selectAction('boleto');" class="principal" />
 				<input type="button" value="Voltar"

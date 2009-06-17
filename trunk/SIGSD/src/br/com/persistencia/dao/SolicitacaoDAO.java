@@ -64,7 +64,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			ps.setDate(1, new Date (solicitacao.getData().getTime()));
 			ps.setInt(2, solicitacao.getPeriodo());
 			ps.setLong(3, solicitacao.getCliente().getId());
-			ps.setLong(4, solicitacao.getFuncionario().getId());
+			ps.setLong(4, solicitacao.getFuncionario().getId());			
 			ps.setDouble(5, solicitacao.getServico().getId());
 			
 			ps.executeUpdate();
@@ -272,11 +272,16 @@ public class SolicitacaoDAO extends GenericDAO{
 			System.out.println(qBuffer.toString());
 			rs = ps.executeQuery();
 			
+			Double total;
 			if(rs.next()){
+				total=rs.getDouble("total");
+				rs.getString("nomeServico");
+					
 				ps2 = conn.prepareStatement(qBuffer2.toString());
 				ps2.setLong(1, solicitacao.getFuncionario().getId());
 				ps2.executeUpdate();
-				ocupado = true;
+				if(total >0)
+					ocupado = true;
 			}
 		}catch(Exception e){
 			throw e;
