@@ -205,6 +205,12 @@ function loadMascara(){
 	jQuery('#telefone').mask('(99) 9999-9999');
 	jQuery('#celular').mask('(99) 9999-9999');
 	jQuery('#nasc').mask('99/99/99');
+	
+	var naoPesquisar = document.getElementById('naoPesquisar').value;
+	
+	if (naoPesquisar == 'true'){
+		alert("Cliente não encontrado no sistema.");
+	}
 }
 
 function loadWin(){

@@ -20,6 +20,7 @@ public class HistoricoAction extends GenericAction{
 	private List<HistoricoDTO> listaHistoricoDetalhada;
 	private NotasBO notasBO;
 	private List<NotaDTO> listNota;
+	private Boolean naoPesquisar = new Boolean(false);
 
 	public HistoricoAction() {
 		historicoBO = FactoryBO.getInstance().getHistoricoBO();
@@ -43,6 +44,7 @@ public class HistoricoAction extends GenericAction{
 			ClienteDTO cliente =clienteBO.consulta(historicoDTO.getSolicitacao().getCliente().getCpf());
 			//retorna para a pesquisa caso CPF n exista
 			if(cliente == null){
+				setNaoPesquisar(true);
 				getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 				return "clientePesquisar.fwd";
 			}
@@ -111,6 +113,14 @@ public class HistoricoAction extends GenericAction{
 	public void setListaHistoricoDetalhada(
 			List<HistoricoDTO> listaHistoricoDetalhada) {
 		this.listaHistoricoDetalhada = listaHistoricoDetalhada;
+	}
+
+	public Boolean getNaoPesquisar() {
+		return naoPesquisar;
+	}
+
+	public void setNaoPesquisar(Boolean naoPesquisar) {
+		this.naoPesquisar = naoPesquisar;
 	}
 
 }

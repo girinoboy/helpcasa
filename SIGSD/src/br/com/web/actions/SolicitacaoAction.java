@@ -42,8 +42,8 @@ public class SolicitacaoAction extends GenericAction{
 	private List<AdicionalDTO> listAdicional;
 	private Double[] distancia;
 	private Long[] idsSolicitacao;
+	private Boolean naoPesquisar = new Boolean(false);
 	
-
 
 	public SolicitacaoAction() {
 		solicitacaoBO = FactoryBO.getInstance().getSolicitacaoBO();
@@ -61,6 +61,7 @@ public class SolicitacaoAction extends GenericAction{
 			ClienteDTO cliente =clienteBO.consulta(solicitacaoDTO.getCliente().getCpf());
 			//retorna para a pesquisa caso CPF n exista
 			if(cliente == null){
+				setNaoPesquisar(true);
 				getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 				return "clientePesquisar.fwd";
 			}
@@ -156,6 +157,7 @@ public class SolicitacaoAction extends GenericAction{
 				ClienteDTO cliente =clienteBO.consulta(solicitacaoDTO.getCliente().getCpf());
 				//retorna para a pesquisa caso CPF n exista
 				if(cliente == null){
+					setNaoPesquisar(true);
 					getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 					return "clientePesquisar.fwd";
 				}
@@ -278,4 +280,11 @@ public class SolicitacaoAction extends GenericAction{
 		this.listAdicional = listAdicional;
 	}
 
+	public Boolean getNaoPesquisar() {
+		return naoPesquisar;
+	}
+
+	public void setNaoPesquisar(Boolean naoPesquisar) {
+		this.naoPesquisar = naoPesquisar;
+	}
 }
