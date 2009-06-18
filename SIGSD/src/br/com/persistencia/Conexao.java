@@ -41,8 +41,8 @@ public static final Connection getConnection() throws SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 		// Conectar no banco dbclientes
 		connection = DriverManager.getConnection(
-				"jdbc:mysql://localhost/casaweb?autoReconnect=true", "root",
-				"root");
+				"jdbc:mysql://mysql01.sigsd.com.br:3306/sigsd?autoReconnect=true", "sigsd",
+				"sigsd10");
 		
 	} catch (Exception e) {
 
