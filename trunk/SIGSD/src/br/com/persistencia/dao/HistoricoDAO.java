@@ -18,16 +18,16 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class HistoricoDAO extends GenericDAO{
 
-	private static final String strUpdateClassificacao = "UPDATE casaweb.solicitacao SET idNota = ? WHERE idSolicitacao = ?";
+	private static final String strUpdateClassificacao = "UPDATE solicitacao SET idNota = ? WHERE idSolicitacao = ?";
 	
-	private static final String strConsult = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao, sum(valor)+precovisita as total FROM casaweb.historico h " +
-			"inner join casaweb.solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
-			"inner join casaweb.servico sv on sv.idServico = sl.idServico " +
-			"inner join casaweb.funcionario f on sl.idFuncionario = f.idFuncionario " +
-			"inner join casaweb.profissao pr on pr.idProfissao = f.idProfissao "+
-			"inner join casaweb.pessoa p on p.idPessoa = f.idFuncionario " +
-			"left  join casaweb.adicional a on a.idSolicitacao = sl.idSolicitacao "+
-			"inner join casaweb.nota n on n.idnota= sl.idnota";
+	private static final String strConsult = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao, sum(valor)+precovisita as total FROM historico h " +
+			"inner join solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
+			"inner join servico sv on sv.idServico = sl.idServico " +
+			"inner join funcionario f on sl.idFuncionario = f.idFuncionario " +
+			"inner join profissao pr on pr.idProfissao = f.idProfissao "+
+			"inner join pessoa p on p.idPessoa = f.idFuncionario " +
+			"left  join adicional a on a.idSolicitacao = sl.idSolicitacao "+
+			"inner join nota n on n.idnota= sl.idnota";
 
 	public void aplicaClassificacao(Long idSolicitacao, Long idNota,Connection conn) throws Exception {
 		PreparedStatement ps = null;
@@ -36,7 +36,7 @@ public class HistoricoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strUpdateClassificacao);
-		String sql = "INSERT INTO casaweb.historico(data,status,perfil,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?,?)";
+		String sql = "INSERT INTO historico(data,status,perfil,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?,?)";
 		try{
 
 			ps = conn.prepareStatement(qBuffer.toString());	
