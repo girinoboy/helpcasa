@@ -17,37 +17,37 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 public class SolicitacaoDAO extends GenericDAO{
 
 	protected static final String strConsultListaPorIdCliente = "SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
-			"FROM casaweb.solicitacao " +
-			"INNER JOIN casaweb.servico ON solicitacao.idServico = servico.idServico " +
-			"INNER JOIN casaweb.funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario " +
-			"INNER JOIN casaweb.profissao ON profissao.idprofissao = funcionario.idprofissao " +
-			"INNER JOIN casaweb.pessoa on pessoa.idPessoa = funcionario.idFuncionario " ;
+			"FROM solicitacao " +
+			"INNER JOIN servico ON solicitacao.idServico = servico.idServico " +
+			"INNER JOIN funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario " +
+			"INNER JOIN profissao ON profissao.idprofissao = funcionario.idprofissao " +
+			"INNER JOIN pessoa on pessoa.idPessoa = funcionario.idFuncionario " ;
 			
 	
 	protected static final String strConsultFaturaBasica = "SELECT v.nome as nomeServico, p.nome as 'Profissional',s.data,s.periodo,p.idPessoa as idFuncionario, f.ocupado, p.nome as nomeFuncionario,p.cep, SUM(a.valor) as 'Total', s.idSolicitacao,precoVisita " +
-			"FROM casaweb.solicitacao s " +
-			"INNER JOIN casaweb.cliente c ON c.idCliente = s.idCliente " +
-			"INNER JOIN casaweb.funcionario f ON f.idFuncionario = s.idFuncionario " +
-			"INNER JOIN casaweb.profissao ON profissao.idprofissao = f.idprofissao " +
-			"INNER JOIN casaweb.pessoa p ON f.idFuncionario = p.idPessoa " +
-			"INNER JOIN casaweb.servico v ON v.idServico = s.idServico " +
-			"LEFT JOIN casaweb.adicional a ON a.idSolicitacao = s.idSolicitacao ";
+			"FROM solicitacao s " +
+			"INNER JOIN cliente c ON c.idCliente = s.idCliente " +
+			"INNER JOIN funcionario f ON f.idFuncionario = s.idFuncionario " +
+			"INNER JOIN profissao ON profissao.idprofissao = f.idprofissao " +
+			"INNER JOIN pessoa p ON f.idFuncionario = p.idPessoa " +
+			"INNER JOIN servico v ON v.idServico = s.idServico " +
+			"LEFT JOIN adicional a ON a.idSolicitacao = s.idSolicitacao ";
 		
 	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
-			"FROM casaweb.solicitacao " +
-			"RIGHT JOIN casaweb.pessoa ON idpessoa=idfuncionario " +
-			"INNER JOIN casaweb.funcionario on funcionario.idfuncionario = pessoa.idpessoa " +
-			"INNER JOIN casaweb.profissao ON profissao.idprofissao = funcionario.idprofissao " +
-			"INNER JOIN casaweb.servico ON servico.idprofissao = profissao.idprofissao";
+			"FROM solicitacao " +
+			"RIGHT JOIN pessoa ON idpessoa=idfuncionario " +
+			"INNER JOIN funcionario on funcionario.idfuncionario = pessoa.idpessoa " +
+			"INNER JOIN profissao ON profissao.idprofissao = funcionario.idprofissao " +
+			"INNER JOIN servico ON servico.idprofissao = profissao.idprofissao";
 
 
 	protected static final String strConsultFaturaDetalhada = "SELECT sum(valor)+precoVisita as total,precoVisita,adicional.descricao,adicional.data,valor, observacao, solicitacao.idSolicitacao,servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,pessoa.idPessoa,precoVisita " +
-			"	FROM casaweb.adicional " +
-			"	inner join casaweb.solicitacao on solicitacao.idSolicitacao = adicional.idSolicitacao " +
-			"	inner join casaweb.funcionario on solicitacao.idFuncionario = funcionario.idFuncionario " +
-			"	INNER JOIN casaweb.pessoa  ON funcionario.idFuncionario = pessoa.idPessoa " +
-			"	inner join casaweb.profissao on profissao.idProfissao = funcionario.idProfissao " +
-			"	INNER JOIN casaweb.servico ON servico.idprofissao = profissao.idprofissao ";
+			"	FROM adicional " +
+			"	inner join solicitacao on solicitacao.idSolicitacao = adicional.idSolicitacao " +
+			"	inner join funcionario on solicitacao.idFuncionario = funcionario.idFuncionario " +
+			"	INNER JOIN pessoa  ON funcionario.idFuncionario = pessoa.idPessoa " +
+			"	inner join profissao on profissao.idProfissao = funcionario.idProfissao " +
+			"	INNER JOIN servico ON servico.idprofissao = profissao.idprofissao ";
 
 	public void inclui(SolicitacaoDTO solicitacao, Connection conn)
 			throws Exception {
@@ -55,9 +55,9 @@ public class SolicitacaoDAO extends GenericDAO{
 		PreparedStatement ps2 = null;
 		PreparedStatement ps3 = null;
 
-		String sql = "INSERT INTO casaweb.solicitacao(data,periodo,idCliente,idFuncionario,idServico) VALUES(?,?,?,?,?)";
-		String sql2 = "UPDATE casaweb.pessoa SET cep = ? WHERE idPessoa=?";//updade para o local atual do profissional para fazer a consulta do google api
-		String sql3 ="UPDATE casaweb.solicitacao SET statusAtual=?";
+		String sql = "INSERT INTO solicitacao(data,periodo,idCliente,idFuncionario,idServico) VALUES(?,?,?,?,?)";
+		String sql2 = "UPDATE pessoa SET cep = ? WHERE idPessoa=?";//updade para o local atual do profissional para fazer a consulta do google api
+		String sql3 ="UPDATE solicitacao SET statusAtual=?";
 		try {
 
 			ps = conn.prepareStatement(sql);
@@ -271,7 +271,7 @@ public class SolicitacaoDAO extends GenericDAO{
 		
 	//	System.out.println("Existe Solicita��o: "+qBuffer.toString());
 		StringBuffer qBuffer2 = new StringBuffer();	
-		qBuffer2.append("UPDATE casaweb.solicitacao SET ocupado = 1 where data = ?");
+		qBuffer2.append("UPDATE solicitacao SET ocupado = 1 where data = ?");
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
@@ -346,7 +346,7 @@ public class SolicitacaoDAO extends GenericDAO{
 	public void cancela(Long[] idsSolicitacao, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="INSER INTO casaweb.historico(status) VALUES (2) WHERE Servico.idSolicitacao=?";
+		String sql="INSER INTO historico(status) VALUES (2) WHERE Servico.idSolicitacao=?";
 		
 		try{
 			for (Long id : idsSolicitacao) {

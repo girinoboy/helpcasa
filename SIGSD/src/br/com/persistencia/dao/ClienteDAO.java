@@ -250,7 +250,7 @@ public class ClienteDAO extends GenericDAO{
 			ResultSet rs = null;
 			
 			
-			String sql = "SELECT uf.idUf as id , uf.uf,uf.descricao FROM casaweb.uf";
+			String sql = "SELECT uf.idUf as id , uf.uf,uf.descricao FROM uf";
 					
 			try{
 				ps = conn.prepareStatement(sql);
@@ -292,7 +292,7 @@ public class ClienteDAO extends GenericDAO{
 		public ClienteDTO altera(ClienteDTO clienteDTO, Connection conn) throws Exception {
 			PreparedStatement ps = null;
 
-			String sql="UPDATE casaweb.pessoa " +
+			String sql="UPDATE pessoa " +
 			"SET senha=?," +
 			"nome=?," +
 			"cpf=?," +
@@ -335,7 +335,7 @@ public class ClienteDAO extends GenericDAO{
 			ResultSet rs = null;
 			
 			
-			String sql = "SELECT casaweb.existe_cpf_usuario(?,?) as existe";
+			String sql = "SELECT existe_cpf_usuario(?,?) as existe";
 					
 			try{
 				ps = conn.prepareStatement(sql);
@@ -377,14 +377,14 @@ public class ClienteDAO extends GenericDAO{
 				"uf.iduf,"+
 				"uf.uf,"+
 				"uf.descricao "+
-				"FROM casaweb.cliente " +
-				"inner join casaweb.pessoa on cliente.idcliente=pessoa.idpessoa " +
-				"inner join casaweb.perfil on perfil.idperfil=pessoa.idperfil " +
-				"INNER JOIN casaweb.uf ON uf.iduf=cliente.iduf ";
+				"FROM cliente " +
+				"inner join pessoa on cliente.idcliente=pessoa.idpessoa " +
+				"inner join perfil on perfil.idperfil=pessoa.idperfil " +
+				"INNER JOIN uf ON uf.iduf=cliente.iduf ";
 
 	
-	protected static final String strInsertPessoa ="INSERT INTO casaweb.pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil,cep) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
-	protected static final String strInsertCliente ="INSERT INTO casaweb.cliente(idCliente,endereco,cidade,idUF)VALUES(?,?,?,?);";
+	protected static final String strInsertPessoa ="INSERT INTO pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil,cep) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
+	protected static final String strInsertCliente ="INSERT INTO cliente(idCliente,endereco,cidade,idUF)VALUES(?,?,?,?);";
 	
 	
 }

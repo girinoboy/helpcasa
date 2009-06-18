@@ -12,7 +12,7 @@ import br.com.persistencia.dto.NotaDTO;
 
 public class NotasDAO extends GenericDAO{
 
-	private static final String strConsult = "select * from casaweb.nota";
+	private static final String strConsult = "select * from nota";
 	
 	public List<NotaDTO> consultarNotas(Connection conn) throws Exception {
 		List<NotaDTO> list =null;

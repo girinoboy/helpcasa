@@ -14,7 +14,7 @@ import br.com.persistencia.util.DTOFactory;
 
 public class ProfissaoDAO extends GenericDAO{
 
-	protected static final String strConsult ="SELECT idProfissao as id,nome,precoVisita,descricao FROM casaweb.profissao ";
+	protected static final String strConsult ="SELECT idProfissao as id,nome,precoVisita,descricao FROM profissao ";
 
 	public List<ProfissaoDTO> profissaoListar(Connection conn) throws Exception {
 		List<ProfissaoDTO> list =null;
@@ -70,7 +70,7 @@ public class ProfissaoDAO extends GenericDAO{
 		
 		PreparedStatement ps = null;
 		
-		String sql = "INSERT INTO casaweb.profissao(nome,precovisita,descricao) VALUES(?,?,?)";
+		String sql = "INSERT INTO profissao(nome,precovisita,descricao) VALUES(?,?,?)";
 		try{
 			
 			ps = conn.prepareStatement(sql);
@@ -92,7 +92,7 @@ public class ProfissaoDAO extends GenericDAO{
 	public void exclui(Long[] idsProfissao, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="UPDATE casaweb.profissao SET ativo = false WHERE profissao.idProfissao=?";
+		String sql="UPDATE profissao SET ativo = false WHERE profissao.idProfissao=?";
 		try{
 			for (Long id : idsProfissao) {
 				ps = conn.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class ProfissaoDAO extends GenericDAO{
 	public void altera(ProfissaoDTO profissaoDTO, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="UPDATE casaweb.profissao SET nome = ?, precovisita = ?, descricao = ? WHERE profissao.idProfissao=?";
+		String sql="UPDATE profissao SET nome = ?, precovisita = ?, descricao = ? WHERE profissao.idProfissao=?";
 		try{
 			
 				ps = conn.prepareStatement(sql);

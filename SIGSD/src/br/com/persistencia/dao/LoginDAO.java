@@ -32,8 +32,8 @@ public class LoginDAO extends GenericDAO{
 				"celular," +
 				"perfil.idPerfil as \"perfil.id\", " +
 				"perfil.descricao as \"perfil.descricao\" " +
-				"FROM casaweb.pessoa " +
-				"INNER JOIN casaweb.perfil ON pessoa.idPerfil = perfil.idPerfil " +
+				"FROM pessoa " +
+				"INNER JOIN perfil ON pessoa.idPerfil = perfil.idPerfil " +
 				"WHERE pessoa.usuario=? " +
 				"	AND pessoa.senha=?" +
 				"	AND ativo=1";

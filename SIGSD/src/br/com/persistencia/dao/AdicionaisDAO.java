@@ -15,12 +15,12 @@ import br.com.persistencia.util.DTOFactory;
 
 public class AdicionaisDAO extends GenericDAO {
 	
-	protected static final String strConsult ="SELECT idAdicional as id,descricao,valor,data,observacao FROM casaweb.adicional ";
+	protected static final String strConsult ="SELECT idAdicional as id,descricao,valor,data,observacao FROM adicional ";
 
 	public void inclui(AdicionalDTO adicional, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql = "INSERT INTO casaweb.adicional(descricao,valor,observacao,data,idSolicitacao)VALUES(?,?,?,now(),?)";
+		String sql = "INSERT INTO adicional(descricao,valor,observacao,data,idSolicitacao)VALUES(?,?,?,now(),?)";
 		try {
 
 			ps = conn.prepareStatement(sql);
@@ -43,7 +43,7 @@ public class AdicionaisDAO extends GenericDAO {
 	public void exclui(Long[] idsAdicional, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="DELETE FROM casaweb.adicional WHERE idAdicional=?";
+		String sql="DELETE FROM adicional WHERE idAdicional=?";
 		try{
 			for (Long id : idsAdicional) {
 				ps = conn.prepareStatement(sql);

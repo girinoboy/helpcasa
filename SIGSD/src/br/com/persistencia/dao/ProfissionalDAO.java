@@ -22,13 +22,13 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 public class ProfissionalDAO extends GenericDAO{
 
 	protected static final String strConsult ="SELECT servico.nome AS nomeServico,periodo,pessoa.nome AS nomeCliente,endereco,cep,telefone,status,solicitacao.idSolicitacao,solicitacao.data,precoVisita" +
-			"			FROM casaweb.solicitacao" +
-			"			INNER JOIN casaweb.servico ON servico.idServico = solicitacao.idServico" +
-			"			INNER JOIN casaweb.cliente ON cliente.idCliente = solicitacao.idCliente" +
-			"			INNER JOIN casaweb.pessoa ON pessoa.idPessoa = cliente.idCliente" +
-			"      INNER JOIN casaweb.funcionario ON funcionario.idFuncionario = solicitacao.idFuncionario" +
-			"      INNER JOIN casaweb.profissao ON profissao.idProfissao = funcionario.idProfissao" +
-			"      INNER JOIN casaweb.historico ON historico.idSolicitacao = solicitacao.idSolicitacao ";
+			"			FROM solicitacao" +
+			"			INNER JOIN servico ON servico.idServico = solicitacao.idServico" +
+			"			INNER JOIN cliente ON cliente.idCliente = solicitacao.idCliente" +
+			"			INNER JOIN pessoa ON pessoa.idPessoa = cliente.idCliente" +
+			"      INNER JOIN funcionario ON funcionario.idFuncionario = solicitacao.idFuncionario" +
+			"      INNER JOIN profissao ON profissao.idProfissao = funcionario.idProfissao" +
+			"      INNER JOIN historico ON historico.idSolicitacao = solicitacao.idSolicitacao ";
 	
 	protected static final String strConsultAdicionais ="SELECT * FROM adicional";
 	
@@ -201,9 +201,9 @@ public class ProfissionalDAO extends GenericDAO{
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
 
-		String sql = "INSERT INTO casaweb.historico(data,status,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?)";
+		String sql = "INSERT INTO historico(data,status,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?)";
 		
-		String sql2 ="UPDATE casaweb.solicitacao SET statusAtual=? where idSolicitacao=?";
+		String sql2 ="UPDATE solicitacao SET statusAtual=? where idSolicitacao=?";
 		try {
 
 			ps = conn.prepareStatement(sql);

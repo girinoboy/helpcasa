@@ -15,10 +15,10 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class RelatoriosDAO extends GenericDAO{
 	protected static final String strConsultResumoFaturamentoMensal = "SELECT servico.nome,sum(precovisita) as precovisita, sum(valor)+precovisita as totalServico " +
-			"FROM casaweb.profissao " +
-			"inner join casaweb.servico on servico.idProfissao = profissao.idProfissao " +
-			"inner join casaweb.solicitacao on solicitacao.idServico = servico.idServico " +
-			"left join casaweb.adicional on adicional.idSolicitacao = solicitacao.idSolicitacao " +
+			"FROM profissao " +
+			"inner join servico on servico.idProfissao = profissao.idProfissao " +
+			"inner join solicitacao on solicitacao.idServico = servico.idServico " +
+			"left join adicional on adicional.idSolicitacao = solicitacao.idSolicitacao " +
 			"where servico.ativo=1 " +
 			"and month(solicitacao.data) = month(now()) " +
 			"and year(solicitacao.data) = year(now()) " +
