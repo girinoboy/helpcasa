@@ -33,11 +33,12 @@ public class SolicitacaoBO extends GenericBO{
 			solicitacaoDTO.setFuncionario(funcionario);
 			Boolean ocupado = solicitacaoDAO.existeSolicitacao(solicitacaoDTO, conn);
 			if(!ocupado)
-				solicitacaoDAO.inclui(solicitacaoDTO, conn);
+				solicitacaoDAO.inclui(solicitacaoDTO, conn);				
 			else{
 				mensagens.addMensagem("Todos os horarios ocupados.", Mensagem.ALERTA);
 				throw new RegraNegocioException(mensagens);
 			}
+			solicitacaoDAO.existeSolicitacao(solicitacaoDTO, conn);
 				
 		} catch (Exception e) {
 			throw e;

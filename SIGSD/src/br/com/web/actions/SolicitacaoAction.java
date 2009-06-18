@@ -58,7 +58,14 @@ public class SolicitacaoAction extends GenericAction{
 		servicos.put(0, "Selecione...");
 		try {
 			listServicos = servicoBO.servicosListar();
-			solicitacaoDTO.setCliente(clienteBO.consulta(solicitacaoDTO.getCliente().getCpf()));
+			ClienteDTO cliente =clienteBO.consulta(solicitacaoDTO.getCliente().getCpf());
+			//retorna para a pesquisa caso CPF n exista
+			if(cliente == null){
+				getMensagemGlobal().addMensagem("Cliente nÃ£o encontrado no sistema.",	Mensagem.ALERTA);
+				return "clientePesquisar.fwd";
+			}
+			solicitacaoDTO.setCliente(cliente);
+					
 			for (ServicoDTO servico : listServicos) {
 				servicos.put(servico.getId(), servico.getNome());
 			}
@@ -116,16 +123,16 @@ public class SolicitacaoAction extends GenericAction{
 			getMensagemGlobal().addMensagem("Solicitacao efetuada.", Mensagem.ALERTA);
 		} catch (RegraNegocioException e){
 			//e.printStackTrace();
-			//manda para o request a mensagem de exceção vinda do bo
+			//manda para o request a mensagem de exceï¿½ï¿½o vinda do bo
 			getMensagemGlobal().setMensagens(e.getMensagens());				
 		}catch(Exception e){
-			getMensagemGlobal().addMensagem("Ocorreu um erro ao efetuar solicitação.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao efetuar solicitaï¿½ï¿½o.", Mensagem.ALERTA);
 			e.printStackTrace();
 		}
 		return calcula();
 	}
 	
-	public String calcula(){
+	public String calcula(){//verifica horarios disponiveis
 
 		try{
 			
@@ -146,7 +153,13 @@ public class SolicitacaoAction extends GenericAction{
 		
 		try {			
 			if(solicitacaoDTO != null){			
-				solicitacaoDTO.setCliente(clienteBO.consulta(solicitacaoDTO.getCliente().getCpf()));
+				ClienteDTO cliente =clienteBO.consulta(solicitacaoDTO.getCliente().getCpf());
+				//retorna para a pesquisa caso CPF n exista
+				if(cliente == null){
+					getMensagemGlobal().addMensagem("Cliente nÃ£o encontrado no sistema.",	Mensagem.ALERTA);
+					return "clientePesquisar.fwd";
+				}
+				solicitacaoDTO.setCliente(cliente);
 				Long idCliente = solicitacaoDTO.getCliente().getId();
 				this.listFaturaBasica = this.solicitacaoBO.consultarFaturaBasica(idCliente);
 			}else

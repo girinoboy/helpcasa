@@ -36,7 +36,13 @@
 			<result name="paginaLogin.fwd" type="redirect-action">
 				 <param name="actionName">login!logout.action?</param>
 				 
-			</result>										
+			</result>		
+			
+			<result name="clienteVoltaPesquisar.fwd" type="redirect-action">
+				 <param name="actionName">cliente!pesquisar.action?</param>
+				 <param name="funcao">cliente</param>
+				 <param name="mensagemGlobal.mensagens">${mensagens}</param>
+			</result>								
 		</action>	
 		
 		<action name="administrador!*" method="{1}" class="br.com.web.actions.AdministradorAction">
@@ -80,12 +86,24 @@
 			<result type="tiles" name="faturaBasica.fwd">SolicitacoesFaturaBasica.def</result>
 			<result type="tiles" name="google.fwd">google.def</result>
 			<result type="tiles" name="faturaDetalhada.fwd">SolicitacoesFaturaDetalhada.def</result>
+			
+			<result name="clientePesquisar.fwd" type="redirect-action">
+				 <param name="actionName">cliente!pesquisar.action?</param>
+				 <param name="funcao">servico</param>
+				 
+			</result>
 		</action>
 		
 		<action name="historico!*" method="{1}" class="br.com.web.actions.HistoricoAction">
 			<result type="tiles" name="historicodependencias.fwd">HistoricoDependencias.def</result>
 			<result type="tiles" name="load.fwd">HistoricoLoad.def</result>
 			<result type="tiles" name="historicoConsultar.fwd">HistoricoConsultar.def</result>
+			
+			<result name="clientePesquisar.fwd" type="redirect-action">
+				 <param name="actionName">cliente!pesquisar.action?</param>
+				 <param name="funcao">historico</param>
+				 
+			</result>
 		</action>
 		
 		<action name="relatorio!*" method="{1}" class="br.com.web.actions.RelatoriosAction">

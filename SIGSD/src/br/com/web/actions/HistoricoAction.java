@@ -2,10 +2,12 @@ package br.com.web.actions;
 
 import java.util.List;
 
+import br.com.Mensagem;
 import br.com.bo.ClienteBO;
 import br.com.bo.FactoryBO;
 import br.com.bo.HistoricoBO;
 import br.com.bo.NotasBO;
+import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.NotaDTO;
 
@@ -37,7 +39,14 @@ public class HistoricoAction extends GenericAction{
 	
 	public String historicoListar(){
 		try{			
-			historicoDTO.getSolicitacao().setCliente(clienteBO.consulta(historicoDTO.getSolicitacao().getCliente().getCpf()));
+			
+			ClienteDTO cliente =clienteBO.consulta(historicoDTO.getSolicitacao().getCliente().getCpf());
+			//retorna para a pesquisa caso CPF n exista
+			if(cliente == null){
+				getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
+				return "clientePesquisar.fwd";
+			}
+			historicoDTO.getSolicitacao().setCliente(cliente);			
 			Long idCliente = historicoDTO.getSolicitacao().getCliente().getId();
 			this.listHistorico = historicoBO.historicoListar(idCliente);
 			this.listNota = notasBO.consultarNotas();

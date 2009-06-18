@@ -16,7 +16,7 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class SolicitacaoDAO extends GenericDAO{
 
-	protected static final String strConsultListaPorIdCliente = "SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, funcionario.ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao,precoVisita " +
+	protected static final String strConsultListaPorIdCliente = "SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
 			"FROM casaweb.solicitacao " +
 			"INNER JOIN casaweb.servico ON solicitacao.idServico = servico.idServico " +
 			"INNER JOIN casaweb.funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario " +
@@ -30,10 +30,10 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN casaweb.funcionario f ON f.idFuncionario = s.idFuncionario " +
 			"INNER JOIN casaweb.profissao ON profissao.idprofissao = f.idprofissao " +
 			"INNER JOIN casaweb.pessoa p ON f.idFuncionario = p.idPessoa " +
-			"INNER JOIN casaweb.Servico v ON v.idServico = s.idServico " +
+			"INNER JOIN casaweb.servico v ON v.idServico = s.idServico " +
 			"LEFT JOIN casaweb.adicional a ON a.idSolicitacao = s.idSolicitacao ";
 		
-	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario, sum(idPessoa) as total, solicitacao.idSolicitacao,precoVisita " +
+	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
 			"FROM casaweb.solicitacao " +
 			"RIGHT JOIN casaweb.pessoa ON idpessoa=idfuncionario " +
 			"INNER JOIN casaweb.funcionario on funcionario.idfuncionario = pessoa.idpessoa " +
@@ -55,8 +55,8 @@ public class SolicitacaoDAO extends GenericDAO{
 		PreparedStatement ps2 = null;
 		PreparedStatement ps3 = null;
 
-		String sql = "INSERT INTO casaweb.Solicitacao(data,periodo,idCliente,idFuncionario,idServico) VALUES(?,?,?,?,?)";
-		String sql2 = "UPDATE casaweb.Pessoa SET cep = ? WHERE idPessoa=?";//updade para o local atual do profissional para fazer a consulta do google api
+		String sql = "INSERT INTO casaweb.solicitacao(data,periodo,idCliente,idFuncionario,idServico) VALUES(?,?,?,?,?)";
+		String sql2 = "UPDATE casaweb.pessoa SET cep = ? WHERE idPessoa=?";//updade para o local atual do profissional para fazer a consulta do google api
 		String sql3 ="UPDATE casaweb.solicitacao SET statusAtual=?";
 		try {
 
@@ -68,7 +68,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			ps.setDouble(5, solicitacao.getServico().getId());
 			
 			ps.executeUpdate();
-			//set o novo endereço do funcionario como o cep 70390-130 da empresa
+			//set o novo endereï¿½o do funcionario como o cep 70390-130 da empresa
 			ps2 = conn.prepareStatement(sql2);
 			ps2.setString(1, solicitacao.getCliente().getCep());
 			ps2.setLong(2, solicitacao.getFuncionario().getId());
@@ -217,12 +217,17 @@ public class SolicitacaoDAO extends GenericDAO{
 		qBuffer.append(" AND (periodo IS NULL OR periodo <> 3 OR cep = '70390-130')");//CEP da empresaand 
 		qBuffer.append(" AND ocupado =0");
 		qBuffer.append(" AND pessoa.ativo =1");
+		qBuffer.append(" AND solicitacao.ocupado =0 ");
+		qBuffer.append(" OR data is null");		
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
 			ps.setDate(1, new Date(solicitacao.getData().getTime()));
 			ps.setLong(2, solicitacao.getServico().getId());
+			//ps.setDate(3, new Date(solicitacao.getData().getTime()));
+			
 			System.out.println(qBuffer.toString());
+			
 			rs = ps.executeQuery();
 			list = new ArrayList<SolicitacaoDTO>();
 			while(rs.next()){
@@ -259,29 +264,34 @@ public class SolicitacaoDAO extends GenericDAO{
 		qBuffer.append(" AND idPerfil = 4");
 		qBuffer.append(" AND (periodo IS NULL OR periodo <> 3 OR cep = '70390-130')");//CEP da empresa
 		qBuffer.append(" AND idPessoa = ?");
+		qBuffer.append(" AND pessoa.ativo =1");
+		qBuffer.append(" AND ocupado =0");
+		qBuffer.append(" AND data = ?");
 		
-		System.out.println("Existe Solicitação: "+qBuffer.toString());
+		
+	//	System.out.println("Existe Solicitaï¿½ï¿½o: "+qBuffer.toString());
 		StringBuffer qBuffer2 = new StringBuffer();	
-		qBuffer2.append("UPDATE casaweb.funcionario SET ocupado = 1 WHERE idFuncionario =?");
+		qBuffer2.append("UPDATE casaweb.solicitacao SET ocupado = 1 where data = ?");
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
 			ps.setDate(1, new Date(solicitacao.getData().getTime()));
 			ps.setLong(2, solicitacao.getServico().getId());
 			ps.setLong(3, solicitacao.getFuncionario().getId());
-			System.out.println(qBuffer.toString());
+			ps.setDate(4, new Date(solicitacao.getData().getTime()));
+		//	System.out.println(qBuffer.toString());
 			rs = ps.executeQuery();
 			
 			Double total;
-			if(rs.next()){
-				total=rs.getDouble("total");
-				rs.getString("nomeServico");
+			if(rs.next()){								
 					
 				ps2 = conn.prepareStatement(qBuffer2.toString());
-				ps2.setLong(1, solicitacao.getFuncionario().getId());
-				ps2.executeUpdate();
-				if(total >0)
+				ps2.setDate(1, new Date(solicitacao.getData().getTime()));
+				
+				if(rs.next()){
+					ps2.executeUpdate();
 					ocupado = true;
+				}
 			}
 		}catch(Exception e){
 			throw e;
