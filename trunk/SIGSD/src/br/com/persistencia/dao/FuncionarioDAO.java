@@ -19,8 +19,8 @@ import br.com.persistencia.util.DTOFactory;
 
 public class FuncionarioDAO extends GenericDAO{
 
-	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";
-	protected static final String strInsertFuncionario ="INSERT INTO casaweb.funcionario(idFuncionario,matricula,idProfissao)VALUES((SELECT MAX(idPessoa) FROM casaweb.Pessoa),?,?)";
+	protected static final String strInsertPessoa ="INSERT INTO casaweb.pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?);";
+	protected static final String strInsertFuncionario ="INSERT INTO casaweb.funcionario(idFuncionario,matricula,idProfissao)VALUES((SELECT MAX(idPessoa) FROM casaweb.pessoa),?,?)";
 	protected static final String strConsult ="select ps.idpessoa as id, " +			
 			"ps.usuario," +
 			"ps.senha," +
@@ -218,7 +218,7 @@ public class FuncionarioDAO extends GenericDAO{
 	public void exclui(Long[] idsFuncionario, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="UPDATE casaweb.Pessoa SET ativo = 0 WHERE Pessoa.idPessoa=?";
+		String sql="UPDATE casaweb.pessoa SET ativo = 0 WHERE Pessoa.idPessoa=?";
 		try{
 			for (Long id : idsFuncionario) {
 				ps = conn.prepareStatement(sql);
@@ -238,7 +238,7 @@ public class FuncionarioDAO extends GenericDAO{
 	public void altera(FuncionarioDTO funcionarioDTO, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="UPDATE casaweb.Pessoa " +
+		String sql="UPDATE casaweb.pessoa " +
 				"SET senha=?," +
 				"nome=?," +
 				"cpf=?," +

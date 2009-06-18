@@ -71,7 +71,7 @@ public class ClienteAction extends GenericAction {
 
 		} catch (RegraNegocioException e){
 			e.printStackTrace();
-			//manda para o request a mensagem de exceção vinda do bo
+			//manda para o request a mensagem de exceï¿½ï¿½o vinda do bo
 			getMensagemGlobal().setMensagens(e.getMensagens());	
 			return this.load();
 		}catch (Exception e) {
@@ -92,6 +92,20 @@ public class ClienteAction extends GenericAction {
 				setAlterado(true);
 			else
 				setAlterado(false);
+			
+			if(getSessaoPessoa() != null && getSessaoPessoa().getCpf() !=null && this.clienteDTO == null){
+				this.clienteDTO = this.clienteBO.consulta(getSessaoPessoa().getCpf());
+			}
+			if (this.clienteDTO != null && this.clienteDTO.getCpf() != null) {
+				this.clienteDTO = this.clienteBO.consulta(this.clienteDTO.getCpf());
+				//retorna para a pesquisa caso CPF n exista
+				if(clienteDTO == null){
+					getRequest().getSession().setAttribute("mens", "Login invalido.");
+					getMensagemGlobal().addMensagem("Cliente nÃ£o encontrado no sistema.",	Mensagem.ALERTA);
+					return "clienteVoltaPesquisar.fwd";
+				}
+			}
+			
 			ufs = new HashMap<Number, String>();
 			ufs.put(0, "Selecione...");
 			this.listUf = this.clienteBO.listUf();
@@ -99,16 +113,10 @@ public class ClienteAction extends GenericAction {
 			for(UfDTO uf: listUf ){
 				ufs.put(uf.getId(), uf.getUf());
 			}
-			if(getSessaoPessoa() != null && getSessaoPessoa().getCpf() !=null && this.clienteDTO == null){
-				this.clienteDTO = this.clienteBO.consulta(getSessaoPessoa().getCpf());
-			}
-			if (this.clienteDTO != null && this.clienteDTO.getCpf() != null) {
-				this.clienteDTO = this.clienteBO.consulta(this.clienteDTO.getCpf());
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			// Manda para o request a mensagem de exceção vinda do BO
+			// Manda para o request a mensagem de exceï¿½ï¿½o vinda do BO
 			getMensagemGlobal().addMensagem("Erro ao buscar Cliente.",
 					Mensagem.ERRO);
 			return this.direcionaMenu();
@@ -122,7 +130,7 @@ public class ClienteAction extends GenericAction {
 	}
 
 	public String pesquisar() throws Exception {
-		try {
+		try {															
 			if (clienteDTO != null && clienteDTO.getCpf() != null) 
 				return consultaParaCliente();
 			else
@@ -138,7 +146,7 @@ public class ClienteAction extends GenericAction {
 
 		try{
 			clienteDTO = clienteBO.altera(clienteDTO);
-			getMensagemGlobal().addMensagem("Alterações salvas com sucesso.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Alteraï¿½ï¿½es salvas com sucesso.", Mensagem.ALERTA);
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Cliente.", Mensagem.ALERTA);
 			e.printStackTrace();			

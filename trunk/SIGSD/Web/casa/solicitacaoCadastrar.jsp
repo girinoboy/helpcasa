@@ -66,7 +66,8 @@
 					</s:if>
 					<s:elseif test="${periodos eq 1}">
 						<s:radio list="#{'1':'manha'}" name="solicitacaoDTO.periodo" id="periodo" disabled="true"/>
-						<s:radio list="#{'2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" />
+						<s:radio list="#{'2':'tarde'}" name="solicitacaoDTO.periodo" id="periodo" />
+						<s:radio list="#{'3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" disabled="true"/>
 					</s:elseif>
 					<s:elseif test="${periodos eq 2}">
 						<s:radio list="#{'1':'manha'}" name="solicitacaoDTO.periodo" id="periodo" />

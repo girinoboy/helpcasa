@@ -26,7 +26,7 @@ public class ClienteDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsult);
-		qBuffer.append("WHERE Pessoa.cpf = ?");
+		qBuffer.append("WHERE pessoa.cpf = ?");
 
 		try {
 			ps = con.prepareStatement(qBuffer.toString());
@@ -111,14 +111,14 @@ public class ClienteDAO extends GenericDAO{
 
 			StringBuffer qBuffer = new StringBuffer();		
 			qBuffer.append(strConsult);
-			qBuffer.append("WHERE Pessoa.idPessoa = ?");
+			qBuffer.append("WHERE pessoa.idPessoa = ?");
 			insertPessoa(clienteDTO, conn);
 			insertCliente(clienteDTO, conn);
 			conn.commit();
 			try {
 				ps = conn.prepareStatement(qBuffer.toString());
 
-				String nomeTabela = "Cliente";
+				String nomeTabela = "cliente";
 				String nomeColuna = "idCliente";
 				ps.setLong(1, this.getLastIdTable(nomeTabela, nomeColuna, conn));
 
@@ -213,7 +213,7 @@ public class ClienteDAO extends GenericDAO{
 			try{
 				ps = con.prepareStatement(qBuffer.toString());
 				
-				ps.setLong(1, this.getLastIdTable("Pessoa", "idPessoa", con));
+				ps.setLong(1, this.getLastIdTable("pessoa", "idPessoa", con));
 				ps.setString(2, cliente.getEndereco());
 				//ps.setBoolean(3, cliente.getAtivo());				
 				ps.setString(3, cliente.getCidade());
@@ -292,7 +292,7 @@ public class ClienteDAO extends GenericDAO{
 		public ClienteDTO altera(ClienteDTO clienteDTO, Connection conn) throws Exception {
 			PreparedStatement ps = null;
 
-			String sql="UPDATE casaweb.Pessoa " +
+			String sql="UPDATE casaweb.pessoa " +
 			"SET senha=?," +
 			"nome=?," +
 			"cpf=?," +
@@ -369,22 +369,22 @@ public class ClienteDAO extends GenericDAO{
 				"dataCadastro," +
 				"telefone," +
 				"celular," +
-				"Perfil.idPerfil as \"perfil.id\", " +
-				"Perfil.descricao as \"perfil.descricao\", " +
-				"Cliente.endereco,"+				
-				"Pessoa.cep,"+
-				"Cliente.cidade,"+
+				"perfil.idPerfil as \"perfil.id\", " +
+				"perfil.descricao as \"perfil.descricao\", " +
+				"cliente.endereco,"+				
+				"pessoa.cep,"+
+				"cliente.cidade,"+
 				"uf.iduf,"+
 				"uf.uf,"+
 				"uf.descricao "+
 				"FROM casaweb.cliente " +
 				"inner join casaweb.pessoa on cliente.idcliente=pessoa.idpessoa " +
 				"inner join casaweb.perfil on perfil.idperfil=pessoa.idperfil " +
-				"INNER JOIN CASAWEB.UF ON uf.iduf=cliente.iduf ";
+				"INNER JOIN casaweb.uf ON uf.iduf=cliente.iduf ";
 
 	
-	protected static final String strInsertPessoa ="INSERT INTO casaweb.Pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil,cep) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
-	protected static final String strInsertCliente ="INSERT INTO casaweb.Cliente(idCliente,endereco,cidade,idUF)VALUES(?,?,?,?);";
+	protected static final String strInsertPessoa ="INSERT INTO casaweb.pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil,cep) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
+	protected static final String strInsertCliente ="INSERT INTO casaweb.cliente(idCliente,endereco,cidade,idUF)VALUES(?,?,?,?);";
 	
 	
 }
