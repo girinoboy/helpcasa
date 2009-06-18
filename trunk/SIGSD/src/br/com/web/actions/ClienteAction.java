@@ -28,7 +28,7 @@ public class ClienteAction extends GenericAction {
 	private Boolean alterado;
 
 	private Boolean telaConsulta = new Boolean(false);
-
+	private Boolean naoPesquisar = new Boolean(false);
 	public ClienteAction() {
 		clienteBO = FactoryBO.getInstance().getClienteBO();
 	}
@@ -101,6 +101,9 @@ public class ClienteAction extends GenericAction {
 				//retorna para a pesquisa caso CPF n exista
 				if(clienteDTO == null){
 					getRequest().getSession().setAttribute("mens", "Login invalido.");
+					naoPesquisar = true;
+					setNaoPesquisar(true);
+					getRequest().setAttribute("naoPesquisar", naoPesquisar);
 					getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 					return "clienteVoltaPesquisar.fwd";
 				}
@@ -230,6 +233,14 @@ public class ClienteAction extends GenericAction {
 
 	public void setTelaConsulta(Boolean telaConsulta) {
 		this.telaConsulta = telaConsulta;
+	}
+
+	public Boolean getNaoPesquisar() {
+		return naoPesquisar;
+	}
+
+	public void setNaoPesquisar(Boolean naoPesquisar) {
+		this.naoPesquisar = naoPesquisar;
 	}
 
 }
