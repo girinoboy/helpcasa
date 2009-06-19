@@ -22,7 +22,7 @@
 		<title><tiles:getAsString name="title" /></title>
 		
 		<!-- api google maps -->
-		<s:if test="${not empty gMaps and gMaps == 'true'}">
+		<s:if test="${gMaps}">
 		<script src=" http://maps.google.com/?file=api&amp;v=2.x&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA" type="text/javascript"></script>
 		</s:if>
 		
@@ -30,7 +30,7 @@
 		<link href='<s:url value="/estilos/casa_web.css"/>' rel="stylesheet" type="text/css"></link>
 				
 		<!-- CARREGA AS BIBLIOTECAS DO PLUGIN jQuery SOMENTE SE FOR INFORMADO NO DEFINITION -->
-		<s:if test="${not empty jQuery and jQuery == 'true'}">
+		<s:if test="${jQuery}">
 		
 			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jquery-1.2.6.js"/>'></script>
 			
@@ -53,19 +53,22 @@
 		</s:if>
 		
 		<!-- CARREGA AS BIBLIOTECAS DO PLUGIN jtabber -->
-		<s:if test="${not empty jtabber and jtabber == 'true'}">
+		<s:if test="${jtabber}">
 			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jquery-1.2.6.min.js"/>'></script>
 			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jtabber.js"/>'></script>
 			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jtabberConfig.js"/>'></script>
 			<link href='<s:url value="/estilos/jquery/jtabber.css"/>' rel="stylesheet" type="text/css"></link>
 		</s:if>
+		<s:else>
+			<h1>v. 1.0</h1>
+		</s:else>
 		
 		<s:if test="${not empty js}">
 			<script type="text/javascript" src='<s:url value="${js}"/>' language="javascript"></script>
 		</s:if>
 		
 		<!-- CARREGA AS BIBLIOTECAS DOJO SOMENTE SE FOR INFORMADO NO DEFINITION -->
-		<s:if test="${not empty dojo and dojo == 'true'}">
+		<s:if test="${dojo}">
 			<s:head theme="ajax" debug="true"/>	
 		</s:if>
 		

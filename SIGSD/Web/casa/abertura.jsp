@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" 	uri="http://java.sun.com/jsp/jstl/functions" %>
 <s:form>
 <h2>Menu de Ações do Sistema SIGSD</h2><hr/>
 <s:head theme="ajax"/>
