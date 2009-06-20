@@ -58,10 +58,7 @@
 			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jtabber.js"/>'></script>
 			<script language="javascript" type="text/javascript" src='<s:url value="/js/jquery/jtabberConfig.js"/>'></script>
 			<link href='<s:url value="/estilos/jquery/jtabber.css"/>' rel="stylesheet" type="text/css"></link>
-		</s:if>
-		<s:else>
-			<h1>v. 1.0</h1>
-		</s:else>
+		</s:if>		
 		
 		<s:if test="${not empty js}">
 			<script type="text/javascript" src='<s:url value="${js}"/>' language="javascript"></script>
