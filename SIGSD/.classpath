@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/com.sun.java.jdk.linux.x86_1.6.0.013"/>
 	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/jstl.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-digester-2.0.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-logging-1.0.4.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/freemarker-2.3.13.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/jstl-1.1.2.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/ognl-2.6.11.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/struts2-core-2.0.9.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/struts2-tiles-plugin-2.0.9.jar"/>
@@ -35,7 +29,6 @@
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-el.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-io-1.4.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-lang-2.3.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-logging-api-1.1.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-validator-1.3.0.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/displaytag-1.1.1.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/displaytag-export-poi-1.1.1.jar"/>
@@ -52,8 +45,6 @@
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/poi-3.0-FINAL.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/retrotranslator-runtime-1.2.1.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/saxpath.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/slf4j-api-1.4.2.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/slf4j-log4j12-1.4.2.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/struts-legacy.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/struts2-codebehind-plugin-2.0.9.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/struts2-config-browser-plugin-2.0.9.jar"/>
@@ -63,12 +54,16 @@
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/freemarker-2.3.8.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/hibernate3.jar"/>
-	<classpathentry kind="lib" path="Web/WEB-INF/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/myfaces-api-1.1.2.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/mysql-connector-java-5.1.6-bin.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/iText-2.1.5.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/jasperreports-3.5.1.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/jbarcodebean-1.2.0.jar"/>
 	<classpathentry kind="lib" path="Web/WEB-INF/lib/jboleto.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/commons-logging-api-1.1.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/slf4j-api-1.4.2.jar"/>
+	<classpathentry kind="lib" path="Web/WEB-INF/lib/slf4j-log4j12-1.4.2.jar"/>
 	<classpathentry kind="output" path="Web/WEB-INF/classes"/>
 </classpath>
