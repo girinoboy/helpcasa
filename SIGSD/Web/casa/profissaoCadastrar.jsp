@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
-					Preço da Visita R$:* 
+					Preço da Visita:* 
 				</td>
 				<td>
 					<s:textfield id="precoVisita"
