@@ -70,7 +70,7 @@
 					E-mail:*
 				</td>
 				<td>
-					<s:textfield name="funcionarioDTO.email" label="EMAIL" size="100" id="email" />
+					<s:textfield name="funcionarioDTO.email" label="EMAIL" size="89" id="email" />
 				</td>
 			</tr>
 			<tr>
