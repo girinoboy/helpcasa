@@ -324,4 +324,31 @@ public class FuncionarioDAO extends GenericDAO{
 		return funcionarioDTO;
 	}
 
+	public boolean existeCadastro(FuncionarioDTO funcionarioDTO, Connection conn) throws Exception {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		
+		String sql = "SELECT usuario FROM pessoa WHERE usuario = ? or cpf=?";
+				
+		try{
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, funcionarioDTO.getUsuario());
+			ps.setString(2, funcionarioDTO.getCpf());
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				return true;
+			}
+		}catch(Exception e){
+			throw e;
+		}finally{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+		}
+		return false;
+	}
+
 }
