@@ -141,7 +141,7 @@ public class SolicitacaoDAO extends GenericDAO{
 		Date data = rs.getDate("data");
 		
 		dto.setData(data);
-		if(solicitacao.getData().getTime()==data.getTime())
+		if(data != null && (solicitacao.getData().getTime()==data.getTime()))
 			dto.setPeriodo(rs.getInt("periodo"));
 		else
 			dto.setPeriodo(0);
