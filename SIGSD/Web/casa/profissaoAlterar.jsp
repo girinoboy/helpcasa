@@ -37,7 +37,7 @@
 		</table>
 
 		<div class="footer">
-			<input type="button" value="Alterar"
+			<input type="button" value="Salvar"
 				onClick="selectAction('altera');" class="adicionar" />
 			<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />
