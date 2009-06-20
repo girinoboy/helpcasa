@@ -54,10 +54,12 @@ public class SolicitacaoDAO extends GenericDAO{
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
 		PreparedStatement ps3 = null;
+		PreparedStatement ps4 = null;
 
 		String sql = "INSERT INTO solicitacao(data,periodo,idCliente,idFuncionario,idServico) VALUES(?,?,?,?,?)";
 		String sql2 = "UPDATE pessoa SET cep = ? WHERE idPessoa=?";//updade para o local atual do profissional para fazer a consulta do google api
 		String sql3 ="UPDATE solicitacao SET statusAtual=?";
+		String sql4 ="INSERT INTO historico SET data=now(),status=1,alteradoPor=?,observacao='solicitado pelo cliente',idSolicitacao=(select max(idSolicitacao) from solicitacao)";
 		try {
 
 			ps = conn.prepareStatement(sql);
@@ -75,10 +77,15 @@ public class SolicitacaoDAO extends GenericDAO{
 			
 			ps2.executeUpdate();
 			
-			//
+			//define o status atual da solicitacao
 			ps3 = conn.prepareStatement(sql3);
 			ps3.setLong(1, ConstantesENUM.STATUS_SOLICITADO.id());
 			ps3.executeUpdate();
+			
+			//atualiza o historico
+			ps4 =conn.prepareStatement(sql4);
+			ps4.setLong(1, solicitacao.getCliente().getId());
+			ps4.executeUpdate();
 
 		} catch (Exception e) {
 			throw e;
@@ -113,7 +120,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			while(rs.next()){
 				SolicitacaoDTO dto = new SolicitacaoDTO();
 				
-				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs);				
+				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs,dto);				
 				
 				list.add(solicitacaoDTO);
 				
@@ -129,10 +136,15 @@ public class SolicitacaoDAO extends GenericDAO{
 		return list;
 	}
 
-	private SolicitacaoDTO populaSolicitacaoDTO(SolicitacaoDTO dto, ResultSet rs)  throws SQLException {
+	private SolicitacaoDTO populaSolicitacaoDTO(SolicitacaoDTO dto, ResultSet rs, SolicitacaoDTO solicitacao)  throws SQLException {
 		dto.setId(rs.getLong("idSolicitacao"));
-		dto.setData((Date)rs.getDate("data"));
-		dto.setPeriodo(rs.getInt("periodo"));
+		Date data = rs.getDate("data");
+		
+		dto.setData(data);
+		if(solicitacao.getData().getTime()==data.getTime())
+			dto.setPeriodo(rs.getInt("periodo"));
+		else
+			dto.setPeriodo(0);
 		dto.setTotal(rs.getDouble("total"));
 		
 		FuncionarioDTO funcionario = new FuncionarioDTO();
@@ -185,7 +197,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			while(rs.next()){
 				SolicitacaoDTO dto = new SolicitacaoDTO();
 				
-				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs);				
+				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs,dto);				
 				
 				list.add(solicitacaoDTO);
 				
@@ -210,21 +222,25 @@ public class SolicitacaoDAO extends GenericDAO{
 			
 		StringBuffer qBuffer = new StringBuffer();		
 
-		qBuffer.append(strConsultHorariosDisponiveis);
+		qBuffer.append("SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita ");
+		qBuffer.append(" FROM pessoa ");
+		qBuffer.append(" left join solicitacao on idPessoa = idFuncionario ");
+		qBuffer.append(" left JOIN servico ON solicitacao.idServico = servico.idServico ");
+		qBuffer.append(" left JOIN funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario ");
+		qBuffer.append(" left JOIN profissao ON profissao.idprofissao = funcionario.idprofissao ");
+		qBuffer.append(" WHERE idPessoa not in(select idFuncionario");
+		qBuffer.append(" FROM solicitacao");
 		qBuffer.append(" WHERE (? <= DATE_ADD(NOW(),INTERVAL 30 DAY)) ");
-		qBuffer.append(" AND servico.idServico =?");
-		qBuffer.append(" AND idPerfil = 4");
-		qBuffer.append(" AND (periodo IS NULL OR periodo <> 3 OR cep = '70390-130')");//CEP da empresaand 
-		qBuffer.append(" AND ocupado =0");
-		qBuffer.append(" AND pessoa.ativo =1");
-		qBuffer.append(" AND solicitacao.ocupado =0 ");
-		qBuffer.append(" OR data is null");		
+		qBuffer.append(" and data = ?");
+		qBuffer.append(" and ocupado =1 ");
+		qBuffer.append(" and idservico =? )");
+		qBuffer.append(" and idPerfil = 4");
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
 			ps.setDate(1, new Date(solicitacao.getData().getTime()));
-			ps.setLong(2, solicitacao.getServico().getId());
-			//ps.setDate(3, new Date(solicitacao.getData().getTime()));
+			ps.setDate(2, new Date(solicitacao.getData().getTime()));
+			ps.setLong(3, solicitacao.getServico().getId());			
 			
 			System.out.println(qBuffer.toString());
 			
@@ -233,7 +249,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			while(rs.next()){
 				SolicitacaoDTO dto = new SolicitacaoDTO();
 				
-				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs);				
+				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs,solicitacao);				
 				
 				list.add(solicitacaoDTO);
 				
@@ -247,6 +263,11 @@ public class SolicitacaoDAO extends GenericDAO{
 				rs.close();
 		}
 		return list;
+	}
+
+	private SolicitacaoDTO populaHorarios(SolicitacaoDTO dto, ResultSet rs) {
+	//	dto.setId(id);
+		return dto;
 	}
 
 	public Boolean existeSolicitacao(SolicitacaoDTO solicitacao, Connection conn) throws Exception {
@@ -265,8 +286,8 @@ public class SolicitacaoDAO extends GenericDAO{
 		qBuffer.append(" AND (periodo IS NULL OR periodo <> 3 OR cep = '70390-130')");//CEP da empresa
 		qBuffer.append(" AND idPessoa = ?");
 		qBuffer.append(" AND pessoa.ativo =1");
-		qBuffer.append(" AND ocupado =0");
-		qBuffer.append(" AND data = ?");
+		qBuffer.append(" AND solicitacao.ocupado =0");
+		qBuffer.append(" AND solicitacao.data = ?");
 		
 		
 	//	System.out.println("Existe Solicita��o: "+qBuffer.toString());
@@ -327,7 +348,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			while(rs.next()){
 				SolicitacaoDTO dto = new SolicitacaoDTO();
 				
-				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs);				
+				solicitacaoDTO = this.populaSolicitacaoDTO(dto,rs,dto);				
 				
 				list.add(solicitacaoDTO);
 				

@@ -60,13 +60,13 @@ public class LoginAction extends GenericAction{
 					getRequest().getSession(true).getLastAccessedTime();//indica quando foi a ultima vez que o utilizador acedeu a sessao
 					
 					getRequest().getSession(true).isNew();//indica se a sessao foi criada agora
-					getRequest().getSession(true).setAttribute("pessoaDTO", pessoaDTO);
-					getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
+				//	getRequest().getSession(true).setAttribute("pessoaDTO", pessoaDTO);
+				//	getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
 					getRequest().getSession(true).setAttribute("pessoa", pessoa);
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
 					return abertura();
 				}else{
-					getRequest().getSession().setAttribute("mensagem", "Login invalido.");
+				//	getRequest().getSession().setAttribute("mensagem", "Login invalido.");
 					getMensagemGlobal().addMensagem("Usuario ou senha incorretos.", Mensagem.ALERTA);
 					return load();
 				}				
@@ -75,7 +75,7 @@ public class LoginAction extends GenericAction{
 
 		}catch(Exception e){
 			e.printStackTrace();
-			getMensagemGlobal().addMensagem("O Login ou a Senha não existe no sistema. Tente novamente.",Mensagem.ERRO);			
+			getMensagemGlobal().addMensagem("O Login ou a Senha nï¿½o existe no sistema. Tente novamente.",Mensagem.ERRO);			
 			return load();
 		}		
 	}
@@ -98,7 +98,7 @@ public class LoginAction extends GenericAction{
 			pessoaDTO = clienteBO.inclui(clienteDTO);
 		}catch (RegraNegocioException e){
 			e.printStackTrace();
-			//manda para o request a mensagem de exceção vinda do bo
+			//manda para o request a mensagem de exceï¿½ï¿½o vinda do bo
 			getMensagemGlobal().setMensagens(e.getMensagens());	
 			//return this.direcionaMenu();
 			//ClienteAction.this.clienteCadastrar();

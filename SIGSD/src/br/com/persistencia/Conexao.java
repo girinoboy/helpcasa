@@ -22,7 +22,7 @@ public static final Connection getConnection(Long idUsuario) throws SQLException
 		    ////System.out.println("Passei pelo select do LOG");
 		}
 		catch (SQLException e) {
-			System.err.println("Ocorreu um problema com a conexão que ativa o log no Banco de Dados. Usuario: " + idUsuario);
+			System.err.println("Ocorreu um problema com a conexï¿½o que ativa o log no Banco de Dados. Usuario: " + idUsuario);
 			if(conexao != null)
 				conexao.close();
 			
