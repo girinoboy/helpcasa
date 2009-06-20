@@ -70,7 +70,7 @@ public class ClienteAction extends GenericAction {
 			this.clienteDTO = this.clienteBO.inclui(this.clienteDTO);
 
 		} catch (RegraNegocioException e){
-			e.printStackTrace();
+			//e.printStackTrace();
 			//manda para o request a mensagem de exce��o vinda do bo
 			getMensagemGlobal().setMensagens(e.getMensagens());	
 			return this.load();
