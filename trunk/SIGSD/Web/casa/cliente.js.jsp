@@ -89,7 +89,7 @@ function validaCamposAoIncluir(){
 		nome.focus();
 		return false;
 	}
-	if(cpf.value == '' || cpf.value='999.999.999-99'){
+	if(cpf.value == '' || cpf.value=='999.999.999-99'){
 		alert('O campo CPF é obrigatório.');
 		cpf.focus();
 		return false;
