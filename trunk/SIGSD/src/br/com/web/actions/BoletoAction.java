@@ -42,11 +42,11 @@ public class BoletoAction  extends GenericAction {
 	private String localDePagamentoAposVencimento="APOS O VENCIMENTO, SOMENTE NA CAIXA ECONOMICA";
 	private String instrucao1="APOS O VENCIMENTO COBRAR MULTA DE 2%";
 	private String instrucao2="APOS O VENCIMENTO, COBRAR MULTA DE  R$ 0.50 AO DIA";
-	private String instrucao3="APOS O VENCIMENTO NÂO APLICAR DESCONTO";
-	private String instrucao4="APOS O VENCIMENTO COBRAR R$ 1.50 DE TAXA DE OPERAÇÂO ";
+	private String instrucao3="APOS O VENCIMENTO Nï¿½O APLICAR DESCONTO";
+	private String instrucao4="APOS O VENCIMENTO COBRAR R$ 1.50 DE TAXA DE OPERAï¿½ï¿½O ";
 	private String instrucao5="ANTES DO VENCIMENTO APLICAR DESCONTO DE 5%";
-	private String descricao1="Boleta referente a cobrança de serviços prestados. ";
-	private String descricao2="Os serviços do SIGSD foram encerrados no dia 25/05/2009";
+	private String descricao1="Boleta referente a cobranï¿½a de serviï¿½os prestados. ";
+	private String descricao2="Os serviï¿½os do SIGSD foram encerrados no dia 25/05/2009";
 	private Date dataDocumento=new Date();
 	private ClienteBO clienteBO;
 	private ClienteDTO clienteDTO;
@@ -135,13 +135,13 @@ public class BoletoAction  extends GenericAction {
 	}
 	public void carregaClientes(){
 	 String[] cnpjs={"02.666.391/0001-03","09.999.345/0001-02","05.985.985/0001-05"};
-	 String[] nomes={"Loja de Doces","Mercearia Tia Joana","Fazenda João Soares"} ;
+	 String[] nomes={"Loja de Doces","Mercearia Tia Joana","Fazenda Joï¿½o Soares"} ;
 	 String[] Telefones={"(37)3289-1521","(31)3221-4598","(11)3214-2154"};
 	 String[] Fax={"(45)3215-4562","(12)3215-7852","(35)3221-4568"};
 	 String[] Celular={"(45)9982-4562","(12)9852-7852","(35)9824-4568"};
 	 String[] email={"lojadoces@lojadoces.com.br","tiajoana@joana.com.br","joasoares@fazenda.com.br"};
 	 String[] bairro={"Nova Fortaleza","Vila Romana","Juda Fonseca" };
-	 String[] rua={"Av. 21 de Abril","Av. Afonso Pena", "Av. Conceição Barbosa"};
+	 String[] rua={"Av. 21 de Abril","Av. Afonso Pena", "Av. Conceiï¿½ï¿½o Barbosa"};
 	 String[] cep={"35485-256","35500-458","35500-489"};
 	 String[] numero={"250","230","485"};
 	 String[] estado={"MG","SP","RJ"};
@@ -170,9 +170,9 @@ public class BoletoAction  extends GenericAction {
 	    situacao.add("Banco do Brasil");
 	    situacao.add("Bradesco");
 	    situacao.add("Banco Real");
-	    situacao.add("Caixa Econômica");
+	    situacao.add("Caixa Econï¿½mica");
 	    situacao.add("Unibanco");
-	    situacao.add("Itaú");
+	    situacao.add("Itaï¿½");
 	   for(String banco:situacao){
 	   lista.add(banco);
 
