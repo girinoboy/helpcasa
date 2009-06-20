@@ -146,12 +146,12 @@ public class SolicitacaoDAO extends GenericDAO{
 		else
 			dto.setPeriodo(0);
 		dto.setTotal(rs.getDouble("total"));
+		dto.setOcupado(rs.getBoolean("ocupado"));
 		
 		FuncionarioDTO funcionario = new FuncionarioDTO();
 		funcionario.setId(rs.getLong("idFuncionario"));
 		funcionario.setNome(rs.getString("nomeFuncionario"));
-		funcionario.setCep(rs.getString("cep"));
-		funcionario.setOcupado(rs.getBoolean("ocupado"));
+		funcionario.setCep(rs.getString("cep"));		
 		dto.setFuncionario(funcionario);
 		
 		ProfissaoDTO profissao = new ProfissaoDTO();/*

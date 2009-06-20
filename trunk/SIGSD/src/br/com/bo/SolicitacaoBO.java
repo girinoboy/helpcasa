@@ -66,7 +66,7 @@ public class SolicitacaoBO extends GenericBO{
 		Long idFuncionario = null;
 		for(SolicitacaoDTO solicitacao : listHorariosDisponiveis){
 			proximaDistancia = solicitacao.getFuncionario().getDistancia();
-			if((solicitacao.getFuncionario().getOcupado() == false && solicitacaoDTO.getPeriodo() != solicitacao.getPeriodo()) && (atualDistancia>proximaDistancia)){
+			if((solicitacao.getOcupado() == false && solicitacaoDTO.getPeriodo() != solicitacao.getPeriodo()) && (atualDistancia>proximaDistancia)){
 				atualDistancia = proximaDistancia;
 				idFuncionario = solicitacao.getFuncionario().getId();
 				
