@@ -69,15 +69,16 @@ public class ClienteBO extends GenericBO{
 		MensagemLista mensagens = new  MensagemLista();
 		String strCpf = cliente.getCpf().replace("-", "").replace(".", "");
 
-		if(clienteDAO.existeCadastro(cliente,conn)){	
-			mensagens.addMensagem("Cadastro existente no sistema.", Mensagem.ALERTA);
-			throw new RegraNegocioException(mensagens);
-		}
 		if(!isValidCPF(strCpf)){	
 			mensagens.addMensagem("CPF invalido.", Mensagem.ALERTA);
 			throw new RegraNegocioException(mensagens);
 		
 		}
+		if(clienteDAO.existeCadastro(cliente,conn)){	
+			mensagens.addMensagem("Cadastro existente no sistema.", Mensagem.ALERTA);
+			throw new RegraNegocioException(mensagens);
+		}
+		
 		
 		return true;		
 	}

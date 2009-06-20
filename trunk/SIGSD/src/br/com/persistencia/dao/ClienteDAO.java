@@ -76,7 +76,7 @@ public class ClienteDAO extends GenericDAO{
 			dto.setRg(rs.getString("rg"));
 			dto.setCpf(rs.getString("cpf"));
 			dto.setEmail(rs.getString("email"));
-			dto.setNasc(new Date(rs.getTimestamp("nasc").getTime()));
+			dto.setNasc(new Timestamp(rs.getTimestamp("nasc").getTime()));
 			dto.setAtivo(rs.getBoolean("ativo"));
 			dto.setDataCadastro(rs.getTimestamp("dataCadastro"));
 			dto.setTelefone(rs.getString("telefone"));
@@ -335,7 +335,7 @@ public class ClienteDAO extends GenericDAO{
 			ResultSet rs = null;
 			
 			
-			String sql = "SELECT existe_cpf_usuario(?,?) as existe";
+			String sql = "SELECT usuario FROM pessoa WHERE usuario = ? or cpf=?";
 					
 			try{
 				ps = conn.prepareStatement(sql);
@@ -344,7 +344,7 @@ public class ClienteDAO extends GenericDAO{
 				rs = ps.executeQuery();
 				
 				while(rs.next()){
-					return rs.getBoolean("existe");
+					return true;
 				}
 			}catch(Exception e){
 				throw e;
@@ -354,7 +354,7 @@ public class ClienteDAO extends GenericDAO{
 				if(rs!=null)
 					rs.close();
 			}
-			return true;
+			return false;
 		}
 
 	protected static final String strConsult ="SELECT idPessoa as \"id\", " +
