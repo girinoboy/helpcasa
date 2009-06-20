@@ -45,9 +45,9 @@ public class ProfissaoAction extends GenericAction {
 			} else {
 				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
 			}
-			getMensagemGlobal().addMensagem("Profissão excluida com sucesso.",Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Profissao excluida com sucesso.",Mensagem.ALERTA);
 		} catch (Exception e) {
-			System.out.println("Existe um funcionari anexado a essa função");
+			System.out.println("Existe um funcionari anexado a essa funÃ§Ã£o");
 			e.printStackTrace();
 		}
 		return load();
@@ -61,9 +61,9 @@ public class ProfissaoAction extends GenericAction {
 		
 		try{
 			profissaoBO.altera(profissaoDTO);
-			getMensagemGlobal().addMensagem("Profissão alterada com sucesso.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Profissao alterada com sucesso.", Mensagem.ALERTA);
 		}catch(Exception e){
-			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Prifissão.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Prifissao.", Mensagem.ALERTA);
 			e.printStackTrace();			
 		}
 		
