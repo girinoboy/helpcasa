@@ -13,6 +13,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.jboleto.JBoleto;
 import org.jboleto.JBoletoBean;
 import org.jboleto.control.Generator;
@@ -57,12 +58,12 @@ public class Boleto{
                jBoletoBean.setDataDocumento("25/03/2009");
                jBoletoBean.setDataProcessamento("25/03/2009");
 
-               jBoletoBean.setCedente("Empresa Fictícia Ltda");
+               jBoletoBean.setCedente("Empresa Fictï¿½cia Ltda");
 
                jBoletoBean.setNomeSacado("Xpto");
                jBoletoBean.setEnderecoSacado("Rua Xpto, 06");
                jBoletoBean.setBairroSacado("Jardim Xpto");
-               jBoletoBean.setCidadeSacado("São Paulo");
+               jBoletoBean.setCidadeSacado("Sï¿½o Paulo");
                jBoletoBean.setUfSacado("SP");
                jBoletoBean.setCepSacado("00000-000");
                jBoletoBean.setCpfSacado("111.222.333-44");
@@ -146,7 +147,7 @@ public class Boleto{
 
 	  }
 	public void gerarBoleto(JBoletoBean jBoletoBean,String banco, HttpServletRequest request, HttpServletResponse response){
-	     /*   if(banco.equals("Caixa Econômica")){//OK
+	     /*   if(banco.equals("Caixa Econï¿½mica")){//OK
 	           geraCaixa(jBoletoBean);
 	        }
 	        else   if(banco.equals("Bradesco")){//oK
@@ -163,7 +164,7 @@ public class Boleto{
 	      }
 	      
 
-	        else if(banco.equals("Itaú")){//ok
+	        else if(banco.equals("Itaï¿½")){//ok
 	       geraItau(jBoletoBean);
 	        }
 	        if(banco.equals("Banco Real")){
@@ -220,7 +221,7 @@ public class Boleto{
 	            Generator generator = new PDFGenerator(jBoletoBean, JBoleto.BANCO_DO_BRASIL);
 	            JBoleto jBoleto = new JBoleto(generator, jBoletoBean, JBoleto.BANCO_DO_BRASIL);
 	            jBoleto.addBoleto();
-	             s="/"+"Banco do Brasil"+".pdf" ;
+	             s=ServletActionContext.getServletContext().getRealPath("/")+"Banco do Brasil"+".pdf" ;
 	            jBoleto.addBoleto();
 	            jBoleto.closeBoleto(s);
 	            exibir(request, response);
@@ -272,7 +273,7 @@ public class Boleto{
 	            jBoletoBean.setNossoNumero("1803029901",14);
 	           
 
-	            //código do cliente fornecido pelo unibanco
+	            //cï¿½digo do cliente fornecido pelo unibanco
 	            jBoletoBean.setCodCliente("2031671");
 
 	            Generator generator = new PDFGenerator(jBoletoBean, JBoleto.UNIBANCO);
