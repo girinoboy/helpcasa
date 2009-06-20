@@ -66,6 +66,23 @@ function selectAction(action){
 	
 }
 
+function loadMascara(){
+	jQuery('#rg').numeric();
+	jQuery('#rg').mask('9.999.999');
+  	//jQuery('#cpf').numeric();
+	jQuery('#cpf').mask('999.999.999-99');
+	//document.getElementById('cpf').value = '';
+	jQuery('#cep').mask('99999-999');
+	jQuery('#telefone').mask('(99) 9999-9999');
+	jQuery('#celular').mask('(99) 9999-9999');
+	jQuery('#nasc').mask('99/99/9999');
+	
+	var naoPesquisar = document.getElementById('naoPesquisar').value;
+	
+	if (naoPesquisar == 'true'){
+		alert("Cliente não encontrado no sistema.");
+	}
+}
 
 function validaCamposAoIncluir(){
 	var nome = document.getElementById('nome');
@@ -193,24 +210,6 @@ function disableAll(){
   		arrayTextarea[i].disabled=true;
   	}
   	
-}
-
-function loadMascara(){
-	jQuery('#rg').numeric();
-	jQuery('#rg').mask('9.999.999');
-  	//jQuery('#cpf').numeric();
-	jQuery('#cpf').mask('999.999.999-99');
-	//document.getElementById('cpf').value = '';
-	jQuery('#cep').mask('99999-999');
-	jQuery('#telefone').mask('(99) 9999-9999');
-	jQuery('#celular').mask('(99) 9999-9999');
-	jQuery('#nasc').mask('99/99/9999');
-	
-	var naoPesquisar = document.getElementById('naoPesquisar').value;
-	
-	if (naoPesquisar == 'true'){
-		alert("Cliente não encontrado no sistema.");
-	}
 }
 
 function loadWin(){

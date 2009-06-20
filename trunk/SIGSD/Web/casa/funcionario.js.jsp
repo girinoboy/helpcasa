@@ -36,6 +36,18 @@ function selectAction(action){
 	
 }
 
+function loadMascara(){
+  	//jQuery('#cpf').numeric();
+  	jQuery('#rg').mask('9.999.999');
+	jQuery('#cpf').mask('999.999.999-99');
+//	document.getElementById('cpf').value = '';
+	jQuery('#cep').mask('99999-999');
+	jQuery('#matricula').mask('999999-9');
+	jQuery('#telefone').mask('(99) 9999-9999');
+	jQuery('#celular').mask('(99) 9999-9999');
+	jQuery('#nasc').mask('99/99/9999');
+}
+
 function validaCamposAoIncluir(){
 	var nome = document.getElementById('nome');
 	var cpf = document.getElementById('cpf');
@@ -56,7 +68,7 @@ function validaCamposAoIncluir(){
 		nome.focus();
 		return false;
 	}
-	if(cpf.value == ''){
+	if(cpf.value == '' || cpf.value=='999.999.999-99'){
 		alert('O CPF é obrigatório.');
 		cpf.focus();
 		return false;
@@ -132,16 +144,4 @@ function disableAll(){
   		arrayTextarea[i].disabled=true;
   	}
   	
-}
-
-function loadMascara(){
-  	//jQuery('#cpf').numeric();
-  	jQuery('#rg').mask('9.999.999');
-	jQuery('#cpf').mask('999.999.999-99');
-//	document.getElementById('cpf').value = '';
-	jQuery('#cep').mask('99999-999');
-	jQuery('#matricula').mask('999999-9');
-	jQuery('#telefone').mask('(99) 9999-9999');
-	jQuery('#celular').mask('(99) 9999-9999');
-	jQuery('#nasc').mask('99/99/9999');
 }
