@@ -127,7 +127,7 @@ public class SolicitacaoAction extends GenericAction{
 			//manda para o request a mensagem de exce��o vinda do bo
 			getMensagemGlobal().setMensagens(e.getMensagens());				
 		}catch(Exception e){
-			getMensagemGlobal().addMensagem("Ocorreu um erro ao efetuar solicita��o.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao efetuar solicitacao.", Mensagem.ALERTA);
 			e.printStackTrace();
 		}
 		return calcula();

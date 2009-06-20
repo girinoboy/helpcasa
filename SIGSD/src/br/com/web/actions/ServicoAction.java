@@ -81,9 +81,9 @@ public class ServicoAction extends GenericAction{
 		
 		try{
 			servicoBO.altera(servicoDTO);
-			getMensagemGlobal().addMensagem("Serviço alterado com sucesso.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Servico alterado com sucesso.", Mensagem.ALERTA);
 		}catch(Exception e){
-			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Serviço.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Servico.", Mensagem.ALERTA);
 			e.printStackTrace();			
 		}
 	
