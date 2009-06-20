@@ -6,6 +6,7 @@ import java.util.Map;
 
 import br.com.ConstantesENUM;
 import br.com.Mensagem;
+import br.com.RegraNegocioException;
 import br.com.bo.FactoryBO;
 import br.com.bo.FuncionarioBO;
 import br.com.bo.ProfissaoBO;
@@ -70,6 +71,11 @@ public class FuncionarioAction extends GenericAction {
 			
 			funcionarioDTO.setPerfil(perfil);
 			funcionarioBO.inclui(funcionarioDTO);
+		} catch (RegraNegocioException e){
+			//e.printStackTrace();
+			//manda para o request a mensagem de exceï¿½ï¿½o vinda do bo
+			getMensagemGlobal().setMensagens(e.getMensagens());	
+			return this.cadastrar();
 		} catch (Exception e) {
 			e.printStackTrace();
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao cadastrar Funcionario.", Mensagem.ALERTA);
@@ -96,7 +102,7 @@ public class FuncionarioAction extends GenericAction {
 		
 		try{
 			funcionarioBO.altera(funcionarioDTO);
-			getMensagemGlobal().addMensagem("Alterações salvas com sucesso.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Alteraï¿½ï¿½es salvas com sucesso.", Mensagem.ALERTA);
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Funcionario.", Mensagem.ALERTA);
 			e.printStackTrace();			
