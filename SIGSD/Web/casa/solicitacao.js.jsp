@@ -16,6 +16,12 @@ function selectAction(action,validaTudo){
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='funcao=servico';
 		submeter = true;
+	}else if(action == 'voltarSolicitacao'){
+		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
+		submeter = true;
+	}else if(action == 'voltarSolicitacaoCliente'){
+		url = '<c:url value="/casa/solicitacao!load.action?solicitacaoDTO.cliente.cpf=${pessoaSessao.cpf}"/>';
+		submeter = true;
 	}else if(action == 'disponiveis'){
 		var arraydistancia = new Array();
 		arraydistancia[0]='2.34';
@@ -27,6 +33,9 @@ function selectAction(action,validaTudo){
 	}else if(action == 'listar'){
 		url = '<c:url value="/casa/solicitacao!solicitacaoListar.action?"/>';		
 		submeter = true;
+	}else if(action == 'cancela'){
+		url = '<c:url value="/casa/solicitacao!cancela.action?"/>';		
+		submeter = confirm('Deseja realmente cancelar o(s) serviço(s) selecionado(s)?');;
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;
@@ -45,6 +54,9 @@ function selectAction(action,validaTudo){
 
 function loadMascara(){  	
 	jQuery('#data').mask('99/99/99');
+	document.getElementById('periodo1').checked=false;
+	document.getElementById('periodo2').checked=false;
+	document.getElementById('periodo3').checked=false;
 }
 
 function validaCamposAoIncluir(validaTudo){
@@ -87,6 +99,22 @@ function caculaDistanciaFixa(){
 		document.getElementById('distancia'+i+'').value = distancia.substr(0,distancia.indexOf('&'));
 	}
 	
+}
+
+function checkUnCheckAll(check, nameCheckBox){
+
+	var checkBoxs = document.getElementsByName(nameCheckBox);
+	if(checkBoxs != null && checkBoxs.length > 0){
+		if(check.checked){
+			for(i=0; i < checkBoxs.length; i++){
+				checkBoxs[i].checked = true;
+			}
+		}else{
+			for(i=0; i < checkBoxs.length; i++){
+				checkBoxs[i].checked = false;
+			}
+		}
+	}
 }
 
  	var map;

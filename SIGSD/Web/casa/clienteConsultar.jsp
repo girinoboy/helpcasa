@@ -3,6 +3,7 @@
 
 <div style="width: 710px;" class="container">
 	<s:form name="form1" id="form1">
+		<s:hidden name="naoPesquisar" id="naoPesquisar" value="${requestScope.naoPesquisar}"/>
 		<s:hidden name="clienteDTO.id" id="id"/>
 		
 		<table cellpadding="1" cellspacing="0" width="100%">
@@ -36,7 +37,7 @@
 					Endereço:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="100"
+					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="89"
 						id="endereco" readonly="true"/>
 				</td>
 			</tr>
@@ -92,7 +93,7 @@
 					E-mail:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.email" label="EMAIL" size="100" id="email" />
+					<s:textfield name="clienteDTO.email" label="EMAIL" size="89" id="email" />
 				</td>
 			</tr>
 			<tr>

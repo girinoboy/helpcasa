@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div style="width: 710px;" class="container">
 	<s:form name="form1" id="form1">
+	<s:hidden name="naoPesquisar" id="naoPesquisar" value="${requestScope.naoPesquisar}"/>
 		<h1>
 			Cadastrar Cliente
 		</h1>
@@ -37,7 +38,7 @@
 					Endereço:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="100"
+					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="89"
 						id="endereco" />
 				</td>
 			</tr>
@@ -92,7 +93,7 @@
 					E-mail:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.email" label="EMAIL" size="100" id="email" />
+					<s:textfield name="clienteDTO.email" label="EMAIL" size="89" id="email" />
 				</td>
 			</tr>
 			<tr>

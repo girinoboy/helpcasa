@@ -70,6 +70,6 @@
 			<input type="button" value="Cadastrar"
 				onClick="selectAction('cadastrar');" class="adicionar" />
 			<input type="button" value="Excluir"
-				onClick="selectAction('excluir');" class="geral" />
+				onClick="selectAction('excluir');" class="secundario" />
 		</div>
 </s:form>

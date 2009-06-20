@@ -58,6 +58,7 @@
 						</s:else>
 					</s:iterator>									
 				</s:if>
+				
 					<s:hidden name="max" id="max" value="${sessionScope.max}" />					
 					<br>
 					<!-- CEP - cliente:<c:out value="${pessoaSessao.cep}" default="null"></c:out><br> -->
@@ -92,8 +93,10 @@
 				onclick="caculaDistanciaFixa(); "/>-->
 			<input type="button" value="Cancelar Solicitações"
 				onClick="selectAction('listar');" class="geral" />	
-			<input type="button" value="Cancelar"
-				onClick="selectAction('voltar');" class="voltar" />
+			<s:if test="${pessoaSessao.perfil.descricao eq 'Administrador' or pessoaSessao.perfil.descricao eq 'Atendente'}">
+				<input type="button" value="Cancelar"
+					onClick="selectAction('voltar');" class="voltar" />
+			</s:if>
 		</div>
 	</s:form>
 </div>

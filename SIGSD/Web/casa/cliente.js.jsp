@@ -204,7 +204,7 @@ function loadMascara(){
 	jQuery('#cep').mask('99999-999');
 	jQuery('#telefone').mask('(99) 9999-9999');
 	jQuery('#celular').mask('(99) 9999-9999');
-	jQuery('#nasc').mask('99/99/99');
+	jQuery('#nasc').mask('99/99/9999');
 	
 	var naoPesquisar = document.getElementById('naoPesquisar').value;
 	
