@@ -102,7 +102,7 @@ public class SolicitacaoAction extends GenericAction{
 				FuncionarioDTO funcionario = new FuncionarioDTO();
 				funcionario.setId(solicitacao.getFuncionario().getId());
 				funcionario.setCep(solicitacao.getFuncionario().getCep());
-				funcionario.setOcupado(solicitacao.getFuncionario().getOcupado());
+				solicitacao.setOcupado(solicitacao.getOcupado());
 				solicitacao.setPeriodo(solicitacao.getPeriodo());
 				j=1;
 				
