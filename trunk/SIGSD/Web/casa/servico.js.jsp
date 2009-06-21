@@ -58,7 +58,7 @@ function validaCamposAoIncluir(){
 	var descricao = document.getElementById('descricao');
 	
 	if(nome.value == ''){
-		alert('O campo Profissão é obrigatório.');
+		alert('O campo Serviço é obrigatório.');
 		nome.focus();
 		return false;
 	}
@@ -68,7 +68,7 @@ function validaCamposAoIncluir(){
 		return false;
 	}
 	if(descricao.value == ''){
-		alert('O campo Descrição é obrigatóriO.');
+		alert('O campo Descrição é obrigatório.');
 		descricao.focus();
 		return false;
 	}

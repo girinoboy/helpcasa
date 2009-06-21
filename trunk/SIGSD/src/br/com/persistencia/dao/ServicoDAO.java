@@ -78,7 +78,7 @@ public class ServicoDAO extends GenericDAO{
 	public void exclui(Long[] idsServico, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="UPDATE Servico SET ativo = false WHERE servico.idServico=?";
+		String sql="UPDATE servico SET ativo = false WHERE servico.idServico=?";
 		try{
 			for (Long id : idsServico) {
 				ps = conn.prepareStatement(sql);
@@ -120,7 +120,7 @@ public class ServicoDAO extends GenericDAO{
 	public void altera(ServicoDTO servicoDTO, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="UPDATE Servico SET nome = ?, idProfissao = ?, descricao = ? WHERE servico.idServico=?";
+		String sql="UPDATE servico SET nome = ?, idProfissao = ?, descricao = ? WHERE servico.idServico=?";
 		try{
 			
 				ps = conn.prepareStatement(sql);

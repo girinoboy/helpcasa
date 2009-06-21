@@ -5,9 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.struts2.util.StrutsTypeConverter;
 
 import br.com.persistencia.dto.ClienteDTO;
 import br.com.persistencia.dto.PerfilDTO;
@@ -27,7 +31,7 @@ public class ClienteDAO extends GenericDAO{
 
 		qBuffer.append(strConsult);
 		qBuffer.append("WHERE pessoa.cpf = ?");
-
+		qBuffer.append(" AND ativo=1");
 		try {
 			ps = con.prepareStatement(qBuffer.toString());
 
@@ -66,17 +70,18 @@ public class ClienteDAO extends GenericDAO{
 	}
 	
 	private void populaClienteDTO(ClienteDTO dto, ResultSet rs) {
-		try{
+		try{ DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
 			//dados da pessoa
 			dto.setId(rs.getLong("id"));
 			dto.setPessoaId(new Integer((int) rs.getLong("id")));
 			dto.setUsuario(rs.getString("usuario"));
 			dto.setSenha(rs.getString("senha"));
+			dto.setSenhaRepita(rs.getString("senha"));
 			dto.setNome(rs.getString("nome"));
 			dto.setRg(rs.getString("rg"));
 			dto.setCpf(rs.getString("cpf"));
 			dto.setEmail(rs.getString("email"));
-			dto.setNasc(new Timestamp(rs.getTimestamp("nasc").getTime()));
+			dto.setNasc(rs.getDate("nasc"));
 			dto.setAtivo(rs.getBoolean("ativo"));
 			dto.setDataCadastro(rs.getTimestamp("dataCadastro"));
 			dto.setTelefone(rs.getString("telefone"));
@@ -294,9 +299,7 @@ public class ClienteDAO extends GenericDAO{
 
 			String sql="UPDATE pessoa " +
 			"SET senha=?," +
-			"nome=?," +
-			"cpf=?," +
-			"rg=?," +
+			"nome=?," +			
 			"email=?," +
 			"nasc=?," +
 			"telefone=?," +
@@ -308,15 +311,13 @@ public class ClienteDAO extends GenericDAO{
 				ps = conn.prepareStatement(sql);																
 
 				ps.setString(1, clienteDTO.getSenha());
-				ps.setString(2, clienteDTO.getNome());
-				ps.setString(3, clienteDTO.getCpf());
-				ps.setString(4, clienteDTO.getRg());
-				ps.setString(5, clienteDTO.getEmail());
-				ps.setTimestamp(6, new Timestamp(clienteDTO.getNasc().getTime()));
-				ps.setString(7, clienteDTO.getTelefone());
-				ps.setString(8, clienteDTO.getCelular());
-				ps.setString(9, clienteDTO.getCep());
-				ps.setLong(10, clienteDTO.getId());
+				ps.setString(2, clienteDTO.getNome());				
+				ps.setString(3, clienteDTO.getEmail());
+				ps.setTimestamp(4, new Timestamp(clienteDTO.getNasc().getTime()));
+				ps.setString(5, clienteDTO.getTelefone());
+				ps.setString(6, clienteDTO.getCelular());
+				ps.setString(7, clienteDTO.getCep());
+				ps.setLong(8, clienteDTO.getId());
 
 				ps.executeUpdate();
 
@@ -356,6 +357,26 @@ public class ClienteDAO extends GenericDAO{
 			}
 			return false;
 		}
+		
+		public void exclui(String cpf, Connection conn) throws Exception {
+			PreparedStatement ps = null;
+
+			String sql="UPDATE pessoa SET ativo = 0 WHERE pessoa.cpf=?";
+			try{
+				
+					ps = conn.prepareStatement(sql);
+					ps.setString(1, cpf);
+					ps.executeUpdate();
+				
+
+			}catch(Exception e){
+				throw e;
+			}finally{
+				if(ps!=null)
+					ps.close();
+			}
+			
+		}
 
 	protected static final String strConsult ="SELECT idPessoa as \"id\", " +
 				"usuario," +
@@ -385,6 +406,5 @@ public class ClienteDAO extends GenericDAO{
 	
 	protected static final String strInsertPessoa ="INSERT INTO pessoa(usuario,senha,nome,cpf,rg,email,nasc,ativo,dataCadastro,telefone,celular,idPerfil,cep) VALUES(?,?,?,?,?,?,?,?,now(),?,?,?,?);";
 	protected static final String strInsertCliente ="INSERT INTO cliente(idCliente,endereco,cidade,idUF)VALUES(?,?,?,?);";
-	
 	
 }

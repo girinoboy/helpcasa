@@ -18,7 +18,9 @@ function selectAction(action){
 		url = '<c:url value="/casa/funcionario!cadastrar.action?"/>';
 		submeter = true;
 	}else if(action == 'altera'){
+		var nasc = document.getElementById('nasc');
 		url = '<c:url value="/casa/funcionario!altera.action?"/>';
+		params+='&funcionarioDTO.nasc='+nasc.value;
 		submeter = validaCamposAoIncluir();
 	}else if(action == 'excluir'){
 		url = '<c:url value="/casa/funcionario!exclui.action?"/>';
@@ -99,6 +101,14 @@ function validaCamposAoIncluir(){
 		email.focus();
 		return false;
 	}*/
+	if (!checkMail(email.value)){
+		alert('E-mail inválido. Digite novamente.');
+		email.focus();
+		return false;
+	}
+	if(!check_date(nasc.value)){
+		return false;
+	}
 	if(usuario.value == ''){
 		alert('O Usuario é obrigatório.');
 		usuario.focus();
@@ -115,6 +125,19 @@ function validaCamposAoIncluir(){
 		return false;
 	}
 	return true;
+}
+
+function checkMail(mail){
+    var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+    if(typeof(mail) == "string"){
+        if(er.test(mail)){ return true; }
+    }else if(typeof(mail) == "object"){
+        if(er.test(mail.value)){
+                    return true;
+                }
+    }else{
+        return false;
+        }
 }
 
 function checkUnCheckAll(check, nameCheckBox){
@@ -144,4 +167,46 @@ function disableAll(){
   		arrayTextarea[i].disabled=true;
   	}
   	
+}
+
+function check_date(date) {
+   var err = 0
+   string = date
+   var valid = "0123456789/"
+   var ok = "yes";
+   var temp;
+   for (var i=0; i< string.length; i++) {
+     temp = "" + string.substring(i, i+1);
+     if (valid.indexOf(temp) == "-1") err = 1;
+   }
+   if (string.length != 10) err=1
+   b = string.substring(3, 5)		// month
+   c = string.substring(2, 3)		// '/'
+   d = string.substring(0, 2)		// day 
+   e = string.substring(5, 6)		// '/'
+   f = string.substring(6, 10)	// year
+   if (b<1 || b>12) err = 1
+   if (c != '/') err = 1
+   if (d<1 || d>31) err = 1
+   if (e != '/') err = 1
+   if (f<1809 || f>2009) err = 1
+   if (b==4 || b==6 || b==9 || b==11){
+     if (d==31) err=1
+   }
+   if (b==2){
+     var g=parseInt(f/4)
+     if (isNaN(g)) {
+         err=1 
+     }
+     if (d>29) err=1
+     if (d==29 && ((f/4)!=parseInt(f/4))) err=1
+   }
+   if (err==1) {
+   	alert("Data inválida");
+    return false;
+   }
+   else {
+   	//alert("Data correta");
+    return true;
+   }
 }

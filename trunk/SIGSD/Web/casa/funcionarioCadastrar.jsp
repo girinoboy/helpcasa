@@ -22,7 +22,7 @@
 				</td>
 				<td>
 					<s:textfield name="funcionarioDTO.matricula" label="NOME" size="60"
-						id="matricula" readonly="true"/>
+						id="matricula" />
 				</td>
 			</tr>
 			<tr>

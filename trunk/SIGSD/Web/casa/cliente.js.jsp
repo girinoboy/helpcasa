@@ -42,17 +42,20 @@ function selectAction(action){
 		params='telaConsulta=false';	
 		submeter = true;
 	}else if(action == 'altera'){
+		var nasc = document.getElementById('nasc');
 		url = '<c:url value="/casa/cliente!altera.action?"/>';
+		params+='&clienteDTO.nasc='+nasc.value;
 		submeter = validaCamposAoIncluir();
 	}else if(action == 'alterar'){
-		var cpf = document.getElementById('cpf');			
+	
+		//var cpf = document.getElementById('cpf');			
 		url = '<c:url value="/casa/cliente!consultaParaCliente.action?"/>';
 		params='telaConsulta=true';			
-		params+='&clienteDTO.cpf='+cpf.value;		
+				
 		submeter = true;
 	}else if(action == 'exclui'){
 		url = '<c:url value="/casa/cliente!exclui.action?"/>';
-		submeter = validaCamposAoIncluir();
+		submeter = true;
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;
@@ -72,6 +75,7 @@ function loadMascara(){
   	//jQuery('#cpf').numeric();
 	jQuery('#cpf').mask('999.999.999-99');
 	//document.getElementById('cpf').value = '';
+	jQuery('#cep').numeric();
 	jQuery('#cep').mask('99999-999');
 	jQuery('#telefone').mask('(99) 9999-9999');
 	jQuery('#celular').mask('(99) 9999-9999');
@@ -117,7 +121,7 @@ function validaCamposAoIncluir(){
 		return false;
 	}
 	if(!valida_cep('cep')){
-		alert('O CEP não pertence ao estado selecionado.');
+		alert('CEP inválido. Digite novamente');
 		cep.focus();
 		return false;
 	}
@@ -155,16 +159,16 @@ function validaCamposAoIncluir(){
 		alert('O campo Nascimento é obrigatório.');
 		nasc.focus();
 		return false;
-	}/*
+	}
 	if(!check_date(nasc.value)){
 		return false;
-	}*/
+	}
 	if(email.value == ''){
 		alert('O campo Email é obrigatório.');
 		email.focus();
 		return false;
 	}else if (!checkMail(email.value)){
-		alert('Email invalido.');
+		alert('E-mail inválido. Digite novamente.');
 		email.focus();
 		return false;
 	}
@@ -327,7 +331,7 @@ function check_date(date) {
    if (c != '/') err = 1
    if (d<1 || d>31) err = 1
    if (e != '/') err = 1
-   if (f<1850 || f>2050) err = 1
+   if (f<1809 || f>2009) err = 1
    if (b==4 || b==6 || b==9 || b==11){
      if (d==31) err=1
    }

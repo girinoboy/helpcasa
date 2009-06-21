@@ -23,21 +23,21 @@
 				</td>
 				<td>
 					<s:textfield name="funcionarioDTO.matricula" label="NOME" size="60"
-						id="matricula" readonly="true"/>
+						id="matricula" readonly="true" disabled="true"/>
 				</td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
 					Profissão:	
 				</td>
-				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" disabled="true"/></td>
+				<td><s:select name="funcionarioDTO.profissao.id" id="idprofissao" label="profissao" list="profissoes" headerKey="-1" /></td>
 			</tr>
 			<tr>
 				<td class="label_entrada_dados">
 					CPF:*
 				</td>
 				<td>
-					<s:textfield name="funcionarioDTO.cpf" label="CPF" size="14" id="cpf" readonly="true"/>
+					<s:textfield name="funcionarioDTO.cpf" label="CPF" size="14" id="cpf" readonly="true" disabled="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -45,7 +45,7 @@
 					RG:*
 				</td>
 				<td>
-					<s:textfield name="funcionarioDTO.rg" label="RG" size="10" id="rg" readonly="true"/>
+					<s:textfield name="funcionarioDTO.rg" label="RG" size="10" id="rg" readonly="true" disabled="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -78,9 +78,8 @@
 					Data de Nascimento:*
 				</td>
 				<td>
-					<s:datetimepicker name="funcionarioDTO.nasc" label="Data de Nascimento"
-						displayFormat="dd/MM/yyyy" toggleType="explode"
-						toggleDuration="200" />
+					<s:date name="funcionarioDTO.nasc" format="dd/MM/yyyy" id="formatada"/>
+					<s:textfield name="nasc" id="nasc" value="%{formatada}" /> 					
 				</td>
 			</tr>
 			<tr>

@@ -47,7 +47,7 @@ public class HistoricoAction extends GenericAction{
 				setNaoPesquisar(true);
 				getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 				return "clientePesquisar.fwd";
-			}
+			}else setNaoPesquisar(false);
 			historicoDTO.getSolicitacao().setCliente(cliente);			
 			Long idCliente = historicoDTO.getSolicitacao().getCliente().getId();
 			this.listHistorico = historicoBO.historicoListar(idCliente);

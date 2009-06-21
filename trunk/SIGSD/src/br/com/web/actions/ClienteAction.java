@@ -41,10 +41,11 @@ public class ClienteAction extends GenericAction {
 	public String clienteCadastrar(){
 		try {
 			ufs = new HashMap<Number, String>();
-			ufs.put(0, "Selecione...");
+			//ufs.put(0, "Selecione...");
 			this.listUf = this.clienteBO.listUf();
 
 			for(UfDTO uf: listUf ){
+				if(uf.getUf().equals("DF"))
 				ufs.put(uf.getId(), uf.getUf());
 			}
 		} catch (Exception e) {
@@ -100,13 +101,13 @@ public class ClienteAction extends GenericAction {
 				this.clienteDTO = this.clienteBO.consulta(this.clienteDTO.getCpf());
 				//retorna para a pesquisa caso CPF n exista
 				if(clienteDTO == null){
-					getRequest().getSession().setAttribute("mens", "Login invalido.");
+					//getRequest().getSession().setAttribute("mens", "Login invalido.");
 					naoPesquisar = true;
 					setNaoPesquisar(true);
 					getRequest().setAttribute("naoPesquisar", naoPesquisar);
 					getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 					return "clienteVoltaPesquisar.fwd";
-				}
+				}else setNaoPesquisar(false);
 			}
 			
 			ufs = new HashMap<Number, String>();
@@ -114,6 +115,7 @@ public class ClienteAction extends GenericAction {
 			this.listUf = this.clienteBO.listUf();
 
 			for(UfDTO uf: listUf ){
+				if(uf.getUf().equals("DF"))
 				ufs.put(uf.getId(), uf.getUf());
 			}
 
@@ -149,7 +151,7 @@ public class ClienteAction extends GenericAction {
 
 		try{
 			clienteDTO = clienteBO.altera(clienteDTO);
-			getMensagemGlobal().addMensagem("Altera��es salvas com sucesso.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Alterações salvas com sucesso.", Mensagem.ALERTA);
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Cliente.", Mensagem.ALERTA);
 			e.printStackTrace();			
@@ -164,9 +166,22 @@ public class ClienteAction extends GenericAction {
 		clienteDTO.setCpf(clienteDTO.getCpf());
 		return consultaParaCliente();
 	}*/
-	
+
 	public String exclui(){
-		getMensagemGlobal().addMensagem("Cadastro excluido!.", Mensagem.ALERTA);
+		try{
+			clienteBO.exclui(clienteDTO.getCpf());
+			getMensagemGlobal().addMensagem("Cadastro excluido!.", Mensagem.ALERTA);
+			
+			Long perfil = getSessaoPessoa().getPerfil().getId();
+			if(perfil == ConstantesENUM.CLIENTE_ID.id())
+				return "paginaAbertura.fwd";
+			else
+				return "clienteVoltaPesquisar.fwd";		
+		}catch(Exception e){
+			clienteDTO.setUsuario(getSessaoPessoa().getUsuario());
+			clienteDTO.setSenha(getSessaoPessoa().getSenha());
+			e.printStackTrace();
+		}
 		return "paginaAbertura.fwd";
 	}
 

@@ -29,8 +29,7 @@
 		<put-attribute name="body" value="/casa/clienteCadastrar.jsp" />
 		<put-attribute name="js" value="/casa/cliente.js.jsp" />
 		<put-attribute name="jQuery" value="true" />
-		<put-attribute name="onload" value="loadMascara();" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />		
 	</definition>
 	<definition name="ClienteConsultar.def" extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
@@ -38,7 +37,6 @@
 		<put-attribute name="js" value="/casa/cliente.js.jsp" />
 		<put-attribute name="onload" value="loadMascara();loadWin();" />
 		<put-attribute name="jQuery" value="true" />
-		<put-attribute name="dojo" value="true" />
 	</definition>
 	<definition name="ClienteAlterar.def" extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
@@ -95,23 +93,20 @@
 		<put-attribute name="body" value="/casa/profissionalAgenda.jsp" />
 		<put-attribute name="js" value="/casa/profissional.js.jsp" />
 		<put-attribute name="jQuery" value="true" />
-		<put-attribute name="onload" value="loadMascara();" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />		
 	</definition>
 	<definition name="ProfissionalAdicionais.def"
 		extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/agendaDetalhada.jsp" />
-		<put-attribute name="js" value="/casa/agenda.js.jsp" />		
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="js" value="/casa/agenda.js.jsp" />				
 	</definition>
 	<definition name="AgendaLoad.def" extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" 	value="/casa/adicionaisCadastrar.jsp" />
 		<put-attribute name="js" value="/casa/adicionais.js.jsp" />
 		<put-attribute name="jQuery" value="true" />
-		<put-attribute name="onload" value="loadMascara();" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />		
 	</definition>
 	<!-- FIM DE PROFISSIONAL -->
 
@@ -120,7 +115,6 @@
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/profissao.jsp" />
 		<put-attribute name="js" value="/casa/profissao.js.jsp" />
-
 	</definition>
 	<definition name="ProfissaoCadastrar.def" extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
@@ -134,6 +128,8 @@
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/profissaoAlterar.jsp" />
 		<put-attribute name="js" value="/casa/profissao.js.jsp" />
+		<put-attribute name="jQuery" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />	
 
 	</definition>
 	<!-- FIM DE PROFISSOES -->
@@ -170,8 +166,7 @@
 			value="/casa/funcionarioCadastrar.jsp" />
 		<put-attribute name="js" value="/casa/funcionario.js.jsp" />
 		<put-attribute name="jQuery" value="true" />
-		<put-attribute name="onload" value="loadMascara();" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="onload" value="loadMascara();" />		
 	</definition>
 	<definition name="FuncionarioAlterar.def" extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
@@ -179,7 +174,6 @@
 		<put-attribute name="js" value="/casa/funcionario.js.jsp" />
 		<put-attribute name="jQuery" value="true" />
 		<put-attribute name="onload" value="loadMascara();" />
-		<put-attribute name="dojo" value="true" />
 
 	</definition>
 	<!-- FIM DE FUNCIONARIOS -->
@@ -191,35 +185,30 @@
 		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />
 		<put-attribute name="jQuery" value="true" />
 		<put-attribute name="onload" value="loadMascara();initialize();" />		
-		<put-attribute name="gMaps" value="true" />
-		<put-attribute name="dojo" value="true" />			
+		<put-attribute name="gMaps" value="true" />			
 	</definition>
 	<definition name="SolicitacoesFaturaBasica.def"
 		extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/faturaBasica.jsp" />
-		<put-attribute name="js" value="/casa/fatura.js.jsp" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="js" value="/casa/fatura.js.jsp" />		
 	</definition>
 	<definition name="SolicitacoesFaturaDetalhada.def"
 		extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/faturaDetalhada.jsp" />
-		<put-attribute name="js" value="/casa/fatura.js.jsp" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="js" value="/casa/fatura.js.jsp" />		
 	</definition>
 	<definition name="google.def" extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/google.jsp" />
-		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />		
 	</definition>
 	<definition name="SolicitacoesListar.def" extends="template1.def">
 		<put-attribute name="title" value="SIGSD" />
 		<put-attribute name="body" value="/casa/solicitacaoListar.jsp" />
 		<put-attribute name="js" value="/casa/solicitacao.js.jsp" />
-		<put-attribute name="onload" value="initialize();" />
-		<put-attribute name="dojo" value="true" />
+		<put-attribute name="onload" value="initialize();" />		
 	</definition>
 	<!-- FIM DE SOLICITACOES -->
 

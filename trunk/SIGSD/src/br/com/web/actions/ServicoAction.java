@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.ConstantesENUM;
 import br.com.Mensagem;
 import br.com.bo.FactoryBO;
 import br.com.bo.ProfissaoBO;
@@ -68,6 +69,7 @@ public class ServicoAction extends GenericAction{
 		try {
 			this.listProfissoes = profissaoBO.profissaoListar();
 			for (ProfissaoDTO profissao : listProfissoes) {
+				if(!profissao.getId().equals(ConstantesENUM.ADMINISTRADOR_ID.id()) && !profissao.getId().equals(ConstantesENUM.ATENDENTE_ID.id()))
 				profissoes.put(profissao.getId(), profissao.getNome());
 			}
 		} catch (Exception e) {
@@ -97,6 +99,7 @@ public class ServicoAction extends GenericAction{
 		try {
 			this.listProfissoes = profissaoBO.profissaoListar();
 			for (ProfissaoDTO profissao : listProfissoes) {
+				if(!profissao.getId().equals(ConstantesENUM.ADMINISTRADOR_ID.id()) && !profissao.getId().equals(ConstantesENUM.ATENDENTE_ID.id()))
 				profissoes.put(profissao.getId(), profissao.getNome());
 			}
 			Long id = servicoDTO.getId();
