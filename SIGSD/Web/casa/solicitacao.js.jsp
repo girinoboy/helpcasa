@@ -71,6 +71,9 @@ function validaCamposAoIncluir(validaTudo){
 		data.inputNode.focus();
 		return false;
 	}
+	if(!check_date(data.value)){
+		return false;
+	}
 	if(id.value == 0){
 		alert('O Serviço é obrigatório.');
 		id.focus();
@@ -92,12 +95,14 @@ function caculaDistanciaFixa(){
 	var distancia;
 	var cep;	
 	
+	
 	for(var i=1;i<=max;i++){
 		cep = document.getElementById('cep'+i+'').value;
 		distancia = setDirections('${pessoaSessao.cep}',cep,'pt_BR');
 		
 		document.getElementById('distancia'+i+'').value = distancia.substr(0,distancia.indexOf('&'));
 	}
+	
 	
 }
 
@@ -115,6 +120,48 @@ function checkUnCheckAll(check, nameCheckBox){
 			}
 		}
 	}
+}
+
+function check_date(date) {
+   var err = 0
+   string = date
+   var valid = "0123456789/"
+   var ok = "yes";
+   var temp;
+   for (var i=0; i< string.length; i++) {
+     temp = "" + string.substring(i, i+1);
+     if (valid.indexOf(temp) == "-1") err = 1;
+   }
+   if (string.length != 10) err=1
+   b = string.substring(3, 5)		// month
+   c = string.substring(2, 3)		// '/'
+   d = string.substring(0, 2)		// day 
+   e = string.substring(5, 6)		// '/'
+   f = string.substring(6, 8)	// year
+   if (b<1 || b>12) err = 1
+   if (c != '/') err = 1
+   if (d<1 || d>31) err = 1
+   if (e != '/') err = 1
+   //if (f<1850 || f>2050) err = 1
+   if (b==4 || b==6 || b==9 || b==11){
+     if (d==31) err=1
+   }
+   if (b==2){
+     var g=parseInt(f/2)
+     if (isNaN(g)) {
+         err=1 
+     }
+     if (d>29) err=1
+     if (d==29 && ((f/2)!=parseInt(f/2))) err=1
+   }
+   if (err==1) {
+   	alert("Data inválida");
+    return false;
+   }
+   else {
+   	//alert("Data correta");
+    return true;
+   }
 }
 
  	var map;

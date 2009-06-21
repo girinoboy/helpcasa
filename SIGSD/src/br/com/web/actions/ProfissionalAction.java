@@ -14,7 +14,7 @@ import br.com.persistencia.dto.ProfissionalDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
 
 /**
- * @author Marcleônio do N. Medeiros
+ * @author Marcleï¿½nio do N. Medeiros
  *
  */
 public class ProfissionalAction extends GenericAction {
@@ -43,7 +43,7 @@ public class ProfissionalAction extends GenericAction {
 			getSession().getAttribute("pessoa");
 			getSession().getAttribute("pessoaDTO");
 			getSession().getAttribute("usuarioLogadoSistema");
-			Long idFuncionario = profissionalDTO.getId();
+			Long idFuncionario = getSessaoPessoa().getId();//profissionalDTO.getId();
 			listAgenda = profissionalBO.consultarAgenda(profissionalDTO.getData(),idFuncionario);
 			
 			getRequest().setAttribute("data", profissionalDTO.getData());

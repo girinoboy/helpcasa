@@ -139,7 +139,7 @@ public class ProfissaoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsult);
-		qBuffer.append(" WHERE Profissao.idProfissao = ? ");
+		qBuffer.append(" WHERE profissao.idProfissao = ? ");
 
 		try {
 			ps = con.prepareStatement(qBuffer.toString());

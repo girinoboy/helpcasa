@@ -218,7 +218,7 @@ public class FuncionarioDAO extends GenericDAO{
 	public void exclui(Long[] idsFuncionario, Connection conn) throws Exception {
 		PreparedStatement ps = null;
 
-		String sql="UPDATE pessoa SET ativo = 0 WHERE Pessoa.idPessoa=?";
+		String sql="UPDATE pessoa SET ativo = 0 WHERE pessoa.idPessoa=?";
 		try{
 			for (Long id : idsFuncionario) {
 				ps = conn.prepareStatement(sql);
@@ -237,38 +237,43 @@ public class FuncionarioDAO extends GenericDAO{
 
 	public void altera(FuncionarioDTO funcionarioDTO, Connection conn) throws Exception {
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
 
 		String sql="UPDATE pessoa " +
 				"SET senha=?," +
-				"nome=?," +
-				"cpf=?," +
-				"rg=?," +
+				"nome=?," +				
 				"email=?," +
 				"nasc=?," +
 				"telefone=?," +
 				"celular=?," +
 				"cep=? " +
-				"where idPessoa=?";
+				"WHERE idPessoa=?";
+		String sql2 ="update funcionario set idProfissao =? WHERE idFuncionario=?";
 		try{
 			
 				ps = conn.prepareStatement(sql);																
 				
 				ps.setString(1, funcionarioDTO.getSenha());
-				ps.setString(2, funcionarioDTO.getNome());
-				ps.setString(3, funcionarioDTO.getCpf());
-				ps.setString(4, funcionarioDTO.getRg());
-				ps.setString(5, funcionarioDTO.getEmail());
-				ps.setTimestamp(6, new Timestamp(funcionarioDTO.getNasc().getTime()));
-				ps.setString(7, funcionarioDTO.getTelefone());
-				ps.setString(8, funcionarioDTO.getCelular());
+				ps.setString(2, funcionarioDTO.getNome());				
+				ps.setString(3, funcionarioDTO.getEmail());
+				ps.setTimestamp(4, new Timestamp(funcionarioDTO.getNasc().getTime()));
+				ps.setString(5, funcionarioDTO.getTelefone());
+				ps.setString(6, funcionarioDTO.getCelular());
 				if(funcionarioDTO.getCep() == null)
-					ps.setString(9, "70390-130");//cep da empresa, obs criar constante pra ela
+					ps.setString(7, "70390-130");//cep da empresa, obs criar constante pra ela
 				else
-					ps.setString(9, funcionarioDTO.getCep());
-				ps.setLong(10, funcionarioDTO.getId());
+					ps.setString(7, funcionarioDTO.getCep());
+				ps.setLong(8, funcionarioDTO.getId());
 				
 				ps.executeUpdate();
+				
+				//dados do funcionario
+				ps2 = conn.prepareStatement(sql2);																
+				
+				ps2.setLong(1, funcionarioDTO.getProfissao().getId());
+				ps2.setLong(2, funcionarioDTO.getId());
 
+				ps2.executeUpdate();
 		}catch(Exception e){
 			throw e;
 		}finally{

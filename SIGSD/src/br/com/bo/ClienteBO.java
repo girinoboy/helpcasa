@@ -135,4 +135,17 @@ public class ClienteBO extends GenericBO{
 		
 	}
 
+
+	public void exclui(String cpf) throws Exception {
+		Connection conn = Conexao.getConnection();
+		try{
+			clienteDAO.exclui(cpf,conn);
+		}catch(Exception e){
+			throw e;
+		}finally{
+			conn.close();
+		}
+		
+	}
+
 }

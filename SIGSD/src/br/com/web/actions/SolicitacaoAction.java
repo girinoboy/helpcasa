@@ -64,7 +64,7 @@ public class SolicitacaoAction extends GenericAction{
 				setNaoPesquisar(true);
 				getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 				return "clientePesquisar.fwd";
-			}
+			}else setNaoPesquisar(false);
 			solicitacaoDTO.setCliente(cliente);
 					
 			for (ServicoDTO servico : listServicos) {
@@ -160,7 +160,7 @@ public class SolicitacaoAction extends GenericAction{
 					setNaoPesquisar(true);
 					getMensagemGlobal().addMensagem("Cliente não encontrado no sistema.",	Mensagem.ALERTA);
 					return "clientePesquisar.fwd";
-				}
+				}else setNaoPesquisar(false);
 				solicitacaoDTO.setCliente(cliente);
 				Long idCliente = solicitacaoDTO.getCliente().getId();
 				this.listFaturaBasica = this.solicitacaoBO.consultarFaturaBasica(idCliente);

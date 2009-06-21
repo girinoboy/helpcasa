@@ -102,7 +102,7 @@ public class FuncionarioAction extends GenericAction {
 		
 		try{
 			funcionarioBO.altera(funcionarioDTO);
-			getMensagemGlobal().addMensagem("Altera��es salvas com sucesso.", Mensagem.ALERTA);
+			getMensagemGlobal().addMensagem("Alterações salvas com sucesso.", Mensagem.ALERTA);
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Funcionario.", Mensagem.ALERTA);
 			e.printStackTrace();			

@@ -5,7 +5,7 @@
 	<s:form name="form1" id="form1">
 		<s:hidden name="naoPesquisar" id="naoPesquisar" value="${requestScope.naoPesquisar}"/>
 		<s:hidden name="clienteDTO.id" id="id"/>
-		
+		<s:hidden name="clienteDTO.cpf" id="cpf"/>
 		<table cellpadding="1" cellspacing="0" width="100%">
 			<tr>
 				<td class="label_entrada_dados">
@@ -21,7 +21,7 @@
 					CPF:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cpf" label="CPF" size="14" id="cpf" readonly="true"/>
+					<s:textfield name="clienteDTO.cpf" label="CPF" size="14" id="cpf" readonly="true" disabled="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -29,7 +29,7 @@
 					RG:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.rg" label="RG" size="10" id="rg" readonly="true"/>
+					<s:textfield name="clienteDTO.rg" label="RG" size="10" id="rg" readonly="true" disabled="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -38,7 +38,7 @@
 				</td>
 				<td>
 					<s:textfield name="clienteDTO.endereco" label="ENDEREÇO" size="89"
-						id="endereco" readonly="true"/>
+						id="endereco" />
 				</td>
 			</tr>
 			<tr>
@@ -46,11 +46,11 @@
 					Cidade:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cidade" label="CIDADE" size="30" id="cidade" readonly="true"/>
+					<s:textfield name="clienteDTO.cidade" label="CIDADE" size="30" id="cidade" />
 					<label class="table">
 						UF:*
 					</label>
-					<s:select name="clienteDTO.uf.id" id="uf" label="UF" list="ufs" headerKey="-1" disabled="true"/>
+					<s:select name="clienteDTO.uf.id" id="uf" label="UF" list="ufs" headerKey="-1" />
 					<!--<s:property value="clienteDTO.uf.descricao"/>					
 				--></td>
 				
@@ -60,7 +60,7 @@
 					CEP:*
 				</td>
 				<td>
-					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" readonly="true"/>
+					<s:textfield name="clienteDTO.cep" label="CEP" size="10" id="cep" />
 				</td>
 			</tr>
 			<tr>
@@ -84,8 +84,10 @@
 				<td class="label_entrada_dados">
 					Data de Nascimento:*
 				</td>
-				<td>
-				<s:textfield name="clienteDTO.nasc" id="nasc" />
+				<td> 
+				<s:date name="clienteDTO.nasc" format="dd/MM/yyyy" id="formatada"/>
+				<s:textfield name="nasc" id="nasc" value="%{formatada}" /> 
+				
 				</td>
 			</tr>
 			<tr>
