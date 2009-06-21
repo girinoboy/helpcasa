@@ -11,7 +11,8 @@
 					Data:*
 				</td>
 				<td>
-					<s:textfield id="data" name="solicitacaoDTO.data" />
+					<s:date name="solicitacaoDTO.data" format="dd/MM/yyyy" id="formatada"/>
+					<s:textfield id="data" name="data" value="%{formatada}"/>
 				</td>
 			</tr>
 			<tr>
