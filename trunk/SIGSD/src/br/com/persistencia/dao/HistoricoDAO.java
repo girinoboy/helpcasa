@@ -36,7 +36,7 @@ public class HistoricoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strUpdateClassificacao);
-		String sql = "INSERT INTO historico(data,status,perfil,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?,?)";
+		//String sql = "INSERT INTO historico(data,status,perfil,alteradoPor,observacao,idSolicitacao)VALUES(now(),?,?,?,?,?)";
 		try{
 
 			ps = conn.prepareStatement(qBuffer.toString());	
@@ -51,9 +51,7 @@ public class HistoricoDAO extends GenericDAO{
 			ps.setString(4,null);
 			ps.setLong(5,idSolicitacao);
 			
-			ps.executeUpdate();*/
-		} catch (SQLException sqlE) {
-			throw sqlE;
+			ps.executeUpdate();*/		
 		} catch (Exception e) {
 			throw e;
 		} finally {

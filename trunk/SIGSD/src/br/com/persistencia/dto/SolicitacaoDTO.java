@@ -12,6 +12,7 @@ public class SolicitacaoDTO extends GenericDTO{
 	private NotaDTO nota;
 	private Double total;
 	private Boolean ocupado;
+	private Long statusAtual;
 	
 	public SolicitacaoDTO(){
 		
@@ -87,6 +88,14 @@ public class SolicitacaoDTO extends GenericDTO{
 
 	public void setOcupado(Boolean ocupado) {
 		this.ocupado = ocupado;
+	}
+
+	public Long getStatusAtual() {
+		return statusAtual;
+	}
+
+	public void setStatusAtual(Long statusAtual) {
+		this.statusAtual = statusAtual;
 	}
 	
 }

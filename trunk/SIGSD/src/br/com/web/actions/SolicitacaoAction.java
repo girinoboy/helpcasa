@@ -84,7 +84,9 @@ public class SolicitacaoAction extends GenericAction{
 	
 	public String solicitacaoListar(){
 		try{
+			solicitacaoDTO.setCliente((ClienteDTO) getSessaoPessoa());
 			this.listSolicitacoes = solicitacaoBO.solicitacaoListar(solicitacaoDTO.getCliente().getId());
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -188,13 +190,15 @@ public class SolicitacaoAction extends GenericAction{
 	public String cancela(){
 		try {
 			if (idsSolicitacao != null && idsSolicitacao.length > 0) {
-				solicitacaoBO.cancela(idsSolicitacao);
+				solicitacaoBO.cancela(idsSolicitacao,getSessaoPessoa().getId());
 			} else {
 				getMensagemGlobal().addMensagem("Nenhum item selecionado.", Mensagem.ALERTA);
 			}
 		} catch (Exception e) {
 			
 			e.printStackTrace();
+			getMensagemGlobal().addMensagem("Erro inesperado.", Mensagem.ALERTA);
+			return solicitacaoListar();
 		}
 		return solicitacaoListar();
 	}

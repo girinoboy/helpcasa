@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <s:hidden id="distancia" name="solicitacao.funcionario.distancia"/>
 <div style="width: 710px;" class="container">
-	<s:form name="form1" id="form1">
+	<s:form name="form1" id="form1" onsubmit="return false">
 	<s:hidden id="idCliente" name="solicitacaoDTO.cliente.id" value="${solicitacaoDTO.cliente.id}"/>
 	<s:hidden id="cpf" name="solicitacaoDTO.cliente.cpf" value="${pessoaSessao.cpf}"/>
 		<table cellpadding="1" cellspacing="0" width="100%">
@@ -101,7 +101,6 @@
 		</div>
 	</s:form>
 </div>
-
 
 <div id="directions" style="width: 275px; display: none;" display="block"></div>
 <div id="map_canvas" style="width: 310px; height: 400px; display: none; " display="none"></div>

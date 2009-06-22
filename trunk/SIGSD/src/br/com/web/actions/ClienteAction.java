@@ -122,8 +122,7 @@ public class ClienteAction extends GenericAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// Manda para o request a mensagem de exce��o vinda do BO
-			getMensagemGlobal().addMensagem("Erro ao buscar Cliente.",
-					Mensagem.ERRO);
+			//getMensagemGlobal().addMensagem("Erro ao buscar Cliente.",Mensagem.ERRO);
 			return this.direcionaMenu();
 		}
 		if(funcao != null && funcao.equals("cliente"))

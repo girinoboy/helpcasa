@@ -336,7 +336,7 @@ public class ClienteDAO extends GenericDAO{
 			ResultSet rs = null;
 			
 			
-			String sql = "SELECT usuario FROM pessoa WHERE usuario = ? or cpf=?";
+			String sql = "SELECT usuario FROM pessoa WHERE ativo=1 and (usuario = ? or cpf=?) ";
 					
 			try{
 				ps = conn.prepareStatement(sql);

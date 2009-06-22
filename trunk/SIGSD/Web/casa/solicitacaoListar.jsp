@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <s:form name="form1" method="post" id="form1" action="">
+	<s:hidden name="solicitacaoDTO.cliente.id"/>
 	<h1>
 		<c:out value="Listagem de Solicitações" />
 	</h1>

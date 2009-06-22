@@ -21,14 +21,14 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class ProfissionalDAO extends GenericDAO{
 
-	protected static final String strConsult ="SELECT servico.nome AS nomeServico,periodo,pessoa.nome AS nomeCliente,endereco,cep,telefone,status,solicitacao.idSolicitacao,solicitacao.data,precoVisita" +
+	protected static final String strConsult ="SELECT servico.nome AS nomeServico,periodo,pessoa.nome AS nomeCliente,endereco,cep,telefone,statusAtual,solicitacao.idSolicitacao,solicitacao.data,precoVisita" +
 			"			FROM solicitacao" +
 			"			INNER JOIN servico ON servico.idServico = solicitacao.idServico" +
 			"			INNER JOIN cliente ON cliente.idCliente = solicitacao.idCliente" +
 			"			INNER JOIN pessoa ON pessoa.idPessoa = cliente.idCliente" +
 			"      INNER JOIN funcionario ON funcionario.idFuncionario = solicitacao.idFuncionario" +
-			"      INNER JOIN profissao ON profissao.idProfissao = funcionario.idProfissao" +
-			"      INNER JOIN historico ON historico.idSolicitacao = solicitacao.idSolicitacao ";
+			"      INNER JOIN profissao ON profissao.idProfissao = funcionario.idProfissao" ;
+			//"      INNER JOIN historico ON historico.idSolicitacao = solicitacao.idSolicitacao ";
 	
 	protected static final String strConsultAdicionais ="SELECT * FROM adicional";
 	
@@ -170,11 +170,12 @@ public class ProfissionalDAO extends GenericDAO{
 	
 	private HistoricoDTO populaHistoricoDTO(HistoricoDTO dto, ResultSet rs) throws SQLException {
 		
-		dto.setStatus(rs.getInt("status"));
+		dto.setStatus(rs.getInt("statusAtual"));
 		SolicitacaoDTO solicitacao = new SolicitacaoDTO();
 		solicitacao.setId(rs.getLong("idSolicitacao"));
 		solicitacao.setPeriodo(rs.getInt("periodo"));
 		solicitacao.setData(rs.getDate("data"));
+		solicitacao.setStatusAtual(rs.getLong("statusAtual"));
 		
 		ServicoDTO servico = new ServicoDTO();
 		servico.setNome(rs.getString("nomeServico"));

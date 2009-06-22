@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div style="width: 710px;" class="container">
-	<s:form name="form1" id="form1">
+	<s:form name="form1" id="form1" onsubmit="return false">
 	<s:hidden name="naoPesquisar" id="naoPesquisar" value="${requestScope.naoPesquisar}"/>
 		<h1>
 			Cadastrar Cliente
