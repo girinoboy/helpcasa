@@ -137,10 +137,10 @@ public class SolicitacaoBO extends GenericBO{
 		return list;
 	}
 
-	public void cancela(Long[] idsSolicitacao) throws Exception {
+	public void cancela(Long[] idsSolicitacao, Long alteradoPor) throws Exception {
 		Connection conn = Conexao.getConnection();
 		try{
-			solicitacaoDAO.cancela(idsSolicitacao,conn);
+			solicitacaoDAO.cancela(idsSolicitacao,alteradoPor,conn);
 		}catch(Exception e){
 			throw e;
 		}finally{
