@@ -201,7 +201,7 @@ function check_date(date) {
 		return gdir.getDistance().html;
     }
 
-    function handleErrors(){
+    function handleErrors(){/*
 	   if (gdir.getStatus().code == G_GEO_UNKNOWN_ADDRESS)
 	     alert("No corresponding geographic location could be found for one of the specified addresses. This may be due to the fact that the address is relatively new, or it may be incorrect.\nError code: " + gdir.getStatus().code);
 	   else if (gdir.getStatus().code == G_GEO_SERVER_ERROR)
@@ -215,14 +215,14 @@ function check_date(date) {
 	     
 	   else if (gdir.getStatus().code == G_GEO_BAD_KEY)
 	     alert("The given key is either invalid or does not match the domain for which it was given. \n Error code: " + gdir.getStatus().code);
-/*
+
 	   else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
 	     alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
-	*/    
+	   
 	   else alert("An unknown error occurred.");
 	   
 	   
-	   
+	   */
 	}
 
 	function onGDirectionsLoad(){ 

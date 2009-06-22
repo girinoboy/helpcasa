@@ -33,8 +33,10 @@ function selectAction(action){
 		}
 		submeter = true;
 	}else if(action == 'voltar'){		
+		var cpf = null;
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='funcao=cliente';
+		params+='&clienteDTO.cpf='+cpf;
 		submeter = true;
 	}else if(action == 'voltarCliente'){
 		//var cpf = document.getElementById('cpf');			
