@@ -313,7 +313,7 @@ public class SolicitacaoDAO extends GenericDAO{
 				ps2.setLong(2, solicitacao.getFuncionario().getId());
 				ps2.setLong(3, solicitacao.getServico().getId());
 				int periodo = rs.getInt("periodo");
-				if(rs.next() || periodo ==3){
+				if(rs.next() || periodo ==3 || solicitacao.getPeriodo()==3){
 					ps2.executeUpdate();
 					ocupado = true;
 				}
