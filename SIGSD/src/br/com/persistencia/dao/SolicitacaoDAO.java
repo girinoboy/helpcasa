@@ -16,7 +16,7 @@ import br.com.persistencia.dto.SolicitacaoDTO;
 
 public class SolicitacaoDAO extends GenericDAO{
 
-	protected static final String strConsultListaPorIdCliente = "SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
+	protected static final String strConsultListaPorIdCliente = "SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.statusAtual,solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
 			"FROM solicitacao " +			
 			"INNER JOIN funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario " +
 			"INNER JOIN profissao ON profissao.idprofissao = funcionario.idprofissao " +
@@ -24,7 +24,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN pessoa on pessoa.idPessoa = funcionario.idFuncionario " ;
 			
 	
-	protected static final String strConsultFaturaBasica = "SELECT v.nome as nomeServico, p.nome as 'Profissional',s.data,s.periodo,p.idPessoa as idFuncionario, s.ocupado, p.nome as nomeFuncionario,p.cep, SUM(a.valor) as 'Total', s.idSolicitacao,precoVisita " +
+	protected static final String strConsultFaturaBasica = "SELECT v.nome as nomeServico, p.nome as 'Profissional',s.data,s.statusAtual,s.periodo,p.idPessoa as idFuncionario, s.ocupado, p.nome as nomeFuncionario,p.cep, SUM(a.valor) as 'Total', s.idSolicitacao,precoVisita " +
 			"FROM solicitacao s " +
 			"INNER JOIN cliente c ON c.idCliente = s.idCliente " +
 			"INNER JOIN funcionario f ON f.idFuncionario = s.idFuncionario " +
@@ -33,7 +33,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN servico v ON v.idServico = s.idServico " +
 			"LEFT JOIN adicional a ON a.idSolicitacao = s.idSolicitacao ";
 		
-	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
+	protected static final String strConsultHorariosDisponiveis = "SELECT servico.nome as nomeServico,periodo,solicitacao.data,solicitacao.statusAtual,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,idPessoa as total, solicitacao.idSolicitacao,precoVisita " +
 			"FROM solicitacao " +
 			"RIGHT JOIN pessoa ON idpessoa=idfuncionario " +
 			"INNER JOIN funcionario on funcionario.idfuncionario = pessoa.idpessoa " +
@@ -42,7 +42,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			
 
 
-	protected static final String strConsultFaturaDetalhada = "SELECT sum(valor)+precoVisita as total,precoVisita,adicional.descricao,adicional.data,valor, observacao, solicitacao.idSolicitacao,servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,pessoa.idPessoa,precoVisita " +
+	protected static final String strConsultFaturaDetalhada = "SELECT sum(valor)+precoVisita as total,precoVisita,adicional.descricao,adicional.data,valor, observacao,solicitacao.statusAtual, solicitacao.idSolicitacao,servico.nome as nomeServico,periodo,solicitacao.data,idPessoa as idFuncionario,cep,ocupado, pessoa.nome as nomeFuncionario,pessoa.idPessoa,precoVisita " +
 			"	FROM adicional " +
 			"	inner join solicitacao on solicitacao.idSolicitacao = adicional.idSolicitacao " +
 			"	inner join funcionario on solicitacao.idFuncionario = funcionario.idFuncionario " +
@@ -135,13 +135,16 @@ public class SolicitacaoDAO extends GenericDAO{
 
 	private SolicitacaoDTO populaSolicitacaoDTO(SolicitacaoDTO dto, ResultSet rs, SolicitacaoDTO solicitacao)  throws SQLException {
 		dto.setId(rs.getLong("idSolicitacao"));
+		Long statusAtual =rs.getLong("statusAtual");
+		dto.setStatusAtual(statusAtual);
 		Date data = rs.getDate("data");
 		
 		dto.setData(data);
-		if(data != null && (solicitacao.getData().getTime()==data.getTime()))
+		if(data != null && (solicitacao.getData().getTime()==data.getTime()) && !statusAtual.equals(ConstantesENUM.STATUS_CANCELADO.id()))
 			dto.setPeriodo(rs.getInt("periodo"));
 		else
 			dto.setPeriodo(0);
+		
 		dto.setTotal(rs.getDouble("total"));
 		//verifica se o periodo pertence a data
 		if(data != null && (solicitacao.getData().getTime()==data.getTime()))
@@ -222,7 +225,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			
 		StringBuffer qBuffer = new StringBuffer();		
 
-		qBuffer.append("select servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita from funcionario");
+		qBuffer.append("select servico.nome as nomeServico, solicitacao.data,solicitacao.statusAtual, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita from funcionario");
 		qBuffer.append(" inner join profissao on profissao.idprofissao = funcionario.idprofissao");
 		qBuffer.append(" inner join servico on servico.idprofissao = profissao.idprofissao");
 		qBuffer.append(" inner join pessoa on idpessoa = funcionario.idfuncionario");

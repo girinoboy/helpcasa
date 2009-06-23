@@ -33,11 +33,11 @@
 				<s:set name="periodos" value="3" scope="session"/>
 				<s:if test="${not empty listHorariosDisponiveis}">
 					<s:iterator value="listHorariosDisponiveis" status="stat">
-						<%-- 
+						 
 						Periodo:<c:out value="${periodo}" default="null"></c:out><br>
 						idFuncionario:<c:out value="${funcionario.id}" default="null"></c:out><br>
 						CEP:<c:out value="${funcionario.cep}" default="null"></c:out><br>
-						--%>
+						statusAtual:<c:out value="${statusAtual}" default="null"></c:out><br>
 						<s:hidden name="distancia" id="distancia${stat.index+1}" value="3" onmouseup="javascript:setDirections('${pessoaSessao.cep}','${funcionario.cep}','pt_BR').substr(0,4)"/>						 
 						<s:hidden name="idFuncionario" id="idFuncionario${stat.index+1}" value="${funcionario.id}" />
 						<s:hidden name="cep" id="cep${stat.index+1}" value="${funcionario.cep}" />
@@ -62,7 +62,7 @@
 				</s:if>
 				
 					<s:hidden name="max" id="max" value="${sessionScope.max}" />					
-					<br>
+					
 					<!-- CEP - cliente:<c:out value="${pessoaSessao.cep}" default="null"></c:out><br> -->
 					<s:if test="${periodos eq 0}">
 						<s:radio list="#{'1':'manha','2':'tarde','3':'integral'}" name="solicitacaoDTO.periodo" id="periodo" />

@@ -217,7 +217,7 @@ public class ProfissionalDAO extends GenericDAO{
 			
 			ps2 = conn.prepareStatement(sql2);
 			ps2.setLong(1, ConstantesENUM.STATUS_FINALIZADO.id());
-			ps2.setLong(1, idSolicitacao);
+			ps2.setLong(2, idSolicitacao);
 			ps2.executeUpdate();
 		} catch (Exception e) {
 			throw e;

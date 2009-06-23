@@ -8,9 +8,12 @@ function selectAction(action,valor){
 	var submeter;
 
 	if(action =='aplicaClassificacao'){
-		var indexSelect = document.getElementById("notas").selectedIndex;
-		var valueSelected = document.form1.notas.options[indexSelect].text;
+	
+		var notas = document.getElementById(valor.id);
+		var indexSelect = notas.selectedIndex;
+		var valueSelected = notas.options[indexSelect].text;
 		var idNota;
+		
 		url = '<c:url value="/casa/historico!aplicaClassificacao.action?"/>';
 		params = 'historicoDTO.solicitacao.id=' + valor.value;
 		if(valueSelected =='nenhuma'){
