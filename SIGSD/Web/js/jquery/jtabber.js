@@ -69,6 +69,8 @@
 						else {
 							$("#"+contentDivId).css('display','block');
 						}
+						
+						divname9.location.reload();
 						return false;
 					})
 				})
