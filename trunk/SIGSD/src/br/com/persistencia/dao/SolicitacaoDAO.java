@@ -143,8 +143,11 @@ public class SolicitacaoDAO extends GenericDAO{
 		else
 			dto.setPeriodo(0);
 		dto.setTotal(rs.getDouble("total"));
-		dto.setOcupado(rs.getBoolean("ocupado"));
-		
+		//verifica se o periodo pertence a data
+		if(data != null && (solicitacao.getData().getTime()==data.getTime()))
+			dto.setOcupado(rs.getBoolean("ocupado"));
+		else
+			dto.setOcupado((new Boolean(false)));
 		FuncionarioDTO funcionario = new FuncionarioDTO();
 		funcionario.setId(rs.getLong("idFuncionario"));
 		funcionario.setNome(rs.getString("nomeFuncionario"));

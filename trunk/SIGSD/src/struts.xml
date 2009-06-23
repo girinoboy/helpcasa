@@ -119,6 +119,18 @@
 				<param name="pathRelatorio">pathRelatorio</param>
 				<param name="format">PDF</param>
 			</result>	
+			
+			<result name="gerarPDFPofissional.fwd" type="jasper">
+				<param name="location">
+					/casa/relatorios/resumoFaturamentoMensalPorProfissional.jasper
+				</param>
+				<param name="dataSource">listaPDFTRelatorio</param>
+				<param name="path">path</param>
+				<param name="pathAssinatura">pathAssinatura</param>
+				<param name="pathLogo">pathLogo</param>
+				<param name="pathRelatorio">pathRelatorio</param>
+				<param name="format">PDF</param>
+			</result>	
 		</action>	
 		
 		<!-- BoletoAction -->

@@ -22,7 +22,21 @@ public class RelatoriosDAO extends GenericDAO{
 			"where servico.ativo=1 " +
 			"and month(solicitacao.data) = month(now()) " +
 			"and year(solicitacao.data) = year(now()) " +
+			"and solicitacao.statusAtual<>2 "+
 			"group by servico.idServico ";
+	
+	protected static final String strConsultResumoFaturamentoMensalPorProfissional =" "+
+	"SELECT pessoa.nome,sum(precovisita) as precovisita, sum(valor)+precovisita as totalServico" +
+	"	FROM profissao" +
+	"	left join servico on servico.idProfissao = profissao.idProfissao" +
+	"	left join solicitacao on solicitacao.idServico = servico.idServico" +
+	"	left join adicional on adicional.idSolicitacao = solicitacao.idSolicitacao" +
+	"   left join pessoa on idPessoa=idFuncionario"+
+	"	where servico.ativo=1" +
+	"	and month(solicitacao.data) = month(now())" +
+	"	and year(solicitacao.data) = year(now())" +
+	"   and solicitacao.statusAtual<>2"+
+	"	group by profissao.idProfissao";
 
 	public List<RelatorioDTO> resumoFaturamentoMensal(Connection conn) throws Exception {	
 		List<RelatorioDTO> list =null;
@@ -88,7 +102,7 @@ public class RelatoriosDAO extends GenericDAO{
 			
 		StringBuffer qBuffer = new StringBuffer();		
 
-		qBuffer.append(strConsultResumoFaturamentoMensal);
+		qBuffer.append(strConsultResumoFaturamentoMensalPorProfissional);
 		//qBuffer.append(" WHERE ativo = 1");
 		
 		try{

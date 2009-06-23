@@ -74,10 +74,10 @@
 								<s:a href="./casa/profissional!consultarAgendaDetalhada.action?profissionalDTO.historico.solicitacao.id=${solicitacao.id}"><c:out value="${solicitacao.servico.nome}" /></s:a>
 							</td>
 							<td>
-								<s:if test="${periodo eq 1} ">
+								<s:if test="${solicitacao.periodo eq 1} ">
 									<c:out value="Manha" />
 								</s:if>
-								<s:elseif test="${periodo eq 2}">
+								<s:elseif test="${solicitacao.periodo eq 2}">
 									<c:out value="Tarde" />
 								</s:elseif>
 								<s:else>

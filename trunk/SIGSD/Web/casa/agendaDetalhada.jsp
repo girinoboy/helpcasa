@@ -31,10 +31,10 @@
 		</label>
 		<label class="c_e_dados_float">
 			<s:set name="periodo" value="<s:property value='profissionalDTO.historico.solicitacao.periodo' />" />
-			<s:if test="${periodo eq 1} ">
+			<s:if test="${profissionalDTO.historico.solicitacao.periodo eq 1} ">
 				<c:out value="Manha" />
 			</s:if>
-			<s:elseif test="${periodo eq 2}">
+			<s:elseif test="${profissionalDTO.historico.solicitacao.periodo eq 2}">
 				<c:out value="Tarde" />
 			</s:elseif>
 			<s:else>
