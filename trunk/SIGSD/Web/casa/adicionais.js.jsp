@@ -77,7 +77,7 @@ function loadMascara(){
 	jQuery('#valor').numeric();
 	var descricao = document.getElementById('descricao').value='';
 	var valor = document.getElementById('valor').value='';	
-	var data = document.getElementById('data').value='';
+	//var data = document.getElementById('data').value='';
 	var observacoes = document.getElementById('observacoes').value='';
 	
 }
