@@ -5,10 +5,12 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 import org.apache.log4j.Logger;
@@ -18,6 +20,7 @@ import org.apache.log4j.Logger;
 import br.com.bo.FactoryBO;
 import br.com.bo.LoginBO;
 import br.com.persistencia.dto.PessoaDTO;
+import br.com.web.actions.GenericAction;
 
 
 
@@ -27,30 +30,27 @@ public class TokenFilter implements Filter {
 	LoginBO loginBO = FactoryBO.getInstance().getLoginBO();
 	//PessoaDTO usuarioSessaoNovaArquitetura = null;
 	String mensagemErro = null;
+	PessoaDTO login;
 	
-	public void doFilter(ServletRequest request, ServletResponse response,FilterChain filter) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		HttpServletRequest serveletRequest = (HttpServletRequest) request;
-		String nomeJSP = serveletRequest.getServletPath().replaceFirst("/", "");
-		
-		System.out.println("passou aki");
-		String tkn = serveletRequest.getParameter("tkn");
-		
-		if (tkn != null && !tkn.equals("null") && !tkn.equals("")){
-			String urlDestino = serveletRequest.getParameter("urlDestino");
+		HttpServletRequest serveletRequest = (HttpServletRequest) request;			
+	
+		PessoaDTO usuarioSessao = (PessoaDTO) serveletRequest.getSession().getAttribute("pessoa");
+		String deslogado = (String) serveletRequest.getSession().getAttribute("inicio");
 			
-			PessoaDTO usuarioSessao = (PessoaDTO) serveletRequest.getSession().getAttribute("usuarioSessao");
 			
+			/*
 			if (usuarioSessao == null){
-				System.out.println("passou aki");
+				
 				try {
-					boolean autenticacao = autenticar(serveletRequest, tkn);
+					boolean autenticacao = false;
 					
 					if (!autenticacao){
 						serveletRequest.getSession().removeAttribute("tkn");
 						serveletRequest.getRequestDispatcher("/negadoAutenticacao.jsp?mensagemErro=" + mensagemErro).forward(serveletRequest, response);
 					}else{
-						filter.doFilter(serveletRequest, response);
+						chain.doFilter(serveletRequest, response);
 					}			
 					
 				} catch (Exception e) {
@@ -58,15 +58,39 @@ public class TokenFilter implements Filter {
 				}
 			}else{
 				serveletRequest.getSession().setAttribute("usuarioLogadoSistema", new Boolean(true));
-				filter.doFilter(serveletRequest, response);
-			}
-		}else{
-			filter.doFilter(serveletRequest, response);
+				chain.doFilter(serveletRequest, response);
+			}*/
+		try{
+		boolean isValid = false;  
+		try {  
+			if (usuarioSessao != null)
+				isValid = true;  
+			if(deslogado != null)
+				isValid = true;
+		} catch (Exception e) {  
+			throw new ServletException(e.getMessage());  
+		}  
+		if (!isValid) {             
+			String url = "index.jsp";  /*
+			((HttpServletResponse) response).sendRedirect(url);  
+			((HttpServletResponse)response).getWriter().flush();  
+			((HttpServletResponse)response).getWriter().close();*/
+			/* RequestDispatcher dispatcher = request.getRequestDispatcher(url);   
+			    dispatcher.forward(request, response);*/   
+			    serveletRequest.getRequestDispatcher("/index.jsp").forward(serveletRequest, response);
+			//serveletRequest.getRequestDispatcher("/index.jsp?").forward(serveletRequest, response);
+			//return;   
+		}  
+		chain.doFilter(request, response);  
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-	}
+
+	}  
+
 	
 	private boolean autenticar(HttpServletRequest request, String tkn) throws Exception{
-		System.out.println("passou aki");
+		
 		HttpServletRequest serveletRequest = (HttpServletRequest) request;
 		String autenticacao = null;
 		/*
@@ -98,13 +122,13 @@ public class TokenFilter implements Filter {
 	}
 	
 	public void init(FilterConfig arg0) throws ServletException {
-		System.out.println("passou aki");
+		
 		
 	}
 
 	public void destroy() {
 		// TODO Auto-generated method stub
-		System.out.println("passou aki");
+		
 	}
 	
 	/**
@@ -112,7 +136,7 @@ public class TokenFilter implements Filter {
 	 * @return
 	 */
 	public PessoaDTO login(HttpServletRequest serveletRequest, String login, String senha ){
-		System.out.println("passou aki");
+		
 		PessoaDTO usuarioDTO = new PessoaDTO();
 		usuarioDTO.setUsuario(login);
 		usuarioDTO.setSenha(senha);

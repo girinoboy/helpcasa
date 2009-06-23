@@ -35,7 +35,7 @@ function validaCamposAoIncluir(){
 	var descricao = document.getElementById('descricao');
 	var valor = document.getElementById('valor');
 	//var data = dojo.widget.byId('data');
-	var data = document.getElementById('data');
+	//var data = document.getElementById('data');
 	var observacoes = document.getElementById('observacoes');
 	
 	
@@ -53,10 +53,10 @@ function validaCamposAoIncluir(){
 		alert('O campo Data é obrigatório.');
 		data.focus();
 		return false;
-	}
+	}/*
 	if(!check_date(data.value)){
 		return false;
-	}
+	}*/
 	/*
 	if(data.inputNode.value == ''){
 		alert('O campo Data é obrigatório.');

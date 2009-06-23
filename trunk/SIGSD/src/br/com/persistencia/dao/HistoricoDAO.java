@@ -85,15 +85,15 @@ public class HistoricoDAO extends GenericDAO{
 			list = new ArrayList<HistoricoDTO>();
 			Double total;
 			while(rs.next()){
-				total = rs.getDouble("total");
-				if(total != null && total > 0){
+			//	total = rs.getDouble("total");
+				//if(total != null && total > 0){
 					HistoricoDTO dto = new HistoricoDTO();
 					
 					historicoDTO = this.populaHistoricoDTO(dto,rs);
 					//historicoDTO = (HistoricoDTO) DTOFactory.getDTO(HistoricoDTO.class, rs);
 					
 					list.add(historicoDTO);
-				}												
+			//	}												
 			}
 		}catch(Exception e){
 			throw e;
@@ -154,6 +154,7 @@ public class HistoricoDAO extends GenericDAO{
 
 		qBuffer.append(strConsult);
 		qBuffer.append(" WHERE sl.idSolicitacao=?");
+		qBuffer.append(" group by h.idHistorico");
 	
 		
 		try{

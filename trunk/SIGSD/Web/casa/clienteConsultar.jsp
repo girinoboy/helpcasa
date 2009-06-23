@@ -149,7 +149,7 @@
 			<s:else>
 				<input type="button" value="Cancelar"
 				onClick="selectAction('voltar');" class="voltar" />			
-			</s:else>
+			</s:else>			
 		</s:else>
 		</div>
 	</s:form>

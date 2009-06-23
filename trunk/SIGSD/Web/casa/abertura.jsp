@@ -22,24 +22,59 @@
 					<a href="#" title="divname0">Perfil</a>
 					<a href="#" title="divname7">Gerar Boletos</a>
 					<a href="#" title="divname8">Solicitar Serviços</a>
-					<a href="#" title="divname9">Consultar Histórico de Serviços</a>
-					
+					<a href="#" title="divname9">Consultar Histórico de Serviços</a>					
 	
 					<s:div refreshOnShow="true"  cssClass="clear"></s:div>
 				</s:div><!-- fim div nav -->
 				
+				
+					
+	<div id="divnameteste" class="hiddencontent">
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+		this is more content from the div with the id "divname2"<br />
+
+		this is more content from the div with the id "divname2"<br />
+	</div>
+				
+								
 				<s:div refreshOnShow="true"  id="divname0" cssClass="hiddencontent" >				
 					<IFRAME name="palco" src='cliente!consultaParaCliente.action' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 				</s:div>
 				<s:div refreshOnShow="true"  id="divname7" cssClass="hiddencontent">				
 					<IFRAME name="palco" src='solicitacao!consultarFaturaBasica.action?solicitacaoDTO.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 				</s:div>
 				<s:div refreshOnShow="true"  id="divname8" cssClass="hiddencontent" theme="ajax">				
 					<IFRAME name="palco" src='solicitacao!load.action?solicitacaoDTO.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 				</s:div>
 				<s:div refreshOnShow="true"  id="divname9" cssClass="hiddencontent" theme="ajax">				
-				<IFRAME name="palco" src='historico!historicoListar.action?historicoDTO.solicitacao.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
-			</s:div>
+					<IFRAME name="palco" src='historico!historicoListar.action?historicoDTO.solicitacao.cliente.cpf=${pessoaSessao.cpf}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				</s:div>
 			</s:if>
 				
 			<s:elseif test="${pessoaSessao.perfil.descricao eq 'Profissional'}">
@@ -131,19 +166,19 @@
 		-->		
 			
 			<s:div refreshOnShow="true"  id="divname2" cssClass="hiddencontent">			
-				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=cliente' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>				
+				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=cliente&clienteDTO.perfil.id=${pessoaSessao.perfil.id}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>				
 			</s:div>						
 			
 			
 			<s:if test="${pessoaSessao.perfil.descricao eq 'Administrador' or pessoaSessao.perfil.descricao eq 'Atendente'}">
 				<s:div refreshOnShow="true"  id="divname7" cssClass="hiddencontent">				
-					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=boleto' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=boleto&clienteDTO.perfil.id=${pessoaSessao.perfil.id}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 				</s:div>
 				<s:div refreshOnShow="true"  id="divname8" cssClass="hiddencontent" theme="ajax">				
-					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=servico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+					<IFRAME name="palco" src='cliente!pesquisar.action?funcao=servico&clienteDTO.perfil.id=${pessoaSessao.perfil.id}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 				</s:div>
 				<s:div refreshOnShow="true"  id="divname9" cssClass="hiddencontent" theme="ajax">				
-				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=historico' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=historico&clienteDTO.perfil.id=${pessoaSessao.perfil.id}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 			</s:div>
 			</s:if>
 			

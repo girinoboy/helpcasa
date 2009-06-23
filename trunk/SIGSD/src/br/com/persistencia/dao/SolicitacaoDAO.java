@@ -219,28 +219,29 @@ public class SolicitacaoDAO extends GenericDAO{
 			
 		StringBuffer qBuffer = new StringBuffer();		
 
-		qBuffer.append("SELECT servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita ");
-		qBuffer.append(" FROM pessoa ");
-		qBuffer.append(" left join solicitacao on idPessoa = idFuncionario ");
-		qBuffer.append(" left JOIN servico ON solicitacao.idServico = servico.idServico ");
-		qBuffer.append(" left JOIN funcionario ON solicitacao.idFuncionario = funcionario.idFuncionario ");
-		qBuffer.append(" left JOIN profissao ON profissao.idprofissao = funcionario.idprofissao ");
-		qBuffer.append(" WHERE idPessoa not in(select idFuncionario FROM solicitacao WHERE (? <= DATE_ADD(NOW(),INTERVAL 30 DAY)) AND data = ? AND ocupado =1  AND idservico =? )"); 
-		qBuffer.append(" AND idPerfil = 4 AND pessoa.ativo = 1");
-		qBuffer.append(" and (? <= DATE_ADD(NOW(),INTERVAL 30 DAY))"); 
-		qBuffer.append(" AND ? >= now()");
-		qBuffer.append(" and ocupado =0");
+		qBuffer.append("select servico.nome as nomeServico, solicitacao.data, solicitacao.periodo,pessoa.idPessoa as idFuncionario, pessoa.cep, solicitacao.ocupado, pessoa.nome as nomeFuncionario, idPessoa as total, solicitacao.idSolicitacao,precoVisita from funcionario");
+		qBuffer.append(" inner join profissao on profissao.idprofissao = funcionario.idprofissao");
+		qBuffer.append(" inner join servico on servico.idprofissao = profissao.idprofissao");
+		qBuffer.append(" inner join pessoa on idpessoa = funcionario.idfuncionario");
+		qBuffer.append(" left join solicitacao on idpessoa =solicitacao.idfuncionario");
+		qBuffer.append(" where funcionario.idFuncionario not in(select idFuncionario from solicitacao where idservico =? and statusAtual <>2 and data =? and ocupado =1)");
+		qBuffer.append(" and servico.idservico=?");
+		qBuffer.append(" AND (? <= DATE_ADD(NOW(),INTERVAL 30 DAY))");
+		qBuffer.append(" and ? >=now()");
+		qBuffer.append(" and pessoa.ativo =1");
+		qBuffer.append(" AND servico.idProfissao = profissao.idProfissao");
 
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
-			ps.setDate(1, new Date(solicitacao.getData().getTime()));
-			ps.setDate(2, new Date(solicitacao.getData().getTime()));			
+			ps.setLong(1, solicitacao.getServico().getId());
+			ps.setDate(2, new Date(solicitacao.getData().getTime()));
 			ps.setLong(3, solicitacao.getServico().getId());
-			ps.setDate(4, new Date(solicitacao.getData().getTime()));
-			ps.setDate(5, new Date(solicitacao.getData().getTime()));
+			ps.setDate(4, new Date(solicitacao.getData().getTime()));	
+			ps.setDate(5, new Date(solicitacao.getData().getTime()));			
 			
-			System.out.println(qBuffer.toString());
+			
+			//System.out.println(qBuffer.toString());
 			
 			rs = ps.executeQuery();
 			list = new ArrayList<SolicitacaoDTO>();
@@ -280,22 +281,23 @@ public class SolicitacaoDAO extends GenericDAO{
 		qBuffer.append("SELECT * FROM solicitacao ");
 		qBuffer.append(" INNER JOIN servico ON servico.idservico=solicitacao.idservico ");
 		qBuffer.append(" WHERE data =? ");
-		qBuffer.append(" AND ocupado =1 ");
+		
 		qBuffer.append(" AND solicitacao.idServico =? ");
 		qBuffer.append(" AND idFuncionario=? ");
-		qBuffer.append(" AND statusAtual<>? ");
+		qBuffer.append(" AND statusAtual<>2 ");
+		
 		
 		
 	//	System.out.println("Existe Solicitacao: "+qBuffer.toString());
 		StringBuffer qBuffer2 = new StringBuffer();	
-		qBuffer2.append("UPDATE solicitacao SET ocupado = 1 where data = ? and idFuncionario=? and idServico=?");
+		qBuffer2.append("UPDATE solicitacao SET ocupado = 1 WHERE data = ? AND idFuncionario=? AND idServico=?");
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
 			ps.setDate(1, new Date(solicitacao.getData().getTime()));
 			ps.setLong(2, solicitacao.getServico().getId());
 			ps.setLong(3, solicitacao.getFuncionario().getId());
-			ps.setLong(4, ConstantesENUM.STATUS_SOLICITADO.id());
+			
 			
 		//	System.out.println(qBuffer.toString());
 			rs = ps.executeQuery();
@@ -305,8 +307,8 @@ public class SolicitacaoDAO extends GenericDAO{
 					
 				ps2 = conn.prepareStatement(qBuffer2.toString());
 				ps2.setDate(1, new Date(solicitacao.getData().getTime()));
-				ps.setLong(2, solicitacao.getFuncionario().getId());
-				ps.setLong(3, solicitacao.getServico().getId());
+				ps2.setLong(2, solicitacao.getFuncionario().getId());
+				ps2.setLong(3, solicitacao.getServico().getId());
 				int periodo = rs.getInt("periodo");
 				if(rs.next() || periodo ==3){
 					ps2.executeUpdate();

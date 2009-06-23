@@ -77,7 +77,8 @@
 					Data de Nascimento:*
 				</td>
 				<td>
-					<s:textfield name="funcionarioDTO.nasc" id="nasc"/>
+					<s:date name="funcionarioDTO.nasc" format="dd/MM/yyyy" id="formatada"/>
+					<s:textfield name="nasc" id="nasc" value="%{formatada}" /> 
 				</td>
 			</tr>
 			<tr>

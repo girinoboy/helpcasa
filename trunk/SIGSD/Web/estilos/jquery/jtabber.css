@@ -29,8 +29,10 @@ body {
 	outline:none;
 	}
 .hiddencontent {
-	padding:2px;	
-	display:none;
+	padding:2px;		
+	display:none;	
+	height: 100%;
+	
 	}
 .clear {
 	clear:both;
