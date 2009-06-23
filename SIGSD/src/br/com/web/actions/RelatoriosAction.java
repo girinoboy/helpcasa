@@ -44,7 +44,7 @@ public class RelatoriosAction extends GenericAction {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "gerarPDF.fwd";
+		return "gerarPDFPofissional.fwd";
 	}
 
 	public List<SolicitacaoDTO> getListaPDFSolicitacao() {

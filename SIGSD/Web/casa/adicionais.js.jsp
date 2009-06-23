@@ -48,12 +48,12 @@ function validaCamposAoIncluir(){
 		alert('O campo Valor é obrigatório.');
 		valor.focus();
 		return false;
-	}
+	}/*
 	if(data.value == ''){
 		alert('O campo Data é obrigatório.');
 		data.focus();
 		return false;
-	}/*
+	}
 	if(!check_date(data.value)){
 		return false;
 	}*/
