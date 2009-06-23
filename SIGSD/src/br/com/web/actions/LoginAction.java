@@ -35,6 +35,7 @@ public class LoginAction extends GenericAction{
 	}
 	
 	public String load(){
+		getRequest().getSession().removeAttribute("inicio");
 		return "load.fwd";
 	}
 
@@ -64,7 +65,7 @@ public class LoginAction extends GenericAction{
 				//	getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
 					getRequest().getSession(true).setAttribute("pessoa", pessoa);
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
-					getRequest().getSession().removeAttribute("inicio");
+				//	getRequest().getSession().removeAttribute("inicio");
 					return abertura();
 				}else{
 				//	getRequest().getSession().setAttribute("mensagem", "Login invalido.");
@@ -73,7 +74,7 @@ public class LoginAction extends GenericAction{
 				}				
 			}else
 				return abertura();
-
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			getMensagemGlobal().addMensagem("O Login ou a Senha não existe no sistema. Tente novamente.",Mensagem.ERRO);			
@@ -82,6 +83,7 @@ public class LoginAction extends GenericAction{
 	}
 
 	public String abertura(){
+		getRequest().getSession().removeAttribute("inicio");
 		return "abertura.fwd";
 	}
 	
@@ -116,7 +118,7 @@ public class LoginAction extends GenericAction{
 		getRequest().getSession().removeAttribute("pessoaSessao");
 		getRequest().getSession().removeAttribute("pessoa");
 		getRequest().getSession().removeAttribute("mensagem");
-		//getRequest().getSession().removeAttribute("inicio");
+		getRequest().getSession().removeAttribute("inicio");
 		return checkLogin();
 	}
 

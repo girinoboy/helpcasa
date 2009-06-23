@@ -20,7 +20,7 @@ public class HistoricoDAO extends GenericDAO{
 
 	private static final String strUpdateClassificacao = "UPDATE solicitacao SET idNota = ? WHERE idSolicitacao = ?";
 	
-	private static final String strConsult = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao, sum(valor)+precovisita as total FROM historico h " +
+	private static final String strConsult = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,sl.statusAtual,h.status,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao, sum(valor)+precovisita as total FROM historico h " +
 			"inner join solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
 			"inner join servico sv on sv.idServico = sl.idServico " +
 			"inner join funcionario f on sl.idFuncionario = f.idFuncionario " +
@@ -111,7 +111,7 @@ public class HistoricoDAO extends GenericDAO{
 		if(rs.getDate("data") !=null )
 		dto.setData(new Date(rs.getDate("data").getTime()));
 		dto.setTotal(rs.getDouble("total"));
-		//dto.setStatus(rs.getInt("status"));
+		dto.setStatus(rs.getInt("status"));
 		//dto.setPerfil(rs.getString("perfil"));
 		//dto.setAuteradoPor(rs.getString("auteradoPor"));
 		//dto.setObservacao(rs.getString("observacao"));
@@ -124,6 +124,7 @@ public class HistoricoDAO extends GenericDAO{
 		solicitacao.setId(rs.getLong("idSolicitacao"));
 		solicitacao.setServico(servico);
 		solicitacao.setPeriodo(rs.getInt("periodo"));
+		solicitacao.setStatusAtual(rs.getLong("statusAtual"));
 		dto.setSolicitacao(solicitacao);
 		
 		NotaDTO nota = new NotaDTO();

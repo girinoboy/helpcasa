@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <s:form name="form1" method="post" id="form1" action="">
+<s:hidden id="cpf" name="historicoDTO.solicitacao.cliente.cpf"/>
 	<h1>
 		<c:out value="Consulta do Historico de Serviço" />
 	</h1>	
@@ -44,20 +45,33 @@
 						<c:out value="${stat.index+1}" />
 					</td>					
 					<td>
-						<s:a href="#"><c:out value="${solicitacao.servico.nome}" /></s:a>
+						<s:date name="data" format="dd/MM/yyyy"/>
 					</td>
 					<td>
-						<s:date format="dd/MM/yyyy HH:mm:ss"  name="data" />
-					</td>	
-					<td>
-						<s:if test="${solicitacao.periodo eq 1} ">
+						<s:if
+							test="${solicitacao.periodo eq 1} ">
 							<c:out value="Manha" />
 						</s:if>
-						<s:elseif test="${solicitacao.periodo eq 2}">
+						<s:elseif
+							test="${solicitacao.periodo eq 2}">
 							<c:out value="Tarde" />
 						</s:elseif>
 						<s:else>
 							<c:out value="Integral" />
+						</s:else>
+					</td>	
+					<td>
+						<s:if test="${status eq 1} ">
+							<c:out value="Solicitado" />
+						</s:if>
+						<s:elseif test="${status eq 2}">
+							<c:out value="Cancelado" />
+						</s:elseif>
+						<s:elseif test="${status eq 3}">
+							<c:out value="Finalizado" />
+						</s:elseif>
+						<s:else>
+							<c:out value="Pago" />
 						</s:else>
 					</td>
 					<td>
@@ -70,21 +84,12 @@
 						<s:else>
 							R$&nbsp;<c:out value="${solicitacao.funcionario.profissao.precoVisita}" />
 						</s:else>
-					</td>
-					<s:if test="${solicitacao.nota.id eq '1'}">
-						<td>
-						<s:select list="listNota" name="notas"
-						id="notas" headerKey="0" headerValue="Selecione..."
-						listValue="descricao" listKey="${solicitacao.id}"
-						cssStyle="vertical-align: top;" onchange="selectAction('aplicaClassificacao',this.value);"/>
-							<!--<s:select name="solicitacao.nota.id"  id="idNota" list="#{'false':'Bom','${nota.id}':'Otimo'}" onchange="selectAction('aplicaClassificacao',this.value);"/>-->
-						</td>
-					</s:if>
-					<s:else>						
+					
+						
 						<td>
 							<c:out value="${solicitacao.nota.descricao}" />							
 						</td>
-					</s:else>
+				
 				</tr>
 			</s:iterator>
 		</s:if>
