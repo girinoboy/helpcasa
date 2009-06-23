@@ -75,7 +75,7 @@
 						<td>
 						<s:select list="listNota" name="notas"
 						id="notas" headerKey="0" headerValue="Selecione..."
-						listValue="descricao" listKey="id"
+						listValue="descricao" listKey="${solicitacao.id}"
 						cssStyle="vertical-align: top;" onchange="selectAction('aplicaClassificacao',this.value);"/>
 							<!--<s:select name="solicitacao.nota.id"  id="idNota" list="#{'false':'Bom','${nota.id}':'Otimo'}" onchange="selectAction('aplicaClassificacao',this.value);"/>-->
 						</td>
@@ -98,6 +98,6 @@
 	</table>
 		<div class="footer">			
 			<input type="button" value="Voltar"
-				onClick="selectAction('volta');" class="voltar" />
+				onClick="selectAction('voltar');" class="voltar" />
 		</div>
 </s:form>

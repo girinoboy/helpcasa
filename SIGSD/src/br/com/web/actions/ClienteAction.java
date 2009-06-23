@@ -134,8 +134,12 @@ public class ClienteAction extends GenericAction {
 	}
 
 	public String pesquisar() throws Exception {
-		try {															
-			if (clienteDTO != null && clienteDTO.getCpf() != null) 
+		try {	
+			
+			Long idPerfil = clienteDTO.getPerfil().getId();
+			if(idPerfil !=3)
+				telaConsulta = true;
+			if (clienteDTO != null && clienteDTO.getCpf() != null && !telaConsulta ) 
 				return consultaParaCliente();
 			else
 				return "clientePesquisar.fwd";
@@ -150,12 +154,13 @@ public class ClienteAction extends GenericAction {
 
 		try{
 			clienteDTO = clienteBO.altera(clienteDTO);
+			setTelaConsulta(false);			
 			getMensagemGlobal().addMensagem("Alterações salvas com sucesso.", Mensagem.ALERTA);
 		}catch(Exception e){
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao alterar Cliente.", Mensagem.ALERTA);
 			e.printStackTrace();			
 		}
-
+		
 		return consultaParaCliente();
 
 	}
@@ -172,8 +177,8 @@ public class ClienteAction extends GenericAction {
 			getMensagemGlobal().addMensagem("Cadastro excluido!.", Mensagem.ALERTA);
 			
 			Long perfil = getSessaoPessoa().getPerfil().getId();
-			if(perfil == ConstantesENUM.CLIENTE_ID.id())
-				return "paginaAbertura.fwd";
+			if(perfil.equals(ConstantesENUM.CLIENTE_ID.id()))
+				return "paginaLogin.fwd";
 			else
 				return "clienteVoltaPesquisar.fwd";		
 		}catch(Exception e){

@@ -62,7 +62,10 @@ public class RelatoriosDAO extends GenericDAO{
 	private RelatorioDTO populaRelatorioDTO(RelatorioDTO dto, ResultSet rs) throws Exception {
 		AdicionalDTO adicional = new AdicionalDTO();
 		Double valor = rs.getDouble("totalServico");
-		adicional.setValor(valor);
+		if(valor>0)
+			adicional.setValor(valor);
+		else
+			adicional.setValor(rs.getDouble("precovisita"));
 		SolicitacaoDTO solicitacao = new SolicitacaoDTO();
 		ServicoDTO servico = new ServicoDTO();
 		String nome =rs.getString("nome");

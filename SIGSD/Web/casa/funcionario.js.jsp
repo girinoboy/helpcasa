@@ -6,7 +6,9 @@ function selectAction(action){
 	var submeter;
 	
 	if(action == 'incluir'){
+		var nasc = document.getElementById('nasc');
 		url = '<c:url value="/casa/funcionario!inclui.action?"/>';
+		params+='&funcionarioDTO.nasc='+nasc.value;
 		submeter = validaCamposAoIncluir();
 	}else if(action == 'direcionaLogin'){
 		url = '<c:url value="/casa/login!load.action?"/>';
@@ -56,7 +58,7 @@ function validaCamposAoIncluir(){
 	var idprofissao = document.getElementById('idprofissao');
 	var telefone = document.getElementById('telefone');
 	var matricula = document.getElementById('matricula');
-	
+	var rg = document.getElementById('rg');
 	
 	var celular = document.getElementById('celular');
 	var nasc = document.getElementById('nasc');
@@ -73,6 +75,16 @@ function validaCamposAoIncluir(){
 	if(cpf.value == '' || cpf.value=='999.999.999-99'){
 		alert('O CPF é obrigatório.');
 		cpf.focus();
+		return false;
+	}
+	if(idprofissao.value == 0){
+		alert('A Profissão é obrigatória.');
+		idprofissao.focus();
+		return false;
+	}
+	if(rg.value == ''){
+		alert('O RG é obrigatório.');
+		rg.focus();
 		return false;
 	}
 	if(telefone.value == ''){

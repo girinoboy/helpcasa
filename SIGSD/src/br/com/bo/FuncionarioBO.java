@@ -85,6 +85,10 @@ public class FuncionarioBO extends GenericBO{
 			mensagens.addMensagem("Cadastro existente no sistema.", Mensagem.ALERTA);
 			throw new RegraNegocioException(mensagens);
 		}
+		if(funcionarioDAO.existeMatricula(funcionarioDTO,conn)){
+			mensagens.addMensagem("Matricula existente no sistema.", Mensagem.ALERTA);
+			throw new RegraNegocioException(mensagens);
+		}
 		
 		
 		return true;		

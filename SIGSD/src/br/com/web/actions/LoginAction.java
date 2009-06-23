@@ -64,6 +64,7 @@ public class LoginAction extends GenericAction{
 				//	getRequest().getSession(true).setAttribute("pessoaSessao", pessoaSessao);
 					getRequest().getSession(true).setAttribute("pessoa", pessoa);
 					getRequest().getSession(true).setAttribute("usuarioLogadoSistema", new Boolean(true));
+					getRequest().getSession().removeAttribute("inicio");
 					return abertura();
 				}else{
 				//	getRequest().getSession().setAttribute("mensagem", "Login invalido.");
@@ -115,7 +116,7 @@ public class LoginAction extends GenericAction{
 		getRequest().getSession().removeAttribute("pessoaSessao");
 		getRequest().getSession().removeAttribute("pessoa");
 		getRequest().getSession().removeAttribute("mensagem");
-		
+		//getRequest().getSession().removeAttribute("inicio");
 		return checkLogin();
 	}
 

@@ -23,15 +23,15 @@
 			</label>
 			<label class="c_e_dados_float">
 				<s:textfield name="adicionaisDTO.valor" id="valor" maxlength="255" size="20"/>
-			</label>
+			</label><!-- 
 			<br class="clr" />
 			<label class="label_entrada_dados" style="width:220px;">
 				Data:*
 			</label>
 			<label class="c_e_dados_float">
 			<s:textfield name="adicionaisDTO.data" id="data" />
-			
-			</label>
+			 
+			</label>-->
 			<br class="clr" />
 			<label class="label_entrada_dados" style="width:220px;">
 				Observa&ccedil;&otilde;es gerais:

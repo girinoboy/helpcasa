@@ -18,25 +18,30 @@ function selectAction(action){
 		if(funcao.value == 'cliente'){
 			url = '<c:url value="/casa/cliente!pesquisar.action?"/>';	
 			params='clienteDTO.cpf='+cpf.value;
+			params+='&telaConsulta=false';
+			params+='&clienteDTO.perfil.id=3';
 		}
 		else if(funcao.value == 'servico'){
 			url = '<c:url value="/casa/solicitacao!load.action?"/>';	
 			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
+			params+='&telaConsulta=false';
 		}
 		else if(funcao.value == 'boleto'){
 			url = '<c:url value="/casa/solicitacao!consultarFaturaBasica.action?"/>';	
 			params='solicitacaoDTO.cliente.cpf='+cpf.value;	
+			params+='&telaConsulta=false';
 		}
 		else if(funcao.value == 'historico'){
 			url = '<c:url value="/casa/historico!historicoListar.action?"/>';	
 			params='historicoDTO.solicitacao.cliente.cpf='+cpf.value;	
+			params+='&telaConsulta=false';
 		}
 		submeter = true;
-	}else if(action == 'voltar'){		
-		var cpf = null;
+	}else if(action == 'voltar'){				
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='funcao=cliente';
-		params+='&clienteDTO.cpf='+cpf;
+		params+='&telaConsulta=false';	
+		params+='&clienteDTO.perfil.id=3';			
 		submeter = true;
 	}else if(action == 'voltarCliente'){
 		//var cpf = document.getElementById('cpf');			

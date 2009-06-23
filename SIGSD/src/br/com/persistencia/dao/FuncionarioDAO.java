@@ -356,4 +356,32 @@ public class FuncionarioDAO extends GenericDAO{
 		return false;
 	}
 
+	public boolean existeMatricula(FuncionarioDTO funcionarioDTO,
+			Connection conn) throws Exception {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		
+		String sql = "SELECT * FROM funcionario WHERE matricula =?";
+				
+		try{
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, funcionarioDTO.getMatricula());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				return true;
+			}
+		}catch(Exception e){
+			throw e;
+		}finally{
+			if(ps!=null)
+				ps.close();
+			if(rs!=null)
+				rs.close();
+		}
+		return false;
+	}
+
 }
