@@ -18,10 +18,7 @@
 		align="center">
 		<tr>
 			<td></td>
-			<td title="id">
-				<input type="checkbox" name="checkAll" id="checkAll"
-					onclick="checkUnCheckAll(this, 'idsSolicitacao');" />
-			</td>
+			
 			<td title="Serviço">
 				<strong><c:out value="Serviço" /> </strong>
 			</td>
@@ -51,10 +48,7 @@
 					<td>
 						<c:out value="${stat.index+1}" />
 					</td>
-					<td>
-						<input type="checkbox" name="idsSolicitacao" id="idsSolicitacao"
-							value="<s:property value='id'/>" />
-					</td>
+					
 					<td>
 						<s:a
 							href="./casa/solicitacao!consultarFaturaDetalhada.action?solicitacaoDTO.id=${id}&solicitacaoDTO.cliente.cpf=${solicitacaoDTO.cliente.cpf}&solicitacaoDTO.cliente.nome=${solicitacaoDTO.cliente.nome}">
