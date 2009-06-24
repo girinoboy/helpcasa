@@ -60,7 +60,7 @@
     <td width="502" class="texto" >
     <BR><BR>
     <B>
-      <center><img src="/SIGSD/img/firewall.gif" border="0" align="texttop"><br><b><font color="#FF0000" size="4"> Acesso negado a esta página...! </font></b></center><br>
+      <center><img src="/img/firewall.gif" border="0" align="texttop"><br><b><font color="#FF0000" size="4"> Acesso negado a esta página...! </font></b></center><br>
 
       <center>Você não está autorizado a exibir esta página.</center><BR>
       <center>Provavelmente você foi bloqueado por um longo período de inatividade.</center><BR>
