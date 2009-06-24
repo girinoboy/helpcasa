@@ -166,7 +166,7 @@
 		-->		
 			
 			<s:div refreshOnShow="true"  id="divname2" cssClass="hiddencontent">			
-				<IFRAME name="divname9" id="divname9" src='cliente!pesquisar.action?funcao=cliente&clienteDTO.perfil.id=${pessoaSessao.perfil.id}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
+				<IFRAME name="palco" src='cliente!pesquisar.action?funcao=cliente&clienteDTO.perfil.id=${pessoaSessao.perfil.id}' frameBorder="no" width="100%" height="100%" scrolling="auto" allowtransparency="true"></IFRAME>
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

@@ -129,7 +129,7 @@
 		
 		<div class="footer">
 		<s:hidden id="alterado" name="alterado"/>
-		<s:hidden id="telaConsulta" name="telaConsulta"/>
+		<s:hidden id="telaConsulta" name="telaConsulta" value="true"/>
 		 <s:if test="${not alterado}">
 		 	<script>disableAll();</script>
 			<input type="button" value="Alterar" onClick="selectAction('alterar');"
