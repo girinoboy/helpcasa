@@ -72,7 +72,7 @@
    <tr class="fundotit"> 
     <td colspan="3" style="font-face: verdana; font-size: 11px; font-color: #FFFFFF"><BR>
        <center>
-         &nbsp;<a href="http://www.sigsd.com.br/">Clique aqui para se logar!</a>
+         &nbsp;<a href="./casa/login!logout.action?">Clique aqui para se logar!</a>
        </center>
     </td>
   </tr>  

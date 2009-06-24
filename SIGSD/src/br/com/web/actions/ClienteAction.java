@@ -29,6 +29,7 @@ public class ClienteAction extends GenericAction {
 
 	private Boolean telaConsulta = new Boolean(false);
 	private Boolean naoPesquisar = new Boolean(false);
+	
 	public ClienteAction() {
 		clienteBO = FactoryBO.getInstance().getClienteBO();
 	}
@@ -137,12 +138,20 @@ public class ClienteAction extends GenericAction {
 		try {	
 			
 			Long idPerfil = getSessaoPessoa().getPerfil().getId();
-			if(idPerfil !=3)
-				telaConsulta = true;
-			if (clienteDTO != null && clienteDTO.getCpf() != null && !telaConsulta ) 
+			if(idPerfil.equals(ConstantesENUM.CLIENTE_ID.id())){
+				if(naoPesquisar)
+					setTelaConsulta(false);
+				return consultaParaCliente();
+			}else if (clienteDTO != null && clienteDTO.getCpf() != null && !telaConsulta && idPerfil.equals(ConstantesENUM.ADMINISTRADOR_ID.id())){
+				return consultaParaCliente();
+			}else
+				return "clientePesquisar.fwd";
+		
+			/*
+			if (clienteDTO != null && clienteDTO.getCpf() != null && telaConsulta && idPerfil.equals(ConstantesENUM.ADMINISTRADOR_ID.id())) 
 				return consultaParaCliente();
 			else
-				return "clientePesquisar.fwd";
+				return "clientePesquisar.fwd";*/
 		} catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();

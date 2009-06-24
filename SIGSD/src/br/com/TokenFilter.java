@@ -77,7 +77,7 @@ public class TokenFilter implements Filter {
 			((HttpServletResponse)response).getWriter().close();*/
 			/* RequestDispatcher dispatcher = request.getRequestDispatcher(url);   
 			    dispatcher.forward(request, response);*/   
-			    serveletRequest.getRequestDispatcher("/acesso_negado.jsp").forward(serveletRequest, response);
+			    serveletRequest.getRequestDispatcher("/negadoAutenticacao.jsp").forward(serveletRequest, response);
 			//serveletRequest.getRequestDispatcher("/index.jsp?").forward(serveletRequest, response);
 			//return;   
 		}  

@@ -35,18 +35,20 @@ function selectAction(action){
 			url = '<c:url value="/casa/historico!historicoListar.action?"/>';	
 			params='historicoDTO.solicitacao.cliente.cpf='+cpf.value;	
 			params+='&telaConsulta=false';
-		}
+		}		
 		submeter = true;
 	}else if(action == 'voltar'){				
 		url = '<c:url value="/casa/cliente!pesquisar.action?"/>';
 		params='funcao=cliente';
-		params+='&telaConsulta=false';	
-		params+='&clienteDTO.perfil.id=3';			
+		params+='&telaConsulta=true';	
+		params+='&clienteDTO.perfil.id=3';	
+		params+='&naoPesquisar=true';		
 		submeter = true;
 	}else if(action == 'voltarCliente'){
 		//var cpf = document.getElementById('cpf');			
 		url = '<c:url value="/casa/cliente!consultaParaCliente.action?"/>';
-		params='telaConsulta=false';	
+		params='telaConsulta=false';
+		params+='&clienteDTO.perfil.id=3';	
 		submeter = true;
 	}else if(action == 'altera'){
 		var nasc = document.getElementById('nasc');
