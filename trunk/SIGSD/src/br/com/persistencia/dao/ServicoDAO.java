@@ -13,7 +13,7 @@ import br.com.persistencia.util.DTOFactory;
 
 public class ServicoDAO extends GenericDAO{
 
-	protected static final String strConsult = "SELECT s.idServico," +
+	protected static final String strConsult = "SELECT distinct s.idServico," +
 	"s.nome as nomeServico," +
 	"s.descricao as descricaoServico," +				
 	"p.idProfissao," +
