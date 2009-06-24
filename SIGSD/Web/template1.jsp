@@ -33,7 +33,7 @@
 		 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA3MlzePjziJ1uP_37GBnQLBR6Sx1U0p5dsF9UQa_9gAzptSVQ3RRIZK60IizTpOEDRbPXh6dM7Mi_lw" type="text/javascript"></script>
 		 -->
 		<!-- sigsd.com.br -->
-		 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=trues&amp;key=ABQIAAAA3MlzePjziJ1uP_37GBnQLBTY74gxr_pUnlzD-Q8T61LcYQfMUBQWsZou4hwnuwP8uzYExYAN56gy8Q" type="text/javascript"></script>
+		 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA3MlzePjziJ1uP_37GBnQLBTY74gxr_pUnlzD-Q8T61LcYQfMUBQWsZou4hwnuwP8uzYExYAN56gy8Q" type="text/javascript"></script>
 		 
 		<!-- localhost 
 		<script src="http://maps.google.com/?file=api&amp;v=2.x&amp;sensor=trues&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA" type="text/javascript"></script>
