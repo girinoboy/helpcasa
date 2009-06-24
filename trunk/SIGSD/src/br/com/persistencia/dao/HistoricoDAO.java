@@ -87,7 +87,8 @@ public class HistoricoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(historicoListar);	
-		qBuffer.append(" WHERE sl.idCliente=?");	
+		qBuffer.append(" WHERE sl.idCliente=?");
+		qBuffer.append(" ");	
 		qBuffer.append(" group by sl.idSolicitacao");
 		
 		try{
