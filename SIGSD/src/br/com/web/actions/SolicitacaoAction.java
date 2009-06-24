@@ -58,7 +58,7 @@ public class SolicitacaoAction extends GenericAction{
 	public String load() {
 
 		servicos = new HashMap<Number, String>();
-		servicos.put(0, "Selecione...");
+		//servicos.put(0, "Selecione...");
 		try {
 			listServicos = servicoBO.servicosListar();
 			ClienteDTO cliente =clienteBO.consulta(solicitacaoDTO.getCliente().getCpf());
