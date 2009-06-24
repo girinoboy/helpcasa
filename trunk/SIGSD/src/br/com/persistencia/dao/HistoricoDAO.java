@@ -21,7 +21,7 @@ public class HistoricoDAO extends GenericDAO{
 
 	private static final String strUpdateClassificacao = "UPDATE solicitacao SET idNota = ? WHERE idSolicitacao = ?";
 	
-	private static final String historicoListar = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,sl.statusAtual,h.status,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao,pf.descricao as perfil, sum(valor)+precovisita as total FROM historico h " +
+	private static final String historicoListar = "SELECT h.idHistorico,sv.nome as nomeServico,sl.data,sl.periodo,sl.statusAtual,h.status,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao,pf.descricao as perfil, sum(valor)+precovisita as total FROM historico h " +
 			"inner join solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
 			"inner join servico sv on sv.idServico = sl.idServico " +
 			"inner join funcionario f on sl.idFuncionario = f.idFuncionario " +

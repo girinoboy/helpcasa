@@ -24,7 +24,7 @@ public class SolicitacaoDAO extends GenericDAO{
 			"INNER JOIN pessoa on pessoa.idPessoa = funcionario.idFuncionario " ;
 			
 	
-	protected static final String strConsultFaturaBasica = "SELECT v.nome as nomeServico, p.nome as 'Profissional',s.data,s.statusAtual,s.periodo,p.idPessoa as idFuncionario, s.ocupado, p.nome as nomeFuncionario,p.cep, SUM(a.valor) as 'Total', s.idSolicitacao,precoVisita " +
+	protected static final String strConsultFaturaBasica = "SELECT v.nome as nomeServico, p.nome as 'Profissional',s.data,s.statusAtual,s.periodo,p.idPessoa as idFuncionario, s.ocupado, p.nome as nomeFuncionario,p.cep, SUM(a.valor)+precoVisita as 'Total', s.idSolicitacao,precoVisita " +
 			"FROM solicitacao s " +
 			"INNER JOIN cliente c ON c.idCliente = s.idCliente " +
 			"INNER JOIN funcionario f ON f.idFuncionario = s.idFuncionario " +
