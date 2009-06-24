@@ -63,10 +63,10 @@ public class TokenFilter implements Filter {
 		try{
 		boolean isValid = false;  
 		try {  
-			if (usuarioSessao != null)
+			if (usuarioSessao != null || deslogado != null)
 				isValid = true;  
-			if(deslogado != null)
-				isValid = true;
+		//	if(deslogado != null)
+			//	isValid = true;
 		} catch (Exception e) {  
 			throw new ServletException(e.getMessage());  
 		}  
@@ -77,7 +77,7 @@ public class TokenFilter implements Filter {
 			((HttpServletResponse)response).getWriter().close();*/
 			/* RequestDispatcher dispatcher = request.getRequestDispatcher(url);   
 			    dispatcher.forward(request, response);*/   
-			    serveletRequest.getRequestDispatcher("/negadoAutenticacao.jsp").forward(serveletRequest, response);
+			    serveletRequest.getRequestDispatcher("/acesso_negado.jsp").forward(serveletRequest, response);
 			//serveletRequest.getRequestDispatcher("/index.jsp?").forward(serveletRequest, response);
 			//return;   
 		}  

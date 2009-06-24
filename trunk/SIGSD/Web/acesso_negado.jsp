@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>   
 <div id="DivAguarde" class="formText" style="POSITION:ABSOLUTE; width:260px; height: 37px; Top: 130px; Left: 20px; visibility: hidden; z-index: 5;">
  <table border="0" width="250" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="borda-tabela" align="center">
       <tr class="fundoAzul" bordercolor="#cdcdcd">
@@ -59,7 +60,7 @@
     <td width="502" class="texto" >
     <BR><BR>
     <B>
-      <center><img src="img/firewall.gif" border="0" align="texttop"><br><b><font color="#FF0000" size="4"> Acesso negado a esta página...! </font></b></center><br>
+      <center><img src='<s:url value="/img/firewall.gif"/>' border="0" align="texttop"><br><b><font color="#FF0000" size="4"> Acesso negado a esta página...! </font></b></center><br>
 
       <center>Você não está autorizado a exibir esta página.</center><BR>
       <center>Provavelmente você foi bloqueado por um longo período de inatividade.</center><BR>

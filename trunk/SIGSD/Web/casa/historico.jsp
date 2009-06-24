@@ -3,9 +3,14 @@
 
 <s:form name="form1" method="post" id="form1" action="">
 <s:hidden id="cpf" name="historicoDTO.solicitacao.cliente.cpf"/>
+			
 	<h1>
-		<c:out value="Nome do Serviço" />
+		<c:out value="Historico" />
 	</h1>	
+	<div class="barra_botoes" align="left">				
+		<input align="left" name="incluir" type="button" value="Atualizar"
+		onClick="window.location.reload();" class="geral">
+	</div>
 	<table width="100%" cellspacing="1" cellpadding="3" border="1"
 		align="center">
 		<tr>
@@ -72,7 +77,7 @@
 							R$&nbsp;<c:out value="${solicitacao.funcionario.profissao.precoVisita}" />
 						</s:else>
 					</td>
-					<s:if test="${solicitacao.nota.id eq '1'}">
+					<s:if test="${solicitacao.nota.id eq '1' and solicitacao.statusAtual eq 3}">
 						<td>
 						<s:select list="listNota" name="notas"
 						id="notas${stat.index+1}" headerKey="0" headerValue="Selecione..."

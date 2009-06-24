@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <s:form name="form1" method="post" id="form1" action="">
-<s:hidden id="cpf" name="historicoDTO.solicitacao.cliente.cpf"/>
+<s:hidden id="cpf" name="historicoDTO.solicitacao.cliente.cpf"/>			
 	<h1>
 		<c:out value="Consulta do Historico de Serviço" />
 	</h1>	
@@ -10,10 +10,7 @@
 		align="center">
 		<tr>
 			<td></td>			
-			
-			<td title="Data">
-				<strong><c:out value="Data" /> </strong>
-			</td>	
+						
 			<td title="Periodo">
 				<strong><c:out value="Periodo" /> </strong>
 			</td>
@@ -43,10 +40,7 @@
 					onmouseout="this.bgColor='${corLinha}'">
 					<td>
 						<c:out value="${stat.index+1}" />
-					</td>					
-					<td>
-						<s:date name="data" format="dd/MM/yyyy"/>
-					</td>
+					</td>										
 					<td>
 						<s:if
 							test="${solicitacao.periodo eq 1} ">
@@ -75,21 +69,11 @@
 						</s:else>
 					</td>
 					<td>
+						<c:out value="${solicitacao.funcionario.perfil.descricao}" />
+					</td>																				
+					<td>
 						<c:out value="${solicitacao.funcionario.nome}" />
 					</td>
-					<td>
-						<s:if test="${total gt 0}">
-							<c:out value="${total}" />
-						</s:if>
-						<s:else>
-							R$&nbsp;<c:out value="${solicitacao.funcionario.profissao.precoVisita}" />
-						</s:else>
-					
-						
-						<td>
-							<c:out value="${solicitacao.nota.descricao}" />							
-						</td>
-				
 				</tr>
 			</s:iterator>
 		</s:if>

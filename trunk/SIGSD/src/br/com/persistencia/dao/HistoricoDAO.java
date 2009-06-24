@@ -12,6 +12,7 @@ import br.com.ConstantesENUM;
 import br.com.persistencia.dto.FuncionarioDTO;
 import br.com.persistencia.dto.HistoricoDTO;
 import br.com.persistencia.dto.NotaDTO;
+import br.com.persistencia.dto.PerfilDTO;
 import br.com.persistencia.dto.ProfissaoDTO;
 import br.com.persistencia.dto.ServicoDTO;
 import br.com.persistencia.dto.SolicitacaoDTO;
@@ -20,14 +21,25 @@ public class HistoricoDAO extends GenericDAO{
 
 	private static final String strUpdateClassificacao = "UPDATE solicitacao SET idNota = ? WHERE idSolicitacao = ?";
 	
-	private static final String strConsult = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,sl.statusAtual,h.status,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao, sum(valor)+precovisita as total FROM historico h " +
+	private static final String historicoListar = "SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,sl.statusAtual,h.status,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao,pf.descricao as perfil, sum(valor)+precovisita as total FROM historico h " +
 			"inner join solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
 			"inner join servico sv on sv.idServico = sl.idServico " +
 			"inner join funcionario f on sl.idFuncionario = f.idFuncionario " +
 			"inner join profissao pr on pr.idProfissao = f.idProfissao "+
 			"inner join pessoa p on p.idPessoa = f.idFuncionario " +
 			"left  join adicional a on a.idSolicitacao = sl.idSolicitacao "+
-			"inner join nota n on n.idnota= sl.idnota";
+			"inner join nota n on n.idnota= sl.idnota "+
+			"inner join perfil pf on p.idPerfil = pf.idPerfil ";
+	
+	private static final String strConsult ="SELECT h.idHistorico,sv.nome as nomeServico,h.data,sl.periodo,sl.statusAtual,h.status,p.nome as nomeFuncionario,n.idNota,n.descricao, precoVisita,sl.idSolicitacao,pf.descricao as perfil, sum(valor)+precovisita as total FROM historico h " +
+	"inner join solicitacao sl on sl.idSolicitacao = h.idSolicitacao " +
+	"inner join servico sv on sv.idServico = sl.idServico " +
+	"inner join funcionario f on sl.idFuncionario = f.idFuncionario " +
+	"inner join profissao pr on pr.idProfissao = f.idProfissao "+
+	"inner join pessoa p on p.idPessoa = h.alteradoPor " +
+	"left  join adicional a on a.idSolicitacao = sl.idSolicitacao "+
+	"inner join nota n on n.idnota= sl.idnota "+
+	"inner join perfil pf on p.idPerfil = pf.idPerfil ";
 
 	public void aplicaClassificacao(Long idSolicitacao, Long idNota,Connection conn) throws Exception {
 		PreparedStatement ps = null;
@@ -74,7 +86,7 @@ public class HistoricoDAO extends GenericDAO{
 			
 		StringBuffer qBuffer = new StringBuffer();		
 
-		qBuffer.append(strConsult);	
+		qBuffer.append(historicoListar);	
 		qBuffer.append(" WHERE sl.idCliente=?");	
 		qBuffer.append(" group by sl.idSolicitacao");
 		
@@ -139,6 +151,9 @@ public class HistoricoDAO extends GenericDAO{
 		FuncionarioDTO funcionario = new FuncionarioDTO();
 		funcionario.setNome(rs.getString("nomeFuncionario"));
 		funcionario.setProfissao(profissao);
+		PerfilDTO perfil = new PerfilDTO();
+		perfil.setDescricao(rs.getString("perfil"));
+		funcionario.setPerfil(perfil);
 		solicitacao.setFuncionario(funcionario);
 		
 		dto.setSolicitacao(solicitacao);

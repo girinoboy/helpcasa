@@ -62,12 +62,19 @@ function selectAction(action){
 		submeter = true;
 	}else if(action == 'exclui'){
 		url = '<c:url value="/casa/cliente!exclui.action?"/>';
-		submeter = true;
+		
+		//parent.window.frames["NOMEDOFRAME"].location.href
+		if(confirm('Deseja apagar a conta?')){
+			submeter = true;
+			top.document.location='<c:url value="login!logout.action?"/>';
+		}
+		else
+			submeter = false;
 	}else{
 		alert('Ação não encontrada.');
 		submeter = false;
 	}
-	
+	document.getElementById('login');
 	//Caso necessite de validação dos campos
 	if(submeter == true){
 		document.getElementById('form1').action = url + params;
