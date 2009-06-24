@@ -11,7 +11,8 @@
 <body>
 
 <c:set var="inicio" value="true" scope="session"/>
-<c:redirect url="/casa/login!logout.action?" /><!-- 
+<c:redirect url="/casa/login!logout.action?" />
+<!--<c:redirect url="/login.jsp" />--><!--
 <script src= "<c:url value="/casa/abertura.js.jsp"/>" type="text/javascript" />  
 --></body>
 </html>

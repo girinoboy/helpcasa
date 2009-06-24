@@ -61,6 +61,9 @@
 						</s:else>
 					</s:iterator>									
 				</s:if>
+				<s:else>
+					<s:set name="periodos" value="3" scope="session"/>
+				</s:else>
 				
 					<s:hidden name="max" id="max" value="${sessionScope.max}" />					
 					

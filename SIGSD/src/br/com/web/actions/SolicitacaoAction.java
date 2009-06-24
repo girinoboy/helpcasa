@@ -127,6 +127,7 @@ public class SolicitacaoAction extends GenericAction{
 			//solicitacaoDTO.setFuncionario(funcionario);
 			solicitacaoBO.solicitacaoInclui(solicitacaoDTO,listHorariosDisponiveis);
 			getMensagemGlobal().addMensagem("Solicitacao efetuada.", Mensagem.ALERTA);
+			listHorariosDisponiveis = null;
 		} catch (RegraNegocioException e){
 			//e.printStackTrace();
 			//manda para o request a mensagem de exceÔøΩÔøΩo vinda do bo
@@ -135,7 +136,7 @@ public class SolicitacaoAction extends GenericAction{
 			getMensagemGlobal().addMensagem("Ocorreu um erro ao efetuar solicitacao.", Mensagem.ALERTA);
 			e.printStackTrace();
 		}
-		return calcula();
+		return load();
 	}
 	
 	public String calcula(){//verifica horarios disponiveis
@@ -146,7 +147,7 @@ public class SolicitacaoAction extends GenericAction{
 			 
 			 int total = DataUtil.diferencaDatas(hoje, solicitacaoDTO.getData(), 0, null);
 			 if(total >=30){
-				 getMensagemGlobal().addMensagem("A data n„o deve ser maior do que 30 dias, a contar de hoje.", Mensagem.ALERTA);
+				 getMensagemGlobal().addMensagem("A data n√£o deve ser maior do que 30 dias, a contar de hoje.", Mensagem.ALERTA);
 				 return load();
 			 }
 			 

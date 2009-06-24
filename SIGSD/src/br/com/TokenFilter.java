@@ -37,7 +37,7 @@ public class TokenFilter implements Filter {
 		HttpServletRequest serveletRequest = (HttpServletRequest) request;			
 	
 		PessoaDTO usuarioSessao = (PessoaDTO) serveletRequest.getSession().getAttribute("pessoa");
-		String deslogado = (String) serveletRequest.getSession().getAttribute("inicio");
+		//String deslogado = (String) serveletRequest.getSession().getAttribute("inicio");
 			
 			
 			/*
@@ -63,7 +63,7 @@ public class TokenFilter implements Filter {
 		try{
 		boolean isValid = false;  
 		try {  
-			if (usuarioSessao != null || deslogado != null)
+			if (usuarioSessao != null)// || deslogado != null)
 				isValid = true;  
 		//	if(deslogado != null)
 			//	isValid = true;
