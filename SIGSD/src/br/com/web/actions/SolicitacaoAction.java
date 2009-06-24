@@ -2,15 +2,18 @@ package br.com.web.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.hssf.record.formula.functions.Request;
+import org.jfree.data.general.DataUtilities;
 
 import com.sun.mail.iap.Response;
 
+import br.com.DataUtil;
 import br.com.Mensagem;
 import br.com.RegraNegocioException;
 import br.com.bo.AdicionaisBO;
@@ -139,9 +142,18 @@ public class SolicitacaoAction extends GenericAction{
 
 		try{
 			
+			 Date hoje = DataUtil.converteDataHoraParaDate(DataUtil.pegarDataAtualCompleta());
+			 
+			 int total = DataUtil.diferencaDatas(hoje, solicitacaoDTO.getData(), 0, null);
+			 if(total >=30){
+				 getMensagemGlobal().addMensagem("A data não deve ser maior do que 30 dias, a contar de hoje.", Mensagem.ALERTA);
+				 return load();
+			 }
+			 
 			this.listHorariosDisponiveis = solicitacaoBO.horariosDisponiveisListar(solicitacaoDTO);
 			if(listHorariosDisponiveis.size() ==0){
-				getMensagemGlobal().addMensagem("A data não deve ser maior do que 30 dias, a contar de hoje.", Mensagem.ALERTA);
+				getMensagemGlobal().addMensagem("Nenhum horario disponivel.", Mensagem.ALERTA);
+				return load();
 			}
 		} catch (Exception e) {
 

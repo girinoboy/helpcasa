@@ -21,7 +21,8 @@ public class ServicoDAO extends GenericDAO{
 	"p.precovisita," +				
 	"p.descricao as descricaoProfissao  " +
 	"FROM servico s " +
-	"INNER JOIN profissao p ON s.idProfissao=p.idProfissao";
+	"INNER JOIN profissao p ON s.idProfissao=p.idProfissao "+
+	"INNER JOIN funcionario f ON f.idProfissao=p.idProfissao ";
 
 	public List<ServicoDTO> servicosListar(Connection conn) throws Exception {
 		List<ServicoDTO> list =null;
