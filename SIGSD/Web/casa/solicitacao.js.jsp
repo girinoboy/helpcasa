@@ -29,6 +29,7 @@ function selectAction(action,validaTudo){
 		arraydistancia[0]='2.34';
 		arraydistancia[1]='2.35';
 		arraydistancia[2]='2.36';
+		var cpf='${pessoaSessao.cpf}';
 		var data = document.getElementById('data');
 		url = '<c:url value="/casa/solicitacao!calcula.action?"/>';
 		params='clienteDTO.cpf='+cpf.value;
@@ -72,7 +73,7 @@ function validaCamposAoIncluir(validaTudo){
 	
 	if(data.value == ''){
 		alert('A Data é obrigatória.');
-		data.inputNode.focus();
+		data.focus();
 		return false;
 	}
 	if(!check_date(data.value)){

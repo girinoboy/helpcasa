@@ -105,13 +105,15 @@ public class SolicitacaoDAO extends GenericDAO{
 		StringBuffer qBuffer = new StringBuffer();		
 
 		qBuffer.append(strConsultFaturaBasica);
-		qBuffer.append(" WHERE s.idCliente = ?");
-		qBuffer.append(" group by a.valor");
+		qBuffer.append(" WHERE s.idCliente = ?");				
+		qBuffer.append(" and statusAtual=?");
+		qBuffer.append(" group by s.idSolicitacao");
 			
 		
 		try{
 			ps = conn.prepareStatement(qBuffer.toString());
 			ps.setLong(1, idCliente);
+			ps.setLong(2, ConstantesENUM.STATUS_FINALIZADO.id());
 			rs = ps.executeQuery();
 			list = new ArrayList<SolicitacaoDTO>();
 			while(rs.next()){

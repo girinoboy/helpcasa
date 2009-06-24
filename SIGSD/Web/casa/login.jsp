@@ -5,9 +5,11 @@
 <h3 align="center">Entrar no Sistema</h3>
 <div class="container" style="width: 200px">
 	<s:form action="login!checkLogin">
+	<c:set var="inicio" value="true" scope="session"/>
+	
+	
 		<div class="body">
-			<div id="recuo1Left">
-				<c:set var="inicio" value="true" scope="session"/>
+			<div id="recuo1Left">				
 				Nome de Usuário:<s:textfield name="pessoaDTO.usuario" id="pessoaDTO.usuario" label="Nome de Usuário" />
 				Senha:<s:password name="pessoaDTO.senha" id="pessoaDTO.senha" label="Senha" />
 				<div class="footer">

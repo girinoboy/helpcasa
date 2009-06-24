@@ -20,7 +20,7 @@
 	<definition name="Abertura.def" extends="template1.def">
 		<put-attribute name="title" value="Menu de ações do sistema" />
 		<put-attribute name="body" value="/casa/abertura.jsp" />
-		<put-attribute name="js" value="/casa/abertura.js.jsp" />
+		<put-attribute name="js" value="/casa/abertura.js.jsp" />	
 		<put-attribute name="jtabber" value="true" />
 	</definition>
 
