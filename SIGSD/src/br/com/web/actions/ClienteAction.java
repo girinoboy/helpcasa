@@ -142,7 +142,7 @@ public class ClienteAction extends GenericAction {
 				if(naoPesquisar)
 					setTelaConsulta(false);
 				return consultaParaCliente();
-			}else if (clienteDTO != null && clienteDTO.getCpf() != null && !telaConsulta && idPerfil.equals(ConstantesENUM.ADMINISTRADOR_ID.id())){
+			}else if (clienteDTO != null && clienteDTO.getCpf() != null && !telaConsulta && (idPerfil.equals(ConstantesENUM.ADMINISTRADOR_ID.id()) || idPerfil.equals(ConstantesENUM.ATENDENTE_ID.id())) ){
 				return consultaParaCliente();
 			}else
 				return "clientePesquisar.fwd";

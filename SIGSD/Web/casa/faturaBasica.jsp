@@ -60,7 +60,7 @@
 					</td>
 					<td>
 						<s:if test="${total gt 0}">
-							<c:out value="${total}" />
+							R$&nbsp;<c:out value="${total}" />
 						</s:if>
 						<s:else>
 							R$&nbsp;<c:out value="${funcionario.profissao.precoVisita}" />

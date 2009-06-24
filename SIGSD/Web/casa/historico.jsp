@@ -56,10 +56,10 @@
 						<s:date format="dd/MM/yyyy HH:mm:ss"  name="data" />
 					</td>	
 					<td>
-						<s:if test="${periodo eq 1} ">
+						<s:if test="${solicitacao.periodo eq 1} ">
 							<c:out value="Manha" />
 						</s:if>
-						<s:elseif test="${periodo eq 2}">
+						<s:elseif test="${solicitacao.periodo eq 2}">
 							<c:out value="Tarde" />
 						</s:elseif>
 						<s:else>
@@ -71,7 +71,7 @@
 					</td>
 					<td>
 						<s:if test="${total gt 0}">
-							<c:out value="${total}" />
+							R$&nbsp;<c:out value="${total}" />
 						</s:if>
 						<s:else>
 							R$&nbsp;<c:out value="${solicitacao.funcionario.profissao.precoVisita}" />
