@@ -46,7 +46,7 @@ public class ClienteAction extends GenericAction {
 			this.listUf = this.clienteBO.listUf();
 
 			for(UfDTO uf: listUf ){
-				if(uf.getUf().equals("DF"))
+				//if(uf.getUf().equals("DF"))
 				ufs.put(uf.getId(), uf.getUf());
 			}
 		} catch (Exception e) {
@@ -116,7 +116,7 @@ public class ClienteAction extends GenericAction {
 			this.listUf = this.clienteBO.listUf();
 
 			for(UfDTO uf: listUf ){
-				if(uf.getUf().equals("DF"))
+				//if(uf.getUf().equals("DF"))
 				ufs.put(uf.getId(), uf.getUf());
 			}
 

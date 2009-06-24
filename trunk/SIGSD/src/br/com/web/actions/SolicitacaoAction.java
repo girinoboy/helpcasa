@@ -140,7 +140,9 @@ public class SolicitacaoAction extends GenericAction{
 		try{
 			
 			this.listHorariosDisponiveis = solicitacaoBO.horariosDisponiveisListar(solicitacaoDTO);
-
+			if(listHorariosDisponiveis.size() ==0){
+				getMensagemGlobal().addMensagem("A data não deve ser maior do que 30 dias, a contar de hoje.", Mensagem.ALERTA);
+			}
 		} catch (Exception e) {
 
 			e.printStackTrace();

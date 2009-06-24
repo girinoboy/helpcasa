@@ -296,6 +296,7 @@ public class ClienteDAO extends GenericDAO{
 
 		public ClienteDTO altera(ClienteDTO clienteDTO, Connection conn) throws Exception {
 			PreparedStatement ps = null;
+			PreparedStatement ps2 = null;
 
 			String sql="UPDATE pessoa " +
 			"SET senha=?," +
@@ -304,8 +305,10 @@ public class ClienteDAO extends GenericDAO{
 			"nasc=?," +
 			"telefone=?," +
 			"celular=?," +
-			"cep=? " +
+			"cep=? " +			
 			"where idPessoa=?";
+			
+			String sql2 ="UPDATE cliente set cidade=?, endereco=?,idUf=? where idCliente=?";
 			try{
 
 				ps = conn.prepareStatement(sql);																
@@ -317,15 +320,25 @@ public class ClienteDAO extends GenericDAO{
 				ps.setString(5, clienteDTO.getTelefone());
 				ps.setString(6, clienteDTO.getCelular());
 				ps.setString(7, clienteDTO.getCep());
+				
 				ps.setLong(8, clienteDTO.getId());
 
 				ps.executeUpdate();
-
+				
+				ps2 = conn.prepareStatement(sql2);
+				ps2.setString(1, clienteDTO.getCidade());
+				ps2.setString(2, clienteDTO.getEndereco());
+				ps2.setLong(3, clienteDTO.getUf().getId());
+				ps2.setLong(4, clienteDTO.getId());
+				ps2.executeUpdate();
+				
 			}catch(Exception e){
 				throw e;
 			}finally{
 				if(ps!=null)
 					ps.close();
+				if(ps2!=null)
+					ps2.close();
 			}
 			return clienteDTO;
 

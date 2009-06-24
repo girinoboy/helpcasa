@@ -229,7 +229,7 @@ function disableAll(){
   	for(i = 0; i < arrayTextarea.length; i++){
   		arrayTextarea[i].disabled=true;
   	}
-  	
+  	var uf = document.getElementById('uf').disabled=true;
 }
 
 function loadWin(){
