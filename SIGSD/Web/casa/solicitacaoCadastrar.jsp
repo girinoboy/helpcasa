@@ -20,7 +20,7 @@
 					Servico:*
 				</td>
 				<td>					
-					<s:select name="solicitacaoDTO.servico.id" id="id" list="servicos" headerKey="-1" />
+					<s:select name="solicitacaoDTO.servico.id" id="id" list="servicos" headerKey="0" headerValue="Selecione"/>
 				</td>
 				
 			</tr>

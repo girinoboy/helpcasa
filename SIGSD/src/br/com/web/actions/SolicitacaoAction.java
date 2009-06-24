@@ -145,8 +145,11 @@ public class SolicitacaoAction extends GenericAction{
 			
 			 Date hoje = DataUtil.converteDataHoraParaDate(DataUtil.pegarDataAtualCompleta());
 			 
+			
 			 int total = DataUtil.diferencaDatas(hoje, solicitacaoDTO.getData(), 0, null);
-			 if(total >=30){
+			 if(total<0)
+				 getMensagemGlobal().addMensagem("A data não deve ser menor que a de hoje.", Mensagem.ALERTA);
+			 if(total >30){
 				 getMensagemGlobal().addMensagem("A data não deve ser maior do que 30 dias, a contar de hoje.", Mensagem.ALERTA);
 				 return load();
 			 }
