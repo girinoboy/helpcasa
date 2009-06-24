@@ -136,7 +136,7 @@ public class ClienteAction extends GenericAction {
 	public String pesquisar() throws Exception {
 		try {	
 			
-			Long idPerfil = clienteDTO.getPerfil().getId();
+			Long idPerfil = getSessaoPessoa().getPerfil().getId();
 			if(idPerfil !=3)
 				telaConsulta = true;
 			if (clienteDTO != null && clienteDTO.getCpf() != null && !telaConsulta ) 
