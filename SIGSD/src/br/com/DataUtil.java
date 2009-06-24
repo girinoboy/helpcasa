@@ -191,7 +191,7 @@ public class DataUtil {
 		String dataRetorno = null;
 		try{
 			Date data = new Date();
-			SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+			SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			dataRetorno = dataFormat.format(data);
 		}
 		catch(Exception e){ 
