@@ -1,0 +1,1 @@
+O sistema Help Casa está sendo desenvolvido para a graduação no curso de Ciência da Computação. Consiste em um sistema para solicitação de serviços para casa.
